@@ -79,4 +79,8 @@ $$ E_{tot} = \frac{1}{2} m_{0} |\dot{\vec{r_{0}}}|^{2} + \frac{1}{2} m_{1} |\dot
 
 Like last time, in order to determine if energy is conserved, we need to show that the derivative with respect to time for energy is equal to zero. So let's start.
 
-$$ \frac{d E_{tot}}{dt} = \frac{1}{2} m_{0} \frac{d |\dot{\vec{r_{0}}}|^{2}}{dt} + \frac{1}{2} m_{1} \frac{d |\dot{\vec{r_{1}}}|^{2}}{dt} - \frac{d}{dt} \Big( \frac{G m_{0} m_{1}}{|\vec{r_{1} - \vec{r_{}0}}|}$$
+$$ \frac{d E_{tot}}{dt} = \frac{1}{2} m_{0} \frac{d |\dot{\vec{r_{0}}}|^{2}}{dt} + \frac{1}{2} m_{1} \frac{d |\dot{\vec{r_{1}}}|^{2}}{dt} - \frac{d}{dt} \Big( \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}}|} \Big)$$
+
+Neat. Fun long equation. Anyway, now we can use those derivations for the magnitudes of the vectors, just substituting our position / velocity vectors in for $\vec{v}$.
+
+$$ \frac{d E_{tot}}{dt} = \frac{1}{2} m_{0} (\dot{\vec{r_{0}}} \cdot \ddot{\vec{r_{0}}} + \frac{1}{2} m_{1} (\dot{\vec{r_{1}}} \cdot \ddot{\vec{r_{1}}}) - G m_{0} m_{1} \Big[ \frac{1}{|\vec{r_{1}} - \vec{r_{0}}|^{2}} \frac{\vec{r_{0}} - \vec{r_{0}}}{|\vec{r_{0}} - \vec{r_{0}}|} \frac{d}{dt} \Big(\vec{r_{1}} - \vec{r_{0}} \Big) \Big] $$
