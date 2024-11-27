@@ -8,11 +8,11 @@ Onto the general description of what I am going to do, of which there are three:
 $$  \frac{d^{2} \vec{r_{0}}}{d t^{2}} =  \frac{Gm_{1}(\vec{r_{1}} - \vec{r_{0}})}{|\vec{r_{1}} - \vec{r_{0}}|^{3}}, 
 \quad \frac{d^{2} \vec{r_{1}}}{d t^{2}} =  \frac{Gm_{0}(\vec{r_{0}} - \vec{r_{1}})}{|\vec{r_{0}} - \vec{r_{1}}|^{3}}$$
 
+Where $m_{0}$ and $m_{1}% are the masses of the objects, $G$ is the graviational constant, and $\vec{r_{0}}$ and $\vec{r_{1}}$ are the position vectors of the objects. These two definitions will be helpful in showing the following exercises.
+
 ### Conversation of Angular Momentum
 Honestly, this one is kind of cheating, since *technically* the section shows conversation of the relative angular momentum. But I'm going to show it for the 2-body system. To start off, let's get some basic definitions. The book gives us the following equation.
 
 $$ L_{tot}  = m_{0} \vec{r_{0}} \times \dot{\vec{r_{0}}} + m_{1} \vec{r_{1}} \times \dot{\vec{r_{1}}}$$
 
-Where $L_{tot}$ is the total angular momentum of the system, $m_{0}$ and $m_{1}$ are the masses of the two objects, $r_{0}$ and $r_{1}$ are the position vectors of the two objects, and $\dot{\vec{r_{0}}}$ and $\dot{\vec{r_{1}}}$ are the velocity vectors of the two objects. 
-
-To show that is is act
+Where $L_{tot}$ is the total angular momentum of the system, $m_{0}$ and $m_{1}$ are the masses of the two objects, $r_{0}$ and $r_{1}$ are the position vectors of the two objects, and $\dot{\vec{r_{0}}}$ and $\dot{\vec{r_{1}}}$ are the velocity vectors of the two objects.
