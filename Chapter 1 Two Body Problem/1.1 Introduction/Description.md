@@ -62,3 +62,5 @@ $$ = 2 \vec{v} \cdot \dot{\vec{v}} $$
 
 #### Derivative of the Reciprocal of the Magnitude of a Vector
 Similar to above, we will re-write our derivative using the defnition stated earlier, and then apply a mix of product and chain rule.
+
+$$ \frac{d}{dt} (\frac{1}{|\vec{v}|}) = \frac{-\frac{d \vec{v}}{dt}}{|\vec{v}|^{2}} $$
