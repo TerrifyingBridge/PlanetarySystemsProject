@@ -8,4 +8,4 @@ Onto the general description of what I am going to do, of which there are three:
 ### Conversation of Angular Momentum
 Honestly, this one is kind of cheating, since *technically* the section shows conversation of the relative angular momentum. But I'm going to show it for the 2-body system. To start off, let's get some basic definitions. The book gives us the following equation.
 
-$$ L_{tot}  = m_{0} \textbf{r}_{0}$$
+$$ L_{tot}  = m_{0} \vec{r_{0}} \times \dot{\vec{r_{0}}}$$
