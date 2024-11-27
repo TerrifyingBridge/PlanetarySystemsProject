@@ -35,4 +35,4 @@ $$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (
 
 Distributing these cross products around give us the following.
 
-$$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{0}} \times \vec{r_{1}} - \vec{r_{0}} \times \vec{r_{0}} + \vec{r_{1}} \times \vec{r_{0}} + \vec{r_{1}} \ times \vec{r_{1}}) $$
+$$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{0}} \times \vec{r_{1}} - \vec{r_{0}} \times \vec{r_{0}} + \vec{r_{1}} \times \vec{r_{0}} + \vec{r_{1}} \times \vec{r_{1}}) $$
