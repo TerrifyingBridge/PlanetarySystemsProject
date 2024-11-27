@@ -65,7 +65,7 @@ Similar to above, we will re-write our derivative using the defnition stated ear
 
 $$ \frac{d}{dt} (\frac{1}{|\vec{v}|}) = \frac{-\frac{d |\vec{v}|}{dt}}{|\vec{v}|^{2}} $$
 $$ = \frac{-1}{|\vec{v}|^{2}} \frac{d}{dt} (\sqrt{\vec{v} \cdot \vec{v}}) $$
-$$ = \frac{-1}{|\vec{v}|^{2}} \frac{1}{2} \sqrt{\vec{v} \cdot \vec{v}}^{\frac{-1}{2}} \frac{d}{dt} (\vec{v} \cdot \vec{v}) $$
+$$ = \frac{-1}{|\vec{v}|^{2}} \Big[ \frac{1}{2} \sqrt{\vec{v} \cdot \vec{v}}^{-1/2} \frac{d}{dt} (\vec{v} \cdot \vec{v}) \Big] $$
 $$ = \frac{-1}{|\vec{v}|^{2}} \frac{1}{2} \sqrt{\vec{v} \cdot \vec{v}}^{\frac{-1}{2}} (2 \vec{v} \cdot \dot{\vec{v}}) $$
 $$ = \frac{-1}{|\vec{v}|^{2}} \frac{\vec{v} \cdot{\vec{v}}}{|\vec{v}|^{2}} $$
 $$ = \frac{-(\vec{v} \cdot \dot{\vec{v}})}{|\vec{v}|^{3}} $$
