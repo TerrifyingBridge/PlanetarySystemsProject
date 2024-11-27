@@ -90,4 +90,8 @@ Not so bad, but here are where things get a big gross. Our next step is to subst
 
 $$ \frac{d E_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + \dot{\vec{r_{1}}} \cdot (\vec{r_{0}} - \vec{r_{1}}) + (\vec{r_{1}} - \vec{r_{0}}) \cdot (\dot{\vec{r_{1}}} - \dot{\vec{r_{0}}}) \Big] $$
 $$  = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) - \dot{\vec{r_{1}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + (\dot{\vec{r_{1}}} - \dot{\vec{r_{0}}}) \cdot (\vec{r_{1}} - \vec{r_{0}}) \Big] $$
-$$  = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) - \dot{\vec{r_{1}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + \dot{\vec{r_{1}}} \ cdot (\vec{r_{1}} - \vec{r_{0}}) - \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) \Big] $$
+$$  = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) - \dot{\vec{r_{1}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + \dot{\vec{r_{1}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) - \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) \Big] $$
+
+All of these dot products end up canceling each other out. This leaves us with the following conclusion.
+
+$$ \frac{d E_{tot}}{dt} = 0 $$
