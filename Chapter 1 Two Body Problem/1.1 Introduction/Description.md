@@ -88,5 +88,5 @@ $$ = m_{0} (\dot{\vec{r_{0}}} \cdot \ddot{\vec{r_{0}}}) + m_{1} (\dot{\vec{r_{1}
 
 Not so bad, but here are where things get a big gross. Our next step is to substitute our acceleration vector with acceleration due to gravity. I am also going to move all constants that can be factors out to the front, as I don't believe spending the extra step to showcase it is really helpful or insightful.
 
-$$ \frac{d E_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1} - \vec{r_{0}}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + \dot{\vec{r_{1}}} \cdot (\vec{r_{0}} - \vec{r_{1}}) + (\vec{r_{1}} - \vec{r_{0}}) \cdot (\dot{\vec{r_{1}}} - \dot{\vec{r_{0}}}) \Big] $$
-$$  = \frac{G m_{0} m_{1}}{|\vec{r_{1} - \vec{r_{0}}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) - \dot{\vec{r_{1}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + (\dot{\vec{r_{1}}} - \dot{\vec{r_{0}}}) \cdot (\vec{r_{1}} - \vec{r_{0}}) \Big] $$
+$$ \frac{d E_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + \dot{\vec{r_{1}}} \cdot (\vec{r_{0}} - \vec{r_{1}}) + (\vec{r_{1}} - \vec{r_{0}}) \cdot (\dot{\vec{r_{1}}} - \dot{\vec{r_{0}}}) \Big] $$
+$$  = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) - \dot{\vec{r_{1}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + (\dot{\vec{r_{1}}} - \dot{\vec{r_{0}}}) \cdot (\vec{r_{1}} - \vec{r_{0}}) \Big] $$
