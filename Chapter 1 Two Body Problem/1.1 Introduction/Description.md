@@ -83,9 +83,9 @@ $$ \frac{d E_{tot}}{dt} = \frac{1}{2} m_{0} \frac{d |\dot{\vec{r_{0}}}|^{2}}{dt}
 
 Neat. Fun long equation. Anyway, now we can use those derivations for the magnitudes of the vectors, just substituting our position / velocity vectors in for $\vec{v}$.
 
-$$ \frac{d E_{tot}}{dt} = \frac{1}{2} m_{0} (2\dot{\vec{r_{0}}} \cdot \ddot{\vec{r_{0}}}) + \frac{1}{2} m_{1} (2\dot{\vec{r_{1}}} \cdot \ddot{\vec{r_{1}}}) - G m_{0} m_{1} \Big[ \frac{1}{|\vec{r_{1}} - \vec{r_{0}}|^{2}} \frac{\vec{r_{1}} - \vec{r_{0}}}{|\vec{r_{1}} - \vec{r_{0}}|} \cdot \frac{d}{dt} \Big(\vec{r_{1}} - \vec{r_{0}} \Big) \Big] $$
-$$ = m_{0} (\dot{\vec{r_{0}}} \cdot \ddot{\vec{r_{0}}}) + m_{1} (\dot{\vec{r_{1}}} \cdot \ddot{\vec{r_{1}}}) - G m_{0} m_{1} \Big[ \frac{1}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{1}} - \vec{r_{0}}) \cdot (\dot{\vec{r_{1}}} - \dot{\vec{r_{0}}}) \Big] $$
+$$ \frac{d E_{tot}}{dt} = \frac{1}{2} m_{0} (2\dot{\vec{r_{0}}} \cdot \ddot{\vec{r_{0}}}) + \frac{1}{2} m_{1} (2\dot{\vec{r_{1}}} \cdot \ddot{\vec{r_{1}}}) - G m_{0} m_{1} \Big[ \frac{-1}{|\vec{r_{1}} - \vec{r_{0}}|^{2}} \frac{\vec{r_{1}} - \vec{r_{0}}}{|\vec{r_{1}} - \vec{r_{0}}|} \cdot \frac{d}{dt} \Big(\vec{r_{1}} - \vec{r_{0}} \Big) \Big] $$
+$$ = m_{0} (\dot{\vec{r_{0}}} \cdot \ddot{\vec{r_{0}}}) + m_{1} (\dot{\vec{r_{1}}} \cdot \ddot{\vec{r_{1}}}) + G m_{0} m_{1} \Big[ \frac{1}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{1}} - \vec{r_{0}}) \cdot (\dot{\vec{r_{1}}} - \dot{\vec{r_{0}}}) \Big] $$
 
 Not so bad, but here are where things get a big gross. Our next step is to substitute our acceleration vector with acceleration due to gravity. I am also going to move all constants that can be factors out to the front, as I don't believe spending the extra step to showcase it is really helpful or insightful.
 
-$$ \frac{d E_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1} - \vec{r_{0}}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + \dot{\vec{r_{1}}} \cdot (\vec{r_{0}} - \vec{r_{1}}) \Big] $$
+$$ \frac{d E_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1} - \vec{r_{0}}}|^{3}} \Big[ \dot{\vec{r_{0}}} \cdot (\vec{r_{1}} - \vec{r_{0}}) + \dot{\vec{r_{1}}} \cdot (\vec{r_{0}} - \vec{r_{1}}) (\vec{r_{1}} - \vec{r_{0}}) \cdot (\dot{\vec{r_{1}}} - \dot{\vec{r_{0}}}) \Big] $$
