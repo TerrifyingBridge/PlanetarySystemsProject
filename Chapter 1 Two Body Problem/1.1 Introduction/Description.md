@@ -31,4 +31,4 @@ $$ \frac{dL_{tot}}{dt} = m_{0} \vec{r_{0}} \times \ddot{\vec{r_{0}}} + m_{1} \ve
 
 Now using the equations from earlier, we can replace the accerlation terms. I am going to skip a step and also move all scalar terms to the outside that can be factored out. Especially since I think that nothing will be leanred from spending an entire step focusing on it.
 
-$$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{0}} \times \vec{r_{1}} - \vec{r_{0}} + \vec{r_{1}} \times \vec{r_{0}} - \vec{r_{1}}) $$
+$$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{0}} \times (\vec{r_{1}} - \vec{r_{0}}) + \vec{r_{1}} \times (\vec{r_{0}} - \vec{r_{1}})) $$
