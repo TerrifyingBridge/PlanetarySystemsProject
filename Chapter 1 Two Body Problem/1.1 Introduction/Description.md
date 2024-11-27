@@ -69,3 +69,10 @@ $$ = \frac{-1}{|\vec{v}|^{2}} \Big[ \frac{1}{2} (\vec{v} \cdot \vec{v})^{\frac{-
 $$ = \frac{-1}{|\vec{v}|^{2}} \Big[ \frac{1}{2} \frac{1}{\sqrt{\vec{v} \cdot \vec{v}}} (2 \vec{v} \cdot \dot{\vec{v}}) \Big] $$
 $$ = \frac{-1}{|\vec{v}|^{2}} \frac{\vec{v} \cdot \dot{\vec{v}}}{|\vec{v}|} $$
 $$ = \frac{-(\vec{v} \cdot \dot{\vec{v}})}{|\vec{v}|^{3}} $$
+
+I promise this is important.
+
+#### Actually Showing Energy Conservation
+Alright, now that we have those equations under our belt, let's get the definition of total energy down.
+
+$$ E_{tot} = \frac{1}{2} m_{0} |\dot{\vec{r_{0}}}|^{2} + \frac{1}{2} m_{1} |\dot{\vec{r_{1}}}|^{2}  - \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}}$$
