@@ -20,3 +20,7 @@ Where $L_{tot}$ is the total angular momentum of the system, $m_{0}$ and $m_{1}$
 Alright, now to show that the angular momentum is conserved, we need to show that the time derivative is equal to 0. Using a little bit of product rule gets us the following.
 
 $$ \frac{dL_{tot}}{dt} = m_{0} (\frac{d \vec{r_{0}}}{dt} \times \dot{\vec{r_{0}}} + \vec{r_{0}} \times \frac{d \dot{\vec{r_{0}}}}{dt}) + m_{1} (\frac{d \vec{r_{1}}}{dt} \times \dot{\vec{r_{1}}} + \vec{r_{1}} \times \frac{d \dot{\vec{r_{1}}}}{dt})$$
+
+Gross. Trust me, it looks gross in LaTeX too. Let's use dot notation to make this look nicer.
+
+$$ \frac{dL_{tot}}{dt} = m_{0} (\dot{\vec{r_{0}}} \ times \dot{\vec{r_{0}}} + \vec{r_{0}} \times \ddot{\vec{r_{0}}}) + m_{1} (\dot{\vec{r_{1}}} \ times \dot{\vec{r_{1}}} + \vec{r_{1}} \times \ddot{\vec{r_{1}}})
