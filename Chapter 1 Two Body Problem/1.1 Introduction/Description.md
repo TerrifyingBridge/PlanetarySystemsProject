@@ -46,3 +46,19 @@ $$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (
 These two terms cancel, and give us the final result.
 
 $$ \frac{dL_{tot}}{dt} = 0 $$
+
+### Conservation of Energy
+Alright, so I'm really glad I did this one. This required me to brush up and re-learn some vector calculus that I forgot about. Before we start with showing how energy is conserved, I want to first showcase two different equations for vector derivation. One important equation we will use for this task is the derivative of the magnitude of a vector. To demonstrate this, I will use the vector $\vec{v}$. We will use the dot product definition for magnitude, namely:
+
+$$ |\vec{v}|^2 = \vec{v} \cdot \vec{v}, \quad |\vec{v}| = \sqrt{\vec{v} \cdot \vec{v}} $$
+
+#### Derivative of the Magnitude Squared of a Vector
+Let's re-write our current derivatrive using the definition stated above, and then apply product rule.
+
+$$ \frac{d |\vec{v}|^{2}}{dt} = \frac{d}{dt} (\vec{v} \cdot \vec{v}) $$
+$$ \frac{d |\vec{v}|^{2}}{dt} = \frac{d \vec{v}}{dt} \cdot \vect{v} + \vec{v} \cdot \frac{d \vec{v}}{dt} $$
+$$ \frac{d |\vec{v}|^{2}}{dt} = \dot{\vec{v}} \cdot \vec{v} + \vec{v} \cdot \dot{\vec{v}} $$
+$$ \frac{d |\vec{v}|^{2}}{dt} = 2 \vec{v} \cdot \dot{\vecv{}} $$
+
+#### Derivative of the Reciprocal of the Magnitude of a Vector
+Similar to above, we will re-write our derivative using the defnition stated earlier, and then apply a mix of product and chain rule.
