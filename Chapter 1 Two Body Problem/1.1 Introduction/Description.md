@@ -101,3 +101,19 @@ $$ \frac{d E_{tot}}{dt} = 0 $$
 Thus, energy is conserved.
 
 ## Description of Project
+This section of the chapter was focused on the basics of equations of motion for a 2-body system. Because of this, I figured it would be fun to create a simulation of a two body system using the equations of motion outlined. As mentioned this was done through the Python programming language, which meant my knowledge of GUI interface and animaiton was limited. While this is probably far from ideal, I ended up using PyGame to simulate these physics, as it has a rather straightforward update loop, and it is easy to control the fps. My plan was to have two different bodies, modeled as circles on the screen, and each would act on each other through gravity. 
+
+### Set Up
+Before jumping into actually making the planets and the dynamics work, I first created two different types of classes to work with: 2D Vectors and Celestial Objects. This step is a big unneeded as given how small the program ended up being, but I wanted to get some practice in using Python classes.
+#### 2D Vectors
+This was done in another Python file for organization. A 2D vector is simply a vector object that stores two variables x and y. This object comes with a number of methods such as adding, subtracting, multipling by a scalar, normalizing, and getting the magnitude. Doing it this way allowed me to write the parts of the vector as pos.x and pos.y instead of pos[0] and pos[1] (for a vector named pos). I believe this looks a lot cleaner, and the methods for the vectors were very helpful many times thoughout this project. 
+
+Also, I used 2D vectors as both objects will remain in the xy-plane. Technically they are 3D vectors, but with the z coordinate being 0. This is more relavent when finding the angular momentum, as this fact is rather implied, so I wanted to mention it now.
+#### Objects
+This was also done in another Python file that only contains class. The class does not contain much, simply just the position and velocity vectors for the object, along with its mass and color. There are only two methods for this, and these are just for PyGame to update them. The update method applies a gravitational force for each tick, and then uses that to update velocity and position. The draw method simply draws a circle where the object is. One design choice that should be noted is that the gravitational constant was increased by a factor of 10^4. My comment mentions that this is just increasing the units to a "tick" where one tick is equivalent to 600 seconds, which isn't entirely true, but close enough.
+
+### Putting Everything Together
+To start, I created two celestial objects, which I will refer from now on as planets, with coordinates near the center of the screen. One of the planets is 100 times larger than the other, while the smaller one has an initial velocity. This was because I wanted the program to showcase one planet orbiting around the other, while keeping the masses close enough that the other planet would wobble a little bit. Later in the loop, I put the update methods for each of the planets to apply their force. After this, the planets are drawn in the same draw loop. 
+
+### Extra Functions
+The last implementation I wanted to add was various functions for values I wanted to see updated as the program ran. These values are as follows: Total Energy, Total Angular Momentum, and Center of Mass. All of these values are calculated as stated above (except for the center of mass, which I'm not going to define as it's just the weighted average of the positions of the two planets) using functions created at the beginning of the program. Later on, during the draw loop, the program calcualtes these values for each tick and prints them to the screen. For simplicity, I tried to keep these values to around 3-4 significant figures.
