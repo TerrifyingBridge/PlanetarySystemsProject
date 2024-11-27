@@ -16,3 +16,7 @@ Honestly, this one is kind of cheating, since *technically* the section shows co
 $$ L_{tot}  = m_{0} \vec{r_{0}} \times \dot{\vec{r_{0}}} + m_{1} \vec{r_{1}} \times \dot{\vec{r_{1}}}$$
 
 Where $L_{tot}$ is the total angular momentum of the system, $m_{0}$ and $m_{1}$ are the masses of the two objects, $r_{0}$ and $r_{1}$ are the position vectors of the two objects, and $\dot{\vec{r_{0}}}$ and $\dot{\vec{r_{1}}}$ are the velocity vectors of the two objects.
+
+Alright, now to show that the angular momentum is conserved, we need to show that the time derivative is equal to 0. Using a little bit of product rule gets us the following.
+
+$$ \frac{dL_{tot}}{dt} = m_{0} (\frac{d \vec{r_{0}}}{dt} \times \dot{\vec{r_{0}}} + \vec{r_{0}} \times \frac{d \dot{\vec{r_{0}}}}{dt})
