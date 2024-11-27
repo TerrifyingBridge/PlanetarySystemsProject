@@ -3,7 +3,9 @@ This particular section focuses on a basic outline of celestial mechanics. Like 
 ## Self Imposed Exercises
 Since this is the first descriptiong, I'll explain what I plan on doing here. This book jumps over a couple of concepts it deems as too simple to emphasize (at least I think, it's not an intro book, so I don't blame Scott for not focusing on stuff like conversation of energy), so it skips them. Part of this project is to re-learn these concepts (and learn some LaTeX), so I'll choose a couple derivations or explanations to get practice with this.
 
-Onto the general description of what I am going to do, of which there are three: conservation of angular momentum, conservation of energy, and simplification to a 1-body problem. None of these should be too difficult, just a lot of grinding algebra and vector operations.
+Onto the general description of what I am going to do, of which there are three: conservation of angular momentum, conservation of energy, and simplification to a 1-body problem. None of these should be too difficult, just a lot of grinding algebra and vector operations. However, before we get into actually showing these, we need to make sure we have our basics outlined. For a 2-body system, our equations of motions are as follows.
+
+$$  \frac{d^{2} \vect{r_{0}}}{d t^{2}} =  $$
 
 ### Conversation of Angular Momentum
 Honestly, this one is kind of cheating, since *technically* the section shows conversation of the relative angular momentum. But I'm going to show it for the 2-body system. To start off, let's get some basic definitions. The book gives us the following equation.
@@ -11,3 +13,5 @@ Honestly, this one is kind of cheating, since *technically* the section shows co
 $$ L_{tot}  = m_{0} \vec{r_{0}} \times \dot{\vec{r_{0}}} + m_{1} \vec{r_{1}} \times \dot{\vec{r_{1}}}$$
 
 Where $L_{tot}$ is the total angular momentum of the system, $m_{0}$ and $m_{1}$ are the masses of the two objects, $r_{0}$ and $r_{1}$ are the position vectors of the two objects, and $\dot{\vec{r_{0}}}$ and $\dot{\vec{r_{1}}}$ are the velocity vectors of the two objects. 
+
+To show that is is act
