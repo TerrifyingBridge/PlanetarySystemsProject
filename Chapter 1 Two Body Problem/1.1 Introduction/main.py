@@ -29,8 +29,19 @@ def calc_ang_momentum(p1, p2):
     return ob1 + ob2
 
 
+def calc_com(p1, p2):
+    temp_pos1 = vectors.Vector2D(p1.pos.x, p1.pos.y)
+    temp_pos2 = vectors.Vector2D(p2.pos.x, p2.pos.y)
+
+    temp_pos1.multiply(p1.mass)
+    temp_pos2.multiply(p2.mass)
+    temp_pos1.add(temp_pos2)
+    return temp_pos1.multiply(1 / (p1.mass + p2.mass))
+
+
 planet1 = object.Object(vectors.Vector2D(400, 300), vectors.Vector2D(0, 0), 10e8, "light blue")
 planet2 = object.Object(vectors.Vector2D(500, 300), vectors.Vector2D(0, -2.5), 10e6, "darkorchid1")
+
 
 while True:
     for event in pygame.event.get():
@@ -49,6 +60,10 @@ while True:
     planet1.draw(screen)
     planet2.draw(screen)
 
+    com = calc_com(planet1, planet2)
+    com.x = round(com.x)
+    com.y = round(com.y)
+    draw_text("Center of Mass: " + str(com), text_font, (255, 255, 255), 20, 10)
     draw_text("Total Angular Momentum: " + str(round(calc_ang_momentum(planet1, planet2), -8)), text_font, (255, 255, 255), 20, 500)
     draw_text("Total Energy: " + str(round(calc_tot_energy(planet1, planet2), -5)), text_font, (255, 255, 255), 20, 550)
 
