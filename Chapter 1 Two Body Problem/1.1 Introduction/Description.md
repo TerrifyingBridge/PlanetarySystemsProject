@@ -39,7 +39,7 @@ $$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (
 
 An important note, swapping the order of the cross product will result in a change in sign. So $\vec{r_{0}} \times \vec{r_{1}} = -\vec{r_{1}} \times \vec{r_{0}} $. Eliminating cross products that equate to 0 and using this property, we get the following.
 
-$$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{0}} \times (\vec{r_{1}} - \vec{r_{0}} \times (\vec{r_{1}} $$
+$$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{0}} \times \vec{r_{1}} - \vec{r_{0}} \times \vec{r_{1}}) $$
 
 These two terms cancel, and give us the final result.
 
