@@ -56,9 +56,9 @@ $$ |\vec{v}|^2 = \vec{v} \cdot \vec{v}, \quad |\vec{v}| = \sqrt{\vec{v} \cdot \v
 Let's re-write our current derivatrive using the definition stated above, and then apply product rule.
 
 $$ \frac{d |\vec{v}|^{2}}{dt} = \frac{d}{dt} (\vec{v} \cdot \vec{v}) $$
-$$ \frac{d |\vec{v}|^{2}}{dt} = \frac{d \vec{v}}{dt} \cdot \vect{v} + \vec{v} \cdot \frac{d \vec{v}}{dt} $$
-$$ \frac{d |\vec{v}|^{2}}{dt} = \dot{\vec{v}} \cdot \vec{v} + \vec{v} \cdot \dot{\vec{v}} $$
-$$ \frac{d |\vec{v}|^{2}}{dt} = 2 \vec{v} \cdot \dot{\vecv{}} $$
+$$ = \frac{d \vec{v}}{dt} \cdot \vec{v} + \vec{v} \cdot \frac{d \vec{v}}{dt} $$
+$$ = \dot{\vec{v}} \cdot \vec{v} + \vec{v} \cdot \dot{\vec{v}} $$
+$$ = 2 \vec{v} \cdot \dot{\vec{v}} $$
 
 #### Derivative of the Reciprocal of the Magnitude of a Vector
 Similar to above, we will re-write our derivative using the defnition stated earlier, and then apply a mix of product and chain rule.
