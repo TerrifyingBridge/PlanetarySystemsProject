@@ -23,4 +23,4 @@ $$ \frac{dL_{tot}}{dt} = m_{0} (\frac{d \vec{r_{0}}}{dt} \times \dot{\vec{r_{0}}
 
 Gross. Trust me, it looks gross in LaTeX too. Let's use dot notation to make this look nicer.
 
-$$ \frac{dL_{tot}}{dt} = m_{0} (\dot{\vec{r_{0}}} \ times \dot{\vec{r_{0}}} + \vec{r_{0}} \times \ddot{\vec{r_{0}}}) + m_{1} (\dot{\vec{r_{1}}} \ times \dot{\vec{r_{1}}} + \vec{r_{1}} \times \ddot{\vec{r_{1}}}) $$
+$$ \frac{dL_{tot}}{dt} = m_{0} (\dot{\vec{r_{0}}} \times \dot{\vec{r_{0}}} + \vec{r_{0}} \times \ddot{\vec{r_{0}}}) + m_{1} (\dot{\vec{r_{1}}} \times \dot{\vec{r_{1}}} + \vec{r_{1}} \times \ddot{\vec{r_{1}}}) $$
