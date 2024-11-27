@@ -1,14 +1,16 @@
 # Section 1.1 - Introduction
 This particular section focuses on a basic outline of celestial mechanics. Like very basic. The extent of this section talks about the acceleration for a simple 2-body problem and looks at the immediate consequence of this. They mention conversation of energy and momentum, and simplifies it down to a 1-body problem. Outside of that, there isn't too much going on.
+
+I will first go over the self imposed exerices I thought would be benifical and then move onto a description of the coding project.
 ## Self Imposed Exercises
 Since this is the first descriptiong, I'll explain what I plan on doing here. This book jumps over a couple of concepts it deems as too simple to emphasize (at least I think, it's not an intro book, so I don't blame Scott for not focusing on stuff like conversation of energy), so it skips them. Part of this project is to re-learn these concepts (and learn some LaTeX), so I'll choose a couple derivations or explanations to get practice with this.
 
-Onto the general description of what I am going to do, of which there are three: conservation of angular momentum, conservation of energy, and simplification to a 1-body problem. None of these should be too difficult, just a lot of grinding algebra and vector operations. However, before we get into actually showing these, we need to make sure we have our basics outlined. For a 2-body system, our equations of motions are as follows.
+Onto the general description of what I am going to do, of which there are two: conservation of angular momentum and conservation of energy. None of these should be too difficult, just a lot of grinding algebra and vector operations. However, before we get into actually showing these, we need to make sure we have our basics outlined. For a 2-body system, our equations of motions are as follows.
 
 $$ \frac{d^{2} \vec{r_{0}}}{d t^{2}} =  \frac{Gm_{1}(\vec{r_{1}} - \vec{r_{0}})}{|\vec{r_{1}} - \vec{r_{0}}|^{3}}, 
 \quad \frac{d^{2} \vec{r_{1}}}{d t^{2}} =  \frac{Gm_{0}(\vec{r_{0}} - \vec{r_{1}})}{|\vec{r_{0}} - \vec{r_{1}}|^{3}}$$
 
-Where $m_{0}$ and $m_{1}% are the masses of the objects, $G$ is the graviational constant, and $\vec{r_{0}}$ and $\vec{r_{1}}$ are the position vectors of the objects. These two definitions will be helpful in showing the following exercises.
+Where $m_{0}$ and $m_{1}$ are the masses of the objects, $G$ is the graviational constant, and $\vec{r_{0}}$ and $\vec{r_{1}}$ are the position vectors of the objects. These two definitions will be helpful in showing the following exercises.
 
 ### Conversation of Angular Momentum
 Honestly, this one is kind of cheating, since *technically* the section shows conversation of the relative angular momentum. But I'm going to show it for the 2-body system. To start off, let's get some basic definitions. The book gives us the following equation.
