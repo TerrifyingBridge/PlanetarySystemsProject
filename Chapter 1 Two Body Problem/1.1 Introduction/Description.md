@@ -75,4 +75,8 @@ I promise this is important.
 #### Actually Showing Energy Conservation
 Alright, now that we have those equations under our belt, let's get the definition of total energy down.
 
-$$ E_{tot} = \frac{1}{2} m_{0} |\dot{\vec{r_{0}}}|^{2} + \frac{1}{2} m_{1} |\dot{\vec{r_{1}}}|^{2}  - \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}}$$
+$$ E_{tot} = \frac{1}{2} m_{0} |\dot{\vec{r_{0}}}|^{2} + \frac{1}{2} m_{1} |\dot{\vec{r_{1}}}|^{2}  - \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|}$$
+
+Like last time, in order to determine if energy is conserved, we need to show that the derivative with respect to time for energy is equal to zero. So let's start.
+
+$$ \frac{d E_{tot}}{dt} = \frac{1}{2} m_{0} \frac{d |\dot{\vec{r_{0}}}|^{2}}{dt} + \frac{1}{2} m_{1} \frac{d |\dot{\vec{r_{1}}}|^{2}}{dt} - \frac{d}{dt} \Big( \frac{G m_{0} m_{1}}{|\vec{r_{1} - \vec{r_{}0}}|}$$
