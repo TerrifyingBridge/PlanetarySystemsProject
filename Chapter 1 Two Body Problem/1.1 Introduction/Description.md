@@ -47,6 +47,8 @@ These two terms cancel, and give us the final result.
 
 $$ \frac{dL_{tot}}{dt} = 0 $$
 
+Thus, angular momentum is conserved.
+
 ### Conservation of Energy
 Alright, so I'm really glad I did this one. This required me to brush up and re-learn some vector calculus that I forgot about. Before we start with showing how energy is conserved, I want to first showcase two different equations for vector derivation. One important equation we will use for this task is the derivative of the magnitude of a vector. To demonstrate this, I will use the vector $\vec{v}$. We will use the dot product definition for magnitude, namely:
 
@@ -95,3 +97,7 @@ $$  = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} \Big[ \dot{\vec{r_{0
 All of these dot products end up canceling each other out. This leaves us with the following conclusion.
 
 $$ \frac{d E_{tot}}{dt} = 0 $$
+
+Thus, energy is conserved.
+
+## Description of Project
