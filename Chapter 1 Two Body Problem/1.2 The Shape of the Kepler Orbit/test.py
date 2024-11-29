@@ -21,13 +21,13 @@ def polar_to_cart(r_val, th):
     return (r_val * np.cos(th), r_val * np.sin(th))
 
 
-En = -955
+En = 10000
 r_start = 350
 a = calc_a(En)
 print(a)
 e = calc_e(r_start, a)
 print(e)
-f = np.linspace(0, 2 * np.pi, 100)
+f = np.linspace(0, 2*np.pi, 100)
 r = calc_r(f)
 
 fig, ax = plt.subplots()

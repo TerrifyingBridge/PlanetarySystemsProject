@@ -26,8 +26,10 @@ def calc_e(a_val, r_val, peri_val):
     else:
         return (r_val / a_val - 1)
 
+
 def calc_r(f_val):
-    return (a*(1 - e**2)) / (1 + e * np.cos(f_val))
+    return (a * (1 - e ** 2)) / (1 + e * np.cos(f_val))
+
 
 def polar_to_cart(r_val, th):
     return (r_val * np.cos(th), r_val * np.sin(th))
@@ -45,7 +47,6 @@ def start_sim():
 
         a = calc_a(en)
         e = calc_e(a, r, peri)
-        print(a, e)
 
         if (e < 0):
             err_label.config(text="Unreal Orbit - Change Energy")
@@ -58,7 +59,12 @@ def start_sim():
         for widget in root.winfo_children():
             widget.destroy()
 
-        f = np.linspace(0, 2 * np.pi, 100)
+        if (e < 1):
+            f = np.linspace(0, 2 * np.pi, 100)
+        else:
+            temp1 = np.linspace(0, np.pi / 2, 50)
+            temp2 = np.linspace(3 * np.pi / 2, 2 * np.pi, 50)
+            f = np.concatenate((temp2, temp1))
         r = calc_r(f)
 
         fig = plt.Figure(figsize=(5, 5))
@@ -93,7 +99,7 @@ def start_sim():
             frames=len(f),
             init_func=init, blit=False, interval=50)
 
-        #ani.save("test.gif")
+        # ani.save("test.gif")
         canvas.draw()
 
 
@@ -147,7 +153,7 @@ radio2 = tkinter.Radiobutton(root, text="Apoapsis", variable=rad_var, value=Fals
 radio2.place(x=150, y=250)
 ang_label = tkinter.Label(root, text="Start Position:", font=("Arial", 12))
 ang_label.place(x=25, y=250)
-rad_var.set(False)
+rad_var.set(True)
 
 start_button = tkinter.Button(root, text="Start Sim", font=("Arial", 12), command=start_sim, height=2, width=15)
 start_button.pack(side=tkinter.BOTTOM, pady=10)
