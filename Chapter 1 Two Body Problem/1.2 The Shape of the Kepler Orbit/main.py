@@ -20,11 +20,8 @@ def calc_a(energy):
     return -G * M / (2 * energy)
 
 
-def calc_e(a_val, r_val, peri_val):
-    if (peri_val):
-        return (1 - r_val / a_val)
-    else:
-        return (r_val / a_val - 1)
+def calc_e(a_val, r_val):
+    return (1 - r_val / a_val)
 
 
 def calc_r(f_val):
@@ -46,10 +43,11 @@ def start_sim():
         print(en, r, peri)
 
         a = calc_a(en)
-        e = calc_e(a, r, peri)
+        e = calc_e(a, r)
+        print(e)
 
         if (e < 0):
-            err_label.config(text="Unreal Orbit - Change Energy")
+            err_label.config(text="Unreal Orbit - Increase Energy")
         else:
             can_start = True
     except:
@@ -60,7 +58,10 @@ def start_sim():
             widget.destroy()
 
         if (e < 1):
-            f = np.linspace(0, 2 * np.pi, 100)
+            if (peri):
+                f = np.linspace(0, 2 * np.pi, 100)
+            else:
+                f = np.linspace(-1*np.pi, np.pi, 100)
         else:
             temp1 = np.linspace(0, np.pi / 2, 50)
             temp2 = np.linspace(3 * np.pi / 2, 2 * np.pi, 50)

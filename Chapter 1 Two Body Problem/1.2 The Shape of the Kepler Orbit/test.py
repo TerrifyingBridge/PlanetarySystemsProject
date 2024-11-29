@@ -21,7 +21,7 @@ def polar_to_cart(r_val, th):
     return (r_val * np.cos(th), r_val * np.sin(th))
 
 
-En = 10000
+En = 1000
 r_start = 350
 a = calc_a(En)
 print(a)
@@ -59,5 +59,8 @@ ani = FuncAnimation(
     fig, update,
     frames=len(f),
     init_func=init, blit=True, interval=50)
+
+print(f)
+print(r)
 
 plt.show()
