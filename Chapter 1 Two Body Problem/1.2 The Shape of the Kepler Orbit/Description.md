@@ -17,6 +17,11 @@ This is important to note, as because the polar unit vectors rely on $\theta$, i
 $$ \frac{d \mathbf{\hat{r}}}{dt} = -\sin (\theta) \frac{d \theta}{dt} \mathbf{\hat{x}} + \cos (\theta) \frac{d \theta}{dt} \mathbf{\hat{y}}$$
 $$ \frac{d \boldsymbol{\hat{\theta}}}{dt} = -\cos (\theta) \frac{d \theta}{dt} \mathbf{\hat{x}} - \sin (\theta) \frac{d \theta}{dt} \mathbf{\hat{y}}$$
 
+Here we can factor out $\frac{d \theta}{dt}$ and re-write it as $\dot{\theta}$. 
+
+$$ \frac{d \mathbf{\hat{r}}}{dt} = (-\sin (\theta) \mathbf{\hat{x}} + \cos (\theta) \mathbf{\hat{y}}) \frac{d \theta}{dt} = \dot{\theta} \boldsymbol{\hat{\theta}} $$
+$$ \frac{d \boldsymbol{\hat{\theta}}}{dt} = (-\cos (\theta) \mathbf{\hat{x}} - \sin (\theta) \mathbf{\hat{y}}) \frac{d \theta}{dt} = -\dot{\theta} \mathbf{\hat{r}} $$
+
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
 
