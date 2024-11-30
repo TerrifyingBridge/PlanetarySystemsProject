@@ -42,6 +42,10 @@ Before simplifying this down, let's substitue known values and clean up the equa
 
 $$ \mathbf{\ddot{r}} = \ddot{r}\mathbf{\hat{r}} + \dot{r}\dot{\theta}\boldsymbol{\hat{\theta}} + \dot{r}\dot{\theta}\boldsymbol{\hat{\theta}} + r\ddot{\theta}\boldsymbol{\hat{\theta}} - r\dot{\theta}^{2}\mathbf{\hat{r}} $$
 
+Now this is a matter of rearranging terms and combining like terms, then we come to our final result.
+
+$$ \mathbf{\ddot{r}} = (\ddot{r} - r\dot{\theta}^{2})\mathbf{\hat{r}} + (2\dot{r}\dot{\theta} + r\ddot{\theta})\boldsymbol{\hat{\theta}}$$
+
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
 
