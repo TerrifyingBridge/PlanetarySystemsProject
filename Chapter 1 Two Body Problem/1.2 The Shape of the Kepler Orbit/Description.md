@@ -55,6 +55,22 @@ Where $\Phi_{\text{K}}(r) = -\frac{GM}{r}$. Fortunately, since $\Phi_{\text{K}}$
 
 $$ -\frac{d \Phi_{\text{K}}}{dt} = \ddot{r} - r\dot{\theta}^{2}, \quad 2\dot{r}\dot{\theta} + r\ddot{\theta} = 0 $$
 
+Let's focus on that second equation. We can be a little tricky and multiply both sides by $r$. The right side stays 0, but the interesting part is the left side. Doing so allows us to rewrite it as a product rule.
+
+$$ 2\dot{r}r\dot{\theta} + r^{2}\ddot{\theta} = \frac{d}{dt}(r^{2})\dot{\theta} + r^{2} \frac{d}{dt}(\dot{\theta}) = \frac{d}{dt} (r^{2}\dot{\theta}) = 0 $$
+
+This is rather convient, as now we can just integrate both sides with respect to $t$. This leaves us with the following.
+
+$$ r^{2}\dot{\theta} = C $$
+
+Where $C$ is a constant. Now we're going to take a small detour to show something, namely that this constant is exactly equal to the magnitude of the angular momentum per unit mass. By definition the angular momentum per unit mass is the following.
+
+$$ L = \mathbf{r} \times \mathbf{\dot{r}} $$
+
+Fortunately, as seen previouisly, we know what is $\mathbf{\dot{r}}$ is equal to. So let's replace it with what we found above.
+
+$$ L = \mathbf{r} \times (\dot{r} \mathbf{\hat{r}} + r \dot{\theta} \boldsymbol{\hat{\theta}}) $$
+
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
 
