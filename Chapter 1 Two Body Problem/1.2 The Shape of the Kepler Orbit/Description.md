@@ -65,11 +65,21 @@ $$ r^{2}\dot{\theta} = C $$
 
 Where $C$ is a constant. Now we're going to take a small detour to show something, namely that this constant is exactly equal to the magnitude of the angular momentum per unit mass. By definition the angular momentum per unit mass is the following.
 
-$$ L = \mathbf{r} \times \mathbf{\dot{r}} $$
+$$ \mathbf{L} = \mathbf{r} \times \mathbf{\dot{r}} $$
 
 Fortunately, as seen previouisly, we know what is $\mathbf{\dot{r}}$ is equal to. So let's replace it with what we found above.
 
-$$ L = \mathbf{r} \times (\dot{r} \mathbf{\hat{r}} + r \dot{\theta} \boldsymbol{\hat{\theta}}) $$
+$$ \mathbf{L} = r\mathbf{\hat{r}} \times (\dot{r} \mathbf{\hat{r}} + r \dot{\theta} \boldsymbol{\hat{\theta}}) $$
+
+We can distribute the cross product to each one to evaluate this.
+
+$$ \mathbf{L} = r\mathbf{\hat{r}} \times \dot{r} \mathbf{\hat{r}} + r\mathbf{\hat{r}} \times r \dot{\theta} \boldsymbol{\hat{\theta}} $$
+
+The cross product of a vector against itself is 0, and the other terms are perpendicular so the magnitude is just the magnitudes of the vectors multiplied with each other.
+
+$$ \mathbf{L} = r^{2}\dot{\theta}(\mathbf{\hat{r}} \times \boldsymbol{\hat{\theta}}), \quad L = r^{2}\dot{\theta}
+
+Thus showing that the constant $C$ from earlier is just the magnitude of the angular momentum per unit mass.
 
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
