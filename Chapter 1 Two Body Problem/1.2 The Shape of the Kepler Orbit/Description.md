@@ -22,6 +22,14 @@ Here we can factor out $\frac{d \theta}{dt}$ and re-write it as $\dot{\theta}$.
 $$ \frac{d \mathbf{\hat{r}}}{dt} = (-\sin (\theta) \mathbf{\hat{x}} + \cos (\theta) \mathbf{\hat{y}}) \frac{d \theta}{dt} = \dot{\theta} \boldsymbol{\hat{\theta}} $$
 $$ \frac{d \boldsymbol{\hat{\theta}}}{dt} = (-\cos (\theta) \mathbf{\hat{x}} - \sin (\theta) \mathbf{\hat{y}}) \frac{d \theta}{dt} = -\dot{\theta} \mathbf{\hat{r}} $$
 
+Now that we have these values, we can go back to our original problem. As a reminder, our position vector in polar coordinates is $\mathbf{r} = r\mathbf{\hat{r}}$. To start, we will find the first time derivative for this position. We can use the product rule to do this.
+
+$$ \frac{d \mathbf{r}}{dt} = \frac{d}{dt} (r \mathbf{\hat{r}}) = \frac{d r}{dt} \mathbf{\hat{r}} + r \frac{d \mathbf{\hat{r}}}{dt} $$
+
+We can substitue our time derivatives with the values found earlier, and use dot notation to clean up the rest.
+
+$$ \mathbf{\dot{r}} = \dot{r} \mathbf{\hat{r}} + r \dot{\theta} \boldsymbol{\hat{\theta}} $$
+
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
 
