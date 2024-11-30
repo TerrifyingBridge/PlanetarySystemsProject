@@ -95,6 +95,10 @@ We will use this relation to re-write $\ddot{r}$ in terms of $u$ and the angle.
 
 $$ \dot{r} = \frac{dr}{dt} = Lu^{2}\frac{du}{d\theta}\frac{dr}{du} = Lu^{2}\frac{du}{d\theta} (\frac{-1}{u^{2}}) = -L\frac{du}{d\theta}$$
 
+We can repeat this process for $\ddot{r}$$ and substitute what we found for $\dot{r}$.
+
+$$ \ddot{r} = \frac{d\dot{r}}{dt} = \frac{d}{dt} (-L\frac{du}{d\theta}) = Lu^{2} \frac{d}{d\theta} (-L\frac{du}{d\theta}) = -L^{2}u^{2} \frac{d^{2}u}{d\theta^{2}} $$
+
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
 
