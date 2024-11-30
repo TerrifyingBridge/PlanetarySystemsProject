@@ -85,7 +85,7 @@ $$ \dot{\theta} = \frac{L}{r^{2}} $$
 
 We do this as it'll be helpful later. Also, we can substitue this value into the other equation of the gradiate. This yields the following differntial equation.
 
-$$ \ddot{r} - \frac{L^{2}}{r^{3}} = -\frac{s\Psi_{\text{K}}}{dt} $$
+$$ \ddot{r} - \frac{L^{2}}{r^{3}} = -\frac{d\Phi_{\text{K}}}{dt} $$
 
 This is the differential equation we need to solve in order determine the equation of motion. Unfortunately, this is rather gross. However, we can simplify it down to a easier differential equation to solve. Before doing that, we need to some leg work to make it cleaner. The first step is using the transformation $u = 1/r$, where $u$ is just a temperary variable. Next, we can re-write the time derivative operator by changing the independant variable from $t$ to $\theta$.
 
@@ -101,7 +101,7 @@ $$ \ddot{r} = \frac{d\dot{r}}{dt} = \frac{d}{dt} (-L\frac{du}{d\theta}) = Lu^{2}
 
 This is helpful, as we can re-write the original differential equation using these terms. I am going to skip over the algebraic manipulation, as I don't think it is terribly productive. If you would like to see it, I will say just do it yourself, it's not particularly difficult. However, here is what it ends up becoming.
 
-$$ \frac{d^{2}u}{d\theta^{2}} + u = \frac{-1}{L^{2}} \frac{d\Psi_{\text{K}}}{du} = \frac{GM}{L^{2}} $$
+$$ \frac{d^{2}u}{d\theta^{2}} + u = \frac{-1}{L^{2}} \frac{d\Phi_{\text{K}}}{du} = \frac{GM}{L^{2}} $$
 
 Now this is a differential equation I can solve (and much easier than what it was before). Working through this, the characteristic equation has imaginary roots thus the solution to this differetial question will a combination of sines and cosines. Since the differential equation is equal to a constant, the particular solution will just be equal to that. Putting it together, the solution to this differential equation is as follows.
 
@@ -119,7 +119,7 @@ Adding in this into our equation of motion, and using some algebraic manipulatio
 
 $$ r(\theta) = \frac{a(1 - e^{2})}{1 + e\cos(\theta)} $$
 
-This is our final result. Or at least my final result. This specific solution just works for where the starting condition of the orbit is at the periapsis. A more general solution would be to have another integration constant inside of the cosine part of the function. Regardless, this can be shown to be an ellipsical orbit when $0 < e < 1$ and hyperbolic when $e > 1 and parabolic when $e = 1$. This is the equation I will use in the program I made for this section.
+This is our final result. Or at least my final result. This specific solution just works for where the starting condition of the orbit is at the periapsis. A more general solution would be to have another integration constant inside of the cosine part of the function. Regardless, this can be shown to be an ellipsical orbit when $0 < e < 1$ and hyperbolic when $e > 1$ and parabolic when $e = 1$. This is the equation I will use in the program I made for this section.
 
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
