@@ -7,7 +7,7 @@ As last time, I will first go through some self imposed exercises that I thought
 In my opinion, there is a lot less that this section jumps over, and when it does jump over something, it usually make sense. Most of the jumps over the non-obvious steps come from the derivation of the equation of motion. For this reason, I want to derive this equation of motion myself as an exercise. This cheating a bit, since the book technically does this already, but in my derivation, I'll go into more detail than the book does to make up for it. On top of this, another excerise I want to do is derive the second time derivative of $\mathbf{r}$ in terms of it's components. I think the book also shows this process in the appendix, but I'm not going to be looking there, and doing it myself (mostly for good practice).
 
 ### Derivation of $\mathbf{\ddot{r}}$
-First thing I want to point out. For some reason the book uses $\psi$ for the angle in polar coordinates, but I will be using $theta$ because it conforms to the convention I'm used to. Anyway, as you might imagine we're working in polar coordinates $(r, \theta)$. 
+First thing I want to point out. For some reason the book uses $\psi$ for the angle in polar coordinates, but I will be using $\theta$ because it conforms to the convention I'm used to. Anyway, as you might imagine we're working in polar coordinates $(r, \theta)$. Alright to start, we're going to consider an object in an orbital plane. Since we're working with polar coordinates, our starting vector is $\mathbf{r} = r\mathbf{\hat{r}}$
 
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
