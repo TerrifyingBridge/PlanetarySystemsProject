@@ -95,9 +95,31 @@ We will use this relation to re-write $\ddot{r}$ in terms of $u$ and the angle.
 
 $$ \dot{r} = \frac{dr}{dt} = Lu^{2}\frac{du}{d\theta}\frac{dr}{du} = Lu^{2}\frac{du}{d\theta} (\frac{-1}{u^{2}}) = -L\frac{du}{d\theta}$$
 
-We can repeat this process for $\ddot{r}$$ and substitute what we found for $\dot{r}$.
+We can repeat this process for $\ddot{r}$ and substitute what we found for $\dot{r}$.
 
 $$ \ddot{r} = \frac{d\dot{r}}{dt} = \frac{d}{dt} (-L\frac{du}{d\theta}) = Lu^{2} \frac{d}{d\theta} (-L\frac{du}{d\theta}) = -L^{2}u^{2} \frac{d^{2}u}{d\theta^{2}} $$
+
+This is helpful, as we can re-write the original differential equation using these terms. I am going to skip over the algebraic manipulation, as I don't think it is terribly productive. If you would like to see it, I will say just do it yourself, it's not particularly difficult. However, here is what it ends up becoming.
+
+$$ \frac{d^{2}u}{d\theta^{2}} + u = \frac{-1}{L^{2}} \frac{d\Psi_{\text{K}}}{du} = \frac{GM}{L^{2}} $$
+
+Now this is a differential equation I can solve (and much easier than what it was before). Working through this, the characteristic equation has imaginary roots thus the solution to this differetial question will a combination of sines and cosines. Since the differential equation is equal to a constant, the particular solution will just be equal to that. Putting it together, the solution to this differential equation is as follows.
+
+$$ u(\theta) = c_{1}\cos{\theta} + c_{2}\sin{\theta} + \frac{GM}{L^{2}} $$
+
+Using the inital conditions, we can remove one of these trig functions. Being careful, we can set our starting position of the orbit to be at it's closest when $\theta = 0$. This means we want to minimize $r$ at this point, which is maximizing $u$. Similarly, since this is an orbit, we want $\theta = 2\pi$ to be the same point. Both of these conditions outline exactly what cosine does, and thus we can eliminate the sine term. Doing an extra bit of algebraic manipulation we get the following.
+
+$$ \frac{1}{r} = \frac{GM}{L^{2}} (1 + e\cos(\theta)) $$
+
+Where $e$ is just a constant (this will end up being the eccentricity). Before finally finishing, the book does this extra step and introduces a constant $a$ which is defined in the following way.
+
+$$ a = \frac{L^{2}}{GM(1-e^{2})}, \quad L^{2} = GMa(1 - e^{2}) $$
+
+Adding in this into our equation of motion, and using some algebraic manipulation to solve for $r$ we get the following.
+
+$$ r(\theta) = \frac{a(1 - e^{2})}{1 + e\cos(\theta)} $$
+
+This is our final result. Or at least my final result. This specific solution just works for where the starting condition of the orbit is at the periapsis. A more general solution would be to have another integration constant inside of the cosine part of the function. Regardless, this can be shown to be an ellipsical orbit when $0 < e < 1$ and hyperbolic when $e > 1 and parabolic when $e = 1$. This is the equation I will use in the program I made for this section.
 
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
@@ -168,5 +190,7 @@ To make things just a bit spicier, I added a try/except block so that the progra
 As mentioned before, I think this project got a little too ambitious. It required I learn two new Python concepts that I have never used in my life (matplotlib animation and creating a GUI), and made the process of finishing it rather long. That being said, I think it was a good idea to go through with both of them. The animation adds a nice flavor where you can see the particle's actual path of orbit. I like the GUI too because it adds a nice bit of polish to everything and makes it feel more like a project than just some random program. 
 
 For all of these reasons, I am happy with how the program turned out. There are a few things that could be upgraded or "fixed". The GUI could be fixed by adding a button or option to return to the main page. On top of not sure how to do that, I also didn't feel like figuring out how to do that, and I'm fine leaving it the way it is. In terms of plotting, I wanted to make the apoapsis button have the starting position be the apoapsis instead of the radius inputted always be the periapsis. However, I couldn't figure out how to do this with any reasonable accuracy. I did have a version where it kind of worked, but everything got janky with hyperbolic motion (as apoapsis doesn't exist in that case), so I just removed the feature.
+
+I am a little disappointed I wasn't able to figure out how to implement the collision aspect that is talked about in the final pages of the book. I believe I could have thought of something, but I didn't want to think about the idea for too hard (especially since this is going to be a long ass project if I am able to go through with it). Similarly, I wasn't able to add the case where $e=1$. In the current program, everything just breaks when this specific case happens, but I think it would have been fun to implement a parabolic orbit. 
 
 Lastly, I am happy I chose this particular route for the program. The process helped me learn about the different processes described in the book, and made some lesser known parts more obvious. As an example, I wasn't sure why $f_{\infty}$ was defined as what it was at first. It was only when I went to fix the program for the hyperbolic orbit that I figured it out. When I tried to have an input range of $[0, 2 \pi)$ the program plotted the entire hyperbola, as it switched over to the other side when the bottom of the equation of motion flipped sign. I determined the $f$ value for when this happens and discovered that it was exactly $f_{\infty}$. There were a number of moments like this throughout this project, and I ended up learning a lot.
