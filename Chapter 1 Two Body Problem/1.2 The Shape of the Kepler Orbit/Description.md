@@ -30,9 +30,13 @@ We can substitue our time derivatives with the values found earlier, and use dot
 
 $$ \mathbf{\dot{r}} = \dot{r} \mathbf{\hat{r}} + r \dot{\theta} \boldsymbol{\hat{\theta}} $$
 
-Simple enough. We need to take another time derivative of this equation in order to find the second derivative (duh). Lots of product rule in this one.
+Simple enough. We need to take another time derivative of this equation in order to find the second derivative (duh).
 
 $$ \frac{d \mathbf{\dot{r}}}{dt} =  \frac{d}{dt} (\dot{r} \mathbf{\hat{r}} + r \dot{\theta} \boldsymbol{\hat{\theta}})$$
+
+Alright, lots of product rule in this one.
+
+$$ \mathbf{\ddot{r}} = \frac{d \dot{r}}{dt} \mathbf{\hat{r}} + \dot{r} \frac{d \mathbf{\hat{r}}}{dt} + \frac{dr}{dt} \dot{\theta} \boldsymbol{\hat{\theta}} + r \frac{d \dot{\theta}}{dt} \boldsymbol{\hat{\theta}} + r \dot{\theta} \frac{d \boldsymbol{\hat{\theta}}}{dt} $$
 
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
