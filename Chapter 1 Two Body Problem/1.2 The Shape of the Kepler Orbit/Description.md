@@ -33,11 +33,11 @@ We can be a bit tricky and have $r$ be a function of $f$ (where $r$ is the dista
 
 To combat this, I gave the program two initial values: the energy of the system and the starting distance of the periapsis from the origin. Using these two starting values, we can find the values for this unknowns. The first we will look for is $a$. The book derives the following relation between $a$ and $E$.
 
-$$ E = -GM/a $$
+$$ E = \frac{-GM}{a} $$
 
 Using some quick re-arranging, we can yield the following.
 
-$$ a = -GM/E $$
+$$ a = \frac{-GM}{E} $$
 
 With one unknown found, we can use its value to find the other. To solve for the eccentricity, we can plug in our initial conditions for simulation ($r=r_{0}$ and $f = 0$) into our equation of motion.
 
@@ -58,4 +58,17 @@ $$ e = 1 - \frac{r_{0}}{a} $$
 Now with everything accounted for, we can actually plot the orbit.
 
 #### Actually Plotting the Orbit
+In order to have the path show up on matplotlib, I first needed to create an array of values for my input. As mentioned before, I am using $f$ as my input variable and when starting at $f=0$ for periapsis or $f=\pi$ when starting at apoapsis. For circular orbits, this range is $[0, 2 \pi)$, and for hyperbolic orbits, this range $(-f_{\infty}, f_{\infty})$, where $f_{\infty}$ is the asymptotic true anomaly. 
+
+Once these arrays were created, I then created a new array which was to be the value for $r$. For each value in $f$, I used the equation of motion for $r$, and put the resulting value in its own array. Thus, I have created two arrays (in this case, of size 100) that will be used to make the plot. I also decided to have a single plot in the center of the screen which represented the fixed mass. Since these are in polar coordinates, an extra step was taken (during the animation function) to translate it into cartesian so it could be plotted.
+
+In order to animate the path, I first created three different "lines" (as named by matplotlib) which represent the three different parts of the graph I wanted to see. These parts were the fixed mass in the center, the orbiting particle, and the path of the orbiting particle (the tracer). I used the FuncAnimation function from matplotlib, which takes in an update and init function. I am not sure if these functions need to return the lines that were plotted, but the examples did it, so I did it too. 
+
+Regardless, The init function simply set up the bounds of the plot, in this case 500x500, which was chosen arbitrarily. The update function is where the animation actually happens. For each frame, I created two lists that were a chunk of the graph based on the current frame. This was then plotted using line1, which created the tracer of the orbit. The second line was a singular dot, which was just the last two data points of the segment obtained for line1, and this dot went in line2. The data for line3 was never changed as it was a fixed mass.
+
+### Creating the GUI
+This is the last part of the program, and took around half of the time to create. I wanted a GUI that took in starting values for my program. The library I chose to use was tkinter, because I saw that it had easy embeding of matplotlib figures. I didn't spend much time on design, as the space was cramped and I wasn't entirely sure what I was doing. I created some instruction labels at the top for people to read, and added in text boxes for people to put their starting values. Just for fun, I added in two radio buttons that determined the starting position of the particle as well. 
+
+To make things just a bit spicier, I added a try/except block so that the program wouldn't crash if the user gave an incorrect response. If any error did show up, then a big red label appeared and told the user to try again. I also added a button at the bottom of the interface that started the simulation. All this did was remove all of the widgets on the screen and replaced it with the simulation I wanted to see (the orbit). I did not create a button to go back to the start however, so the user has to restart the program when the simulation starts.
+
 ## Reflecting Thoughts
