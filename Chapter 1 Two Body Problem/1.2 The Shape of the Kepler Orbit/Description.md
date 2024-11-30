@@ -77,7 +77,7 @@ $$ \mathbf{L} = r\mathbf{\hat{r}} \times \dot{r} \mathbf{\hat{r}} + r\mathbf{\ha
 
 The cross product of a vector against itself is 0, and the other terms are perpendicular so the magnitude is just the magnitudes of the vectors multiplied with each other.
 
-$$ \mathbf{L} = r^{2}\dot{\theta}(\mathbf{\hat{r}} \times \boldsymbol{\hat{\theta}}), \quad L = r^{2}\dot{\theta}
+$$ \mathbf{L} = r^{2}\dot{\theta}(\mathbf{\hat{r}} \times \boldsymbol{\hat{\theta}}), \quad L = r^{2}\dot{\theta} $$
 
 Thus showing that the constant $C$ from earlier is just the magnitude of the angular momentum per unit mass.
 
