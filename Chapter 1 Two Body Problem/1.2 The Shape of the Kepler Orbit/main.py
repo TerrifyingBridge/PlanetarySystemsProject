@@ -61,7 +61,8 @@ def start_sim():
             if (peri):
                 f = np.linspace(0, 2 * np.pi, 100)
             else:
-                f = np.linspace(-1*np.pi, np.pi, 100)
+                f_infinity = np.arccos(-1/e)
+                f = np.linspace(-1*f_infinity, f_infinity, 100)
         else:
             temp1 = np.linspace(0, np.pi / 2, 50)
             temp2 = np.linspace(3 * np.pi / 2, 2 * np.pi, 50)
