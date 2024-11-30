@@ -15,7 +15,7 @@ $$ \mathbf{\hat{\theta}} = -\sin (\theta) \mathbf{\hat{x}} + \cos (\theta) \math
 This is important to note, as because the polar unit vectors rely on $\theta$, it has a non-zero time derivative. Before we can derive our original derivative, we need to find these derivatives. Fortunately, since it's sines and cosines it isn't too bad.
 
 $$ \frac{d \mathbf{\hat{r}}}{dt} = -\sin (\theta) \frac{d \theta}{dt} \mathbf{\hat{x}} + \cos (\theta) \frac{d \theta}{dt} \mathbf{\hat{y}}$$
-$$ \frac{d \mathbf{\hat{\theta}}}{dt} = -\cos (\theta) \frac{d \theta}{dt} \mathbf{\hat{x}} - \sin (\theta) \frac{d \theta}{dt} \mathbf{\hat{y}}$$
+$$ \frac{d \boldsymbol{\hat{\theta}}}{dt} = -\cos (\theta) \frac{d \theta}{dt} \mathbf{\hat{x}} - \sin (\theta) \frac{d \theta}{dt} \mathbf{\hat{y}}$$
 
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
