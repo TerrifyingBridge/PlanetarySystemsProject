@@ -46,6 +46,11 @@ Now this is a matter of rearranging terms and combining like terms, then we come
 
 $$ \mathbf{\ddot{r}} = (\ddot{r} - r\dot{\theta}^{2})\mathbf{\hat{r}} + (2\dot{r}\dot{\theta} + r\ddot{\theta})\boldsymbol{\hat{\theta}}$$
 
+### Derivation of Equation of Motion
+In order to derive the equation of motion, we first need to know what we're working with. As described back in the first section, we know the following relation for orbital motion.
+
+$$ \mathbf{\ddot{r}} = -\nabla\Phi_{\text{K}} $$
+
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
 
