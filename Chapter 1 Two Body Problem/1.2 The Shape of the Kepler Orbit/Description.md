@@ -79,7 +79,21 @@ The cross product of a vector against itself is 0, and the other terms are perpe
 
 $$ \mathbf{L} = r^{2}\dot{\theta}(\mathbf{\hat{r}} \times \boldsymbol{\hat{\theta}}), \quad L = r^{2}\dot{\theta} $$
 
-Thus showing that the constant $C$ from earlier is just the magnitude of the angular momentum per unit mass.
+Thus showing that the constant $C$ from earlier is just the magnitude of the angular momentum per unit mass. Having this equation let's us solve for $\dot{\theta}$ and gives us the following equation.
+
+$$ \dot{\theta} = \frac{L}{r^{2}} $$
+
+We do this as it'll be helpful later. Also, we can substitue this value into the other equation of the gradiate. This yields the following differntial equation.
+
+$$ \ddot{r} - \frac{L^{2}}{r^{3}} = -\frac{s\Psi_{\text{K}}}{dt} $$
+
+This is the differential equation we need to solve in order determine the equation of motion. Unfortunately, this is rather gross. However, we can simplify it down to a easier differential equation to solve. Before doing that, we need to some leg work to make it cleaner. The first step is using the transformation $u = 1/r$, where $u$ is just a temperary variable. Next, we can re-write the time derivative operator by changing the independant variable from $t$ to $\theta$.
+
+$$ \frac{d}{dt} = \frac{d \theta}{dt} \frac{d}{d\theta} = \dot{\theta}\frac{d}{d\theta} = Lu^{2}\frac{d}{d\theta} $$
+
+We will use this relation to re-write $\ddot{r}$ in terms of $u$ and the angle.
+
+$$ \dot{r} = \frac{dr}{dt} = Lu^{2}\frac{du}{d\theta}\frac{dr}{du} = Lu^{2}\frac{du}{d\theta} (\frac{-1}{u^{2}}) = -L\frac{du}{d\theta}$$
 
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
