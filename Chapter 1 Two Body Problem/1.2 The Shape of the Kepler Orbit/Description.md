@@ -10,7 +10,7 @@ In my opinion, there is a lot less that this section jumps over, and when it doe
 First thing I want to point out. For some reason the book uses $\psi$ for the angle in polar coordinates, but I will be using $\theta$ because it conforms to the convention I'm used to. Anyway, as you might imagine we're working in polar coordinates $(r, \theta)$. Alright to start, we're going to consider an object in an orbital plane. Since we're working with polar coordinates, our starting vector is $\mathbf{r} = r\mathbf{\hat{r}}$. Before we start, let's write our polar unit vectors in terms of cartesian unit vectors. 
 
 $$ \mathbf{\hat{r}} = \cos (\theta) \mathbf{\hat{x}} + \sin (\theta) \mathbf{\hat{y}} $$
-$$ \mathbf{\hat{\theta}} = -\sin (\theta) \mathbf{\hat{x}} + \cos (\theta) \mathbf{\hat{y}} $$
+$$ \boldsymbol{\hat{\theta}} = -\sin (\theta) \mathbf{\hat{x}} + \cos (\theta) \mathbf{\hat{y}} $$
 
 This is important to note, as because the polar unit vectors rely on $\theta$, it has a non-zero time derivative. Before we can derive our original derivative, we need to find these derivatives. Fortunately, since it's sines and cosines it isn't too bad.
 
