@@ -51,6 +51,10 @@ In order to derive the equation of motion, we first need to know what we're work
 
 $$ \mathbf{\ddot{r}} = -\nabla\Phi_{\text{K}} $$
 
+Where $\Phi_{\text{K}}(r) = -\frac{GM}{r}$. Fortunately, since $\Phi_{\text{K}}$ only relies on $r$, $\frac{d \Phi_{\text{K}}}{d\theta} = 0$. To actually begin solving this, we will use the equation derived earlier for $\mathbf{\ddot{r}}$. This yields us two different equations.
+
+$$ -\frac{d \Phi_{\text{K}}}{dt} = \ddot{r} - r\dot{\theta}^{2}, \quad 2\dot{r}\dot{\theta} + r\ddot{\theta} = 0 $$
+
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
 
