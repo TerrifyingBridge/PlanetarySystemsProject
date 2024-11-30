@@ -38,6 +38,10 @@ Alright, lots of product rule in this one.
 
 $$ \mathbf{\ddot{r}} = \frac{d \dot{r}}{dt} \mathbf{\hat{r}} + \dot{r} \frac{d \mathbf{\hat{r}}}{dt} + \frac{dr}{dt} \dot{\theta} \boldsymbol{\hat{\theta}} + r \frac{d \dot{\theta}}{dt} \boldsymbol{\hat{\theta}} + r \dot{\theta} \frac{d \boldsymbol{\hat{\theta}}}{dt} $$
 
+Before simplifying this down, let's substitue known values and clean up the equation.
+
+$$ \mathbf{\ddot{r}} = \ddot{r}\mathbf{\hat{r}} + \dot{r}\dot{\theta}\boldsymbol{\hat{\theta}} + \dot{r}\dot{\theta}\boldsymbol{\hat{\theta}} + r\ddot{\theta}\boldsymbol{\hat{\theta}} - r\dot{\theta}^{2}\mathbf{\hat{r}} $$
+
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
 
