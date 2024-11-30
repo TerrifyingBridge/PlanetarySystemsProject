@@ -28,7 +28,11 @@ $$ \frac{d \mathbf{r}}{dt} = \frac{d}{dt} (r \mathbf{\hat{r}}) = \frac{d r}{dt} 
 
 We can substitue our time derivatives with the values found earlier, and use dot notation to clean up the rest.
 
-$$ \mathbf{\dot{r}} = \dot{r} \mathbf{\hat{r}} + r \dot{\psi} \boldsymbol{\hat{\theta}} $$
+$$ \mathbf{\dot{r}} = \dot{r} \mathbf{\hat{r}} + r \dot{\theta} \boldsymbol{\hat{\theta}} $$
+
+Simple enough. We need to take another time derivative of this equation in order to find the second derivative (duh). Lots of product rule in this one.
+
+$$ \frac{d \mathbf{\dot{r}}}{dt} =  \frac{d}{dt} (\dot{r} \mathbf{\hat{r}} + r \dot{\theta} \boldsymbol{\hat{\theta}})$$
 
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
