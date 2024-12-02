@@ -73,5 +73,8 @@ class Vector3D:
         angle = self.angle_between(other)
         return (self.magnitude() * other.magnitude() * np.sin(angle))
 
+    def copy(self):
+        return Vector3D(self.x, self.y, self.z)
+
     def __str__(self):
         return ("(" + str(self.x) + "," + str(self.y) + "," + str(self.z) + ")")
