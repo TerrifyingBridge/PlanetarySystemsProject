@@ -16,3 +16,5 @@ $$ P = 2 \pi (\frac{a^{3}}{GM_{\text{E}}})^{1/2} $$
 All of these are givens, since we're working with the Earth (the book gives us the values of the Earth's period and mass in Appendix A), we can just the known values, and since the orbit we're looking for is circular, the semi-major axis and the radius are the same and thus, $r_{\text{sync}} = a$. This can be easily re-arranged for $r_{\text{sync}}$ and yields the following equation.
 
 $$ r_{\text{sync}} = (\frac{P^{2} GM_{\text{E}}}{4 \pi^{2}}) ^ {\frac{1}{3}} $$
+
+According to Appendix A, $P_{\text{E}} = 0.99727 \text{ days}$ and $GM_{\text{E}} = 3.985004 \times 10^{14} \text{ m}^{3} \text{s}^{-2}$
