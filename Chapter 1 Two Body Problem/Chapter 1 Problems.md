@@ -17,4 +17,10 @@ All of these are givens, since we're working with the Earth (the book gives us t
 
 $$ r_{\text{sync}} = (\frac{P^{2} GM_{\text{E}}}{4 \pi^{2}}) ^ {\frac{1}{3}} $$
 
-According to Appendix A, $P_{\text{E}} = 0.99727 \text{ days}$ and $GM_{\text{E}} = 3.985004 \times 10^{14} \text{ m}^{3} \text{s}^{-2}$
+According to Appendix A, $P_{\text{E}} = 0.99727 \text{ days}$ and $GM_{\text{E}} = 3.985004 \times 10^{14} \text{ m}^{3} \text{s}^{-2}$ However, before plugging in these values, we have to make sure that our period is in the correct units. There are 86400 seconds in a day, so we have a simple conversion.
+
+$$ 0.99727 \text{ days} \times 86400 = 86164.128 \text{ seconds} $$
+
+Now we can plug in our values.
+
+$$ r_{\text{sync}} = (\frac{(86164.128)^{2} (3.985004 \times 10^{14})}{4 \pi^{2}}) ^ {\frac{1}{3}} $$
