@@ -24,7 +24,7 @@ $$ 0.99727 \text{ days} \times 86400 = 86164.128 \text{ seconds} $$
 Now we can plug in our values.
 
 $$ r_{\text{sync}} = (\frac{(86164.128)^{2} (3.986004 \times 10^{14})}{4 \pi^{2}}) ^ {\frac{1}{3}} $$
-$$ r_{\text{sync}} = (7.496024337 \times 10^{22})^{\frac{1}{3}}
+$$ r_{\text{sync}} = (7.496024337 \times 10^{22})^{\frac{1}{3}} $$
 $$ r_{\text{sync}} = 42164180.38 \text{ m}$$
 $$ r_{\text{sync}} = 42164.18038 \text{ km} $$
 $$ r_{\text{sync}} \approx 42164 \text{ km} $$
