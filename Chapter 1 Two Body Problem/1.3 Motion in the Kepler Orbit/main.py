@@ -3,8 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-r_0 = vectors.Vector3D(-400, 200, 0)
-v_0 = vectors.Vector3D(0, 0, -10)
+r_0 = vectors.Vector3D(-300, 100, 100)
+v_0 = vectors.Vector3D(10, 8, -5)
 
 # Constants
 G = 6.673430e-11
@@ -46,6 +46,8 @@ def find_u0(semi_axis, ecc, r):
     elif (temp < -1):
         print(temp + 1)
         temp = -1
+    else:
+        print(temp)
     return np.arccos(temp)
 
 
@@ -67,6 +69,10 @@ def calc_u(l, ecc, accuracy):
         E = temp
         count += 1
     return E
+
+
+def calc_period(mean_motion):
+    return 2 * np.pi / mean_motion
 
 
 def f(t):
@@ -100,15 +106,17 @@ L = find_ang_momentum(r_0, v_0)
 e = find_e(L, a)
 u0 = find_u0(a, e, r_0.magnitude())
 l0 = find_l0(e, u0)
+P = calc_period(n)
 
-time = np.linspace(0, 400, 200)
+time = np.linspace(0, round(P + 1), 200)
 x = np.zeros(len(time))
 y = np.zeros(len(time))
 z = np.zeros(len(time))
 
 for i in range(len(time)):
     temp_vec = position(time[i])
-    # print(temp_vec)
+    temp_vec2 = r_0.copy()
+    temp_vec2.subtract(temp_vec)
     x[i] = temp_vec.x
     y[i] = temp_vec.y
     z[i] = temp_vec.z
@@ -119,7 +127,6 @@ ax = fig.add_subplot(projection="3d")
 line3, = ax.plot([0], [0], [0], "o", color="black", markersize=20)
 line1, = ax.plot([], [], [], "red")
 line2, = ax.plot([], [], [], "bo")
-
 
 
 def init():
