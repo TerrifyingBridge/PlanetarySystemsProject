@@ -7,3 +7,10 @@ Each problem will have a main title, and the actual problem itself. From there I
 
 ## Problem 1 - [1] {1}
 > A **geosynchronous orbit** is an orbit with period equal to the spin period of the Earth. Show that a circular geosynchronous orbit has radius $r_{\text{sync}} = 42164 \text{ km}$. You may approximate the Earth as spherical and ignore the effects of the Moon and Sun. Hint: $42241 \text{ km}$ is not correct.
+
+### My Solution
+This problem isn't too bad, as it is mostly plugging values into equations and then solving for the only unknown. The only equation we really need is the following.
+
+$$ P = 2 \pi (\frac{a^{3}}{GM_{\text{E}}})^{1/2} $$
+
+All of these are givens, since we're working with the Earth (the book gives us the values of the Earth's period and mass in Appendix A), we can just the known values, and since the orbit we're looking for is circular, the semi-major axis and the radius are the same and thus, $r_{\text{sync}} = a$
