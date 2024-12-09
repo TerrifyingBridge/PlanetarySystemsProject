@@ -3,8 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-r0 = vectors.Vector3D(-300, 100, 100)
-v0 = vectors.Vector3D(10, 8, -5)
+# r0 = vectors.Vector3D(-300, 100, 100)
+# v0 = vectors.Vector3D(10, 8, -5)
+
+# Hyperbolic Orbit
+r0 = vectors.Vector3D(-600, -600, 100)
+v0 = vectors.Vector3D(8.199, 8, -5)
 
 # Constants
 G = 6.673430e-11
@@ -73,10 +77,10 @@ def calc_l0(ecc, u):
     if (ecc < 1):
         return u - ecc * np.sin(u)
     else:
-        return ecc*np.sinh(u) - u
+        return ecc * np.sinh(u) - u
 
 
-def calc_l(l_0, mean_motion, ecc, time):
+def calc_l(l_0, mean_motion, time):
     return (l_0 + mean_motion * time)
 
 
@@ -91,9 +95,10 @@ def calc_u(l, ecc, accuracy):
             E = temp
             count += 1
         else:
-            temp = ecc*np.sinh(E) - l
-            err = np.abs(E - temp)
-            E = temp
+            temp = (l - ecc*np.sinh(E) + E) / (ecc*np.cosh(E) - 1)
+            err = np.abs(temp)
+            #print(temp)
+            E += temp
             count += 1
     return E
 
@@ -102,7 +107,7 @@ def calc_period(mean_motion, ecc):
     if (ecc < 1):
         return 2 * np.pi / mean_motion
     else:
-        return 1000
+        return 200
 
 
 a = calc_semimajor_axis(r0, v0)
@@ -127,26 +132,36 @@ def g(t):
     temp_u = calc_u(temp_l, e, 1e-10)
     return (1 / n) * (np.sin(temp_u - u0) - e * np.sin(temp_u) + e * np.sin(u0))
 '''
+
+
 def true_anom(u, trig):
     if (trig == "c" and e < 1):
-        return (np.cos(u) - e) / (1 - e*np.cos(u))
+        return (np.cos(u) - e) / (1 - e * np.cos(u))
     elif (trig == "s" and e < 1):
-        return ((1 - e**2)**(1/2)*np.sin(u)) / (1 - e*np.cos(u))
-    return
+        return ((1 - e ** 2) ** (1 / 2) * np.sin(u)) / (1 - e * np.cos(u))
+    elif (trig == "c" and e > 1):
+        return (e - np.cosh(u)) / (e*np.cosh(u) - 1)
+    elif (trig == "s" and e > 1):
+        return (np.sinh(u)*(e**2 - 1)**(1 / 2)) / (e*np.cosh(u) - 1)
+    return None
+
 
 def f(t):
-    temp_l = calc_l(l0, n, e, t)
+    temp_l = calc_l(l0, n, t)
     temp_u = calc_u(temp_l, e, 1e-10)
-    top = np.cos(true_anom(temp_u) - true_anom(u0)) + e*np.cos(true_anom(temp_u))
-    bot = 1 + e*np.cos(true_anom(temp_u))
+    top = true_anom(temp_u, "c") * true_anom(u0, "c") + true_anom(temp_u, "s") * true_anom(u0, "s") + e * true_anom(
+        temp_u, "c")
+    bot = 1 + e * true_anom(temp_u, "c")
     return top / bot
 
+
 def g(t):
-    temp_l = calc_l(l0, n, e, t)
+    temp_l = calc_l(l0, n, t)
     temp_u = calc_u(temp_l, e, 1e-10)
-    top = (1 - e**2)**(3/2)*np.sin(true_anom(temp_u) - true_anom(u0))
-    bot = n*(1 + e*np.cos(true_anom(temp_u)))(1 + e*np.cos(true_anom(u0)))
+    top = (true_anom(temp_u, "s") * true_anom(u0, "c") - true_anom(temp_u, "c") * true_anom(u0, "s")) * np.abs(1 - e ** 2) ** (3 / 2)
+    bot = n * (1 + e * true_anom(temp_u, "c")) * (1 + e * true_anom(u0, "c"))
     return top / bot
+
 
 def position(t):
     temp_f = f(t)
