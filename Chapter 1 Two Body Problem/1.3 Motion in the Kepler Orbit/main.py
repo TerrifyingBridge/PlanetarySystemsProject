@@ -16,6 +16,7 @@ def center_window(window):
     y = (screen_height - height) // 2
     window.geometry(f"{width}x{height}+{x}+{y}")
 
+
 def calc_semimajor_axis(r, v):
     r_mag = r.magnitude()
     v_mag = v.magnitude()
@@ -96,9 +97,9 @@ def calc_u(l, ecc, accuracy):
             E = temp
             count += 1
         else:
-            temp = (l - ecc*np.sinh(E) + E) / (ecc*np.cosh(E) - 1)
+            temp = (l - ecc * np.sinh(E) + E) / (ecc * np.cosh(E) - 1)
             err = np.abs(temp)
-            #print(temp)
+            # print(temp)
             E += temp
             count += 1
     return E
