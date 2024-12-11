@@ -31,3 +31,5 @@ $$ r_{\text{sync}} \approx 42164 \text{ km} $$
 
 ### My Commentary
 This problem was rather simple, and was just centered around basic use of an equation. Can't say I have too much commentary besides talking about the hint mentioned, as it implies the existance of a common misunderstanding that would yield an answer of $42241 \text{ km}$ instead. That incorrect answer was easy to find, as it comes from having the period of Earth's rotation being exactly 1 day instead of 0.99727 days. Outside of that, nothing too much to say. It took my significantly longer to type this up than to actually do it.
+
+## Problem 2 - [1] {3}
