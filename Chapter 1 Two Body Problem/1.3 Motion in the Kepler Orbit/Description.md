@@ -61,6 +61,20 @@ def calc_u(l, ecc, accuracy):
     E = temp
   return E
 ```
+It is a little robust, and the accuracy term isn't entirely reliable due to floating point error, but this is what I used to find $u$ from the mean anomaly.
+
+#### Temporary Confusion
+So, I used all of these steps, and set up the program so that it could take in a starting position and velocity and then plot the resulting elliptical orbit. I chose some random numbers for these values that kept the eccentricity below 1, and I obtained the following result.
+
+<p align="center">
+<img src="assets/wrong_orbit.png" alt="GUI Image" width="300">
+</p>
+
+This... wasn't correct. And for a long time, I was confused on what was happening. Eventually, the error I made was in step 6 when taking the inverse cosine to determine $u_{0}$. The inverse cosine function is only defined for angles between $0$ and $\pi$, so when we reach a point where $u_{0}$ is greater than $\pi$, the program freaks out and plots a very incorrect graph.
+
+Fortunately, this is an easy fix, as we just need to know the sign of the radial velocity $\dot{r}$. When $\dot{r}$ is positive, $0 < u_{0} < \pi$, and when $\dot{r}$ is negative, $\pi < u_{0} < 2\pi$. Honestly, I wasn't able to figure this out analytically that didn't involve a bunch of extra math that I didn't really want to do. The book only has a couple relations that involve the radial velocity that depends on other variables. The first one involves $\dot{r}$ being squared, which doesn't tell us the sign, and the other depends on $u$, which is what we're trying to solve for. 
+
+I solved this problem numerically. Since we start with a starting position AND velocity, what I did was add the starting velocity to the starting position, then checked to see if the magnitude was greater or smaller than the starting position. If it was greater, than the radial velocity was increasing, if it was lesser, then the radial velocity was decreasing. Adding in this fix was able to make sure all orbits were plotted correctly.
 
 ## Reflecting Thoughts
 Alright, so this first paragraph will center around my thoughts about reading through/learning the chapter and the next few will be about my project and other general ideas. Because of this, I am writing this as soon as I am done reading the section (and understanding it) so there will be a large break between this one and the next one. I am not entirely sure how this will work, but if I don't like it, I'll change it for next time.
