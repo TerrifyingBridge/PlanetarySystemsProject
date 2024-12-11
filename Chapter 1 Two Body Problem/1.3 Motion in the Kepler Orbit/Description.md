@@ -28,6 +28,26 @@ Where $\mathbf{r_{0}}$ is the initial position of the partical and $\mathbf{v_{0
 $$ f(t, t_{0}) = \frac{\cos(u - u_{0}) - e\cos(u_{0})}{1 - e\cos(u_{0})} $$
 $$ g(t, t_{0}) = \frac{1}{n} [\sin(u - u_{0}) - e\sin(u) + e\sin(u - u_{0})] $$
 
+Now that we have this, we can find the motion of a particle around a mass, as the variable $u$ relates to the mean anomaly, which relates to time. Before actually getting into things, we need one more relation, which relates the semi-major axis ($a$) with the magnitudes of the starting positions. This relation is seen below.
+
+$$ \frac{1}{a} = \frac{2}{r} - \frac{v^{2}}{GM} $$
+
+Now we have everything we need to actually plot the equation of motion. It just needs to be broken down into a couple of steps.
+
+1. First, compute $r_{0} = |\mathbf{r_{0}}|$ and $v_{0} = |\mathbf{v_{0}}|$
+2. Use the relation mentioned above the find the semi-major axis $a$
+3. Use the semi-major axis to find the mean motion using Kepler's Law
+4. Use the initial conditions to determine the magnitude of the angular momentum $L = |\mathbf{r_{0}} \times \mathbf{v_{0}}|$
+5. Use the magnitude of the angular momentum and the semi-major axis to find the eccentricity $e$
+6. Use the semi-major axis, eccentricity, and $r_{0}$ to determine $\cos(u_{0})$ then take the inverse cosine function to determine $u_{0}$
+7. Use Kepler's Equaiton to determine the initial mean anomaly $l_{0}$
+8. Use the equation with respect to time to determine $l$ at a given time $t$
+9. Use Kepler's equation to determine $u$ for a time $t$
+10. Use $u$ to find the values for Gauss's functions $f$ and $g$
+11. Use Gauss's functions to find the position of the particle for the given time.
+
+Simple stuff.
+
 ## Reflecting Thoughts
 Alright, so this first paragraph will center around my thoughts about reading through/learning the chapter and the next few will be about my project and other general ideas. Because of this, I am writing this as soon as I am done reading the section (and understanding it) so there will be a large break between this one and the next one. I am not entirely sure how this will work, but if I don't like it, I'll change it for next time.
 
