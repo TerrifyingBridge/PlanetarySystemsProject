@@ -9,7 +9,7 @@ There is a lot this section leaves to the reader as an exercise, and because of 
 I know that this might seem silly, as the biggest reason I disliked the previous two exercises is that it was pretty much all trigonometry and hyperbolic trigonometry manipulation, and these equations are also a lot of that. However, these equations regard analytically solving integrals, which I found I am somewhat out of practice with. I figure, these exercises will give me a decent refresher on gross integers, even if they're all more or less the same type of integral with some variation. Some of these integrals are more gross than others, but I figure this is good practice. After all, these self imposed exercises are more so for me to refresh on material rather than learn new material (that's what the project is for). Without further ado, let's get into it.
 
 ## Description of Project
-Since this section was about the motion in a Kepler orbit, I wanted to make an animation that showed the actual motion of a particle in an orbit given certain initial conditions, in this case, starting position and starting velocity. This project is very similar to the project from Section 1.2, but slightly different. The project from the previous section showed an animation of a Kepler orbit using the true anomaly as the input variable, while this one would focus more on the input variable being time instead. Another addition I wanted to add was changing the representation from 2D to 3d. This section of the book had a subsection that talked about the representation of an orbit in 3D and I wanted to capture that in my project as well. It was also rather convenient that the final subsection generalized it so that the dimentions (or reference frame) didn't matter too much.
+Since this section was about the motion in a Kepler orbit, I wanted to make an animation that showed the actual motion of a particle in an orbit given certain initial conditions, in this case, starting position and starting velocity. I wanted to make sure this program also showcased elliptical orbits as well as hyberolic orbits as well. This project is very similar to the project from Section 1.2, but slightly different. The project from the previous section showed an animation of a Kepler orbit using the true anomaly as the input variable, while this one would focus more on the input variable being time instead. Another addition I wanted to add was changing the representation from 2D to 3d. This section of the book had a subsection that talked about the representation of an orbit in 3D and I wanted to capture that in my project as well. It was also rather convenient that the final subsection generalized it so that the dimentions (or reference frame) didn't matter too much.
 
 ### Creating the GUI
 I wanted to talk about this first, as it is the least interesting of the comments I have about the project. The GUI itself is modeled after the GUI from the project in Section 1.2. I used the Tkinter library to create it, and even kept most of the formating the same. There is a brief instruction set as well as text boxes to input the starting values for both position and velocity. I even kept the error handling the same just in case the user tries to give invalid inputs.
@@ -17,6 +17,11 @@ I wanted to talk about this first, as it is the least interesting of the comment
 <p align="center">
 <img src="assets/gui.png" alt="GUI Image" width="300">
 </p>
+
+### Plotting Elliptical Orbits
+I started by first making sure that I was able to plot elliptical orbits before getting too deep into the project. I did this by using Gauss's $f$ and $g$ functions, which are defined using the following equation.
+
+$$ $$
 
 ## Reflecting Thoughts
 Alright, so this first paragraph will center around my thoughts about reading through/learning the chapter and the next few will be about my project and other general ideas. Because of this, I am writing this as soon as I am done reading the section (and understanding it) so there will be a large break between this one and the next one. I am not entirely sure how this will work, but if I don't like it, I'll change it for next time.
