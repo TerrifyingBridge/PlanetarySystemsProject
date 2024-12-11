@@ -15,7 +15,7 @@ Since this section was about the motion in a Kepler orbit, I wanted to make an a
 I wanted to talk about this first, as it is the least interesting of the comments I have about the project. The GUI itself is modeled after the GUI from the project in Section 1.2. I used the Tkinter library to create it, and even kept most of the formating the same. There is a brief instruction set as well as text boxes to input the starting values for both position and velocity. I even kept the error handling the same just in case the user tries to give invalid inputs.
 
 <p align="center">
-![GUI Image](assets/gui.png)
+<img src="assets/gui.png" alt="GUI Image">
 </p>
 
 ## Reflecting Thoughts
