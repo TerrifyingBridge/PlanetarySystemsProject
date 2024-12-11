@@ -23,7 +23,10 @@ I started by first making sure that I was able to plot elliptical orbits before 
 
 $$ \mathbf{r} (t) = f(t,t_{0})\mathbf{r_{0}} + g(t,t_{0})\mathbf{v_{0}} $$
 
-Where $\mathbf{r_{0}}$ is the initial position of the partical and $\mathbf{v_{0}}$ is the initial velocity of the particle.
+Where $\mathbf{r_{0}}$ is the initial position of the partical and $\mathbf{v_{0}}$ is the initial velocity of the particle. Using this definition, many other relations found earlier in the book, and a lot of algebraic manipulation, one can find Gauss's functions in terms of the true anomaly and eccentric anomaly. Since the eccentric anomaly (designated using the letter $u$) is the easiest one that directly corrilates to time, this is the variation I used. The book gives us this equation, but just to be certain I understood what was happening, I made sure to do it myself as well (for my worked out solution to this, see Problem 12 in the Chapter Problems file). These equations ended up being the following.
+
+$$ f(t, t_{0}) = \frac{\cos(u - u_{0}) - e\cos(u_{0})}{1 - e\cos(u_{0})} $$
+$$ g(t, t_{0}) = \frac{1}{n} [\sin(u - u_{0}) - e\sin(u) + e\sin(u - u_{0})] $$
 
 ## Reflecting Thoughts
 Alright, so this first paragraph will center around my thoughts about reading through/learning the chapter and the next few will be about my project and other general ideas. Because of this, I am writing this as soon as I am done reading the section (and understanding it) so there will be a large break between this one and the next one. I am not entirely sure how this will work, but if I don't like it, I'll change it for next time.
