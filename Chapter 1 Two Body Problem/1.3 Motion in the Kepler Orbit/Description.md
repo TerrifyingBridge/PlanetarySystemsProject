@@ -21,7 +21,9 @@ I wanted to talk about this first, as it is the least interesting of the comment
 ### Plotting Elliptical Orbits
 I started by first making sure that I was able to plot elliptical orbits before getting too deep into the project. I did this by using Gauss's $f$ and $g$ functions, which are defined using the following equation.
 
-$$ $$
+$$ \mathbf{r} (t) = f(t,t_{0})\mathbf{r_{0}} + g(t,t_{0})\mathbf{v_{0}} $$
+
+Where $\mathbf{r_{0}}$ is the initial position of the partical and $\mathbf{v_{0}}$ is the initial velocity of the particle.
 
 ## Reflecting Thoughts
 Alright, so this first paragraph will center around my thoughts about reading through/learning the chapter and the next few will be about my project and other general ideas. Because of this, I am writing this as soon as I am done reading the section (and understanding it) so there will be a large break between this one and the next one. I am not entirely sure how this will work, but if I don't like it, I'll change it for next time.
