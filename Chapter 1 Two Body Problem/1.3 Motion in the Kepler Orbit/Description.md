@@ -46,7 +46,21 @@ Now we have everything we need to actually plot the equation of motion. It just 
 10. Use $u$ to find the values for Gauss's functions $f$ and $g$
 11. Use Gauss's functions to find the position of the particle for the given time.
 
-Simple stuff.
+Simple stuff. With all of these steps, I was able to plot an elliptical orbit for a particle mass. However, before jumping into the final result, there are a couple of points I want to talk about first.
+
+#### Solution to Kepler's Equation
+The book mentioned that Kepler's equation cannot be solved analytically, and needs to be done numerically. The solution I ended up using was fixed-point iteration. I saw that technically Newton's method converged faster, but wikipedia said that fixed-point interation was identical to Kepler's solution, so I stuck with that. Here is the code for it.
+
+'''python
+def calc_u(l, ecc, accuracy):
+  E = l
+  err = E
+  while (err > accuracy):
+    temp = l + ecc * np.sin(E)
+    err = np.abs(E - temp)
+    E = temp
+  return E
+'''
 
 ## Reflecting Thoughts
 Alright, so this first paragraph will center around my thoughts about reading through/learning the chapter and the next few will be about my project and other general ideas. Because of this, I am writing this as soon as I am done reading the section (and understanding it) so there will be a large break between this one and the next one. I am not entirely sure how this will work, but if I don't like it, I'll change it for next time.
