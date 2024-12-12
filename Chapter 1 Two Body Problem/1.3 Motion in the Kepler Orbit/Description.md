@@ -99,9 +99,15 @@ The book also provides equations for Gauss's functions in terms of the true anom
 $$ f(t, t_{0}) = \frac{\cos(f - f_{0}) + e\cos(f)}{1 + e\cos(f)} $$
 $$ g(t, t_{0}) = \frac{(e^{2} - 1)^{\frac{3}{2}} \sin(f - f_{0})}{n(1 + e\cos(f))(1 + e\cos(f_{0}))} $$
 
-Now, I wasn't able to simplify this analytically. Creating the functions is easy enough as it is just a matter of substitution, but it looks gross and I feel like it could be simplified. I tried for a while, but I wasn't able to figure that part out, so I stuck with the gross looking. 
+Now, I wasn't able to simplify this analytically. Creating the functions is easy enough as it is just a matter of substitution, but it looks gross and I feel like it could be simplified. I tried for a while, but I wasn't able to figure that part out, so I stuck with the gross looking. However, the general process for solving these orbits is the same steps used for elliptical orbits.
 
 I used this method to calculate the hyperbolic orbit for a particle when the eccentricity was greater than 1. However, whenever I used starting conditions for the program, I saw an orbital path that, seemingly, just traced a straight line. This remained true even for eccentricities really close to 1 (such as 1.0003). To verify that anything was happening, I then oriented the graph so that I was witnessing a head-on path of the particle. And what I saw was the particle genuinely curving.
+
+<p align="center">
+<img src="assets/hyper_orbit.png" alt="GUI Image" width="300">
+</p>
+
+As seen from the picture, there is *some* deviaiton that at least seems to resemble a hyperbolic motion, although I did not verify this outside of an eye test. I am not entirely sure why this particular method does not work. Just to be certain I was doing the process correctly, I kept the same gross unsimplified Gauss's function and plugged in the relations for elliptical orbits instead. Upon doing so, nothing changed between this and what I was doing before. I am sure I missed something, but I am unsure what it is. Because it is so similar to a hyperbolic orbit, just really stretched, I am fine leaving it as it is.
 
 ## Reflecting Thoughts
 Alright, so this first paragraph will center around my thoughts about reading through/learning the chapter and the next few will be about my project and other general ideas. Because of this, I am writing this as soon as I am done reading the section (and understanding it) so there will be a large break between this one and the next one. I am not entirely sure how this will work, but if I don't like it, I'll change it for next time.
