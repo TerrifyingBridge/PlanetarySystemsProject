@@ -11,7 +11,7 @@ I know that this might seem silly, as the biggest reason I disliked the previous
 ### Background Information
 Before getting started with the actual derivations, I wanted to clarify some things. The first of which, is the definition for the orbital average. For a quantity $X(\mathbf{r}, \mathbf{v})$, the orbital average for an orbit with eccentricity $e$ and semi-major axis $s$ is as follows.
 
-$$ \langle X \rangle = \frac{1}{2\pi} \int_{0}^{2\pi} X(1 - e*\cos(u))\,du, \quad = \frac{(1 - e^{2})^{1/2}}{2\pi} \int_{0}^{2\pi} \frac{X \,df}{(1 + e\cos(f))^{2}} $$
+$$ \langle X \rangle = \frac{1}{2\pi} \int_{0}^{2\pi} X(1 - e*\cos(u))du \quad = \frac{(1 - e^{2})^{1/2}}{2\pi} \int_{0}^{2\pi} \frac{X df}{(1 + e\cos(f))^{2}} $$
 
 ## Description of Project
 Since this section was about the motion in a Kepler orbit, I wanted to make an animation that showed the actual motion of a particle in an orbit given certain initial conditions, in this case, starting position and starting velocity. I wanted to make sure this program also showcased elliptical orbits as well as hyberolic orbits as well. This project is very similar to the project from Section 1.2, but slightly different. The project from the previous section showed an animation of a Kepler orbit using the true anomaly as the input variable, while this one would focus more on the input variable being time instead. Another addition I wanted to add was changing the representation from 2D to 3d. This section of the book had a subsection that talked about the representation of an orbit in 3D and I wanted to capture that in my project as well. It was also rather convenient that the final subsection generalized it so that the dimentions (or reference frame) didn't matter too much.
