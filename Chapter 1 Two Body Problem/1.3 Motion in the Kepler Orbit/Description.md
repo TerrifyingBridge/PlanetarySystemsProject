@@ -92,7 +92,7 @@ The biggest reason I wanted to implement this orbit was because it's rather diff
 
 Fortunately, the book gives relations for the true anomaly to the hyperbolic eccentric anomaly. These relations are shown below.
 
-$$ \cos(f) = \frac{e - \cosh(u)}{e\cosh(u) - 1}, \quad \sin(f) = \frac{(e^{2}-1)^{\frac{1}{2}}\sinh{u}}{\e\cosh{u} - 1} $$
+$$ \cos(f) = \frac{e - \cosh(u)}{e\cosh(u) - 1}, \quad \sin(f) = \frac{(e^{2}-1)^{\frac{1}{2}}\sinh{u}}{e\cosh{u} - 1} $$
 
 The book also provides equations for Gauss's functions in terms of the true anomaly, also given below. So it should be a matter of using the relations mentioned earlier to find Gauss's functions in terms of the hyperbolic eccentric anomaly.
 
@@ -100,6 +100,8 @@ $$ f(t, t_{0}) = \frac{\cos(f - f_{0}) + e\cos(f)}{1 + e\cos(f)} $$
 $$ g(t, t_{0}) = \frac{(e^{2} - 1)^{\frac{3}{2}} \sin(f - f_{0})}{n(1 + e\cos(f))(1 + e\cos(f_{0}))} $$
 
 Now, I wasn't able to simplify this analytically. Creating the functions is easy enough as it is just a matter of substitution, but it looks gross and I feel like it could be simplified. I tried for a while, but I wasn't able to figure that part out, so I stuck with the gross looking. 
+
+I used this method to calculate the hyperbolic orbit for a particle when the eccentricity was greater than 1. However, whenever I used starting conditions for the program, I saw an orbital path that, seemingly, just traced a straight line. This remained true even for eccentricities really close to 1 (such as 1.0003). To verify that anything was happening, I then oriented the graph so that I was witnessing a head-on path of the particle. And what I saw was the particle genuinely curving.
 
 ## Reflecting Thoughts
 Alright, so this first paragraph will center around my thoughts about reading through/learning the chapter and the next few will be about my project and other general ideas. Because of this, I am writing this as soon as I am done reading the section (and understanding it) so there will be a large break between this one and the next one. I am not entirely sure how this will work, but if I don't like it, I'll change it for next time.
