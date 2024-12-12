@@ -24,7 +24,7 @@ $$ \int \sin^{n}(x) dx = -\frac{1}{n}\sin^{n-1}(x)\cos(x) + \frac{n - 1}{n} \int
 The book gives us 11 different orbital averages and the resulting values. For this section, I will first tell you what the final result is, and then proceed to evaluate the integral to obtain the result.
 
 #### Equation 1.65a
-> $ \langle a / r \rangle = 1 $
+$$ \langle a / r \rangle = 1 $$
 
 S
 
