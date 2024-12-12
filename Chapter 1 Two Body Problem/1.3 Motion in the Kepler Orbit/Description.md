@@ -35,7 +35,7 @@ Here the $a$'s and the $1 - e\cos(u)$ both cancel out, leading us to the followi
 $$ \frac{1}{2\pi} \int_{0}^{2\pi} du  = u \bigg|_{0}^{2\pi} = \frac{1}{2\pi}[2\pi - 0] = \frac{1}{2\pi}\cdot 2\pi = 1$$
 
 #### Equation 1.65b
-$$ \langle r / a \rangle $$
+$$ \langle r / a \rangle  = 1 + \frac{1}{2} e^{2}$$
 
 For this one, the easier equation for the orbital average is the first one again. After this, I will start to skip the step of eliminating the $a$ term from the integral, as having either $r / a$ or $a / r$ is pretty much doing exactly that.
 
@@ -66,6 +66,8 @@ Which is a rather nice ending to this integral. Now we can substitute these valu
 $$ \frac{1}{2\pi} \bigg[ \int_{0}^{2\pi} du - 2e \int_{0}^{2\pi} \cos(u) du + e^{2} \int_{0}^{2\pi} \cos^{2}(u) du \bigg] $$
 $$ = \frac{1}{2\pi} \bigg[ 2\pi - 2e(0) + e^{2} (\pi) \bigg] $$
 $$ = 1 + \frac{1}{2}e^{2} $$
+
+#### Equation 1.65c
 
 ## Description of Project
 Since this section was about the motion in a Kepler orbit, I wanted to make an animation that showed the actual motion of a particle in an orbit given certain initial conditions, in this case, starting position and starting velocity. I wanted to make sure this program also showcased elliptical orbits as well as hyberolic orbits as well. This project is very similar to the project from Section 1.2, but slightly different. The project from the previous section showed an animation of a Kepler orbit using the true anomaly as the input variable, while this one would focus more on the input variable being time instead. Another addition I wanted to add was changing the representation from 2D to 3d. This section of the book had a subsection that talked about the representation of an orbit in 3D and I wanted to capture that in my project as well. It was also rather convenient that the final subsection generalized it so that the dimentions (or reference frame) didn't matter too much.
