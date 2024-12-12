@@ -47,7 +47,7 @@ $$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - 2e\cos(u) + e^{2}\cos^{2}(u))du $$
 
 We can break this up a little further, and seperate the various terms into their own integrals to make this problem a bit more digestable.
 
-$$ \frac{1}{2\pi} \biggg[ \int_{0}^{2\pi} du - 2e \int_{0}^{2\pi} \cos(u) du + e^{2} \int_{0}^{2\pi} \cos^{2}(u) du \biggg]$$
+$$ \frac{1}{2\pi} \bigg[ \int_{0}^{2\pi} du - 2e \int_{0}^{2\pi} \cos(u) du + e^{2} \int_{0}^{2\pi} \cos^{2}(u) du \bigg]$$
 
 Here, we can break down things easier. The first integral in this form is one we've already solved. Namely the solution to that one is just $2\pi$. Now we just need to solve the other two. Let's look at the second integral first.
 
