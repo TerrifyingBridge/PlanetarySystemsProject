@@ -83,6 +83,24 @@ Fortunately, this is an easy fix, as we just need to know the sign of the radial
 
 I solved this problem numerically. Since we start with a starting position AND velocity, what I did was add the starting velocity to the starting position, then checked to see if the magnitude was greater or smaller than the starting position. If it was greater, than the radial velocity was increasing, if it was lesser, then the radial velocity was decreasing. Adding in this fix was able to make sure all orbits were plotted correctly.
 
+<p align="center">
+<img src="assets/good_orbit.png" alt="GUI Image" width="300">
+</p>
+
+### Plotting Hyperbolic Orbits
+The biggest reason I wanted to implement this orbit was because it's rather difficult to tell whether a certain orbit will be an ellipse or hyperbola when supplying the starting position and velocity. On top of this, I think a pass-by hyperbolic orbit would be fun to witness. However, we need to know how to code this, which theoretically, shouldn't be that bad. We just need to determine the equations for Gauss's $f$ and $g$ functions when eccentricity is greater than 1.
+
+Fortunately, the book gives relations for the true anomaly to the hyperbolic eccentric anomaly. These relations are shown below.
+
+$$ \cos(f) = \frac{e - \cosh(u)}{e\cosh(u) - 1}, \quad \sin(f) = \frac{(e^{2}-1)^{\frac{1}{2}}\sinh{u}}{\e\cosh{u} - 1} $$
+
+The book also provides equations for Gauss's functions in terms of the true anomaly, also given below. So it should be a matter of using the relations mentioned earlier to find Gauss's functions in terms of the hyperbolic eccentric anomaly.
+
+$$ f(t, t_{0}) = \frac{\cos(f - f_{0}) + e\cos(f)}{1 + e\cos(f)} $$
+$$ g(t, t_{0}) = \frac{(e^{2} - 1)^{\frac{3}{2}} \sin(f - f_{0})}{n(1 + e\cos(f))(1 + e\cos(f_{0}))} $$
+
+Now, I wasn't able to simplify this analytically. Creating the functions is easy enough as it is just a matter of substitution, but it looks gross and I feel like it could be simplified. I tried for a while, but I wasn't able to figure that part out, so I stuck with the gross looking. 
+
 ## Reflecting Thoughts
 Alright, so this first paragraph will center around my thoughts about reading through/learning the chapter and the next few will be about my project and other general ideas. Because of this, I am writing this as soon as I am done reading the section (and understanding it) so there will be a large break between this one and the next one. I am not entirely sure how this will work, but if I don't like it, I'll change it for next time.
 
