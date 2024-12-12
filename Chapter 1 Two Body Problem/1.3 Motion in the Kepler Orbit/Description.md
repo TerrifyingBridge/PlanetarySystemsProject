@@ -47,7 +47,25 @@ $$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - 2e\cos(u) + e^{2}\cos^{2}(u))du $$
 
 We can break this up a little further, and seperate the various terms into their own integrals to make this problem a bit more digestable.
 
-$$ \frac{1}{2\pi} \bigg[ \int_{0}^{2\pi} du - 2e \int_{0}^{2\pi} \cos(u) du + e^{2} \int_{0}^{2\pi} \cos^{2}(u) du \bigg]$$
+$$ \frac{1}{2\pi} \biggg[ \int_{0}^{2\pi} du - 2e \int_{0}^{2\pi} \cos(u) du + e^{2} \int_{0}^{2\pi} \cos^{2}(u) du \biggg]$$
+
+Here, we can break down things easier. The first integral in this form is one we've already solved. Namely the solution to that one is just $2\pi$. Now we just need to solve the other two. Let's look at the second integral first.
+
+$$ \int_{0}^{2\pi} \cos(u) du = \sin(u) \bigg|_{0}^{2\pi} = \sin(2\pi) - \sin(0) = 0 - 0 = 0 $$
+
+Thus, showing that this is equal to zero. It is worth mentioning that if we had $ \int_{0}^{2\pi} \sin(u) du $ it would result in the same value. This is because the result of the integral would be $ -\cos(u) $ instead, and cosine is the same value at $0$ as it is at $2\pi. Now onto the next integral, which requires the use of our cosine power reduction formula mentioned earlier.
+
+$$ \int_{0}^{2\pi} \cos^{2}(u) du = \frac{1}{2}\cos(u)\sin(u) + \frac{1}{2} \int_{0}^{2\pi} \cos^{0}(u) du = \frac{1}{2}\cos(u)\sin(u) + \frac{1}{2} u \bigg|_{0}^{2\pi} $$
+
+This is fun, now we just need to plug everything in.
+
+$$ = \frac{1}{2}\cos(2\pi)\sin(2\pi) + \frac{1}{2\pi} - \frac{1}{2}\cos(0)\sin(0) - \frac{1}{2} \cdot 0 = 0 + \pi - 0 - 0 = \pi $$
+
+Which is a rather nice ending to this integral. Now we can substitute these values into the original integral we found before.
+
+$$ \frac{1}{2\pi} \biggg[ \int_{0}^{2\pi} du - 2e \int_{0}^{2\pi} \cos(u) du + e^{2} \int_{0}^{2\pi} \cos^{2}(u) du \biggg] $$
+$$ = \frac{1}{2\pi} \bigg[ 2\pi - 2e(0) + e^{2} (\pi) \bigg]
+$$ = 1 + \frac{1}{2}e^{2} $$
 
 ## Description of Project
 Since this section was about the motion in a Kepler orbit, I wanted to make an animation that showed the actual motion of a particle in an orbit given certain initial conditions, in this case, starting position and starting velocity. I wanted to make sure this program also showcased elliptical orbits as well as hyberolic orbits as well. This project is very similar to the project from Section 1.2, but slightly different. The project from the previous section showed an animation of a Kepler orbit using the true anomaly as the input variable, while this one would focus more on the input variable being time instead. Another addition I wanted to add was changing the representation from 2D to 3d. This section of the book had a subsection that talked about the representation of an orbit in 3D and I wanted to capture that in my project as well. It was also rather convenient that the final subsection generalized it so that the dimentions (or reference frame) didn't matter too much.
