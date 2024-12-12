@@ -63,8 +63,8 @@ $$ = \frac{1}{2}\cos(2\pi)\sin(2\pi) + \frac{1}{2\pi} - \frac{1}{2}\cos(0)\sin(0
 
 Which is a rather nice ending to this integral. Now we can substitute these values into the original integral we found before.
 
-$$ \frac{1}{2\pi} \biggg[ \int_{0}^{2\pi} du - 2e \int_{0}^{2\pi} \cos(u) du + e^{2} \int_{0}^{2\pi} \cos^{2}(u) du \biggg] $$
-$$ = \frac{1}{2\pi} \bigg[ 2\pi - 2e(0) + e^{2} (\pi) \bigg]
+$$ \frac{1}{2\pi} \bigg[ \int_{0}^{2\pi} du - 2e \int_{0}^{2\pi} \cos(u) du + e^{2} \int_{0}^{2\pi} \cos^{2}(u) du \bigg] $$
+$$ = \frac{1}{2\pi} \bigg[ 2\pi - 2e(0) + e^{2} (\pi) \bigg] $$
 $$ = 1 + \frac{1}{2}e^{2} $$
 
 ## Description of Project
