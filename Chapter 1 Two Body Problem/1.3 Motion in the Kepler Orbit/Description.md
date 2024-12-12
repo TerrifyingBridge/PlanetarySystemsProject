@@ -18,6 +18,13 @@ I wanted to talk about this first, as it is the least interesting of the comment
 <img src="assets/gui.png" alt="GUI Image" width="300">
 </p>
 
+### Vector3D
+Since I wanted to make this project in a 3D coorindate system, I needed to update my vector class to the new dimention. Most of this method is exactly what you would expect, just adjusting for the $z$ term for 3D. However, there are a few interesting parts I wanted to discuss.
+
+Later on I needed the magnitude of the cross product of two vectors, so I added a method to this class to do exactly that. However, this also required a method to determine the angle between two vectors as well. The method that calculates the magnitude of the cross product is done using the equation for the magnitude of the cross product, instead of calculating the cross product and taking the magnitude then.
+
+The other method I added was the copy method. As someone who teaches a computer science class, I should have been able to determine this was needed much earlier. Many times in my code, I was accidently creating variables to were all assigned to the same object. When I changed what I thought was a temporary variable was actually the original vector I was using. The copy method just creates a new vector with the same coordinates as the parent, but allows me to modify it without changing the original.
+
 ### Plotting Elliptical Orbits
 I started by first making sure that I was able to plot elliptical orbits before getting too deep into the project. I did this by using Gauss's $f$ and $g$ functions, which are defined using the following equation.
 
