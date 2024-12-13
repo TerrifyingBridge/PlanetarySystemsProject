@@ -101,7 +101,7 @@ $$ \langle (r/a)^{2}\cos^{2}(f) = \frac{1}{2} + 2e^{2} $$
 
 This one, and the next few orbital averages, contain a $\cos(f)$ or $\sin(f)$, which need to be translated into terms of $u$. The book provides these relations, but when setting up the integral I am going to skip over this step to save time / space. Here is the integral for this average.
 
-$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 -e\cos(u))^{2} \cdot \frac{\cos(u) - e}{1 - e\cos(u)}^{2} \cdot (1 - e\cos(u))du $$
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 -e\cos(u))^{2} \cdot (\frac{\cos(u) - e}{1 - e\cos(u)})^{2} \cdot (1 - e\cos(u))du $$
 
 While this looks a big gross, the denominator for the fraction ends up canceling out, which in turn, also elimintes some on the top (since that's how elimination works). This leaves us left with the following.
 
@@ -124,7 +124,7 @@ $$ \langle (r / a)^{2}\sin^{2}(f) \rangle = \frac{1}{2} - \frac{1}{2}e^{2} $$
 
 Like last time, I am going to plug in the relation for $\sin(f)$ in terms of $u$. Doing so gives us the following integral.
 
-$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))^{2} \cdot \frac{(1 - e^{2})^{1/2} \sin(u))}{1 - e\cos(u)}^{2} \cdot (1 - e\cos(u)) du $$
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))^{2} \cdot (\frac{(1 - e^{2})^{1/2} \sin(u))}{1 - e\cos(u)})^{2} \cdot (1 - e\cos(u)) du $$
 
 This integral is a bit much, but some things end up canceling out, such as the denominator. Similarly, the square removes the square root on the $1 - e^{2}$ term, and because this is a constant, we can move this to the outside. THis yields the following integral.
 
@@ -138,8 +138,8 @@ $$ \int_{0}^{2\pi} \sin^{2}(u) du = -\frac{1}{2}\sin(u)\cos(u) + \frac{1}{2} \in
 We have seen these values before. The first term ends up evaluating to 0 and the second term will evaluate to $\frac{1}{2} (2\pi)$ otherwise known as $\pi$. The other integal is rather easy to evaluate as it just requires a simple $v$-substitution.
 
 $$ \int_{0}^{2\pi} \sin^{2}(u) \cos(u) du $$
-$$ v = \sin(u), dv = \cos(u)du $$
-$$ \int_{0}^{2\pi} v^{2}dv  = \frac{1}{3}v^{3} = \frac{1}{3}\sin^{3}(u) \bigg|_{0}^{2\pi}$$
+$$ v = \sin(u), \quad dv = \cos(u)du $$
+$$ \int v^{2}dv  = \frac{1}{3}v^{3} = \frac{1}{3}\sin^{3}(u) \bigg|_{0}^{2\pi}$$
 $$ = \frac{1}{3} (\sin^{3}(2\pi) - \sin^{3}(0)) = \frac{1}{3} (0 - 0) = 0 $$
 
 Thus, another integral that evaluates to zero. Plugging these values back into the original integral yields the following.
@@ -148,6 +148,33 @@ $$ \frac{1 - e^{2}}{2\pi} \bigg[ \int_{0}^{2\pi} \sin^{2}(u) du - e \int_{0}^{2\
 $$ = \frac{1 - e^{2}}{2\pi} (\pi - e(0)) $$
 $$ = \frac{1 - e^{2}}{2} $$
 $$ = \frac{1}{2} - \frac{1}{2}e^{2} $$
+
+#### Equation 1.65f
+$$ \langle (r / a)^{2}\cos(f)\sin(f) \rangle = 0 $$
+
+Same as last time, I will skip the step where I substitute in the trig terms for $f$ in terms of $u$. I am also going to merge the starting term with the $r / a$ term, to save some time/space. The resulting integral looks like the following.
+
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))^{3} \cdot \frac{\cos(u) - e}{1 - e\cos(u)} \cdot \frac{(1 - e^{2})^{1/2} \sin(u)}{1 - e\cos(u)}$$
+
+Fortunately some stuff cancels so we don't have to worry about nasty fractions. Similarly, the $(1 - e^{2})^{1/2}$ term can be carried out as a constant. Dsitributing and rearanging this integral yields the following.
+
+$$ \frac{(1 - e^{2})^{1/2}}{2\pi} \int_{0}^{2\pi} \bigg( (1 + e^{2})\cos(u) - e \cos^{2}(u) - e \bigg) \sin(u) du $$
+
+Breaking this down into individual integrals gives us the following.
+
+\frac{(1 - e^{2})^{1/2}}{2\pi} \bigg[ (1 + e^{2}) \int_{0}^{2\pi} \cos(u)\sin(u)du - e \int_{0}^{2\pi} \cos^{2}(u)\sin(u)du - e \int_{0}^{2\pi} \sin(u)du \bigg] $$
+
+This form is rather nice, as we have already evaluated the first and third integral, both of which ended up being 0. This means we only need to concern ourself with the second integral, which is easily done with a substitution.
+
+$$ \int_{0}^{2\pi} \cos^{2}(u)\sin(u)du $$
+$$ v = \cos(u), \quad dv = -\sin(u)du $$
+$$ - \int v^{2}dv = -\frac{1}{3} v^{3} = -\frac{1}{3}\cos^{3}(u) \bigg|_{0}^{2\pi} $$
+$$ = -\frac{1}{3} (\cos^{3}(2\pi) - \cos^{3}(0)) = -\frac{1}{3}(1 - 1) = 0
+
+Which is also rather nice. Now that all of the integrals are equal to zero, here is all we are left with.
+
+$$ \frac{1 - e^{2}}{2\pi} \cdot (0) $$
+$$ = 0 $$
 
 ## Description of Project
 Since this section was about the motion in a Kepler orbit, I wanted to make an animation that showed the actual motion of a particle in an orbit given certain initial conditions, in this case, starting position and starting velocity. I wanted to make sure this program also showcased elliptical orbits as well as hyberolic orbits as well. This project is very similar to the project from Section 1.2, but slightly different. The project from the previous section showed an animation of a Kepler orbit using the true anomaly as the input variable, while this one would focus more on the input variable being time instead. Another addition I wanted to add was changing the representation from 2D to 3d. This section of the book had a subsection that talked about the representation of an orbit in 3D and I wanted to capture that in my project as well. It was also rather convenient that the final subsection generalized it so that the dimentions (or reference frame) didn't matter too much.
