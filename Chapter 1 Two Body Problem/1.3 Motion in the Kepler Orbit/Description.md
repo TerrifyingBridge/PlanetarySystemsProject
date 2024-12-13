@@ -176,7 +176,7 @@ Which is also rather nice. Now that all of the integrals are equal to zero, here
 $$ \frac{1 - e^{2}}{2\pi} \cdot (0) $$
 $$ = 0 $$
 
-#### Equation 1.65g
+#### Equation 1.66a
 $$ \langle (a / r)^{2} \rangle = (1 - e^{2})^{-1/2} $$
 
 Unlike the previous six integrals, this one and the four after will make use of the other definition of orbital averages. I bet you could solve it using the definition we've been using, but this ends up being a lot easier. The starting integral looks like the following.
@@ -192,7 +192,7 @@ We know this integral's value and we can simplify the constant outside the integ
 $$ \frac{(1 - e^{2})^{-1/2}}{2\pi} \cdot (2\pi) $$
 $$ = (1 - e^{2})^{-1/2} $$
 
-#### Equation 1.65h
+#### Equation 1.66b
 $$ \langle (a / r)^{3} \rangle = (1 - e^{2})^{-3/2} $$
 
 The starting integral looks like the following.
@@ -208,6 +208,19 @@ Now, these are integrals we've already solved before. The one on the left is sim
 
 $$ = \frac{1}{2\pi (1 - e^{2}) ^{3/2}} (2\pi)$$
 $$ = (1 - e^{2})^{-3/2} $$
+
+#### Equation 1.66c
+$$ \langle (a / r)^{3} \cos^{2}(f) \rangle = \frac{1}{2} (1 - e^{2})^{-3/2} $$
+
+Unlike the previous times we had a $\cos(f)$ or $\sin(f)$ term, we do not need to put it in terms of $u$ as we are already working with $f$. The starting integral looks like the following.
+$$ \frac{(1 - e^{2})^{3/2}}{2\pi} \int_{0}^{2\pi} \bigg( \frac{1 + e\cos(f)}{(1 - e^{2})} \bigg) ^{3} \cdot \frac{\cos^{2}(f)df}{(1 + e\cos(f))^{2}}$$
+$$ = \frac{(1 - e^{2})^{-3/2}}{2\pi} \int_{0}^{2\pi} (1 + e\cos(f)) \cos^{2}(f) df $$
+$$ = \frac{(1 - e^{2})^{-3/2}}{2\pi} \int_{0}^{2\pi} (\cos^{2}(f) + e\cos^{3}(f)) df $$
+
+Here we can use the values of integrals we already know to solve it. The first integral yields $\pi$, and the second integral yields $0$, as we have seen before. Plugging these values into the expression gives us the following.
+
+$$ \frac{(1 - e^{2})^{-3/2}}{2\pi} (\pi + e\cdot 0) $$
+$$ = \frac{1}{2} (1 - e^{2})^{-3/2} $$
 
 ## Description of Project
 Since this section was about the motion in a Kepler orbit, I wanted to make an animation that showed the actual motion of a particle in an orbit given certain initial conditions, in this case, starting position and starting velocity. I wanted to make sure this program also showcased elliptical orbits as well as hyberolic orbits as well. This project is very similar to the project from Section 1.2, but slightly different. The project from the previous section showed an animation of a Kepler orbit using the true anomaly as the input variable, while this one would focus more on the input variable being time instead. Another addition I wanted to add was changing the representation from 2D to 3d. This section of the book had a subsection that talked about the representation of an orbit in 3D and I wanted to capture that in my project as well. It was also rather convenient that the final subsection generalized it so that the dimentions (or reference frame) didn't matter too much.
