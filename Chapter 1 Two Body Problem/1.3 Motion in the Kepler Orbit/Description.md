@@ -124,7 +124,7 @@ $$ \langle (r / a)^{2}\sin^{2}(f) \rangle = \frac{1}{2} - \frac{1}{2}e^{2} $$
 
 Like last time, I am going to plug in the relation for $\sin(f)$ in terms of $u$. Doing so gives us the following integral.
 
-$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))^{2} \cdot \bigg( \frac{(1 - e^{2})^{1/2} \sin(u))}{1 - e\cos(u)} \bigg)^{2} \cdot (1 - e\cos(u)) du $$
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))^{2} \cdot \bigg( \frac{(1 - e^{2})^{1/2} \sin(u)}{1 - e\cos(u)} \bigg)^{2} \cdot (1 - e\cos(u)) du $$
 
 This integral is a bit much, but some things end up canceling out, such as the denominator. Similarly, the square removes the square root on the $1 - e^{2}$ term, and because this is a constant, we can move this to the outside. THis yields the following integral.
 
@@ -169,7 +169,7 @@ This form is rather nice, as we have already evaluated the first and third integ
 $$ \int_{0}^{2\pi} \cos^{2}(u)\sin(u)du $$
 $$ v = \cos(u), \quad dv = -\sin(u)du $$
 $$ - \int v^{2}dv = -\frac{1}{3} v^{3} = -\frac{1}{3}\cos^{3}(u) \bigg|_{0}^{2\pi} $$
-$$ = -\frac{1}{3} (\cos^{3}(2\pi) - \cos^{3}(0)) = -\frac{1}{3}(1 - 1) = 0
+$$ = -\frac{1}{3} (\cos^{3}(2\pi) - \cos^{3}(0)) = -\frac{1}{3}(1 - 1) = 0 $$
 
 Which is also rather nice. Now that all of the integrals are equal to zero, here is all we are left with.
 
