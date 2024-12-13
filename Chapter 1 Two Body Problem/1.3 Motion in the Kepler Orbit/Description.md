@@ -97,11 +97,11 @@ $$ = \frac{1}{2\pi} \bigg[ 2\pi -3e(0) + 3e^{2}(\pi) - e^{3}(0) \bigg] $$
 $$ = 1 + \frac{3}{2}e^{2} $$
 
 #### Equation 1.65d
-$$ \langle (r/a)^{2}\cos^{2}(f) = \frac{1}{2} + 2e^{2} $$
+$$ \langle (r/a)^{2}\cos^{2}(f) \rangle = \frac{1}{2} + 2e^{2} $$
 
 This one, and the next few orbital averages, contain a $\cos(f)$ or $\sin(f)$, which need to be translated into terms of $u$. The book provides these relations, but when setting up the integral I am going to skip over this step to save time / space. Here is the integral for this average.
 
-$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 -e\cos(u))^{2} \cdot (\frac{\cos(u) - e}{1 - e\cos(u)})^{2} \cdot (1 - e\cos(u))du $$
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 -e\cos(u))^{2} \cdot \bigg( \frac{\cos(u) - e}{1 - e\cos(u)} \bigg)^{2} \cdot (1 - e\cos(u))du $$
 
 While this looks a big gross, the denominator for the fraction ends up canceling out, which in turn, also elimintes some on the top (since that's how elimination works). This leaves us left with the following.
 
@@ -124,7 +124,7 @@ $$ \langle (r / a)^{2}\sin^{2}(f) \rangle = \frac{1}{2} - \frac{1}{2}e^{2} $$
 
 Like last time, I am going to plug in the relation for $\sin(f)$ in terms of $u$. Doing so gives us the following integral.
 
-$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))^{2} \cdot (\frac{(1 - e^{2})^{1/2} \sin(u))}{1 - e\cos(u)})^{2} \cdot (1 - e\cos(u)) du $$
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))^{2} \cdot \bigg( \frac{(1 - e^{2})^{1/2} \sin(u))}{1 - e\cos(u)} \bigg)^{2} \cdot (1 - e\cos(u)) du $$
 
 This integral is a bit much, but some things end up canceling out, such as the denominator. Similarly, the square removes the square root on the $1 - e^{2}$ term, and because this is a constant, we can move this to the outside. THis yields the following integral.
 
@@ -162,7 +162,7 @@ $$ \frac{(1 - e^{2})^{1/2}}{2\pi} \int_{0}^{2\pi} \bigg( (1 + e^{2})\cos(u) - e 
 
 Breaking this down into individual integrals gives us the following.
 
-\frac{(1 - e^{2})^{1/2}}{2\pi} \bigg[ (1 + e^{2}) \int_{0}^{2\pi} \cos(u)\sin(u)du - e \int_{0}^{2\pi} \cos^{2}(u)\sin(u)du - e \int_{0}^{2\pi} \sin(u)du \bigg] $$
+$$ \frac{(1 - e^{2})^{1/2}}{2\pi} \bigg[ (1 + e^{2}) \int_{0}^{2\pi} \cos(u)\sin(u)du - e \int_{0}^{2\pi} \cos^{2}(u)\sin(u)du - e \int_{0}^{2\pi} \sin(u)du \bigg] $$
 
 This form is rather nice, as we have already evaluated the first and third integral, both of which ended up being 0. This means we only need to concern ourself with the second integral, which is easily done with a substitution.
 
