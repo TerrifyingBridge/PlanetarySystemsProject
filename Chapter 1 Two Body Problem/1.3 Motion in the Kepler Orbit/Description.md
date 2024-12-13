@@ -213,6 +213,7 @@ $$ = (1 - e^{2})^{-3/2} $$
 $$ \langle (a / r)^{3} \cos^{2}(f) \rangle = \frac{1}{2} (1 - e^{2})^{-3/2} $$
 
 Unlike the previous times we had a $\cos(f)$ or $\sin(f)$ term, we do not need to put it in terms of $u$ as we are already working with $f$. The starting integral looks like the following.
+
 $$ \frac{(1 - e^{2})^{3/2}}{2\pi} \int_{0}^{2\pi} \bigg( \frac{1 + e\cos(f)}{(1 - e^{2})} \bigg) ^{3} \cdot \frac{\cos^{2}(f)df}{(1 + e\cos(f))^{2}} $$
 $$ = \frac{(1 - e^{2})^{-3/2}}{2\pi} \int_{0}^{2\pi} (1 + e\cos(f)) \cos^{2}(f) df $$
 $$ = \frac{(1 - e^{2})^{-3/2}}{2\pi} \int_{0}^{2\pi} (\cos^{2}(f) + e\cos^{3}(f)) df $$
