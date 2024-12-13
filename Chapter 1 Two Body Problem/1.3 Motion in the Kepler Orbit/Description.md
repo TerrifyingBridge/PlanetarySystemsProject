@@ -94,7 +94,60 @@ This is rather convenient, but the result makes sense given the properties of co
 
 $$ \frac{1}{2\pi} \bigg[ \int_{0}^{2\pi} du - 3e \int_{0}^{2\pi} \cos(u) du + 3e^{2} \int_{0}^{2\pi} \cos^{2}(u) du - e^{3} \int_{0}^{2\pi} \cos^{3}(u)du \bigg] $$
 $$ = \frac{1}{2\pi} \bigg[ 2\pi -3e(0) + 3e^{2}(\pi) - e^{3}(0) \bigg] $$
-$$ = \frac{1}{2\pi} (2\pi + 3e^{2}\pi) = 1 + \frac{3}{2}e^{2} $$
+$$ = 1 + \frac{3}{2}e^{2} $$
+
+#### Equation 1.65d
+$$ \langle (r/a)^{2}\cos^{2}(f) = \frac{1}{2} + 2e^{2} $$
+
+This one, and the next few orbital averages, contain a $\cos(f)$ or $\sin(f)$, which need to be translated into terms of $u$. The book provides these relations, but when setting up the integral I am going to skip over this step to save time / space. Here is the integral for this average.
+
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 -e\cos(u))^{2} \cdot \frac{\cos(u) - e}{1 - e\cos(u)}^{2} \cdot (1 - e\cos(u))du $$
+
+While this looks a big gross, the denominator for the fraction ends up canceling out, which in turn, also elimintes some on the top (since that's how elimination works). This leaves us left with the following.
+
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))(cos(u) - e)^{2}du $$
+
+This is marginally better, but this is going to require some distributing to get to a nice form.
+
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u)) (\cos^{2}(u) - 2e\cos(u) + e^{2})du $$
+$$ = \frac{1}{2\pi} \int_{0}^{2\pi} \bigg( \cos^{2}(u) -2e\cos(u) + e^{2} -e\cos^{3}(u) + 2e^{2}\cos^{2}(u) - e^{3}\cos(u) \bigg) du$$
+
+I'm going to skip some steps here. Basically, we know that the $\cos(u)$ and $\cos^{3}(u)$ will end up being 0, so I am going to drop these terms. I am also going to combine like terms, which simplifies the integral nicely.
+
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} \bigg( e^{2} + (1 + 2e^{2})\cos^{2}(u) \bigg) du $$
+$$ \frac{1}{2\pi} \bigg( e^{2} (2\pi) + (1 + 2e^{2})(\pi) \bigg) $$
+$$ e^{2} + \frac{1}{2} + e^{2} $$
+$$ \frac{1}{2} + 2e^{2} $$
+
+#### Equation 1.65e
+$$ \langle (r / a)^{2}\sin^{2}(f) \rangle = \frac{1}{2} - \frac{1}{2}e^{2} $$
+
+Like last time, I am going to plug in the relation for $\sin(f)$ in terms of $u$. Doing so gives us the following integral.
+
+$$ \frac{1}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))^{2} \cdot \frac{(1 - e^{2})^{1/2} \sin(u))}{1 - e\cos(u)}^{2} \cdot (1 - e\cos(u)) du $$
+
+This integral is a bit much, but some things end up canceling out, such as the denominator. Similarly, the square removes the square root on the $1 - e^{2}$ term, and because this is a constant, we can move this to the outside. THis yields the following integral.
+
+$$ \frac{1 - e^{2}}{2\pi} \int_{0}^{2\pi} (1 - e\cos(u))\sin^{2}(u) du $$
+$$ \frac{1 - e^{2}}{2\pi} \bigg[ \int_{0}^{2\pi} \sin^{2}(u) du - e \int_{0}^{2\pi} \cos(u)\sin^{2}(u) du \bigg] $$
+
+Not so bad. Now we have two integrals we have yet to solve, but fortunatelly they won't be so bad either. The first integral requires us to use the power reduction formula for sine instead of cosine.
+
+$$ \int_{0}^{2\pi} \sin^{2}(u) du = -\frac{1}{2}\sin(u)\cos(u) + \frac{1}{2} \int_{0}^{2\pi} du $$
+
+We have seen these values before. The first term ends up evaluating to 0 and the second term will evaluate to $\frac{1}{2} (2\pi)$ otherwise known as $\pi$. The other integal is rather easy to evaluate as it just requires a simple $v$-substitution.
+
+$$ \int_{0}^{2\pi} \sin^{2}(u) \cos(u) du $$
+$$ v = \sin(u), dv = \cos(u)du $$
+$$ \int_{0}^{2\pi} v^{2}dv  = \frac{1}{3}v^{3} = \frac{1}{3}\sin^{3}(u) \bigg|_{0}^{2\pi}$$
+$$ = \frac{1}{3} (\sin^{3}(2\pi) - \sin^{3}(0)) = \frac{1}{3} (0 - 0) = 0 $$
+
+Thus, another integral that evaluates to zero. Plugging these values back into the original integral yields the following.
+
+$$ \frac{1 - e^{2}}{2\pi} \bigg[ \int_{0}^{2\pi} \sin^{2}(u) du - e \int_{0}^{2\pi} \cos(u)\sin^{2}(u) du \bigg] $$
+$$ = \frac{1 - e^{2}}{2\pi} (\pi - e(0)) $$
+$$ = \frac{1 - e^{2}}{2} $$
+$$ = \frac{1}{2} - \frac{1}{2}e^{2} $$
 
 ## Description of Project
 Since this section was about the motion in a Kepler orbit, I wanted to make an animation that showed the actual motion of a particle in an orbit given certain initial conditions, in this case, starting position and starting velocity. I wanted to make sure this program also showcased elliptical orbits as well as hyberolic orbits as well. This project is very similar to the project from Section 1.2, but slightly different. The project from the previous section showed an animation of a Kepler orbit using the true anomaly as the input variable, while this one would focus more on the input variable being time instead. Another addition I wanted to add was changing the representation from 2D to 3d. This section of the book had a subsection that talked about the representation of an orbit in 3D and I wanted to capture that in my project as well. It was also rather convenient that the final subsection generalized it so that the dimentions (or reference frame) didn't matter too much.
