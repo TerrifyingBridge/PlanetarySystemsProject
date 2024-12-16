@@ -32,4 +32,33 @@ $$ r_{\text{sync}} \approx 42164 \text{ km} $$
 ### My Commentary
 This problem was rather simple, and was just centered around basic use of an equation. Can't say I have too much commentary besides talking about the hint mentioned, as it implies the existance of a common misunderstanding that would yield an answer of $42241 \text{ km}$ instead. That incorrect answer was easy to find, as it comes from having the period of Earth's rotation being exactly 1 day instead of 0.99727 days. Outside of that, nothing too much to say. It took my significantly longer to type this up than to actually do it.
 
-## Problem 2 - [1] {3}
+## Problem 9 - [1] {1}
+### My Solution
+> In July 2015 the New Horizons spacecraft encountered Pluto. The impact parameter of the encounter was $13700 \text{ km}$ and the relative velocity was $13.8 \text{ km} \text{ s}^{-1}$. By what angle was the spacecraft's trajectory deflected during the encounter? The mass of Pluto is $1.303 \times 10^{22} \text{ km}$.
+
+This problem is rather straightforward. As given to us by the book in Section 1.2, we have a relation between the delfection angle $\theta$ of an unbound orbit with the mass $M$, impact parameter $b$, and velocity of the object $v$. This relation is as follows.
+
+$$ \tan(\frac{1}{2}\theta) = \frac{GM}{bv^{2}} $$
+
+We have all of these values given to us, but first we need to put them in the correct units. This gives us the following.
+
+$$ b = 13700000 \text{ m} $$
+$$ M = 1.303\times 10^{22} \text{kg} $$
+$$ v = 13800 \text{ m} \text{ s}^{-1} $$
+$$ G = 6.67430 \times 10^{-11} \text{ m}^{3} \text{ kg}^{-1} \text{ s}^{-2} $$
+
+Now it's just a matter of plugging everything in.
+
+$$ \tan(\frac{1}{2}\theta) = \frac{(6.67430 \times 10^{-11})(1.303\times 10^{22})}{(13700000)(13800)^{2}} $$
+$$ \tan(\frac{1}{2}\theta) = 3.333 \times 10^{-4} $$
+
+From here we use $\tan^{-1}$ to find the angle. Technically, we don't even have to really use the $\tan^{-1}$ function, since for very small angles, $\tan(\theta) \approx \theta$, and this is indeed a very small angle. However, for clarity, I used $\tan^{-1}$ just to be safe.
+
+$$ \frac{1}{2}\theta = \tan^{-1}(3.333 \times 10^{-4}) \approx 3.333 \times 10^{-4} $$
+$$ \theta \approx 6.6666 \times 10^{-4} \text{ rads}$$
+$$ \theta \approx 0.0382^{\circ} $$
+
+I'm violating significant sigures here (not that I've been consistent in the first place), but I just really like how it rounds to a bunch of $6$'s. 
+
+### My Commentary
+This problem is probably the easiest one for this chapter if I had to guess. I am not all the way through the problems, but as of right now, it just seems really easy. There isn't much to do besides plug in values, and there is only minor solving for $\theta$. That being said, the result made me question my answer. Getting such a small number made me question if I was correct, so I checked my work with online resources. I saw that the actual deflection was by about 1 degree or so, and that's close enough, even if it's off by like 2 orders of magnitude especially since the numbers I found for the actual event were different than what the book said (ex: the fly-by velocity was $11 \text{ km} \text{ s}^{-1}$ instead of $13.8 \text{ km} \text{ s}^{-1}$). I am choosing to believe this is the correct solution the book intended as I am unsure how to find this angle while also keeping this problem a 1 difficulty.
