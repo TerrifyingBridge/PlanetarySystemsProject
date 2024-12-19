@@ -7,8 +7,12 @@ from matplotlib.animation import FuncAnimation
 # v0 = vectors.Vector3D(10, 8, -5)
 
 # Hyperbolic Orbit
-r0 = vectors.Vector3D(-600, -600, 100)
-v0 = vectors.Vector3D(8.199, 8, -5)
+# r0 = vectors.Vector3D(-600, -600, 100)
+# v0 = vectors.Vector3D(8.2, 8, -5)
+
+# Test
+r0 = vectors.Vector3D(100, 100, 0)
+v0 = vectors.Vector3D(-10, 10, -5)
 
 # Constants
 G = 6.673430e-11
@@ -111,6 +115,7 @@ def calc_period(mean_motion, ecc):
 
 
 a = calc_semimajor_axis(r0, v0)
+print(a)
 n = calc_mean_motion(a)
 L = calc_ang_momentum(r0, v0)
 e = calc_e(L, a)
