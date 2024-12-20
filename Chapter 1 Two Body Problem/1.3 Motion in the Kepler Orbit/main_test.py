@@ -11,8 +11,8 @@ from matplotlib.animation import FuncAnimation
 # v0 = vectors.Vector3D(8.2, 8, -5)
 
 # Test
-r0 = vectors.Vector3D(100, 100, 0)
-v0 = vectors.Vector3D(-10, 10, -5)
+r0 = vectors.Vector3D(200, 200, 0)
+v0 = vectors.Vector3D(-15, 10, -5)
 
 # Constants
 G = 6.673430e-11
