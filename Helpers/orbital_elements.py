@@ -234,8 +234,51 @@ def calc_orbital_elements_f(start_r: vectors.Vector3D, start_v: vectors.Vector3D
     return [a, e, I, ascend_node, arg_of_peri, f0]
 
 
+def calc_hill_variables(start_r: vectors.Vector3D, start_v: vectors.Vector3D, M: int) -> list:
+    r_mag = start_r.magnitude()
+    temp_r = start_r.copy()
+    temp_r.add(start_v)
+    r_dot = temp_r.magnitude() - r_mag
+
+    a, e, incline, ascending_node, arg_of_peri, l = calc_orbital_elements_l(start_r, start_v, M)
+    ang_mon = calc_ang_mom_mag(start_r, start_v)
+
+    ecc_anom = calc_eccentric_anomaly(l, e, 1e-10)
+    true_anom = calc_initial_f(e, ecc_anom)
+
+    return [r_mag, arg_of_peri + true_anom, ascending_node, r_dot, ang_mon, ang_mon*np.cos(incline)]
+
+
+def calc_delaunay_variables(start_r: vectors.Vector3D, start_v: vectors.Vector3D, M: int) -> list:
+    a, e, incline, ascending_node, arg_of_peri, l = calc_orbital_elements_l(start_r, start_v, M)
+
+    cap_lambda = np.sqrt(G*M*a)
+    ang_mom = calc_ang_mom_mag(start_r, start_v)
+    ang_mom_z = ang_mom*np.cos(incline)
+
+    return [l, arg_of_peri, ascending_node, cap_lambda, ang_mom, ang_mom_z]
+
+
+def calc_poincare_variables(start_r: vectors.Vector3D, start_v: vectors.Vector3D, M: int) -> list:
+    a, e, I, ascend_node, arg_of_peri, l = calc_orbital_elements_l(start_r, start_v, M)
+    ang_mom = calc_ang_mom_mag(start_r, start_v)
+    ang_mom_z = ang_mom*np.cos(I)
+
+    q1 = l + arg_of_peri + ascend_node
+    p1 = np.sqrt(G*M*a)
+    q2 = np.sqrt(2*(p1 - ang_mom))*np.cos(arg_of_peri + ascend_node)
+    p2 = np.sqrt(2*(p1 - ang_mom))*np.sin(arg_of_peri + ascend_node)
+    q3 = np.sqrt(2*(ang_mom - ang_mom_z))*np.cos(ascend_node)
+    p3 = np.sqrt(2*(ang_mom - ang_mom_z))*np.sin(ascend_node)
+
+    return [q1, q2, q3, p1, p2, p3]
+
+
 if __name__ == "__main__":
     test_r = vectors.Vector3D(200, 200, 0)
     test_v = vectors.Vector3D(-15, 10, -5)
 
     print(calc_orbital_elements_l(test_r, test_v, 10 ** (15)))
+    print(calc_hill_variables(test_r, test_v, 10 ** 15))
+    print(calc_delaunay_variables(test_r, test_v, 10 ** 15))
+    print(calc_poincare_variables(test_r, test_v, 10 ** 15))
