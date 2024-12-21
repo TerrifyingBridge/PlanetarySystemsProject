@@ -3,9 +3,9 @@ This section introduces the Hamiltonian for Kepler orbits and talks about the re
 
 | Subsection of Document | Description of Subsection |
 | -----------------------|---------------------------|
-| [Self Imposed Exercises](#self-imposed-exercises) | This section focuses on any exercises I thought would be helpful or fun to participate in, most of which I make for myself. |
-| [Project Description](#project-description) | This section focuses on the description of the coding project for this part of the book, as well as relevant information I use from the book. |
-| [Concluding Thoughts](#concluding-thoughts) | This section focuses on my reflection after completing the different stages for each section. I go into detail about my commentary for the book section, the self imposed exercises, and my project |
+| [Self Imposed Exercises](#self-imposed-exercises) | An outline of any exercises I thought would be beneifical or fun to work through that relate to the section of the book, usually exercises I make for myself. |
+| [Project Description](#project-description) | A description of the coding project I designed for this section of the book, as well as any relevant information I used. |
+| [Concluding Thoughts](#concluding-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
 
 ## Self Imposed Exercises
 Since most of this section was focusing on canonical coordinates using the orbital elements, there wasn't too much that was left as an exercise to the reader. 
