@@ -8,10 +8,10 @@ This section introduces the Hamiltonian for Kepler orbits and talks about the re
 | [Concluding Thoughts](#concluding-thoughts) | This section focuses on my reflection after completing the different stages for each section. I go into detail about my commentary for the book section, the self imposed exercises, and my project |
 
 ## Self Imposed Exercises
-text!
+Since most of this section was focusing on canonical coordinates using the orbital elements, there wasn't too much that was left as an exercise to the reader. 
 
 ## Project Description
 More text!
 
-## Concluding Thoughts
+## Reflecting Thoughts
 final text!
