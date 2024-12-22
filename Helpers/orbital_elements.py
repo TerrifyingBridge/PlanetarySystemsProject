@@ -278,6 +278,9 @@ if __name__ == "__main__":
     test_r = vectors.Vector3D(200, 200, 0)
     test_v = vectors.Vector3D(-15, 10, -5)
 
+    test1 = vectors.Vector3D(200, 200, 200)
+    test2 = vectors.Vector3D(1, -1, 1)
+
     print(calc_orbital_elements_l(test_r, test_v, 10 ** (15)))
     print(calc_hill_variables(test_r, test_v, 10 ** 15))
     print(calc_delaunay_variables(test_r, test_v, 10 ** 15))
