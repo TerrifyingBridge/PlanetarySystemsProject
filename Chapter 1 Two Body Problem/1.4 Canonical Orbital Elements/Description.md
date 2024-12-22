@@ -16,7 +16,7 @@ $$
 \begin{aligned}
 \ell, & \qquad \qquad \Lambda \equiv (GMa)^{1/2}, \\
 \omega, & \qquad \qquad L = [GMa(1-e^{2}]^{1/2}, \\
-\Omega, & \qquad \qquad L_{z} = L\cos(I)
+\Omega, & \qquad \qquad L_{z} = L\cos(I).
 \end{aligned}
 $$
 
@@ -63,9 +63,9 @@ Thus, are final canonical coordinate set is the following.
 
 $$
 \begin{aligned}
-\lambda &= \ell + \omega + \Omega, \qquad \qquad \Lambda, \\
-\varpi &= \omega + \Omega, \qquad \qquad L - \Lambda, \\
-\Omega, & \qquad \qquad \qquad \qquad L - L_{z}.
+\lambda = \ell + \omega + \Omega, & \qquad \qquad \Lambda, \\
+\varpi = \omega + \Omega, & \qquad \qquad L - \Lambda, \\
+\Omega, & \qquad \qquad L - L_{z}.
 \end{aligned}
 $$
 
@@ -74,9 +74,9 @@ For this one, we will use the generating function $S_{2}(\textbf{q}, \textbf{P})
 
 $$
 \begin{aligned}
-Q_{1} = & \frac{\partial S_{2}}{\partial P_{1}}  = \ell + \omega + \Omega \\
-Q_{2} = & \frac{\partial S_{2}}{\partial P_{2}} = -\omega - \Omega \\
-Q_{3} = & \frac{\partial S_{2}}{\partial P_{3}} = -\Omega
+&Q_{1} = \frac{\partial S_{2}}{\partial P_{1}}  = \ell + \omega + \Omega \\
+&Q_{2} = \frac{\partial S_{2}}{\partial P_{2}} = -\omega - \Omega \\
+&Q_{3} = \frac{\partial S_{2}}{\partial P_{3}} = -\Omega
 \end{aligned}
 $$
 
@@ -101,16 +101,16 @@ $$ L = \Lambda - P_{2} \Rightarrow P_{2} = \Lambda - L $$
 
 For the last equation, we can substitute $L = P_{1} - P_{2}$ and solve for $P_{3}$.
 
-$$ L_{z} = L - P{3} \Rightarrow P_{3} = L - L_{z} $$
+$$ L_{z} = L - P_{3} \Rightarrow P_{3} = L - L_{z} $$
 
 
 Thus, are final canonical coordinate set is the following.
 
 $$
 \begin{aligned}
-\lambda &= \ell + \omega + \Omega, \qquad \qquad \Lambda, \\
--\varpi &= -\omega - \Omega, \qquad \qquad \Lambda - L, \\
--\Omega, & \qquad \qquad \qquad \qquad \quad L - L_{z}.
+\lambda = \ell + \omega + \Omega, & \qquad \qquad \Lambda, \\
+-\varpi = -\omega - \Omega, & \qquad \qquad \Lambda - L, \\
+-\Omega, & \qquad \qquad L - L_{z}.
 \end{aligned}
 $$
 
@@ -157,15 +157,15 @@ Now it's time to solve for $P_{3}$.
 
 $$
 \begin{aligned}
-L_{z} - L &= \frac{1}{2}P_{3}^{2}\csc^{2}(\Omega) \\
-2(L_{z} - L)\sin^{2}(\Omega) &= P_{3}^{2} \\
-[2(L_{z} - L)]^{1/2}\sin(\Omega) &= P_{3}
+L- L_{z} &= \frac{1}{2}P_{3}^{2}\csc^{2}(\Omega) \\
+2(L- L_{z})\sin^{2}(\Omega) &= P_{3}^{2} \\
+[2(L- L_{z})]^{1/2}\sin(\Omega) &= P_{3}
 \end{aligned}
 $$
 
 From here, we can derive $Q_{3}$ using the third equation found when taking the partials.
 
-$$ Q_{3} = [2(L_{z} - L)]^{1/2}\sin(\Omega)\cot(\Omega) \Rightarrow [2(L_{z} - L)]^{1/2}\cos(\Omega) $$
+$$ Q_{3} = [2(L- L_{z})]^{1/2}\sin(\Omega)\cot(\Omega) \Rightarrow [2(L- L_{z})]^{1/2}\cos(\Omega) $$
 
 Now that we have solved all of our variables, we have the complete set of Poincaré variables.
 
@@ -174,7 +174,7 @@ $$
 \begin{aligned}
 \lambda, & \qquad \qquad \Lambda, \\
 [2(\Lambda - L)]^{1/2}\cos(\varpi),& \qquad \qquad [2(\Lambda - L)]^{1/2}\sin(\varpi), \\
-[2(L_{z} - L)]^{1/2}\cos(\Omega), & \qquad \qquad [2(L_{z} - L)]^{1/2}\sin(\Omega).
+[2(L- L_{z})]^{1/2}\cos(\Omega), & \qquad \qquad [2(L- L_{z})]^{1/2}\sin(\Omega).
 \end{aligned}
 $$
 
@@ -186,6 +186,11 @@ More text!
 Overall, this section was both rather easy and very difficult to get through. The section started off with talking about the Hamiltonian equation of motion, which was rather straight forward and then went into talking about canonical coordinates for the orbital elements. I didn't remember a lot of the hamiltonian, so I went to the appendix for a refresher. Most of this was fine, until I got to the "propegator" section, where I am very certain I did not learn that in my undergraduate studies. This is where the book tended to lose me, especially when it came to deriving the Delauney variables. I read through that section, and truthfully only kind of understood it. After getting to the end, I figured that this was just background context should I want it, and went back to reading the actual chapter (especially since I was spending *a lot* of time in the appendix and trying and failing to look stuff up).
 
 However, the rest of the chapter was rather straightforward, and a lot simpler to get through. Once you have the Delauney variales, the rest comes rather easy. The book gives you the generating function for each coordinate set, and it is pretty straightforward how to get these coordinates from the generating functions. Speaking of the generating functions, I am still a bit unsure where they specficially come from. I know that they have to be a function of some combination of the canonical pairs, but it looks like you can make the function itself whatever you want as long as it's well defined? Truthfuylly, I am not sure, and I am fairly certain that there is more reason behind it, but I failed at finding one. Overall though, the section itself (and only the section), was rather easy to get through.
+
+### Self Imposed Exercises Thoughts
+When I was thinking about what exercises to do for this section, I really felt like I was scraping the bottom of the barrel. Going in, I was worried that this wasn't going to be a good enough exercise or even fruitful to do, but the alternative exercise (deriving the Delauney variables) was way harder than I think I was ready for. I ended up going with this, and I think it was a good choice. I got over the whole "not hard enough of a challenge" part by remembering that my first self imposed exercise was proving conservation of energy and angular momentum. It's funny how quickly my own standards are drifting and wanting to be "harder" before they actually count as an exercise, especially when I'm doing these without any prompting. 
+
+The exercise itself was honestly kind of boring. The first two coordinate sets were so easy I didn't even sketch out the solution before typing them in this document. Deriving the Poincaré variables was rather exciting and required more thinking than the first two. This is a big reason I didn't include the last canonical coordinate pairs, as they would be more of the same as the first two and I was really starting to get bored. However, I was able to learn a lot about formating for these exercises. I recently figured out how to center multiple math lines in the markdown file and I was able to play around with that a lot through these exercises. I believe that this makes the file look a lot nicer and I'm rather happy with how it looks. There is a big difference between how this file looks (in this section I mean) compared to previous ones, where everything is just centered and looks kind of jank.
 
 ### Project Thoughts
 
