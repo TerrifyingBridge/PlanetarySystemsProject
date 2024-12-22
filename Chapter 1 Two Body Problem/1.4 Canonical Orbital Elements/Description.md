@@ -8,7 +8,9 @@ This section introduces the Hamiltonian for Kepler orbits and talks about the re
 | [Concluding Thoughts](#concluding-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
 
 ## Self Imposed Exercises
-Since most of this section was focusing on canonical coordinates using the orbital elements and what they are, there wasn't too much that was left as an exercise to the reader. However, there is an extra little bit of work I wanted to get some practice in for this section. During this section, the book gives 5 different sets of canonical coordinates, as well as their generating function. I thought it would be fun to derive them and get some practice working with generating functions (since I am fairly certain I never saw them during my undergraduate studies). However, I am ***not*** going to be deriving the first set of canonical coordiates, which are the Delauney variables. This is mostly because I don't entirely understand their derivation, and the book just states what they are at the beginning. Regardless, to make sure we're on the same page, here are the Delauney variables.
+Since most of this section was focusing on canonical coordinates using the orbital elements and what they are, there wasn't too much that was left as an exercise to the reader. However, there is an extra little bit of work I wanted to get some practice in for this section. During this section, the book gives 5 different sets of canonical coordinates, as well as their generating function. I thought it would be fun to derive them and get some practice working with generating functions (since I am fairly certain I never saw them during my undergraduate studies). 
+
+However, I am ***not*** going to be deriving the first set of canonical coordiates, which are the Delauney variables. This is mostly because I don't entirely understand their derivation, and the book just states what they are at the beginning. On a related note, I am only going to derive the first two coordinate sets. This is because there isn't any commentary for the book for the 3rd unnamed coordinate set, and after the first two unnamed sets, the process gets redundant and easy to see where it is going. Regardless, to make sure we're on the same page, here are the Delauney variables.
 
 $$ 
 \begin{aligned}
@@ -64,6 +66,115 @@ $$
 \lambda &= \ell + \omega + \Omega, \qquad \qquad \Lambda, \\
 \varpi &= \omega + \Omega, \qquad \qquad L - \Lambda, \\
 \Omega, & \qquad \qquad \qquad \qquad L - L_{z}.
+\end{aligned}
+$$
+
+### 2nd Coordinate Set
+For this one, we will use the generating function $S_{2}(\textbf{q}, \textbf{P}) = (\ell + \omega + \Omega)P_{1} + (\omega + \Omega)P_{2} + \Omega P_{3}$. Just as last time, let's get the $\textbf{Q}$ out of the way, as it is rather straightforward.
+
+$$
+\begin{aligned}
+Q_{1} = & \frac{\partial S_{2}}{\partial P_{1}}  = \ell + \omega + \Omega \\
+Q_{2} = & \frac{\partial S_{2}}{\partial P_{2}} = -\omega - \Omega \\
+Q_{3} = & \frac{\partial S_{2}}{\partial P_{3}} = -\Omega
+\end{aligned}
+$$
+
+Easy enough. Now it's fime for the momenta.
+
+
+$$
+\begin{aligned}
+p_{1} = & \Lambda = \frac{\partial S_{2}}{\partial \ell} = P_{1} \\
+p_{2} = & L = \frac{\partial S_{2}}{\partial \omega} = P_{1} - P_{2} \\
+p_{3} = & L_{z} = \frac{\partial S_{2}}{\partial \Omega} = P_{1} - P_{2} - P_{3}
+\end{aligned}
+$$
+
+From the first equation we have the following.
+
+$$ P_{1} = \Lambda $$
+
+For the second equation, we substitute this value in like we did last time to solve for $P_{2}$
+
+$$ L = \Lambda - P_{2} \Rightarrow P_{2} = \Lambda - L $$
+
+For the last equation, we can substitute $L = P_{1} - P_{2}$ and solve for $P_{3}$.
+
+$$ L_{z} = L - P{3} \Rightarrow P_{3} = L - L_{z} $$
+
+
+Thus, are final canonical coordinate set is the following.
+
+$$
+\begin{aligned}
+\lambda &= \ell + \omega + \Omega, \qquad \qquad \Lambda, \\
+-\varpi &= -\omega - \Omega, \qquad \qquad \Lambda - L, \\
+-\Omega, & \qquad \qquad \qquad \qquad \quad L - L_{z}.
+\end{aligned}
+$$
+
+### 3rd Coordinate Set (Poincaré Variables)
+The last set of coordinates I want to derive is the Poincaré variables. The derivation for these are a bit more interesting, and they seem to have a strong application. The generating function we will be using for this derivation is $S_{2}(\textbf{q}, \textbf{P}) = (\ell + \omega + \Omega)P_{1} + \frac{1}{2}P_{2}^{2}\cot(\omega + \Omega) + \frac{1}{2}P_{3}^{2}\cot(\Omega)$
+
+To being, let's start taking the partial derivatives for $S_{2}$
+
+$$
+\begin{aligned}
+Q_{1} = & \frac{\partial S_{2}}{\partial P_{1}}  = \ell + \omega + \Omega \\
+Q_{2} = & \frac{\partial S_{2}}{\partial P_{2}} = P_{2}\cot(\omega + \Omega) \\
+Q_{3} = & \frac{\partial S_{2}}{\partial P_{3}} = P_{3}\cot(\Omega) \\
+p_{1} = & \Lambda = \frac{\partial S_{2}}{\partial \ell} = P_{1} \\
+p_{2} = & L = \frac{\partial S_{2}}{\partial \omega} = P_{1} - \frac{1}{2}P_{2}^{2}\csc^{2}(\omega + \Omega) \\
+p_{3} = & L_{z} = \frac{\partial S_{2}}{\partial \Omega} = P_{1} - \frac{1}{2}P_{2}^{2}\csc^{2}(\omega + \Omega) - \frac{1}{2}P_{3}^{2}\csc^{2}(\Omega)
+\end{aligned}
+$$
+
+Before we can begin solving for $\textbf{Q}$, let's focus on the 5th equation to solve for $P_{2}$ first. Isolating this equation and changing a term or two gives us the following.
+
+$$ L = \Lambda - \frac{1}{2}P_{2}^{2}\csc^{2}(\varpi) $$
+
+Now we can begin to solve for $P_{2}$.
+
+$$
+\begin{aligned}
+L - \Lambda &= -\frac{1}{2}P_{2}^{2}\csc^{2}(\varpi) \\
+2(\Lambda - L) &= P_{2}^{2}\csc^{2}(\varpi) \\
+2(\Lambda - L)\sin^{2}(\varpi) &= P_{2}^{2} \\
+[2(\Lambda - L)]^{1/2}\sin(\varpi) &= P_{2}
+\end{aligned}
+$$
+
+From here, we can derive $Q_{2}$ using the second equation found when taking the partials.
+
+$$ Q_{2} = [2(\Lambda - L)]^{1/2}\sin(\varpi)\cot(\varpi) \Rightarrow [2(\Lambda - L)]^{1/2}\cos(\varpi) $$
+
+Awesome. Now we can do a similar algebraic process to find the last canonical coordiates. Using the last partial derivative equation, we can rearrange some terms to get the following.
+
+$$ L_{z} = L - \frac{1}{2}P_{3}^{2}\csc^{2}(\Omega) $$
+
+Now it's time to solve for $P_{3}$.
+
+$$
+\begin{aligned}
+L_{z} - L &= \frac{1}{2}P_{3}^{2}\csc^{2}(\Omega) \\
+2(L_{z} - L)\sin^{2}(\Omega) &= P_{3}^{2} \\
+[2(L_{z} - L)]^{1/2}\sin(\Omega) &= P_{3}
+\end{aligned}
+$$
+
+From here, we can derive $Q_{3}$ using the third equation found when taking the partials.
+
+$$ Q_{3} = [2(L_{z} - L)]^{1/2}\sin(\Omega)\cot(\Omega) \Rightarrow [2(L_{z} - L)]^{1/2}\cos(\Omega) $$
+
+Now that we have solved all of our variables, we have the complete set of Poincaré variables.
+
+
+$$
+\begin{aligned}
+\lambda, & \qquad \qquad \Lambda, \\
+[2(\Lambda - L)]^{1/2}\cos(\varpi),& \qquad \qquad [2(\Lambda - L)]^{1/2}\sin(\varpi), \\
+[2(L_{z} - L)]^{1/2}\cos(\Omega), & \qquad \qquad [2(L_{z} - L)]^{1/2}\sin(\Omega).
 \end{aligned}
 $$
 
