@@ -208,7 +208,7 @@ This helper file ended up being the bigger half of the project when compared to 
 2. Use the relation $\frac{1}{a} = \frac{2}{r} - \frac{v^{2}}{GM}$ to find the value of the semi-major axis
 3. Use the semi-major axis to find the mean motion using the definition $n^{2}a^{3} = GM$
 4. Use the inital conditions to find the angular momentum $\mathbf{L} = \mathbf{r_{0}} \times \mathbf{v_{0}}$
-5. Use the semi-major axis and magnitude of the angular momentum to find the eccentricity ($L = GMa(1 - e^{2})$)
+5. Use the semi-major axis and magnitude of the angular momentum to find the eccentricity ( $L = GMa(1 - e^{2})$ )
 6. Find the dot product between the angular momentum and the unit z vector to find the inclination of the orbit
 7. Use the semi-major axis, eccentricity, and $r_{0}$ to find the initial eccentric anomaly using $r = a(1 - e\cos(u))$. Determine which hemisphere $u$ is in, based on whether $\mathbf{\dot{r}}$ is increasing or decreasing
 8. Use the initial eccentric anomaly to determine the mean anomaly using Kepler's equation $\ell = u - e\sin(u)$
