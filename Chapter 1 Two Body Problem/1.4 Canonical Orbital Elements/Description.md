@@ -186,8 +186,123 @@ While I implemented the GUI last, I want to talk about it first and then go into
 ### GUI Creation
 I put a tad bit more planning into making the GUI this time than I did last time, while also expanding on what I learned from previous projects. I have come to learn that I disliked the built in Tkinter for Python, so this time around I changed to using the PyQt6 library to make my GUI. This came with a lot of learning, but I feel like I was able to make a much smoother GUI (even if it didn't look like much had changed). For this GUI, I also planned out the GUI ahead of time instead of rushing into it, mostly because I had to. The layout I ended up going with was a combinaiton of nested horizontal and vertical box spacing that took the following form.
 
-<p style="text-align:center">
-<img src="assets/gui_main.png", width = "200", alt="guimain">
+<p align = "center">
+<img src = "assets/layout.png", width = "400", alt="layout">
+</p>
+
+Please ignore the scrunched text, I never promised about being a good digital artist or good at using MSpaint. However, this shows the general form that I based building my GUI out of when I was making it in code. The code itself isn't too exciting, hence why I'm not referencing it explicitly, but after a lot of perserverience I was able to make it look manageable. Below you can see the final GUI that I ended up making for the project itself. This version is what greets the user when running the program and gives brief instructions on how to work it. Unlike my previous iterations, this one can work multiple times in a row (you don't need to reset the program), and you can press tab to move to the next text field. 
+
+<p align = "center">
+<img = src = "assets/gui_main.png", width = "400", alt="guimain">
+</p>
+
+On a final note, the canoncial orbital elements only work with bound orbits (I believe, since a could aren't defined for hyperbolic or parabolic orbits as far as I know), so there is a checker to determine if the input is an elipical orbit. This checker / error only shows up when a wrong input is used and asks the user to try again. It is not seen in the image above as there is no input in said image.
+
+### Calculating the Canonical Orbital Elements
+The other half of this project was focused on creating a method to find all of the canonical orbital elements I wanted to calculate. For this project, I wanted to calculate three: the Hill variables, Delauney variables, and the Poincaré variables. However, a lot of work needs to be done before actually calcuating these, because I need to find the non-canonical orbital elements first. Most of these we already have from previous projects, but not all of them such as the **inclination**, **longitude of the ascending node**, and the **argument of periapsis**. In the previous project, I ended up having to type up two sets of functions to calculate some of the orbital elements, and truthfully, I didn't want to keep doing this again and again for the future. To fix this problem, I created a new Python Helper file to solve this issue so that I could use these functions in the future without having to re-type them.
+
+#### Orbital Elements Helper File
+This helper file ended up being the bigger half of the project when compared to the GUI, simply because of how much stuff I had to put in it. As mentioned before, this file is used to calculate the non-canonical orbital elements: semi-major axis $a$, eccentricity $e$, inclination $I$, longitude of the ascending node $\Omega$, argument of the periapsis $\omega$, and the mean/true anomaly $\ell / f$ (depending on what you need). The process outlined in the project in the previous section gave me half of these (namely $a$, $e$, and $\ell$), but we need a bit more in order to find the rest. Before getting into the math itself, I want to talk about what the givens are. The program takes in a mass, and cartesean starting position and velocity, so this is all we have to work with. With this in mind, here are the steps I used in order to find all 6 orbital elements.
+
+1. Compute $r_{0} = |\mathbf{r_{0}}|$ and $v_{0} = |\mathbf{v_{0}}|
+2. Use the relation $\frac{1}{a} = \frac{2}{r} - \frac{v^{2}}{GM}$ to find the value of the semi-major axis
+3. Use the semi-major axis to find the mean motion using the definition $n^{2}a^{3} = GM$
+4. Use the inital conditions to find the angular momentum $\mathbf{L} = \mathbf{r_{0}} \times \mathbf{v_{0}}$
+5. Use the semi-major axis and magnitude of the angular momentum to find the eccentricity ($L = GMa(1 - e^{2})$)
+6. Find the dot product between the angular momentum and the unit z vector to find the inclination of the orbit
+7. Use the semi-major axis, eccentricity, and $r_{0}$ to find the initial eccentric anomaly using $r = a(1 - e\cos(u))$. Determine which hemisphere $u$ is in, based on whether $\mathbf{\dot{r}}$ is increasing or decreasing
+8. Use the initial eccentric anomaly to determine the mean anomaly using Kepler's equation $\ell = u - e\sin(u)$
+9. Use the relation $\cos(f) = \frac{\cos(u) - e}{1 - e\cos(u)}$ to find the initial true anomaly $f$. The hemisphere of $f$ is determined by the hemisphere of $u$.
+10. Use the initial true anomaly and plug in a value of $f = 0$ to Gauss's $f$ and $g$ funciton, as well as their time derivatives.
+11. Use the values from the previous step in combinaiton with the initial starting position and velocity to determine the position and velocity of the periapsis in cartesean coordinates.
+12. Use the equation $r_{z} = \sin(I)\sin(f + \omega)$ to determine the value of $\omega$
+    1. Use the z coordinate of the position of periapsis for $r_{z}$
+    2. Since this position is at the periapsis, $f = 0$, and thus the second sine is simply $\sin{\omega}$
+    3. Use the value found for inclination and solve for $\sin{\omega}$
+    4. Take the inverse sine to find $\omega$
+    5. If the resulting angle is positive, then $\omega$ is between $(0, \pi)$ and if the resulting angle is negative, then $\omega$ is between $(\pi, 2\pi)$
+    6. Using the z coordinate of the velocity $v_{z}$ for the periapsis to determine the quadrant for $\omega$. If $v_{z}$ is positive, then $\omega$ is in quadrants I or IV, if it is negative then $\omega$ is in quadrants II or III.
+13. Since the argument of the periapsis is the true anomaly difference between the periapsis and the ascending node, use this difference in angle for true anomaly and plug it into Gauss's functions
+14. Use the value from the previous step to determine the cartesean position of the ascending node
+15. Find the angle between the ascending node position and unit x vector using the dot product, and determine the hemisphere based on the sign of the y value
+
+Whew, and that's it. Truthfully, finding out how to actually find the longitude of the ascending node was more difficult than the self imposed exercises I ended up doing. Because of this, I wanted to actually check my work to make sure it gave me the correct value. To do this, I created a new Python file which had a small copy of my work from the previous project with an added semi-transparent xy-plane and a line that pointed to my calculated ascending node. I ran the program to see if the orbiting partical ascended through this plan at the point and sure enough it did. This can be seen in the image below.
+
+<p align = "center">
+<img src = "assets/ascend_node.png", width = "400", alt="ascend">
+</p>
+
+Running a couple tests and seeing that it provides me with a correct result doesn't mean it is entirely true, but I am rather convinced that this is working enough to move on.
+
+#### Calculating the Hill Variables
+The biggest reason I added the Hill variables is because someone thought they were important enough to name, that they were important enough to be used. Since most of the hill variables are related to the orbital elements, it wasn't a terribly difficult task. Here is the function I made that calculates the Hill variables for a given starting position and velocity in an orbit around a mass.
+
+```python
+def calc_hill_variables(start_r: vectors.Vector3D, start_v: vectors.Vector3D, M: int) -> list:
+    r_mag = start_r.magnitude()
+    temp_r = start_r.copy()
+    temp_r.add(start_v)
+    r_dot = temp_r.magnitude() - r_mag
+
+    a, e, incline, ascending_node, arg_of_peri, l = calc_orbital_elements_l(start_r, start_v, M)
+    ang_mon = calc_ang_mom_mag(start_r, start_v)
+
+    ecc_anom = calc_eccentric_anomaly(l, e, 1e-10)
+    true_anom = calc_initial_f(e, ecc_anom)
+
+    return [r_mag, arg_of_peri + true_anom, ascending_node, r_dot, ang_mon, ang_mon*np.cos(incline)]
+```
+
+I believe that most of the naming conventions should make intuitive sense, but there are a couple I wanted to explain. The last function ```calc_initial_f``` is simply calculating the initial true anomaly, and the ```calc_orbital_elements_l``` is calculating the orbital elements using the mean anomaly instead of the true anomaly. One asepct I was unsure about was finding $\mathbf{\dot{r}}$ as I simply took the difference in magnitude of the position vector before and after applying the velocity vector. Looking back, I should have just used the equation for radial velocity, but the project is done, and I don't want to change it. Regardless, the resulting output for the Hill variables looks like the following.
+
+<p align = "center">
+<img src = "assets/gui_hill.png", width = "400", alt="hill">
+</p>
+
+#### Calculating the Delauney Variables
+These are the main variables for this section, as they were the ones in which all other canonical coordinate sets were derived from, including the Poincaré variables. These were very easy to calculate, as each of these variables are simply in terms of the non-canonical orbital elements we all know and love. The code I made to calculate these is shown below.
+
+```python
+def calc_delaunay_variables(start_r: vectors.Vector3D, start_v: vectors.Vector3D, M: int) -> list:
+    a, e, incline, ascending_node, arg_of_peri, l = calc_orbital_elements_l(start_r, start_v, M)
+
+    cap_lambda = np.sqrt(G*M*a)
+    ang_mom = calc_ang_mom_mag(start_r, start_v)
+    ang_mom_z = ang_mom*np.cos(incline)
+
+    return [l, arg_of_peri, ascending_node, cap_lambda, ang_mom, ang_mom_z]
+```
+
+Like last time, the ```calc_orbital_elements_l``` is calculating the orbital elements using the mean anomaly instead of the true anomaly. As a comparison, I wanted to show the application of this in the GUI, and with using the same initial conditions as I did with the Hill variables.
+
+<p align = "center">
+<img src = "assets/gui_del.png", width = "400", alt="delauney">
+</p>
+
+#### Calcuating the Poincaré Variables
+The last named variables for this section, and from what I can gather, the more useful ones depending on the situaiton, as they are well defined when the Delauney variables aren't. Like the Delauney variables, the calculation for the Poincaré variables is rather straightforward once you have the orbital elements. My code for calculating them is shown below.
+
+```python
+def calc_poincare_variables(start_r: vectors.Vector3D, start_v: vectors.Vector3D, M: int) -> list:
+    a, e, I, ascend_node, arg_of_peri, l = calc_orbital_elements_l(start_r, start_v, M)
+    ang_mom = calc_ang_mom_mag(start_r, start_v)
+    ang_mom_z = ang_mom*np.cos(I)
+
+    q1 = l + arg_of_peri + ascend_node
+    p1 = np.sqrt(G*M*a)
+    q2 = np.sqrt(2*(p1 - ang_mom))*np.cos(arg_of_peri + ascend_node)
+    p2 = np.sqrt(2*(p1 - ang_mom))*np.sin(arg_of_peri + ascend_node)
+    q3 = np.sqrt(2*(ang_mom - ang_mom_z))*np.cos(ascend_node)
+    p3 = np.sqrt(2*(ang_mom - ang_mom_z))*np.sin(ascend_node)
+
+    return [q1, q2, q3, p1, p2, p3]
+```
+
+Like last time, the ```calc_orbital_elements_l``` is calculating the orbital elements using the mean anomaly instead of the true anomaly. As a comparison, I wanted to show the application of this in the GUI, and with using the same initial conditions as I did with the Hill and Delauney variables.
+
+
+<p align = "center">
+<img src = "assets/gui_poin.png", width = "400", alt="poincare">
 </p>
 
 ## Reflecting Thoughts
