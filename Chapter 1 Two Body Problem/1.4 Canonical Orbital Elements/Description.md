@@ -179,7 +179,16 @@ $$
 $$
 
 ## Project Description
-More text!
+Since this section was focused mostly on canonical coordinates and their values, I thought it would be a fun idea to create a project around transforming a cartesean coordinate into a one of the helpful canonical coordinate sets. Like last time, I wanted to do this through a GUI instead of just having it print to the console. My biggest reasoning with this (and all times prior) is that I want these projects to feel like an actual program, and while the console is a perfectly valid tool, having a GUI to play with and use from the user's perspective makes it a bit easier for others who are not myself to actually use the program.
+
+While I implemented the GUI last, I want to talk about it first and then go into the math behind the project. This is because I find the GUI slightly less interesting to talk about and I have less to say. However, there are a few extra bits I do want to mention for the GUI, as it is very different from the GUI in the previous two projects.
+
+### GUI Creation
+I put a tad bit more planning into making the GUI this time than I did last time, while also expanding on what I learned from previous projects. I have come to learn that I disliked the built in Tkinter for Python, so this time around I changed to using the PyQt6 library to make my GUI. This came with a lot of learning, but I feel like I was able to make a much smoother GUI (even if it didn't look like much had changed). For this GUI, I also planned out the GUI ahead of time instead of rushing into it, mostly because I had to. The layout I ended up going with was a combinaiton of nested horizontal and vertical box spacing that took the following form.
+
+<p style="text-align:center">
+<img src="assets/gui_main.png", width = "200", alt="guimain">
+</p>
 
 ## Reflecting Thoughts
 ### Section 1.4 Thoughts
