@@ -70,7 +70,7 @@ $$
 $$
 
 ### 2nd Coordinate Set
-For this one, we will use the generating function $S_{2}(\textbf{q}, \textbf{P}) = (\ell + \omega + \Omega)P_{1} + (\omega + \Omega)P_{2} + \Omega P_{3}$. Just as last time, let's get the $\textbf{Q}$ out of the way, as it is rather straightforward.
+For this one, we will use the generating function $S_{2}(\textbf{q}, \textbf{P}) = (\ell + \omega + \Omega)P_{1} - (\omega + \Omega)P_{2} - \Omega P_{3}$. Just as last time, let's get the $\textbf{Q}$ out of the way, as it is rather straightforward.
 
 $$
 \begin{aligned}
