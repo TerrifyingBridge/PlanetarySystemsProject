@@ -204,7 +204,7 @@ The other half of this project was focused on creating a method to find all of t
 #### Orbital Elements Helper File
 This helper file ended up being the bigger half of the project when compared to the GUI, simply because of how much stuff I had to put in it. As mentioned before, this file is used to calculate the non-canonical orbital elements: semi-major axis $a$, eccentricity $e$, inclination $I$, longitude of the ascending node $\Omega$, argument of the periapsis $\omega$, and the mean/true anomaly $\ell / f$ (depending on what you need). The process outlined in the project in the previous section gave me half of these (namely $a$, $e$, and $\ell$), but we need a bit more in order to find the rest. Before getting into the math itself, I want to talk about what the givens are. The program takes in a mass, and cartesean starting position and velocity, so this is all we have to work with. With this in mind, here are the steps I used in order to find all 6 orbital elements.
 
-1. Compute $r_{0} = |\mathbf{r_{0}}|$ and $v_{0} = |\mathbf{v_{0}}|
+1. Compute $r_{0} = |\mathbf{r_{0}}|$ and $v_{0} = |\mathbf{v_{0}}|$
 2. Use the relation $\frac{1}{a} = \frac{2}{r} - \frac{v^{2}}{GM}$ to find the value of the semi-major axis
 3. Use the semi-major axis to find the mean motion using the definition $n^{2}a^{3} = GM$
 4. Use the inital conditions to find the angular momentum $\mathbf{L} = \mathbf{r_{0}} \times \mathbf{v_{0}}$
