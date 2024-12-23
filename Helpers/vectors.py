@@ -1,5 +1,4 @@
 import math
-
 import numpy as np
 
 
@@ -52,7 +51,7 @@ class Vector3D:
         self.z -= other.z
         return Vector3D(self.x, self.y, self.z)
 
-    def multiply(self, scalar):
+    def multiply(self, scalar: float):
         self.x *= scalar
         self.y *= scalar
         self.z *= scalar
@@ -61,7 +60,7 @@ class Vector3D:
     def magnitude(self):
         return math.sqrt(self.x ** 2 + self.y ** 2 + self.z ** 2)
 
-    def normalize(self):
+    def get_unit_vector(self):
         mag = self.magnitude()
         return Vector3D(self.x / mag, self.y / mag, self.z / mag)
 
@@ -76,5 +75,20 @@ class Vector3D:
     def copy(self):
         return Vector3D(self.x, self.y, self.z)
 
+    def cross_prod(self, other):
+        s1 = self.y * other.z - self.z * other.y
+        s2 = self.z * other.x - self.x * other.z
+        s3 = self.x * other.y - self.y * other.x
+        return Vector3D(s1, s2, s3)
+
     def __str__(self):
         return ("(" + str(self.x) + "," + str(self.y) + "," + str(self.z) + ")")
+
+
+# Vector Constants #
+unit_x_2d = Vector2D(1, 0)
+unit_y_2d = Vector2D(0, 1)
+
+unit_x_3d = Vector3D(1, 0, 0)
+unit_y_3d = Vector3D(0, 1, 0)
+unit_z_3d = Vector3D(0, 0, 1)

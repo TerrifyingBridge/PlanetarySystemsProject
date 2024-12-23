@@ -1,4 +1,4 @@
-# PlanetarySystemsProject
+# Planetary Systems Project
 I bought a book a while ago called "Dynamics of Planetary Systems" by Scott Tremaine. This project is my attempt at finding a new coding project for each section or two. My goal with this is to increase my coding skills while also working on (re)learning astrophysics (since I'm pretty rusty).
 Not sure if this project will continue or make it very far, but I want to try a crack at at, especially since I like the topic itself.
 
