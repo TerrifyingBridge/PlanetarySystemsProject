@@ -125,6 +125,7 @@ class Jupiter:
     orbital_period_days = 4332.82
     orbital_period_years = 11.8626
     mass_parameter = 1.2668653e17
+    mass = 1.89812e27
     sun_planet_mass_ratio = 1047.57
     sun_system_mass_ratio = 1047.35
     spin_period = 0.41354
