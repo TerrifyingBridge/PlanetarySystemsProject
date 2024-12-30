@@ -7,4 +7,4 @@ Text2
 ## Project Description
 Text3
 
-## Reflecting Thoughts
+## Concluding Thoughts
