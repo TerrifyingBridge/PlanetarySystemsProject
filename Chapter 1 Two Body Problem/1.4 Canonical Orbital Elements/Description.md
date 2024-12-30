@@ -15,7 +15,7 @@ However, I am ***not*** going to be deriving the first set of canonical coordiat
 $$ 
 \begin{aligned}
 \ell, & \qquad \qquad \Lambda \equiv (GMa)^{1/2}, \\
-\omega, & \qquad \qquad L = [GMa(1-e^{2}]^{1/2}, \\
+\omega, & \qquad \qquad L = [GMa(1-e^{2})]^{1/2}, \\
 \Omega, & \qquad \qquad L_{z} = L\cos(I).
 \end{aligned}
 $$
