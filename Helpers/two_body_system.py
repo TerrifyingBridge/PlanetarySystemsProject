@@ -13,7 +13,7 @@ class AstroBody:
 
 class TwoBodySystem:
     def __init__(self, body1: AstroBody, body2: AstroBody, init_sep_dist: float, eccentricity: float,
-                 inclination: float):
+                 inclination: float, peri: float):
         self.body1 = body1
         self.body2 = body2
         self.eccentricity = eccentricity
@@ -21,7 +21,7 @@ class TwoBodySystem:
         self.semi_major_axis = init_sep_dist * constants.PhysicalConstants.au / (1 - self.eccentricity)
         self.period = self.calc_period(init_sep_dist * constants.PhysicalConstants.au)
         self.mean_motion = oe.calc_mean_motion(self.semi_major_axis, int(self.body1.mass + self.body2.mass))
-        self.peri = np.pi / 2
+        self.peri = peri
 
         self.body1_pos_x = []
         self.body1_pos_y = []
