@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QMainWindow, QLabel, QSlider, QVBoxLayout, QHBoxLayout, QWidget, QApplication
+from PyQt6.QtWidgets import QMainWindow, QLabel, QSlider, QVBoxLayout, QHBoxLayout, QWidget, QApplication, QGridLayout, QPushButton
 from PyQt6.QtGui import QGuiApplication, QFont
 from PyQt6.QtCore import Qt, QSize
 
@@ -6,6 +6,36 @@ from PyQt6.QtCore import Qt, QSize
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.title = None
+        self.instructions = None
+        self.mass1_label = None
+        self.mass1_slider = None
+        self.mass1_unit = None
+        self.radius1_slider = None
+        self.radius1_unit = None
+        self.mass2_label = None
+        self.mass2_slider = None
+        self.mass2_unit = None
+        self.radius2_slider = None
+        self.radius2_unit = None
+        self.incline_label = None
+        self.incline_slider = None
+        self.incline_unit = None
+        self.peri_label = None
+        self.peri_slider = None
+        self.peri_unit = None
+        self.semi_major_label = None
+        self.semi_major_input = None
+        self.semi_major_unit = None
+        self.spacer1 = None
+        self.ecc_label = None
+        self.ecc_input = None
+        self.ecc_unit = None
+        self.rad_button = None
+        self.transit_button = None
+        self.astrometry_button = None
+        self.image_button = None
+
         self.setWindowTitle("Orbital Elements of Exoplanets")
         screen_rect = QGuiApplication.primaryScreen().geometry()
         self.window_height = int(screen_rect.height() * 0.6)
@@ -20,6 +50,7 @@ class MainWindow(QMainWindow):
         self.add_incline(main_layout)
         self.add_peri(main_layout)
         self.add_ae(main_layout)
+        self.add_buttons(main_layout)
 
         self.main_widget = QWidget()
         self.main_widget.setLayout(main_layout)
@@ -35,71 +66,148 @@ class MainWindow(QMainWindow):
 
         self.instructions = QLabel("Input the orbital elements and click the button of the method detection you would "
                                    "like to see.")
-        self.instructions.setFixedHeight(int(self.window_height * 0.1))
+        self.instructions.setFixedHeight(int(self.window_height * 0.05))
         self.instructions.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
         layout.addWidget(self.title)
         layout.addWidget(self.instructions)
 
     def add_body1(self, layout: QVBoxLayout) -> None:
         body1_layout = QHBoxLayout()
-        self.mass1_label = QLabel("Mass of Star")
+        self.mass1_label = QLabel("Star")
         self.mass1_slider = QSlider(Qt.Orientation.Horizontal)
-        self.mass1_unit = QLabel("kgs")
+        self.mass1_slider.setFixedWidth(int(self.window_width * 0.3))
+        self.mass1_slider.setMinimum(1)
+        self.mass1_slider.setMaximum(109)
+        self.mass1_slider.setValue(10)
+        self.mass1_slider.valueChanged.connect(self.mass1_update)
+        self.mass1_unit = QLabel("1 Solar Mass")
+        self.mass1_unit.setAlignment(Qt.AlignmentFlag.AlignCenter | Qt.AlignmentFlag.AlignVCenter)
+        self.radius1_slider = QSlider(Qt.Orientation.Horizontal)
+        self.radius1_slider.setFixedWidth(int(self.window_width * 0.3))
+        self.radius1_unit = QLabel("1 Solar Radii")
+        self.radius1_unit.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         body1_layout.addWidget(self.mass1_label)
         body1_layout.addWidget(self.mass1_slider)
         body1_layout.addWidget(self.mass1_unit)
+        body1_layout.addWidget(self.radius1_slider)
+        body1_layout.addWidget(self.radius1_unit)
         layout.addLayout(body1_layout)
+
+    def mass1_update(self):
+        cur_val = self.mass1_slider.value()
+        if cur_val <= 10:
+            cur_val /= 10
+        else:
+            cur_val -= 9
+        self.mass1_unit.setText(str(cur_val) + " Solar Mass")
 
     def add_body2(self, layout: QVBoxLayout) -> None:
         body2_layout = QHBoxLayout()
-        self.mass2_label = QLabel("Mass of Planet")
+        self.mass2_label = QLabel("Planet")
         self.mass2_slider = QSlider(Qt.Orientation.Horizontal)
+        self.mass2_slider.setFixedWidth(int(self.window_width * 0.3))
         self.mass2_unit = QLabel("kgs")
+        self.mass2_unit.setAlignment(Qt.AlignmentFlag.AlignCenter | Qt.AlignmentFlag.AlignVCenter)
+        self.radius2_slider = QSlider(Qt.Orientation.Horizontal)
+        self.radius2_slider.setFixedWidth(int(self.window_width * 0.3))
+        self.radius2_unit = QLabel("1 Jupiter Radii")
+        self.radius2_unit.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         body2_layout.addWidget(self.mass2_label)
         body2_layout.addWidget(self.mass2_slider)
         body2_layout.addWidget(self.mass2_unit)
+        body2_layout.addWidget(self.radius2_slider)
+        body2_layout.addWidget(self.radius2_unit)
         layout.addLayout(body2_layout)
 
     def add_incline(self, layout: QVBoxLayout) -> None:
         incline_layout = QHBoxLayout()
         self.incline_label = QLabel("Inclination")
         self.incline_slider = QSlider(Qt.Orientation.Horizontal)
+        self.incline_slider.setFixedWidth(int(self.window_width * 0.75))
         self.incline_slider.setMinimum(0)
         self.incline_slider.setMaximum(180)
-        self.incline_slider.setTickPosition(QSlider.TickPosition.TicksBelow)
-        self.incline_slider.setTickInterval(10)
-        self.incline_unit = QLabel("Degrees")
+        self.incline_slider.valueChanged.connect(self.incline_update)
+        self.incline_unit = QLabel("0 Degrees")
+        self.incline_unit.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         incline_layout.addWidget(self.incline_label)
         incline_layout.addWidget(self.incline_slider)
         incline_layout.addWidget(self.incline_unit)
         layout.addLayout(incline_layout)
 
+    def incline_update(self):
+        cur_val = self.incline_slider.value()
+        self.incline_unit.setText(str(cur_val) + " Degrees")
+
     def add_peri(self, layout: QVBoxLayout) -> None:
         peri_layout = QHBoxLayout()
-        self.peri_label = QLabel("Argument of Periapsis")
+        self.peri_label = QLabel("Arg. of Periapsis")
         self.peri_slider = QSlider(Qt.Orientation.Horizontal)
-        self.peri_unit = QLabel("Degrees")
+        self.peri_slider.setFixedWidth(int(self.window_width * 0.75))
+        self.peri_slider.setMinimum(0)
+        self.peri_slider.setMaximum(360)
+        self.peri_slider.valueChanged.connect(self.peri_update)
+        self.peri_unit = QLabel("0 Degrees")
+        self.peri_unit.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         peri_layout.addWidget(self.peri_label)
         peri_layout.addWidget(self.peri_slider)
         peri_layout.addWidget(self.peri_unit)
         layout.addLayout(peri_layout)
 
+    def peri_update(self):
+        cur_val = self.peri_slider.value()
+        self.peri_unit.setText(str(cur_val) + " Degrees")
+
     def add_ae(self, layout: QVBoxLayout) -> None:
         ae_layout = QHBoxLayout()
-        self.semi_major_label = QLabel("Distance of Separation")
+        self.semi_major_label = QLabel("Separation Dist.")
         self.semi_major_input = QSlider(Qt.Orientation.Horizontal)
-        self.semi_major_unit = QLabel("AU")
+        self.semi_major_input.setMinimum(1)
+        self.semi_major_input.setMaximum(100)
+        self.semi_major_input.valueChanged.connect(self.semi_major_update)
+        self.semi_major_input.setFixedWidth(int(self.window_width * 0.3))
+        self.semi_major_unit = QLabel("0.2 AU")
+        self.semi_major_unit.setAlignment(Qt.AlignmentFlag.AlignCenter | Qt.AlignmentFlag.AlignVCenter)
         self.spacer1 = QWidget()
         self.spacer1.setFixedWidth(int(self.window_width * 0.05))
         self.ecc_label = QLabel("Eccentricity")
         self.ecc_input = QSlider(Qt.Orientation.Horizontal)
+        self.ecc_input.setMinimum(0)
+        self.ecc_input.setMaximum(99)
+        self.ecc_input.valueChanged.connect(self.ecc_update)
+        self.ecc_input.setFixedWidth(int(self.window_width * 0.3))
+        self.ecc_unit = QLabel("0.0")
+        self.ecc_unit.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         ae_layout.addWidget(self.semi_major_label)
         ae_layout.addWidget(self.semi_major_input)
         ae_layout.addWidget(self.semi_major_unit)
         ae_layout.addWidget(self.spacer1)
         ae_layout.addWidget(self.ecc_label)
         ae_layout.addWidget(self.ecc_input)
+        ae_layout.addWidget(self.ecc_unit)
         layout.addLayout(ae_layout)
+
+    def semi_major_update(self):
+        cur_val = self.semi_major_input.value() / 5
+        if cur_val >= 10:
+            cur_val = round(cur_val)
+        self.semi_major_unit.setText(str(cur_val) + " AU")
+
+    def ecc_update(self):
+        cur_val = self.ecc_input.value() / 100
+        self.ecc_unit.setText(str(cur_val))
+
+    def add_buttons(self, layout: QVBoxLayout) -> None:
+        button_layout = QGridLayout()
+        self.rad_button = QPushButton("Radial Velocity")
+        self.transit_button = QPushButton("Transit")
+        self.astrometry_button = QPushButton("Astrometry")
+        self.image_button = QPushButton("Direct Imaging")
+
+        button_layout.addWidget(self.rad_button, 0, 0)
+        button_layout.addWidget(self.transit_button, 0, 1)
+        button_layout.addWidget(self.astrometry_button, 1, 0)
+        button_layout.addWidget(self.image_button, 1, 1)
+        layout.addLayout(button_layout)
 
 
 app = QApplication([])
