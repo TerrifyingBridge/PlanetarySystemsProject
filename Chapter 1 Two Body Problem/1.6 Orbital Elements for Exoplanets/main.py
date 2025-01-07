@@ -100,23 +100,11 @@ class MainWindow(QMainWindow):
 
     def mass1_update(self):
         cur_val = self.mass1_slider.value()
-        '''
-        if cur_val <= 10:
-            cur_val /= 10
-        else:
-            cur_val -= 9
-            '''
         cur_val = -0.4574 + 0.5604*np.e**(0.05189*cur_val)
         self.mass1_unit.setText(str(round(cur_val, 1)) + " Solar Mass")
 
     def radius1_update(self):
         cur_val = self.radius1_slider.value()
-        '''
-        if cur_val <= 10:
-            cur_val /= 10
-        else:
-            cur_val = 10 * (cur_val - 10) + 1
-        '''
         cur_val = -0.6383 + 0.7263 * np.e ** (0.07228 * cur_val)
         self.radius1_unit.setText(str(round(cur_val, 1)) + " Solar Radii")
 
@@ -136,6 +124,7 @@ class MainWindow(QMainWindow):
         self.radius2_slider.setMinimum(1)
         self.radius2_slider.setMaximum(100)
         self.radius2_slider.setValue(10)
+        self.radius2_slider.valueChanged.connect(self.radius2_update)
         self.radius2_unit = QLabel("1 Jupiter Radii")
         self.radius2_unit.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         body2_layout.addWidget(self.mass2_label)
@@ -152,6 +141,14 @@ class MainWindow(QMainWindow):
             self.mass2_unit.setText(str(round(cur_val)) + " Jupiter Masses")
         else:
             self.mass2_unit.setText(str(round(cur_val * 317.906, 1)) + " Earth Masses")
+
+    def radius2_update(self):
+        cur_val = self.radius2_slider.value()
+        cur_val = -324.21 + 324.18 * np.e ** (0.000305 * cur_val)
+        if cur_val >= 1:
+            self.radius2_unit.setText(str(round(cur_val, 2)) + " Jupiter Radii")
+        else:
+            self.radius2_unit.setText(str(round(cur_val * 11.2098, 2)) + " Earth Radii")
 
     def add_incline(self, layout: QVBoxLayout) -> None:
         incline_layout = QHBoxLayout()
