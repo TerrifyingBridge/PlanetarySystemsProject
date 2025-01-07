@@ -1,3 +1,4 @@
+import numpy as np
 from PyQt6.QtWidgets import QMainWindow, QLabel, QSlider, QVBoxLayout, QHBoxLayout, QWidget, QApplication, QGridLayout, QPushButton
 from PyQt6.QtGui import QGuiApplication, QFont
 from PyQt6.QtCore import Qt, QSize
@@ -77,13 +78,17 @@ class MainWindow(QMainWindow):
         self.mass1_slider = QSlider(Qt.Orientation.Horizontal)
         self.mass1_slider.setFixedWidth(int(self.window_width * 0.3))
         self.mass1_slider.setMinimum(1)
-        self.mass1_slider.setMaximum(109)
-        self.mass1_slider.setValue(10)
+        self.mass1_slider.setMaximum(100)
+        self.mass1_slider.setValue(19)
         self.mass1_slider.valueChanged.connect(self.mass1_update)
         self.mass1_unit = QLabel("1 Solar Mass")
         self.mass1_unit.setAlignment(Qt.AlignmentFlag.AlignCenter | Qt.AlignmentFlag.AlignVCenter)
         self.radius1_slider = QSlider(Qt.Orientation.Horizontal)
         self.radius1_slider.setFixedWidth(int(self.window_width * 0.3))
+        self.radius1_slider.setMinimum(1)
+        self.radius1_slider.setMaximum(100)
+        self.radius1_slider.setValue(11)
+        self.radius1_slider.valueChanged.connect(self.radius1_update)
         self.radius1_unit = QLabel("1 Solar Radii")
         self.radius1_unit.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         body1_layout.addWidget(self.mass1_label)
@@ -95,21 +100,42 @@ class MainWindow(QMainWindow):
 
     def mass1_update(self):
         cur_val = self.mass1_slider.value()
+        '''
         if cur_val <= 10:
             cur_val /= 10
         else:
             cur_val -= 9
-        self.mass1_unit.setText(str(cur_val) + " Solar Mass")
+            '''
+        cur_val = -0.4574 + 0.5604*np.e**(0.05189*cur_val)
+        self.mass1_unit.setText(str(round(cur_val, 1)) + " Solar Mass")
+
+    def radius1_update(self):
+        cur_val = self.radius1_slider.value()
+        '''
+        if cur_val <= 10:
+            cur_val /= 10
+        else:
+            cur_val = 10 * (cur_val - 10) + 1
+        '''
+        cur_val = -0.6383 + 0.7263 * np.e ** (0.07228 * cur_val)
+        self.radius1_unit.setText(str(round(cur_val, 1)) + " Solar Radii")
 
     def add_body2(self, layout: QVBoxLayout) -> None:
         body2_layout = QHBoxLayout()
         self.mass2_label = QLabel("Planet")
         self.mass2_slider = QSlider(Qt.Orientation.Horizontal)
         self.mass2_slider.setFixedWidth(int(self.window_width * 0.3))
-        self.mass2_unit = QLabel("kgs")
+        self.mass2_slider.setMinimum(0)
+        self.mass2_slider.setMaximum(100)
+        self.mass2_slider.setValue(90)
+        self.mass2_slider.valueChanged.connect(self.mass2_update)
+        self.mass2_unit = QLabel("1 Jupiter Mass")
         self.mass2_unit.setAlignment(Qt.AlignmentFlag.AlignCenter | Qt.AlignmentFlag.AlignVCenter)
         self.radius2_slider = QSlider(Qt.Orientation.Horizontal)
         self.radius2_slider.setFixedWidth(int(self.window_width * 0.3))
+        self.radius2_slider.setMinimum(1)
+        self.radius2_slider.setMaximum(100)
+        self.radius2_slider.setValue(10)
         self.radius2_unit = QLabel("1 Jupiter Radii")
         self.radius2_unit.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         body2_layout.addWidget(self.mass2_label)
@@ -118,6 +144,14 @@ class MainWindow(QMainWindow):
         body2_layout.addWidget(self.radius2_slider)
         body2_layout.addWidget(self.radius2_unit)
         layout.addLayout(body2_layout)
+
+    def mass2_update(self):
+        cur_val = self.mass2_slider.value()
+        cur_val = 0.05688 * np.e ** (0.04937 * cur_val)
+        if cur_val >= 1:
+            self.mass2_unit.setText(str(round(cur_val)) + " Jupiter Masses")
+        else:
+            self.mass2_unit.setText(str(round(cur_val * 317.906, 1)) + " Earth Masses")
 
     def add_incline(self, layout: QVBoxLayout) -> None:
         incline_layout = QHBoxLayout()
@@ -199,9 +233,13 @@ class MainWindow(QMainWindow):
     def add_buttons(self, layout: QVBoxLayout) -> None:
         button_layout = QGridLayout()
         self.rad_button = QPushButton("Radial Velocity")
+        self.rad_button.setFixedHeight(int(self.window_height * 0.05))
         self.transit_button = QPushButton("Transit")
+        self.transit_button.setFixedHeight(int(self.window_height * 0.05))
         self.astrometry_button = QPushButton("Astrometry")
+        self.astrometry_button.setFixedHeight(int(self.window_height * 0.05))
         self.image_button = QPushButton("Direct Imaging")
+        self.image_button.setFixedHeight(int(self.window_height * 0.05))
 
         button_layout.addWidget(self.rad_button, 0, 0)
         button_layout.addWidget(self.transit_button, 0, 1)
