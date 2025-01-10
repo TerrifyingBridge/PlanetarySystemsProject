@@ -127,6 +127,65 @@ Here, I subtracted the resulting 1D array with my original 1D array I made for t
 
 I guess this goes to show that sometimes problems are as simple as they seem. I am glad that I went through and checked my work, but truthfully, I spent more time checking my work than I did solving the original problem. I guess I am just used to being absolutely stuck on a certain problem to the point where when I find one that comes naturally to me I don't trust my own solution. I suppose it was fun checking my work, but overall, it was a pretty simple problem.
 
+## Problem 5 - [1] {1}
+> Find the maximum time that a coment on a parabolic orbit can spend inside the Earth's orbit ($r < 1 \text{au}$) during a single perihelion passage. You may ignore perturbations from the planets.
+
+### My Solution
+This problem directly references the perihelion, which indicates that we are working with the Sun as the main body of orbit. Since the orbiting body is a comet, I treated this as a massless orbiting particle around the Sun, as when compared to the Sun's values, they will be incredibly negligable. If this is an incorrect assumption, then the rest of this answer will probably be wrong.
+
+The first order of business is to have a start to the problem. In order to get the time spent in an orbit, we have to actually have the orbit itself. Fortunately, the book provides us the equation of the distance from the center of the mass in terms of true anomaly, which is as follows.
+
+$$ r = \frac{2q}{1 + \cos(f)} $$
+
+Where $r$ is the disance between the particle and center of mass, $q$ is the distance of the perihelion, and $f$ is the true anomaly. In order to pursue this endevor, we need a limit on $q$. It can be shown that the smaller $q$ is, the more time the comet will spend less than 1 au from the Sun. The limit I ended up choosing was $q = R_{\odot}$ where $R_{\odot}$ is the radius of the Sun. Any closer, and the comet will crash into the Sun. 
+
+Before plugging in values into this equation to solve for $f$, I am going to simply solve for $f$ first so we're not stuck with a bunch of numbers. Solving for $f$ in terms of $r$ and $q$ gives us this.
+
+$$
+\begin{aligned}
+r =& \frac{2q}{1 + \cos(f)} \\
+r + r\cos(f) =& 2q \\
+r\cos(f) =& 2q - r \\
+\cos(f) =& \frac{2q - r}{r} \\
+f =& \cos^{-1}\left( \frac{2q - r}{r} \right)
+\end{aligned}
+$$
+
+We do have to be careful on the true anomaly that we get from this equation. Inverse cosine has a range of $[0, \pi]$, while the true anomaly is defined for values outside of this range. Fortunately, this isn't a huge problem, as we only need to focus on values in this range to solve the problem. Once we get a value for true anomaly for one side of the parabolic orbit, then the other side will simply be the negative true anomaly of that. This equates to simply finding the time it takes to go from perihelion to the 1 au and multiply it by 2.
+
+Alright, now it's number time. Full disclosure, I used a calculator for this, and I don't really feel like putting in a bunch of numbers, especially since most can be referenced easily. So, for these problems, instead of showing the numbers for each step, I will tell you what I plugged in and what it ended up being.
+
+$$
+\begin{aligned}
+f_{1} &= \cos^{-1} \left( \frac{2*R_{\odot} - 1 \text{au}}{1 \text{au}} \right) \\
+f_{1} &\approx 3.005098 \text{ rads}
+\end{aligned}
+$$
+
+Now that we have the true anomaly at the point where the orbit is at 1 au, we can find the time by using an equation that the book mentions. The book finds an equation in terms of an initial starting time, but becuase we just need the difference between time (to find total time spent in an orbit), we can simply assume that $t_{0} = 0$. Because of this, I have removed this particlar part from the expression. It can be seen below.
+
+$$ \left(\frac{GM}{2q^{3}} \right)^{1/2} t = \tan\left(\frac{1}{2}f\right) + \frac{1}{3}\tan^{3}\left(\frac{1}{2}f\right) $$
+
+Not the prettiest, but not nearly that bad either. Finding our time is just as simple as plugging all values in, and solving for $t$. Doing so yields us the following result.
+
+$$
+\begin{aligned}
+t &= \left(\frac{2R_{\odot}^{3}}{GM_{\odot}}\right)^{1/2} \cdot \left(\tan\left(\frac{1}{2}f_{1}\right) + \frac{1}{3}\tan^{3}\left(\frac{1}{2}f_{1}\right) \right) \\
+t &\approx 43941 \text{ sec}
+\end{aligned}
+$$
+
+This is the time from the perihelion to 1 au, so in order to find the time between 1 au and the other 1 au, we simply multiply this answer by two (which we're allowed to do, because of symmetry of cosine). Thus, our final answer is as follows.
+
+$$ t \approx 87882 \text{ sec} \approx 24.4 \text{ hours} $$
+
+### My Commentary
+I am very unsure of my answer and my general process. I believe that if those two aspects are true, then the solution I found should be valid (unless I made a calculator error). That being said, every level 1 difficulty problem has been really easy to get through, (except for the integrals, but that's just because they're a lot of work, not really because of difficulty), so I am assuming it can't be that far off.
+
+Regardless, this doesn't exactly match what I've found online, as the only source I've found said that this time period is a couple of days long, while I found about only 1 day (Earth days that is). However, the "source" was Google's AI assistant which I don't entirely trust at the moment. This trust is immediately made worse, as when I looked for resources a second time, the same Google AI mentioned a few weeks. 
+
+Long story short is, I don't entirely know if this is correct or not, but it seems to make sense to me. It was fun working with parabolic orbits. Most of my projects that deal with orbits are either elliptical or hyperbolic, so being forced to work with parabolic orbits is pretty cool. I wish there was more to do with parabolic orbits, but they don't really stand out, and probably aren't that common either.
+
 ## Problem 9 - [1] {1}
 > In July 2015 the New Horizons spacecraft encountered Pluto. The impact parameter of the encounter was $13700 \text{ km}$ and the relative velocity was $13.8 \text{ km} \text{ s}^{-1}$. By what angle was the spacecraft's trajectory deflected during the encounter? The mass of Pluto is $1.303 \times 10^{22} \text{ km}$.
 
