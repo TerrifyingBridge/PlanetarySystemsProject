@@ -32,6 +32,8 @@ class TwoBodySystem:
         self.true_anomaly_path = []
 
         self.los_vel = []
+        self.astrometry_x = []
+        self.astrometry_y = []
 
     def calc_radius_eccentric_anomaly(self, semi_major_axis: float, ecc_anom: float) -> float:
         return semi_major_axis * (1 - self.eccentricity * np.cos(ecc_anom))
@@ -54,9 +56,29 @@ class TwoBodySystem:
         term3 = np.sin(self.inclination) / np.sqrt(1 - self.eccentricity**2)
         return term1 * term2 * term3
 
+    def get_thiele_innes_elements_astrometry(self) -> tuple[float, float, float, float]:
+        start_term = self.body2.mass * self.semi_major_axis / (
+                self.body1.mass + self.body2.mass)
+        A = start_term * np.cos(self.peri)
+        B = start_term * np.cos(self.inclination) * np.sin(self.peri)
+        F = start_term * -1 * np.sin(self.peri)
+        G = start_term * np.cos(self.inclination) * np.cos(self.peri)
+
+        return A, B, F, G
+
     def fill_los_vel(self):
         for angle in self.true_anomaly_path:
             self.los_vel.append(self.calc_los_vel(angle))
+
+    def fill_astrometry(self):
+        A, B, F, G = self.get_thiele_innes_elements_astrometry()
+        for true_anom in self.true_anomaly_path:
+            start_term = (1 - self.eccentricity ** 2) / (1 + self.eccentricity * np.cos(true_anom))
+            temp_x = -start_term * (A * np.cos(true_anom) + F * np.sin(true_anom))
+            temp_y = -start_term * (B * np.cos(true_anom) + G * np.sin(true_anom))
+
+            self.astrometry_x.append(temp_x)
+            self.astrometry_y.append(temp_y)
 
     def fill_path_list(self, time: np.ndarray):
         total_mass = self.body1.mass + self.body2.mass

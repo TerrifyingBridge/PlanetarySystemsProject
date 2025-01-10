@@ -271,6 +271,7 @@ class MainWindow(QMainWindow):
         self.transit_button.setFixedHeight(int(self.window_height * 0.05))
         self.astrometry_button = QPushButton("Astrometry")
         self.astrometry_button.setFixedHeight(int(self.window_height * 0.05))
+        self.astrometry_button.clicked.connect(self.astrometry)
         self.image_button = QPushButton("Direct Imaging")
         self.image_button.setFixedHeight(int(self.window_height * 0.05))
 
@@ -313,6 +314,7 @@ class MainWindow(QMainWindow):
         time = np.linspace(0, system.period, 500)
         system.fill_path_list(time)
         system.fill_los_vel()
+        max_vel = max(np.abs(system.los_vel))
 
         ax = self.fig.add_subplot(1, 2, 1, projection="3d")
         line1, = ax.plot([], [], [])
@@ -332,8 +334,13 @@ class MainWindow(QMainWindow):
             ax.set_ylabel("Y")
             ax.set_zlabel("Z")
 
-            semi_amp = system.calc_semi_amplitude()
-            ax2.set(xlim=(-10, time[-1]), ylim=(-semi_amp - semi_amp * 0.1, semi_amp + semi_amp * 0.1))
+            ax2.set_xlim((-10, time[-1]))
+            if not (max_vel == 0.0):
+                ax2.set_ylim((-max_vel - max_vel * 0.1, max_vel + max_vel * 0.1))
+            else:
+                ax2.set_ylim((-0.5, 0.5))
+            ax2.set_xlabel("Time (s)")
+            ax2.set_ylabel("Line of Sight Velocity (m/s)")
             return line1, line2, line3, line4, line5, line6,
 
         def update(step):
@@ -359,6 +366,79 @@ class MainWindow(QMainWindow):
             return line1, line2, line3, line4, line5, line6,
 
         self.ani = FuncAnimation(self.fig, update, frames=len(time), init_func=init, interval=15, blit=True)
+        self.canvas.draw()
+
+    def astrometry(self):
+        self.clear_figure()
+        self.stacked.setCurrentIndex(1)
+
+        mass1 = self.mass1_slider.value()
+        mass1 = -0.4574 + 0.5604 * np.e ** (0.05189 * mass1)
+        radius1 = self.radius1_slider.value()
+        radius1 = -0.6383 + 0.7263 * np.e ** (0.07228 * radius1)
+        mass2 = self.mass2_slider.value()
+        mass2 = 0.05688 * np.e ** (0.04937 * mass2)
+        radius2 = self.radius2_slider.value()
+        radius2 = -324.21 + 324.18 * np.e ** (0.000305 * radius2)
+
+        init_sep_dist = self.semi_major_input.value() / 5
+        eccentricity = self.ecc_input.value() / 100
+        incline = self.incline_slider.value() * (np.pi / 180)
+        arg_of_peri = self.peri_slider.value() * (np.pi / 180)
+
+        body1 = tbs.AstroBody(mass1 * c.Solar.mass, radius1 * c.Solar.radius)
+        body2 = tbs.AstroBody(mass2 * c.Jupiter.mass, radius2 * c.Jupiter.reference_radius)
+
+        system = tbs.TwoBodySystem(body1, body2, init_sep_dist, eccentricity, incline, arg_of_peri)
+
+        time = np.linspace(0, system.period, 500)
+        system.fill_path_list(time)
+        system.fill_astrometry()
+        max_astrometry = np.abs(max(max(system.astrometry_x), max(system.astrometry_y))) / c.PhysicalConstants.au
+        max_astrometry *= 1.1
+
+        ax = self.fig.add_subplot(1, 2, 1, projection="3d")
+        line1, = ax.plot([], [], [])
+        line2, = ax.plot([], [], [])
+        line3, = ax.plot([], [], [], "bo")
+        line4, = ax.plot([], [], [], "r.")
+        max_val = 0.25 + system.semi_major_axis * (1 + system.eccentricity) / c.PhysicalConstants.au
+
+        ax1 = self.fig.add_subplot(1, 2, 2)
+        line5, = ax1.plot([], [])
+
+        def init():
+            ax.set(xlim=(-max_val, max_val), ylim=(-max_val, max_val), zlim=(-max_val, max_val))
+            ax.set_xlabel("X")
+            ax.set_ylabel("Y")
+            ax.set_zlabel("Z")
+            ax1.set(xlim=(-max_astrometry, max_astrometry), ylim=(-max_astrometry, max_astrometry))
+            return line1, line2, line3, line4, line5,
+
+        def update(step):
+            index = step + 1
+            temp1 = system.body1_pos_x[:index]
+            temp2 = system.body1_pos_y[:index]
+            temp3 = system.body1_pos_z[:index]
+            temp4 = system.body2_pos_x[:index]
+            temp5 = system.body2_pos_y[:index]
+            temp6 = system.body2_pos_z[:index]
+            temp7 = system.astrometry_x[:index].copy()
+            temp8 = system.astrometry_y[:index].copy()
+
+            line1.set_data_3d(temp1, temp2, temp3)
+            line2.set_data_3d(temp4, temp5, temp6)
+            line3.set_data_3d([temp1[-1]], [temp2[-1]], [temp3[-1]])
+            line4.set_data_3d([temp4[-1]], [temp5[-1]], [temp6[-1]])
+
+            for i in range(len(temp7)):
+                temp7[i] /= c.PhysicalConstants.au
+                temp8[i] /= c.PhysicalConstants.au
+
+            line5.set_data(temp7, temp8)
+            return line1, line2, line3, line4, line5,
+
+        ani = FuncAnimation(self.fig, update, frames=len(time), init_func=init, interval=15, blit=True)
         self.canvas.draw()
 
 
