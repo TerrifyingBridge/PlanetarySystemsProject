@@ -1,7 +1,23 @@
 import numpy as np
-from PyQt6.QtWidgets import QMainWindow, QLabel, QSlider, QVBoxLayout, QHBoxLayout, QWidget, QApplication, QGridLayout, QPushButton
+from PyQt6.QtWidgets import (
+    QMainWindow,
+    QLabel,
+    QSlider,
+    QVBoxLayout,
+    QHBoxLayout,
+    QWidget,
+    QApplication,
+    QGridLayout,
+    QPushButton,
+    QStackedWidget
+)
 from PyQt6.QtGui import QGuiApplication, QFont
 from PyQt6.QtCore import Qt, QSize
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
+from matplotlib.figure import Figure
+from matplotlib.animation import FuncAnimation
+from Helpers import two_body_system as tbs
+from Helpers import constants as c
 
 
 class MainWindow(QMainWindow):
@@ -36,12 +52,15 @@ class MainWindow(QMainWindow):
         self.transit_button = None
         self.astrometry_button = None
         self.image_button = None
+        self.canvas = None
+        self.ani = None
 
         self.setWindowTitle("Orbital Elements of Exoplanets")
         screen_rect = QGuiApplication.primaryScreen().geometry()
         self.window_height = int(screen_rect.height() * 0.6)
         self.window_width = int(screen_rect.width() * 0.6)
         self.setFixedSize(QSize(self.window_width, self.window_height))
+        self.stacked = QStackedWidget()
 
         main_layout = QVBoxLayout()
 
@@ -56,17 +75,33 @@ class MainWindow(QMainWindow):
         self.main_widget = QWidget()
         self.main_widget.setLayout(main_layout)
 
-        self.setCentralWidget(self.main_widget)
+        self.page2_layout = QVBoxLayout()
+        self.fig = Figure()
+        self.canvas = FigureCanvasQTAgg(self.fig)
+        self.page2_layout.addWidget(self.canvas)
+
+        self.page1_button = QPushButton("Back to Settings")
+        self.page1_button.clicked.connect(lambda: self.stacked.setCurrentIndex(0))
+        self.page1_button.setFixedHeight(int(self.window_height * 0.05))
+        self.page2_layout.addWidget(self.page1_button)
+
+        self.page2 = QWidget()
+        self.page2.setLayout(self.page2_layout)
+
+        self.stacked.addWidget(self.main_widget)
+        self.stacked.addWidget(self.page2)
+
+        self.setCentralWidget(self.stacked)
 
     def add_top(self, layout: QVBoxLayout) -> None:
         self.title = QLabel("Orbital Elements of Exoplanets")
         self.title.setFont(QFont("Arial", 24))
         self.title.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
         self.title.setFixedHeight(int(self.window_height * 0.1))
-        self.title.setStyleSheet("background-color: lightgreen")
 
         self.instructions = QLabel("Input the orbital elements and click the button of the method detection you would "
                                    "like to see.")
+        self.instructions.setFont(QFont("Arial", 16))
         self.instructions.setFixedHeight(int(self.window_height * 0.05))
         self.instructions.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
         layout.addWidget(self.title)
@@ -100,7 +135,7 @@ class MainWindow(QMainWindow):
 
     def mass1_update(self):
         cur_val = self.mass1_slider.value()
-        cur_val = -0.4574 + 0.5604*np.e**(0.05189*cur_val)
+        cur_val = -0.4574 + 0.5604 * np.e ** (0.05189 * cur_val)
         self.mass1_unit.setText(str(round(cur_val, 1)) + " Solar Mass")
 
     def radius1_update(self):
@@ -231,6 +266,7 @@ class MainWindow(QMainWindow):
         button_layout = QGridLayout()
         self.rad_button = QPushButton("Radial Velocity")
         self.rad_button.setFixedHeight(int(self.window_height * 0.05))
+        self.rad_button.clicked.connect(self.radial_vel)
         self.transit_button = QPushButton("Transit")
         self.transit_button.setFixedHeight(int(self.window_height * 0.05))
         self.astrometry_button = QPushButton("Astrometry")
@@ -243,6 +279,87 @@ class MainWindow(QMainWindow):
         button_layout.addWidget(self.astrometry_button, 1, 0)
         button_layout.addWidget(self.image_button, 1, 1)
         layout.addLayout(button_layout)
+
+    def clear_figure(self):
+        if self.ani is not None:
+            self.ani.event_source.stop()
+            self.ani = None
+
+        self.fig.clear()
+        self.canvas.draw()
+
+    def radial_vel(self):
+        self.clear_figure()
+        self.stacked.setCurrentIndex(1)
+
+        mass1 = self.mass1_slider.value()
+        mass1 = -0.4574 + 0.5604 * np.e ** (0.05189 * mass1)
+        radius1 = self.radius1_slider.value()
+        radius1 = -0.6383 + 0.7263 * np.e ** (0.07228 * radius1)
+        mass2 = self.mass2_slider.value()
+        mass2 = 0.05688 * np.e ** (0.04937 * mass2)
+        radius2 = self.radius2_slider.value()
+        radius2 = -324.21 + 324.18 * np.e ** (0.000305 * radius2)
+
+        init_sep_dist = self.semi_major_input.value() / 5
+        eccentricity = self.ecc_input.value() / 100
+        incline = self.incline_slider.value() * (np.pi / 180)
+        arg_of_peri = self.peri_slider.value() * (np.pi / 180)
+
+        body1 = tbs.AstroBody(mass1 * c.Solar.mass, radius1 * c.Solar.radius)
+        body2 = tbs.AstroBody(mass2 * c.Jupiter.mass, radius2 * c.Jupiter.reference_radius)
+
+        system = tbs.TwoBodySystem(body1, body2, init_sep_dist, eccentricity, incline, arg_of_peri)
+        time = np.linspace(0, system.period, 500)
+        system.fill_path_list(time)
+        system.fill_los_vel()
+
+        ax = self.fig.add_subplot(1, 2, 1, projection="3d")
+        line1, = ax.plot([], [], [])
+        line2, = ax.plot([], [], [])
+        line3, = ax.plot([], [], [], "bo")
+        line4, = ax.plot([], [], [], "r.")
+        max_val = 0.25 + system.semi_major_axis * (1 + system.eccentricity) / c.PhysicalConstants.au
+
+        ax2 = self.fig.add_subplot(1, 2, 2)
+        ax2.grid(True)
+        line5, = ax2.plot([], [])
+        line6, = ax2.plot([], [], "b.")
+
+        def init():
+            ax.set(xlim=(-max_val, max_val), ylim=(-max_val, max_val), zlim=(-max_val, max_val))
+            ax.set_xlabel("X")
+            ax.set_ylabel("Y")
+            ax.set_zlabel("Z")
+
+            semi_amp = system.calc_semi_amplitude()
+            ax2.set(xlim=(-10, time[-1]), ylim=(-semi_amp - semi_amp * 0.1, semi_amp + semi_amp * 0.1))
+            return line1, line2, line3, line4, line5, line6,
+
+        def update(step):
+            index = step + 1
+            current_time = time[:index]
+
+            temp1 = system.body1_pos_x[:index]
+            temp2 = system.body1_pos_y[:index]
+            temp3 = system.body1_pos_z[:index]
+            temp4 = system.body2_pos_x[:index]
+            temp5 = system.body2_pos_y[:index]
+            temp6 = system.body2_pos_z[:index]
+
+            line1.set_data_3d(temp1, temp2, temp3)
+            line2.set_data_3d(temp4, temp5, temp6)
+            line3.set_data_3d([temp1[-1]], [temp2[-1]], [temp3[-1]])
+            line4.set_data_3d([temp4[-1]], [temp5[-1]], [temp6[-1]])
+
+            temp_los_vel = system.los_vel[:index]
+            line5.set_data(current_time, temp_los_vel)
+            line6.set_data([current_time[-1]], [temp_los_vel[-1]])
+
+            return line1, line2, line3, line4, line5, line6,
+
+        self.ani = FuncAnimation(self.fig, update, frames=len(time), init_func=init, interval=15, blit=True)
+        self.canvas.draw()
 
 
 app = QApplication([])
