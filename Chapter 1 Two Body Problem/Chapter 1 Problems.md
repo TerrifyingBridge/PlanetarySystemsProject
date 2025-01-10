@@ -35,14 +35,102 @@ This problem was rather simple, and was just centered around basic use of an equ
 ## Problem 4 - [1] {1}
 > Many computing languages provide the function $\text{atan2}(y, x)$, which yields the angle in radians between the positive $x$-axis and the vector from the origin to the point $(x, y)$. Find an expression for the true anomaly of a bound orbit in terms of the eccentric anomaly using this function.
 
+### My Solution
 To start this problem, consider a point in 2D space $(x, y)$. The angle between the $x$-axis and this point, let's call it $\theta$ has a couple of helpful relations with regards to the point itself. By definition, we have that $\tan (\theta) = \frac{y}{x}$ and we also have $\tan (\theta) = \frac{\sin (\theta}{\cos (\theta}$. While whoever you are dear reader probably already knew this, my biggest point in bringing it up is that we can simply substitue $\sin (\theta)$ for $y$ and $\cos (\theta)$ for $x$.
 
 The biggest reason for doing this is because we can immediately use the two relations between true anomaly and eccentric anomaly that is found in the book. One could derive this themself, but the book gives it to us, so I shant bother for this problem. Regardless, the two relations that we will focus on are the following.
 
+$$ \cos (f) = \frac{\cos (u) - e}{1 - e \cos (u)} \quad \quad \sin (f) = \frac{(1 - e^{2})^{1/2}\sin (u)}{1 - e \cos (u)} $$
+
+Where $f$ is the true anomaly, $u$ is the eccentric anomaly, and $e$ is the eccentricity of the orbit. From here it is rather simple to find an expression for true anomaly in terms of eccentric anomaly using the $\text{atan2}(y, x)$ function. Before we complete the final step, let's clean up some of the fractions after finding $\tan (f)$
+
+$$
+\begin{aligned}
+\tan(f) &= \frac{\sin(f)}{\cos(f)} \\
+&= \frac{(1 - e^{2})^{1/2}\sin (u)}{1 - e \cos (u)} \cdot \frac{1 - e \cos (u)}{\cos (u) - e} \\
+&= \frac{(1 - e^{2})^{1/2}\sin (u)}{\cos (u) - e}
+\end{aligned}
+$$
+
+Finally, now it is just a matter of using the $\text{atan2}(y, x)$ function to bring everything together. The solution is as follows.
+
+$$ f = \text{atan2} \left( (1 - e^{2})^{1/2}\sin (u), \quad \cos (u) - e \right) $$
+
+### My Commentary
+Truthfully, this problem felt way too easy and I was really worried that I didn't put enough effort into it, or just simply missed something. Especially since the book just gives us many relations between the true anomaly and eccentric anomaly I felt like I was missing something. Fortunately, this is rather easy to verify.
+
+The problem itself invokes programming languages, so that is how I went about testing this. Before verifying my specific solution, I wanted to verify the general relations. By this point, I knew these relations weren't incorrect, but it was more so for my own sake of mind. This process had me create a 1D array full of 100 elements evenly spaced between 0 and $2 \pi$, and this became my baseline true anomaly. I then used the relation from the book that allows me to calculate the eccentric anomaly, which can be seen below.
+
+$$ \cos(u) = \frac{\cos(f) + e}{1 + e\cos(f)} $$
+
+From here, I created a 1D array full of zeros of the same length of the other array, and set out to fill it with the eccentric anomaly values that corresponded to the true anomaly values from the first array. To solve for all angles between 0 and $2\pi$, I used the fact that both $f$ and $u$ have to be on the same semi-circle. I also had a eccentricity variable that I changed throughout this process to make sure everything was correct (but here, it is just 0.5). The code for this part is seen below.
+
+```python
+e = 0.5
+f1 = np.linspace(0, 2*np.pi, 100)
+u1 = np.zeros(len(f1))
+
+for i in range(len(f1)):
+    f = f1[i]
+    top = np.cos(f) + e
+    bot = 1 + e*np.cos(f)
+    if (0 <= f <= np.pi):
+        u1[i] = np.arccos(top / bot)
+    else:
+        u1[i] = 2*np.pi - np.arccos(top / bot)
+```
+
+Now that this is out of the way, I wanted to go backwards. I created a copy of the eccentric anomaly array and stored it another variable (this step is unnecessary but I think it looks cleaner), and then made another 1D array of all zeros like before. I used the other cosine relation between true anomaly and eccentric anomaly and filled the array of all zeros with the corresponding true anomaly. The code for this is below.
+
+```python
+f2 = np.zeros(len(f1))
+u2 = u1.copy()
+
+for i in range(len(u2)):
+    u = u2[i]
+    top = np.cos(u) - e
+    bot = 1 - e*np.cos(u)
+    if (0 <= u <= np.pi):
+        f2[i] = np.arccos(top / bot)
+    else:
+        f2[i] = 2*np.pi - np.arccos(top/bot)
+```
+
+From here, I took the difference in each of the values for both $f1$ and $f2$ to see if there was any difference. If there was a difference, then something was wrong, as they should be the same. Lo and behold, the result was exactly what one would expect.
+
+```python
+[ 0.00000000e+00 -1.05471187e-15 -5.55111512e-16 -1.72084569e-15
+  3.33066907e-16 -5.55111512e-16  2.22044605e-16 -1.11022302e-16
+  0.00000000e+00  6.66133815e-16 -5.55111512e-16  1.11022302e-16
+ -2.22044605e-16 -1.11022302e-16  0.00000000e+00  0.00000000e+00 ...
+```
+
+Now that we have that, I wanted to verify my solution to the problem. Like last time, I made a copy of the eccentric anomaly array (just so I was using the same one), and made another array full of zeros like before. I filled this one with the true anomaly (also like before), but with using the relation I found in this problem instead. The result is the following code.
+
+```python
+u_test = u1.copy()
+f_test = np.zeros(len(u_test))
+
+for i in range(len(u_test)):
+    u = u_test[i]
+    f_test[i] = math.atan2((np.sqrt(1 - e**2)*np.sin(u)), np.cos(u) - e)
+```
+
+Here, I subtracted the resulting 1D array with my original 1D array I made for the true anomaly. Similar to my verification from before, I got more or less the same result.
+
+```python
+[ 0.00000000e+00 -2.16493490e-15 -8.04911693e-16 -1.38777878e-15
+  2.22044605e-16 -2.22044605e-16  2.22044605e-16 -3.88578059e-16
+  0.00000000e+00  7.77156117e-16 -3.33066907e-16 -1.11022302e-16
+ -1.11022302e-16 -1.11022302e-16  1.11022302e-16  0.00000000e+00 ...
+```
+
+I guess this goes to show that sometimes problems are as simple as they seem. I am glad that I went through and checked my work, but truthfully, I spent more time checking my work than I did solving the original problem. I guess I am just used to being absolutely stuck on a certain problem to the point where when I find one that comes naturally to me I don't trust my own solution. I suppose it was fun checking my work, but overall, it was a pretty simple problem.
+
 ## Problem 9 - [1] {1}
-### My Solution
 > In July 2015 the New Horizons spacecraft encountered Pluto. The impact parameter of the encounter was $13700 \text{ km}$ and the relative velocity was $13.8 \text{ km} \text{ s}^{-1}$. By what angle was the spacecraft's trajectory deflected during the encounter? The mass of Pluto is $1.303 \times 10^{22} \text{ km}$.
 
+### My Solution
 This problem is rather straightforward. As given to us by the book in Section 1.2, we have a relation between the delfection angle $\theta$ of an unbound orbit with the mass $M$, impact parameter $b$, and velocity of the object $v$. This relation is as follows.
 
 $$ \tan(\frac{1}{2}\theta) = \frac{GM}{bv^{2}} $$
