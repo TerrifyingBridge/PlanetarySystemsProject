@@ -36,7 +36,7 @@ This problem was rather simple, and was just centered around basic use of an equ
 > Many computing languages provide the function $\text{atan2}(y, x)$, which yields the angle in radians between the positive $x$-axis and the vector from the origin to the point $(x, y)$. Find an expression for the true anomaly of a bound orbit in terms of the eccentric anomaly using this function.
 
 ### My Solution
-To start this problem, consider a point in 2D space $(x, y)$. The angle between the $x$-axis and this point, let's call it $\theta$ has a couple of helpful relations with regards to the point itself. By definition, we have that $\tan (\theta) = \frac{y}{x}$ and we also have $\tan (\theta) = \frac{\sin (\theta}{\cos (\theta}$. While whoever you are dear reader probably already knew this, my biggest point in bringing it up is that we can simply substitue $\sin (\theta)$ for $y$ and $\cos (\theta)$ for $x$.
+To start this problem, consider a point in 2D space $(x, y)$. The angle between the $x$-axis and this point, let's call it $\theta$ has a couple of helpful relations with regards to the point itself. By definition, we have that $\tan (\theta) = \frac{y}{x}$ and we also have $\tan (\theta) = \frac{\sin (\theta)}{\cos (\theta)}$. While whoever you are dear reader probably already knew this, my biggest point in bringing it up is that we can simply substitue $\sin (\theta)$ for $y$ and $\cos (\theta)$ for $x$.
 
 The biggest reason for doing this is because we can immediately use the two relations between true anomaly and eccentric anomaly that is found in the book. One could derive this themself, but the book gives it to us, so I shant bother for this problem. Regardless, the two relations that we will focus on are the following.
 
@@ -54,7 +54,7 @@ $$
 
 Finally, now it is just a matter of using the $\text{atan2}(y, x)$ function to bring everything together. The solution is as follows.
 
-$$ f = \text{atan2} \left( (1 - e^{2})^{1/2}\sin (u), \quad \cos (u) - e \right) $$
+$$ f = \text{atan2} \left( (1 - e^{2})^{1/2}\sin (u), \cos (u) - e \right) $$
 
 ### My Commentary
 Truthfully, this problem felt way too easy and I was really worried that I didn't put enough effort into it, or just simply missed something. Especially since the book just gives us many relations between the true anomaly and eccentric anomaly I felt like I was missing something. Fortunately, this is rather easy to verify.
@@ -96,7 +96,7 @@ for i in range(len(u2)):
         f2[i] = 2*np.pi - np.arccos(top/bot)
 ```
 
-From here, I took the difference in each of the values for both $f1$ and $f2$ to see if there was any difference. If there was a difference, then something was wrong, as they should be the same. Lo and behold, the result was exactly what one would expect.
+From here, I took the difference in each of the values for both $\mathtt{f1}$ and $\mathtt{f2}$ to see if there was any difference. If there was a difference, then something was wrong, as they should be the same. Lo and behold, the result was exactly what one would expect.
 
 ```python
 [ 0.00000000e+00 -1.05471187e-15 -5.55111512e-16 -1.72084569e-15
