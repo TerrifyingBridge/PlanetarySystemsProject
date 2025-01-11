@@ -81,6 +81,6 @@ def update(step):
 
 
 ani = FuncAnimation(fig, update, frames=len(time), init_func=init, interval=15, blit=True)
-# ani.save(filename="assets/test_3d_orbit.gif", writer="pillow")
+# ani.save(filename="assets/astrometry.gif", writer="pillow")
 plt.tight_layout()
 plt.show()

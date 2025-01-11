@@ -7,7 +7,7 @@ import numpy as np
 b1 = tbs.AstroBody(c.Solar.mass, c.Solar.radius)
 b2 = tbs.AstroBody(c.Jupiter.mass, c.Jupiter.reference_radius)
 
-system = tbs.TwoBodySystem(b1, b2, 1, 0.25, 0)
+system = tbs.TwoBodySystem(b1, b2, 1, 0.25, 0, np.pi/2)
 
 time = np.linspace(0, system.period, 500)
 system.fill_path_list(time)

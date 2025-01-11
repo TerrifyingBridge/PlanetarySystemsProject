@@ -30,10 +30,13 @@ class TwoBodySystem:
         self.body2_pos_y = []
         self.body2_pos_z = []
         self.true_anomaly_path = []
+        self.eccentric_anomaly_path = []
 
         self.los_vel = []
         self.astrometry_x = []
         self.astrometry_y = []
+        self.direct_image_x = []
+        self.direct_image_y = []
 
     def calc_radius_eccentric_anomaly(self, semi_major_axis: float, ecc_anom: float) -> float:
         return semi_major_axis * (1 - self.eccentricity * np.cos(ecc_anom))
@@ -66,6 +69,14 @@ class TwoBodySystem:
 
         return A, B, F, G
 
+    def get_thiele_innes_elements_direct_images(self) -> tuple[float, float, float, float]:
+        A = self.semi_major_axis * np.cos(self.peri)
+        B = self.semi_major_axis * np.cos(self.inclination) * np.sin(self.peri)
+        F = -self.semi_major_axis * np.sin(self.peri)
+        G = self.semi_major_axis * np.cos(self.inclination) * np.cos(self.peri)
+
+        return A, B, F, G
+
     def fill_los_vel(self):
         for angle in self.true_anomaly_path:
             self.los_vel.append(self.calc_los_vel(angle))
@@ -80,11 +91,21 @@ class TwoBodySystem:
             self.astrometry_x.append(temp_x)
             self.astrometry_y.append(temp_y)
 
+    def fill_direct_image(self):
+        A, B, F, G = self.get_thiele_innes_elements_direct_images()
+        for ecc_anom in self.eccentric_anomaly_path:
+            temp_x = A*(np.cos(ecc_anom) - self.eccentricity) + F*np.sqrt(1 - self.eccentricity**2)*np.sin(ecc_anom)
+            temp_y = B*(np.cos(ecc_anom) - self.eccentricity) + G*np.sqrt(1 - self.eccentricity**2)*np.sin(ecc_anom)
+
+            self.direct_image_x.append(temp_x)
+            self.direct_image_y.append(temp_y)
+
     def fill_path_list(self, time: np.ndarray):
         total_mass = self.body1.mass + self.body2.mass
         for step in time:
             mean_anomaly = oe.calc_mean_anomaly(0, self.mean_motion, step)
             eccentric_anomaly = oe.calc_eccentric_anomaly(mean_anomaly, self.eccentricity, 1e-10)
+            self.eccentric_anomaly_path.append(eccentric_anomaly)
             true_anomaly = oe.calc_true_anomaly(self.eccentricity, eccentric_anomaly)
             self.true_anomaly_path.append(true_anomaly)
             current_sep = self.calc_radius_eccentric_anomaly(self.semi_major_axis, eccentric_anomaly)

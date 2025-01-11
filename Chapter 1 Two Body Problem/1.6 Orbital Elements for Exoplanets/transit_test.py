@@ -15,7 +15,7 @@ b2 = tbs.AstroBody(c.Jupiter.mass, c.Jupiter.reference_radius)
 
 system = tbs.TwoBodySystem(b1, b2, 1, 0.25, np.pi / 2, np.pi/2)
 
-time = np.linspace(0, system.period, 500)
+time = np.linspace(0, system.period, 100)
 system.fill_path_list(time)
 
 fig = plt.figure(figsize=(7, 7), layout="constrained")
@@ -66,6 +66,6 @@ def update(step):
 
 
 ani = FuncAnimation(fig, update, frames=len(time), init_func=init, interval=50, blit=True)
-# ani.save(filename="assets/test_3d_orbit.gif", writer="pillow")
+# ani.save(filename="assets/bad_transit.gif", writer="pillow")
 fig.tight_layout(pad=3.0)
 plt.show()
