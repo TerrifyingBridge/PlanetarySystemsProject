@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import (
     QSlider,
     QVBoxLayout,
     QHBoxLayout,
+    QGridLayout,
     QWidget,
     QApplication,
     QGridLayout,
@@ -76,9 +77,39 @@ class MainWindow(QMainWindow):
         self.main_widget.setLayout(main_layout)
 
         self.page2_layout = QVBoxLayout()
+        self.graph_title1 = QLabel("")
+        self.graph_title1.setFixedHeight(int(self.window_height*0.05))
+        self.graph_title1.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.graph_title1.setFont(QFont("Arial", 20))
+        self.graph_title2 = QLabel("")
+        self.graph_title2.setFixedHeight(int(self.window_height*0.05))
+        self.graph_title2.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.graph_title2.setFont(QFont("Arial", 20))
+        self.top_layout = QHBoxLayout()
+        self.top_layout.addWidget(self.graph_title1)
+        self.top_layout.addWidget(self.graph_title2)
+        self.page2_layout.addLayout(self.top_layout)
+
         self.fig = Figure()
         self.canvas = FigureCanvasQTAgg(self.fig)
         self.page2_layout.addWidget(self.canvas)
+
+        self.exo_label = QLabel("Exoplanet Elements Found from Method")
+        self.exo_label.setFixedHeight(int(self.window_height*0.05))
+        self.exo_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.exo_label.setFont(QFont("Arial", 12))
+        self.page2_layout.addWidget(self.exo_label)
+
+        self.elements = [[QLabel("A"), QLabel("B"), QLabel("C")], [QLabel("D"), QLabel("E"), QLabel("F")]]
+        self.elements_layout = QGridLayout()
+        self.elements_layout.setSpacing(20)
+        for i in range(len(self.elements)):
+            for j in range(len(self.elements[i])):
+                self.elements[i][j].setAlignment(Qt.AlignmentFlag.AlignHCenter)
+                self.elements[i][j].setFixedHeight(int(self.window_height*0.05))
+                self.elements[i][j].setFont(QFont("Arial", 10))
+                self.elements_layout.addWidget(self.elements[i][j], i, j)
+        self.page2_layout.addLayout(self.elements_layout)
 
         self.page1_button = QPushButton("Back to Settings")
         self.page1_button.clicked.connect(lambda: self.stacked.setCurrentIndex(0))
@@ -293,6 +324,9 @@ class MainWindow(QMainWindow):
     def radial_vel(self):
         self.clear_figure()
         self.stacked.setCurrentIndex(1)
+
+        self.graph_title1.setText("Two Body System")
+        self.graph_title2.setText("Line of Sight Velocity of Star")
 
         mass1 = self.mass1_slider.value()
         mass1 = -0.4574 + 0.5604 * np.e ** (0.05189 * mass1)
