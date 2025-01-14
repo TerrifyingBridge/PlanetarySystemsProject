@@ -80,11 +80,11 @@ class MainWindow(QMainWindow):
         self.graph_title1 = QLabel("")
         self.graph_title1.setFixedHeight(int(self.window_height*0.05))
         self.graph_title1.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        self.graph_title1.setFont(QFont("Arial", 20))
+        self.graph_title1.setFont(QFont("Arial", int(self.window_height / 43.2)))
         self.graph_title2 = QLabel("")
         self.graph_title2.setFixedHeight(int(self.window_height*0.05))
         self.graph_title2.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        self.graph_title2.setFont(QFont("Arial", 20))
+        self.graph_title2.setFont(QFont("Arial", int(self.window_height / 43.2)))
         self.top_layout = QHBoxLayout()
         self.top_layout.addWidget(self.graph_title1)
         self.top_layout.addWidget(self.graph_title2)
@@ -100,7 +100,7 @@ class MainWindow(QMainWindow):
         self.exo_label.setFont(QFont("Arial", 12))
         self.page2_layout.addWidget(self.exo_label)
 
-        self.elements = [[QLabel("A"), QLabel("B"), QLabel("C")], [QLabel("D"), QLabel("E"), QLabel("F")]]
+        self.elements = [[QLabel(""), QLabel(""), QLabel("")], [QLabel(""), QLabel(""), QLabel("")]]
         self.elements_layout = QGridLayout()
         self.elements_layout.setSpacing(20)
         for i in range(len(self.elements)):
@@ -110,6 +110,7 @@ class MainWindow(QMainWindow):
                 self.elements[i][j].setFont(QFont("Arial", 10))
                 self.elements_layout.addWidget(self.elements[i][j], i, j)
         self.page2_layout.addLayout(self.elements_layout)
+        print(self.window_height)
 
         self.page1_button = QPushButton("Back to Settings")
         self.page1_button.clicked.connect(lambda: self.stacked.setCurrentIndex(0))
@@ -346,6 +347,11 @@ class MainWindow(QMainWindow):
         body2 = tbs.AstroBody(mass2 * c.Jupiter.mass, radius2 * c.Jupiter.reference_radius)
 
         system = tbs.TwoBodySystem(body1, body2, init_sep_dist, eccentricity, incline, arg_of_peri)
+        self.elements[0][0].setText("Period: " + str(round(system.period)) + " secs")
+        self.elements[0][1].setText("Eccentricity: " + str(round(system.eccentricity, 2)))
+        self.elements[0][2].setText("Arg. Of Periapsis: " + str(round(system.peri, 2)) + " rads")
+        self.elements[1][1].setText("Planet Mass * sin(Incline): " + str(body2.mass * np.sin(system.inclination)) + " kg")
+
         time = np.linspace(0, system.period, 500)
         system.fill_path_list(time)
         system.fill_los_vel()
@@ -425,6 +431,13 @@ class MainWindow(QMainWindow):
         body2 = tbs.AstroBody(mass2 * c.Jupiter.mass, radius2 * c.Jupiter.reference_radius)
 
         system = tbs.TwoBodySystem(body1, body2, init_sep_dist, eccentricity, incline, arg_of_peri)
+        self.elements[0][0].setText("Ascending Node: 0 rads")
+        self.elements[0][1].setText("Arg. of Periapsis: " + str(round(system.peri, 2)) + " rads")
+        self.elements[0][2].setText("Inclination: " + str(round(system.inclination, 2)) + " rads")
+        self.elements[1][0].setText("Planet Mass: " + str(system.body2.mass) + " kg")
+        self.elements[1][1].setText(
+            "Semi-Major Axis: " + str(round(system.semi_major_axis / c.PhysicalConstants.au, 3)) + " au")
+        self.elements[1][2].setText("Eccentricity: " + str(round(system.eccentricity, 2)))
 
         time = np.linspace(0, system.period, 500)
         system.fill_path_list(time)
@@ -502,6 +515,13 @@ class MainWindow(QMainWindow):
         body2 = tbs.AstroBody(mass2 * c.Jupiter.mass, radius2 * c.Jupiter.reference_radius)
 
         system = tbs.TwoBodySystem(body1, body2, init_sep_dist, eccentricity, incline, arg_of_peri)
+        self.elements[0][0].setText("Ascending Node: 0 rads")
+        self.elements[0][1].setText("Arg. of Periapsis: " + str(round(system.peri, 2)) + " rads")
+        self.elements[0][2].setText("Inclination: " + str(round(system.inclination, 2)) + " rads")
+        self.elements[1][0].setText("Planet Mass: " + str(system.body2.mass) + " kg")
+        self.elements[1][1].setText(
+            "Semi-Major Axis: " + str(round(system.semi_major_axis / c.PhysicalConstants.au, 3)) + " au")
+        self.elements[1][2].setText("Eccentricity: " + str(round(system.eccentricity, 2)))
 
         time = np.linspace(0, system.period, 500)
         system.fill_path_list(time)
