@@ -110,7 +110,6 @@ class MainWindow(QMainWindow):
                 self.elements[i][j].setFont(QFont("Arial", 10))
                 self.elements_layout.addWidget(self.elements[i][j], i, j)
         self.page2_layout.addLayout(self.elements_layout)
-        print(self.window_height)
 
         self.page1_button = QPushButton("Back to Settings")
         self.page1_button.clicked.connect(lambda: self.stacked.setCurrentIndex(0))
@@ -301,6 +300,7 @@ class MainWindow(QMainWindow):
         self.rad_button.clicked.connect(self.radial_vel)
         self.transit_button = QPushButton("Transit")
         self.transit_button.setFixedHeight(int(self.window_height * 0.05))
+        self.transit_button.clicked.connect(self.transit)
         self.astrometry_button = QPushButton("Astrometry")
         self.astrometry_button.setFixedHeight(int(self.window_height * 0.05))
         self.astrometry_button.clicked.connect(self.astrometry)
@@ -406,8 +406,86 @@ class MainWindow(QMainWindow):
 
             return line1, line2, line3, line4, line5, line6,
 
-        self.ani = FuncAnimation(self.fig, update, frames=len(time), init_func=init, interval=15, blit=True)
+        self.ani = FuncAnimation(self.fig, update, frames=len(time), init_func=init, interval=50, blit=True)
         self.canvas.draw()
+
+    def transit(self):
+        self.clear_figure()
+        self.stacked.setCurrentIndex(1)
+
+        self.graph_title1.setText("Path of Transit")
+        self.graph_title2.setText("Flux Observed from Star")
+
+        mass1 = self.mass1_slider.value()
+        mass1 = -0.4574 + 0.5604 * np.e ** (0.05189 * mass1)
+        radius1 = self.radius1_slider.value()
+        radius1 = -0.6383 + 0.7263 * np.e ** (0.07228 * radius1)
+        mass2 = self.mass2_slider.value()
+        mass2 = 0.05688 * np.e ** (0.04937 * mass2)
+        radius2 = self.radius2_slider.value()
+        radius2 = -324.21 + 324.18 * np.e ** (0.000305 * radius2)
+
+        init_sep_dist = self.semi_major_input.value() / 5
+        eccentricity = self.ecc_input.value() / 100
+        incline = self.incline_slider.value() * (np.pi / 180)
+        arg_of_peri = self.peri_slider.value() * (np.pi / 180)
+
+        body1 = tbs.AstroBody(mass1 * c.Solar.mass, radius1 * c.Solar.radius)
+        body2 = tbs.AstroBody(mass2 * c.Jupiter.mass, radius2 * c.Jupiter.reference_radius)
+
+        system = tbs.TwoBodySystem(body1, body2, init_sep_dist, eccentricity, incline, arg_of_peri)
+
+        time = np.linspace(0, system.period, 100000)
+        system.fill_path_list(time)
+        system.fill_transit(time)
+
+        if (system.transit_time != []):
+            self.elements[0][0].setText("Period: " + str(system.period) + " secs")
+            self.elements[0][1].setText("Planet Radius: " + str(system.body2.radius) + " km")
+            self.elements[0][2].setText("Eccentricity (kinda): " + str(system.eccentricity))
+
+            max_time = max(system.transit_time)
+            min_time = min(system.transit_time)
+            min_flux = min(system.flux)
+            max_flux = max(system.flux)
+
+            ax1 = self.fig.add_subplot(1, 2, 1)
+            ax1.set_aspect("equal")
+            ax2 = self.fig.add_subplot(1, 2, 2)
+
+            max_val = 1 + system.body2.radius / system.body1.radius
+            max_val *= 1.1
+            dpv = self.fig.get_figwidth() * self.fig.get_dpi() / (max_val * 2)
+            line1, = ax1.plot([], [], marker=".", markersize=dpv * system.body2.radius / system.body1.radius)
+            line2, = ax1.plot([0], [0], marker=".", markersize=dpv)
+            line3, = ax2.plot([], [])
+
+            def init():
+                ax1.set(xlim=(-max_val, max_val), ylim=(-max_val, max_val))
+                ax1.set_xlabel("X (Star Radii)")
+                ax1.set_ylabel("Y (Star Radii)")
+                ax2.set(xlim=(min_time, max_time), ylim=(min_flux * .95, max_flux * 1.05))
+                ax2.set_xlabel("Time (sec)")
+                ax2.set_ylabel("Flux (Stellar Flux)")
+                return line1, line3,
+
+            def update(step):
+                x = system.transit_x[:step + 1].copy()
+                y = system.transit_y[:step + 1].copy()
+
+                for i in range(len(x)):
+                    x[i] = system.au_to_star_rad(x[i])
+                    y[i] = system.au_to_star_rad(y[i])
+
+                line1.set_data([x[-1]], [y[-1]])
+                line3.set_data(system.transit_time[:step + 1], system.flux[:step + 1])
+                return line1, line3,
+
+            self.ani = FuncAnimation(self.fig, update, frames=len(system.flux), init_func=init, interval=5, blit=True)
+            self.canvas.draw()
+        else:
+            self.fig.text(0.5, 0.5, "No Transit From Orientation", fontsize=int(self.window_height / 17.28), ha="center", va="center", color="red")
+            self.canvas.draw()
 
     def astrometry(self):
         self.clear_figure()

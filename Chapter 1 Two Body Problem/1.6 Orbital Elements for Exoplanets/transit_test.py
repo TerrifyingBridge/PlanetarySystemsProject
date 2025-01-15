@@ -129,5 +129,5 @@ def update(step):
 
 
 ani = FuncAnimation(fig, update, frames=len(temp_trans), init_func=init, interval=50, blit=True)
-ani.save(filename="assets/transit_flux.gif", writer="pillow")
+# ani.save(filename="assets/transit_flux.gif", writer="pillow")
 plt.show()

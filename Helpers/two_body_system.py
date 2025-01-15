@@ -1,6 +1,7 @@
 from Helpers import vectors as v
 from Helpers import constants
 from Helpers import orbital_elements as oe
+from Helpers import constants as c
 import numpy as np
 
 
@@ -33,6 +34,10 @@ class TwoBodySystem:
         self.eccentric_anomaly_path = []
 
         self.los_vel = []
+        self.transit_x = []
+        self.transit_y = []
+        self.flux = []
+        self.transit_time = []
         self.astrometry_x = []
         self.astrometry_y = []
         self.direct_image_x = []
@@ -55,8 +60,8 @@ class TwoBodySystem:
     def calc_semi_amplitude(self) -> float:
         total_mass = self.body1.mass + self.body2.mass
         term1 = self.body2.mass / total_mass
-        term2 = pow(2*np.pi*constants.PhysicalConstants.gravitational_constant*total_mass / self.period, 1/3)
-        term3 = np.sin(self.inclination) / np.sqrt(1 - self.eccentricity**2)
+        term2 = pow(2 * np.pi * constants.PhysicalConstants.gravitational_constant * total_mass / self.period, 1 / 3)
+        term3 = np.sin(self.inclination) / np.sqrt(1 - self.eccentricity ** 2)
         return term1 * term2 * term3
 
     def get_thiele_innes_elements_astrometry(self) -> tuple[float, float, float, float]:
@@ -77,9 +82,67 @@ class TwoBodySystem:
 
         return A, B, F, G
 
+    def get_transit_intersection(self, x1: float, y1: float, x2: float, y2: float) -> float:
+        r1 = self.body1.radius * 1000
+        r2 = self.body2.radius * 1000
+        dist = np.sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)) * c.PhysicalConstants.au
+        if (dist >= r1 + r2):
+            return 0.0
+        elif (dist <= np.abs(r1 - r2)):
+            return r2 * r2 * np.pi
+        else:
+            term1 = pow(r1, 2) * np.arccos((dist * dist + r1 * r1 - r2 * r2) / (2 * dist * r1))
+            term2 = pow(r2, 2) * np.arccos((dist * dist + r2 * r2 - r1 * r1) / (2 * dist * r2))
+            term3 = 0.5 * np.sqrt(pow(2 * r2 * dist, 2) - pow(dist * dist + r2 * r2 - r1 * r1, 2))
+            return term1 + term2 - term3
+
+    def au_to_star_rad(self, dist: float) -> float:
+        return (dist * c.PhysicalConstants.au) / (self.body1.radius*1000)
+
     def fill_los_vel(self):
         for angle in self.true_anomaly_path:
             self.los_vel.append(self.calc_los_vel(angle))
+
+    def fill_temp_transit(self, time: np.ndarray) -> list[int]:
+        temp_transit = []
+        temp = []
+        consec = 0
+        for i in range(len(self.body2_pos_x)):
+            x = self.body2_pos_x[i] * c.PhysicalConstants.au
+            y = self.body2_pos_y[i] * c.PhysicalConstants.au
+            z = self.body2_pos_z[i]
+            r_planet = self.body2.radius
+            r_star = self.body1.radius
+            if x ** 2 + y ** 2 <= (r_planet * 1000 + r_star * 1000) ** 2 and z >= 0:
+                consec += 1
+                temp.append(i)
+                if (i == len(self.body2_pos_x) - 1):
+                    temp_transit.append(temp)
+            else:
+                if (consec != 0):
+                    temp_transit.append(temp)
+                    temp = []
+                consec = 0
+        if len(temp_transit) == 2:
+            if (temp_transit[0][0] < temp_transit[1][0]):
+                second_list = temp_transit[1].copy()
+                temp_transit.pop(1)
+                temp_transit.insert(0, second_list)
+            temp_transit = temp_transit[0] + temp_transit[1]
+        elif (len(temp_transit) == 1):
+            temp_transit = temp_transit[0]
+        return temp_transit
+
+    def fill_transit(self, time: np.ndarray):
+        temp_transit = self.fill_temp_transit(time)
+        for index in temp_transit:
+            self.transit_x.append(self.body2_pos_x[index])
+            self.transit_y.append(self.body2_pos_y[index])
+            area_of_star = pow(self.body1.radius * 1000, 2) * np.pi
+            area_of_intersect = self.get_transit_intersection(self.body1_pos_x[index], self.body1_pos_y[index],
+                                                              self.body2_pos_x[index], self.body2_pos_y[index])
+            self.flux.append(1 - area_of_intersect / area_of_star)
+            self.transit_time.append(time[index])
 
     def fill_astrometry(self):
         A, B, F, G = self.get_thiele_innes_elements_astrometry()
@@ -94,8 +157,10 @@ class TwoBodySystem:
     def fill_direct_image(self):
         A, B, F, G = self.get_thiele_innes_elements_direct_images()
         for ecc_anom in self.eccentric_anomaly_path:
-            temp_x = A*(np.cos(ecc_anom) - self.eccentricity) + F*np.sqrt(1 - self.eccentricity**2)*np.sin(ecc_anom)
-            temp_y = B*(np.cos(ecc_anom) - self.eccentricity) + G*np.sqrt(1 - self.eccentricity**2)*np.sin(ecc_anom)
+            temp_x = A * (np.cos(ecc_anom) - self.eccentricity) + F * np.sqrt(1 - self.eccentricity ** 2) * np.sin(
+                ecc_anom)
+            temp_y = B * (np.cos(ecc_anom) - self.eccentricity) + G * np.sqrt(1 - self.eccentricity ** 2) * np.sin(
+                ecc_anom)
 
             self.direct_image_x.append(temp_x)
             self.direct_image_y.append(temp_y)
