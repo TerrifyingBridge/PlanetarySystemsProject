@@ -11,7 +11,53 @@ This section focuses on exoplanets, and what orbital elements that we can find u
 When first reading this section, the parts that confused me the most were the astrometry and direct imaging coeffients, as they are mostly just stated. Assuming you can determine the wobble of a star or directly observe a planet, you can fit them the equations given and find a best value for A, B, F, and G. From there it's a matter of solving for the orbital elements once you have them. However, I wasn't sure where these coefficents come from, so I figured it that was a good place to start when it came to the self imposed challenges. For this particlar part of the file, I'll go through both the astrometry coeffients as well as the direct imaging coefficents.  
 
 ## Project Description
-Text3
+Since this section focused on what orbital elements we can determine from the different methods of exoplanet detection, I thought it would be fun to showcase what some of these methods looked like. I still wanted to implement the actual orbital elements though, so for each detection method I showcased, I also showed what orbital elements can be determined from them. Due to the book not including micorlensing as a method to focus on, my project implements the radial velocity, transit, astrometry, and direct imaging methods. Like in previous projects, I wanted to create a GUI to make it more digestible of a program for users.
+
+My main goal for this was to have the user create their own two body system, and then pick their detection method from there. This does come with a weird side effect, where in order to give the stats of a system, you will already know the orbital elements of the exoplanet. However, this is a showcase, not to be used directly as a tool for any future projects. Going this route means I need to use a different method for finding the orbital path of the system. Since we're not just using an initial starting positiong and velocity, we have to go about it through a different method. To help with this task, I created a new Python file named `two_body_system.py`.
+
+### Helper File: `two_body_system.py`
+The first part of this file I want to mention is the `AstroBody` class. This is mostly just used as a glorified list, as this class doesn't contain any methods, and simply stores the mass and radius of an celestial body (star, planet, etc.). I also gave the class a position attribute, however this is never used. The code for the class can be seen below.
+
+```python
+class AstroBody:
+    def __init__(self, mass: float, radius: float):
+        self.mass = mass
+        self.radius = radius
+        self.position = v.Vector3D(0, 0, 0)
+```
+
+The real meat and potates of this Python file is the `TwoBodySystem` class. This class is meant to house any information or methods I might want that relates to a two body system. The constructor takes in six different parameters, namely the mass, radius, argument of periapsis, eccentricity, initial separation distance, and inclination. To make my life a bit easier, all orbits in this simulation start at periapsis. Another assumption is that the ascending node is simply always defined to be 0 radians. My justification to this is because for any system, since the line of sight is always in the $z$-axis, we can rotate the $xy$-plane to simply have the ascending node along the positive $x$-axis. This of course doesn't translate well to real life (as in observations, we don't know the orientation of the system right off the bat), but it is fine for this showcase. Using this method also helps keep the argument of periapsis defined when inclination is 0 when it otherwise wouldn't be.
+
+The constructor for this class does a decent amount, and starts off by finding some important values for the system. It finds the period of orbit, the semi-major axis (used for the simplification to a one body system), and mean motion. This constructor also initializes a bunch of lists that will be used later. I'll showcase the code for the constructor below (minus the initalizations).
+
+```python
+    def __init__(self, body1: AstroBody, body2: AstroBody, init_sep_dist: float, eccentricity: float,
+                 inclination: float, peri: float):
+        self.body1 = body1
+        self.body2 = body2
+        self.eccentricity = eccentricity
+        self.inclination = inclination
+        self.semi_major_axis = init_sep_dist * constants.PhysicalConstants.au / (1 - self.eccentricity)
+        self.period = self.calc_period(init_sep_dist * constants.PhysicalConstants.au)
+        self.mean_motion = oe.calc_mean_motion(self.semi_major_axis, int(self.body1.mass + self.body2.mass))
+        self.peri = peri
+```
+
+The process for finding the orbital path from these elements is as follows.
+1. Create a time array with starting time 0 seconds and final time the length of the period with even interval spacing between them
+2. Traverse through the time array and look at each specific time
+3. For each time value, use the mean motion to determine the mean anomaly
+4. Using the mean anomaly and eccentricity, we use Kepler's equation ot find the eccentricity anomaly, which is saved in its own list for later
+5. Using the eccentric anomaly, we determine the value of the true anomaly, which is saved in its own list for later
+6. Using the eccentric anomaly, semi-major axis, and eccentricity, determine the current separation between the two bodies using the one body simplificaiton
+7. Transform the current separation along with the unit vectors of the celestial bodies to transfer the one body simplification to the current two body problem, which tells us the position for both bodies
+8. These values are then saved in their own lists for later use.
+
+Probably doesn't sound like a lot, but the code is rather gross, and a decent amount of steps. Regardless, I implemented these steps, and plotted my first orbit. I first did this in 2D istead of 3D (which made some aspects of my code a bit messier later on). The result can be seen below.
+
+<p style=>
+<img src = "assets/test_orbit.gif">
+</p>
 
 ## Reflecting Thoughts
 ### Section 1.6 Thoughts
