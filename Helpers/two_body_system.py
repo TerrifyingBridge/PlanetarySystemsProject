@@ -99,7 +99,7 @@ class TwoBodySystem:
     def au_to_star_rad(self, dist: float) -> float:
         return (dist * c.PhysicalConstants.au) / (self.body1.radius*1000)
 
-    def fill_los_vel(self):
+    def fill_los_vel(self) -> None:
         for angle in self.true_anomaly_path:
             self.los_vel.append(self.calc_los_vel(angle))
 
@@ -133,7 +133,7 @@ class TwoBodySystem:
             temp_transit = temp_transit[0]
         return temp_transit
 
-    def fill_transit(self, time: np.ndarray):
+    def fill_transit(self, time: np.ndarray) -> None:
         temp_transit = self.fill_temp_transit(time)
         for index in temp_transit:
             self.transit_x.append(self.body2_pos_x[index])
@@ -144,7 +144,7 @@ class TwoBodySystem:
             self.flux.append(1 - area_of_intersect / area_of_star)
             self.transit_time.append(time[index])
 
-    def fill_astrometry(self):
+    def fill_astrometry(self) -> None:
         A, B, F, G = self.get_thiele_innes_elements_astrometry()
         for true_anom in self.true_anomaly_path:
             start_term = (1 - self.eccentricity ** 2) / (1 + self.eccentricity * np.cos(true_anom))
@@ -154,7 +154,7 @@ class TwoBodySystem:
             self.astrometry_x.append(temp_x)
             self.astrometry_y.append(temp_y)
 
-    def fill_direct_image(self):
+    def fill_direct_image(self) -> None:
         A, B, F, G = self.get_thiele_innes_elements_direct_images()
         for ecc_anom in self.eccentric_anomaly_path:
             temp_x = A * (np.cos(ecc_anom) - self.eccentricity) + F * np.sqrt(1 - self.eccentricity ** 2) * np.sin(
@@ -165,7 +165,7 @@ class TwoBodySystem:
             self.direct_image_x.append(temp_x)
             self.direct_image_y.append(temp_y)
 
-    def fill_path_list(self, time: np.ndarray):
+    def fill_path_list(self, time: np.ndarray) -> None:
         total_mass = self.body1.mass + self.body2.mass
         for step in time:
             mean_anomaly = oe.calc_mean_anomaly(0, self.mean_motion, step)

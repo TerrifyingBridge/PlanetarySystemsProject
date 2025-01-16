@@ -164,12 +164,12 @@ class MainWindow(QMainWindow):
         body1_layout.addWidget(self.radius1_unit)
         layout.addLayout(body1_layout)
 
-    def mass1_update(self):
+    def mass1_update(self) -> None:
         cur_val = self.mass1_slider.value()
         cur_val = -0.4574 + 0.5604 * np.e ** (0.05189 * cur_val)
         self.mass1_unit.setText(str(round(cur_val, 1)) + " Solar Mass")
 
-    def radius1_update(self):
+    def radius1_update(self) -> None:
         cur_val = self.radius1_slider.value()
         cur_val = -0.6383 + 0.7263 * np.e ** (0.07228 * cur_val)
         self.radius1_unit.setText(str(round(cur_val, 1)) + " Solar Radii")
@@ -200,7 +200,7 @@ class MainWindow(QMainWindow):
         body2_layout.addWidget(self.radius2_unit)
         layout.addLayout(body2_layout)
 
-    def mass2_update(self):
+    def mass2_update(self) -> None:
         cur_val = self.mass2_slider.value()
         cur_val = 0.05688 * np.e ** (0.04937 * cur_val)
         if cur_val >= 1:
@@ -208,7 +208,7 @@ class MainWindow(QMainWindow):
         else:
             self.mass2_unit.setText(str(round(cur_val * 317.906, 1)) + " Earth Masses")
 
-    def radius2_update(self):
+    def radius2_update(self) -> None:
         cur_val = self.radius2_slider.value()
         cur_val = -324.21 + 324.18 * np.e ** (0.000305 * cur_val)
         if cur_val >= 1:
@@ -231,7 +231,7 @@ class MainWindow(QMainWindow):
         incline_layout.addWidget(self.incline_unit)
         layout.addLayout(incline_layout)
 
-    def incline_update(self):
+    def incline_update(self) -> None:
         cur_val = self.incline_slider.value()
         self.incline_unit.setText(str(cur_val) + " Degrees")
 
@@ -250,7 +250,7 @@ class MainWindow(QMainWindow):
         peri_layout.addWidget(self.peri_unit)
         layout.addLayout(peri_layout)
 
-    def peri_update(self):
+    def peri_update(self) -> None:
         cur_val = self.peri_slider.value()
         self.peri_unit.setText(str(cur_val) + " Degrees")
 
@@ -283,13 +283,13 @@ class MainWindow(QMainWindow):
         ae_layout.addWidget(self.ecc_unit)
         layout.addLayout(ae_layout)
 
-    def semi_major_update(self):
+    def semi_major_update(self) -> None:
         cur_val = self.semi_major_input.value() / 5
         if cur_val >= 10:
             cur_val = round(cur_val)
         self.semi_major_unit.setText(str(cur_val) + " AU")
 
-    def ecc_update(self):
+    def ecc_update(self) -> None:
         cur_val = self.ecc_input.value() / 100
         self.ecc_unit.setText(str(cur_val))
 
@@ -314,7 +314,7 @@ class MainWindow(QMainWindow):
         button_layout.addWidget(self.image_button, 1, 1)
         layout.addLayout(button_layout)
 
-    def clear_figure(self):
+    def clear_figure(self) -> None:
         if self.ani is not None:
             self.ani.event_source.stop()
             self.ani = None
@@ -322,7 +322,7 @@ class MainWindow(QMainWindow):
         self.fig.clear()
         self.canvas.draw()
 
-    def radial_vel(self):
+    def radial_vel(self) -> None:
         self.clear_figure()
         self.stacked.setCurrentIndex(1)
 
@@ -409,7 +409,7 @@ class MainWindow(QMainWindow):
         self.ani = FuncAnimation(self.fig, update, frames=len(time), init_func=init, interval=50, blit=True)
         self.canvas.draw()
 
-    def transit(self):
+    def transit(self) -> None:
         self.clear_figure()
         self.stacked.setCurrentIndex(1)
 
@@ -487,7 +487,7 @@ class MainWindow(QMainWindow):
             self.fig.text(0.5, 0.5, "No Transit From Orientation", fontsize=int(self.window_height / 17.28), ha="center", va="center", color="red")
             self.canvas.draw()
 
-    def astrometry(self):
+    def astrometry(self) -> None:
         self.clear_figure()
         self.stacked.setCurrentIndex(1)
 
@@ -571,7 +571,7 @@ class MainWindow(QMainWindow):
         self.ani = FuncAnimation(self.fig, update, frames=len(time), init_func=init, interval=15, blit=True)
         self.canvas.draw()
 
-    def direct_image(self):
+    def direct_image(self) -> None:
         self.clear_figure()
         self.stacked.setCurrentIndex(1)
 
