@@ -55,9 +55,57 @@ The process for finding the orbital path from these elements is as follows.
 
 Probably doesn't sound like a lot, but the code is rather gross, and a decent amount of steps. Regardless, I implemented these steps, and plotted my first orbit. I first did this in 2D istead of 3D (which made some aspects of my code a bit messier later on). The result can be seen below.
 
-<p style=>
-<img src = "assets/test_orbit.gif">
+<p align = "center">
+<img src = "assets/test_orbit.gif" width="500" alt="2d orbit">
 </p>
+
+Overall, it doesn't look too bad. This is mainly due to 2D being a much simplier coordinate transformation than 3D. Next, I implemented the same code, but for 3D this time instead of 2D. I made some modifications of the code and then tried to plot the system from here. The result can be seen below.
+
+<p align = "center">
+<img src = "assets/3d_wrong_orbit.png" width = "500" alt = "bad 3d orbit">
+</p>
+
+So this isn't correct. As you can see from the figure, the star is not on the orbital plane the exoplanet is orbiting on, and it isn't at the focus. This was annoying to fix, but I did find the bug. It came from a missing parenthesis when transforming to the cartesean 3D coordinate system. Fixing the issue the plot looks as it should.
+
+<p align = "center">
+<img src = "assets/test_3d_orbit.gif" width="500" alt = "good 3d orbit">
+</p>
+
+As you can see, this is a proper 3D orbit. One thing that can't be seen very well, but I can assure you is happening, is the wobble of the star (blue body). I did try these with similarly massed objects and the result is exactly what you would expect. I wanted to bring up the parenthesis problem earlier because this part happened a lot. My lack of organization this project led to a number of just typing things incorrectly and then spending too much time trying to fix it. Regarldess, here is the code for finding the orbtial path.
+
+```python
+    def fill_path_list(self, time: np.ndarray) -> None:
+        total_mass = self.body1.mass + self.body2.mass
+        for step in time:
+            mean_anomaly = oe.calc_mean_anomaly(0, self.mean_motion, step)
+            eccentric_anomaly = oe.calc_eccentric_anomaly(mean_anomaly, self.eccentricity, 1e-10)
+            self.eccentric_anomaly_path.append(eccentric_anomaly)
+            true_anomaly = oe.calc_true_anomaly(self.eccentricity, eccentric_anomaly)
+            self.true_anomaly_path.append(true_anomaly)
+            current_sep = self.calc_radius_eccentric_anomaly(self.semi_major_axis, eccentric_anomaly)
+
+            current_pos = v.Vector3D(np.cos(true_anomaly + self.peri),
+                                     np.cos(self.inclination) * np.sin(true_anomaly + self.peri),
+                                     np.sin(self.inclination) * np.sin(true_anomaly + self.peri))
+            current_pos.multiply(current_sep)
+
+            body1_pos = v.Vector3D.multiply_scalar(current_pos,
+                                                   -1 * self.body2.mass / (total_mass * constants.PhysicalConstants.au))
+            body2_pos = v.Vector3D.multiply_scalar(current_pos,
+                                                   self.body1.mass / (total_mass * constants.PhysicalConstants.au))
+
+            self.body1_pos_x.append(body1_pos.x)
+            self.body1_pos_y.append(body1_pos.y)
+            self.body1_pos_z.append(body1_pos.z)
+            self.body2_pos_x.append(body2_pos.x)
+            self.body2_pos_y.append(body2_pos.y)
+            self.body2_pos_z.append(body2_pos.z)
+```
+
+You can see the consequence of not using vectors at the bottom of the method. Since I was alternating between 2D and 3D, I just made lists for each of the axes for both bodies, when I really should have just made 2 lists full of vectors. Oh well. Lastly, there is much more to this class than I have talked about here. This is because most of the remaining methods deal with specific detection methods that I implemented later As we look at the different detection methods, I will elaborate on the specific part of this class for that method to keep things simple.
+
+### Radial Velocity
+Lol
 
 ## Reflecting Thoughts
 ### Section 1.6 Thoughts
