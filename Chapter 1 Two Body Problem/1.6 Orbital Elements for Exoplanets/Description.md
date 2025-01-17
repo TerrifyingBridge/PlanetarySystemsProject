@@ -105,7 +105,29 @@ As you can see, this is a proper 3D orbit. One thing that can't be seen very wel
 You can see the consequence of not using vectors at the bottom of the method. Since I was alternating between 2D and 3D, I just made lists for each of the axes for both bodies, when I really should have just made 2 lists full of vectors. Oh well. Lastly, there is much more to this class than I have talked about here. This is because most of the remaining methods deal with specific detection methods that I implemented later As we look at the different detection methods, I will elaborate on the specific part of this class for that method to keep things simple.
 
 ### Radial Velocity
-Lol
+Radial Velocity was the first detection method I decided to work on. All detection methods each have their own test file so that it was simply a matter of copy and pasting the result into `main.py`. Because of this, the beginning code for radial velocity can be found here, while the final polished code is in `main.py`. Since each detection method goes this route, I will not directly mention this again. 
+
+My main goal for this method was to showcase the actual orbit of the two body system, and constrast it with another graph showing the line of sight velocity of the star that is moving at the same time the orbit is. This process is rather straightforward, especially since we already have a true anomaly list for the system that was derived from an interval of time equal to the period of the orbit. From here, it is simply a matter of making another list that houses the line of sight velocity. THe book dervies what this equation is and, for clarity, this equation can be seen below.
+
+$$ v_{\text{los}} = - \frac{m_{1}}{m_{0} + m_{1}} \left[ \frac{2\pi G(m_{0} + m_{1})}{P}\right]^{1/3}\frac{\sin(I)}{(1 - e^{2})^{1/2}}\left[\cos(f + \omega) + e\cos(\omega)\right] $$
+
+Adding this to a list wasn't too complex either. Using the true anomaly for a certain time value, I used the above equation to find the velocity in the line of sight. From here it is just as simple as plotting it over the period of the orbit. The code / methods that directly relate to this isn't entirely interesting, so I'll leave it to you to go through the files and look, but I do want to showcase the result upon plotting / animating this graph. While the axes aren't labeled (yet), you can see the orbit of the two body system on the left and the line of sight velocity on the right. The values for this make since given the initial conditions of the orbit.
+
+<p align = center>
+<img src = "assets/rad_vel.gif" width = "700" alt = "rad_vel">
+</p>
+
+### Astrometry
+The second detection method I focused on was astrometry, due to it mostly being rather simple and quick to make. The general idea behind this method is detecting the wobble of a star projected on the sky plane perpendicular to our line of sight, and how this changes over time. Given a full period, we can fit these to a linear combination of sine and cosine in terms of the true anomaly and determine the orbital elements based on the coeffients found. Since this project lives in a nice perfect world where we set the center of mass to be at (0, 0, 0), the equaiton we want to fit the star's projectoin of orbit to is as follows.
+
+$$
+\begin{aligned}
+x_{0} &= -\frac{1 - e^{2}}{1 + e\cos(f)}\left(A\cos(f) + F\sin(f)\right) \\
+y_{0} &= -\frac{1 - e^{2}}{1 + e\cos(f)}\left(B\cos(f) + G\sin(f)\right)
+\end{aligned}
+$$
+
+Where $A$, $B$, $C$, and $D$ are the Thiele-Innes elements. What are these elements you might ask? Well you shouldn't. Go read the self imposed exercises. Regardless, because we already know the orbital elements of the exoplanet, we can find these elements pretty much exactly. Got to love the power of cheating. Regardless, 
 
 ## Reflecting Thoughts
 ### Section 1.6 Thoughts
