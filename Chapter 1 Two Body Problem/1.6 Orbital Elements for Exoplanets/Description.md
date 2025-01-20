@@ -127,7 +127,126 @@ y_{0} &= -\frac{1 - e^{2}}{1 + e\cos(f)}\left(B\cos(f) + G\sin(f)\right)
 \end{aligned}
 $$
 
-Where $A$, $B$, $C$, and $D$ are the Thiele-Innes elements. What are these elements you might ask? Well you shouldn't. Go read the self imposed exercises. Regardless, because we already know the orbital elements of the exoplanet, we can find these elements pretty much exactly. Got to love the power of cheating. Regardless, 
+Where $A$, $B$, $C$, and $D$ are the Thiele-Innes elements. What are these elements you might ask? Well you shouldn't. Go read the self imposed exercises. Regardless, because we already know the orbital elements of the exoplanet, we can find these elements pretty much exactly. Got to love the power of cheating. Regardless, having these values means it was rather easy to implement a graph that depended on time. I already had the true anomaly list, so I was able to use that to find a list for the $x$ and $y$ position of the star. Plotting this next to the orbit looked something like the following.
+
+<p align = center>
+<img src = "assets/astrometry.gif" width = "700" alt = "rad_vel">
+</p>
+
+### Direct Imaging
+The third detection method I focused on was direct imaging, mainly because it was very similar to astrometry. Direct imaging is probably the most self explanatory method of detection, as it just involves getting a high powered telescope, and observing the planet directly. In practice, this is rather difficult due to the star the planet is orbiting around being so much brighter than the planet itself. However, in this demonstration, we have a nice perfect telescope that can easily detect a planet, provided it's in our line of sight.
+
+The actual process for determining the value for the orbital elements is the same as astrometry, but instead of looking at the star, we look at the planet. We observe the planet over the course of its orbit, and we fit this path to a linear combination of a sine and cosine. These values correspond to another slightly different Thiele-Innes elements. The book only provides these equations in terms of eccentric anomaly instead of true anomaly, and these equations can be seen below.
+
+$$
+\begin{aligned}
+x_{0} &= A^{'}\left(\cos(u) - e\right) + F^{'}\left(1-e^{2} \right)^{1/2}\sin(u) \\
+y_{0} &= B^{'}\left(\cos(u) - e\right) + G^{'}\left(1-e^{2} \right)^{1/2}\sin(u)
+\end{aligned}
+$$
+
+Since we already know all of the orbital elements of the planet, we can simply plug in values for the Thiele-Innes elements and find an exact match. From here, it is a simple matter of plotting the $x$ and $y$ over time, but using the eccentric anomaly instead of the true anomaly. Fortunately, we found the eccentric anomaly while finding the true anomaly, so we already have a list containing these values that also depend on the time array.
+
+<p align = center>
+<img src = "assets/direct_image.gif" width = "700" alt = "rad_vel">
+</p>
+
+### Transit
+The last detection method I wanted to showcase was the transit method. This process is done by measuring the change in the flux of the star when (if) the planet comes between our line of sight and the star itself. I saved this detection method for last, because it had the most amount of work to be put into it. My original goal was to do with the transit method exactly like I did before, but have three graphs instead of 2. I wanted one for the orbit of the planet, one for showing the planet coming in front of the star during its transit, and one that showed the measured flux of the star.
+
+The way I initially started to implement this is by calculating the orbit of the two body system like before, and showing the planet moving across the star when it transits by calcuing when the planet's position from the cetner of mass was less than the sum of the star and planet's radius. This technically isn't always true, as I should also take into account the star's wobble, but I was trying to keep things simple for this project. It is already bloated enough as it is. Doing this process gave me the following result (ignore the blank plot, that was going to be the flux graph).
+
+<p align = center>
+<img src = "assets/bad_transit.gif" width = "700" alt = "rad_vel">
+</p>
+
+Truthfully, I should have realized that the planet's transit would be a very short portion of the actual orbit, but I didn't. Anyway, this process of showing this detection method wasn't going to fly, as I would either have to make the time so slow that the orbit takes forever to complete or make time move so fast you can't see the transit happening. Because of this, I decided to just scrap the graph showing the orbit and just have the plot of the transit and the flux. Don't worry, this was hard enough as it was. 
+
+The first order of business was to find when the transit actually happened in the orbit. I could not figure out how to do this analytically, so instead I did this numerically. I went through the true anomaly list of the orbit and then found the position of the planet from that. If the $x$ and $y$ projection was less than the radius of the planet plus the radius of the star, then the planet was in transit. However, doing this can lead to a weird order. If the transit starts at the beginning of the orbit, then there will be a long period where there is no transit, and then it would finish the transit at the end. To fix this (to make sure everything was in the correct order), if there was a gap between points in the orbit where the planet was in transit, I stitched it to the front of the other section. The code for this process looks like the following.
+
+```python
+    def fill_temp_transit(self, time: np.ndarray) -> list[int]:
+        temp_transit = []
+        temp = []
+        consec = 0
+        for i in range(len(self.body2_pos_x)):
+            x = self.body2_pos_x[i] * c.PhysicalConstants.au
+            y = self.body2_pos_y[i] * c.PhysicalConstants.au
+            z = self.body2_pos_z[i]
+            r_planet = self.body2.radius
+            r_star = self.body1.radius
+            if x ** 2 + y ** 2 <= (r_planet * 1000 + r_star * 1000) ** 2 and z >= 0:
+                consec += 1
+                temp.append(i)
+                if (i == len(self.body2_pos_x) - 1):
+                    temp_transit.append(temp)
+            else:
+                if (consec != 0):
+                    temp_transit.append(temp)
+                    temp = []
+                consec = 0
+        if len(temp_transit) == 2:
+            if (temp_transit[0][0] < temp_transit[1][0]):
+                second_list = temp_transit[1].copy()
+                temp_transit.pop(1)
+                temp_transit.insert(0, second_list)
+            temp_transit = temp_transit[0] + temp_transit[1]
+        elif (len(temp_transit) == 1):
+            temp_transit = temp_transit[0]
+        return temp_transit
+
+    def fill_transit(self, time: np.ndarray) -> None:
+        temp_transit = self.fill_temp_transit(time)
+        for index in temp_transit:
+            self.transit_x.append(self.body2_pos_x[index])
+            self.transit_y.append(self.body2_pos_y[index])
+            area_of_star = pow(self.body1.radius * 1000, 2) * np.pi
+            area_of_intersect = self.get_transit_intersection(self.body1_pos_x[index], self.body1_pos_y[index],
+                                                              self.body2_pos_x[index], self.body2_pos_y[index])
+            self.flux.append(1 - area_of_intersect / area_of_star)
+            self.transit_time.append(time[index])
+```
+
+That is some gross code, but it works. The next point I want to bring up about making the transit plot is how I made the circles. Matplotlib technically has an object to make a circle (aptly named 'Circle'), but this ended up being a little jank and unreliable when it came to animating its change. My best solution to this was to effectively just change the marker size of the plot point to be relative to the size of the planet to the size of the star. Matplotlib also has a method that determines the dots per inch of a figure (dots being the unit of measurment for matplotlib) and scaled each object respectfully. This ends up having some problems, as the sizes almost depend on the size of the window. This means they work well enough for certain combinations and pretty well for the initial running of the code. This changes when you resize the window, as it messes with the size of the circles. The example for this is seen below.
+
+<p align = center>
+<img src = "assets/better_transit.gif" width = "700" alt = "rad_vel">
+</p>
+
+Another point of note is why the planet goes behind the star in this animation gif. I have no idea why this happens. When I tested it on my end, the planet would always be in front of the star and actually show the planet in transit. However, when I saved the file to a gif the planet would always go behind the star. I wasn't able to figure this problem out, so the visualizations will have to do for now, but just pretend the planet is going in front of the star. If you want to see the transit code actually working the way it's supposed to, you can run the code yourself using the files in the directory. 
+
+The last part of this code I want to explain is how I estimated the flux difference from the star while the planet is transiting. The book mentions this decreases based on the part of the star that is covered by the planet. Based on this, we can simplify this down into just finding the area of the intersecting circles from the transit, then subtract that from the area of the circle made by the projection of the star. This gives us a general estimate, but forces our $y$ axis for this graph to be in terms of the star's flux. To make this work, I looked up the equation for the area intersected by two circles of different sizes and position. You might ask yourself why I didn't do this myself, which is a great question. The answer is because one of the book problems is asking this exact question, and I didn't want to cheat (they ask you to show it, but give you the equation), and I was not in the mood to solve a book problem right now. Plus I really wanted this transit code done. Regardless, the equaiton for area between two intersecting circles is the following.
+
+$$ A = r_{1}^{2}\cos^{-1}\left(\frac{d^{2} + r_{1}^{2} - r_{2}^{2}}{2dr_{1}}\right) + r_{2}^{2}\cos^{-1}\left(\frac{d^{2} + r_{2}^{2} - r_{1}^{2}}{2dr_{2}}\right) - \frac{1}{2}\sqrt{(-d + r_{1} + r_{2})(d + r_{1} - r_{2})(d-r_{2}+r_{2})(d+r_{1}+r_{2})}$$
+
+A very fun equation all around. Anyway, I used this to calculate the area of the intersection between the circles created from the projection of the star and the planet. From here, I subtracted this difference from the star's total area. It should be noted, this only works when there is some area that isn't being overlapped by the second circle, so for the case where the planet's circle is completely engulfed from the star, I just calculated the area of both, and subtracted the planet's from the star's. The code for this is exactly what you might expect, but managing a lot of terms.
+
+```python
+    def get_transit_intersection(self, x1: float, y1: float, x2: float, y2: float) -> float:
+        r1 = self.body1.radius * 1000
+        r2 = self.body2.radius * 1000
+        dist = np.sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)) * c.PhysicalConstants.au
+        if (dist >= r1 + r2):
+            return 0.0
+        elif (dist <= np.abs(r1 - r2)):
+            return r2 * r2 * np.pi
+        else:
+            term1 = pow(r1, 2) * np.arccos((dist * dist + r1 * r1 - r2 * r2) / (2 * dist * r1))
+            term2 = pow(r2, 2) * np.arccos((dist * dist + r2 * r2 - r1 * r1) / (2 * dist * r2))
+            term3 = 0.5 * np.sqrt(pow(2 * r2 * dist, 2) - pow(dist * dist + r2 * r2 - r1 * r1, 2))
+            return term1 + term2 - term3
+```
+
+Beautiful. But everything pretty much works almost as much as I hoped. The resulting animation looks really good in my opinion and is one of my favorite out of all of the detections. It looks even better when the planet actually goes in front of the star, but I still like it a lot. Things can get crazy for this plot when you have a small-ish star and a large planet, but the one showcased below is a standard star and planet duo. One thing should be noted is by using this method, I ignored the effects of limb darkening and assumed that the flux at every point in the star is the same, which is not true in practice.
+
+<p align = center>
+<img src = "assets/transit_flux.gif" width = "700" alt = "rad_vel">
+</p>
+
+### The GUI
+Like the project from Section 1.4, I ended up using the Python GUI library PyQt6. While it was a very frustrating task, I like this library a lot better than the tkinter default package that comes with Python. Unfortunately, I didn't plan this GUI ahead like I did the previous one, so I will just have to describe what my thought process was instead.
+
+My second least favorite part of making the previous GUIs (tkinter included), was the error handling. Having to determine the exact values I wanted to see from a text box was not a fun task, and felt rather redundant at times. To fix this, I decided to add sliders instead so that way the input from the user is forced to be a certain data type. I also think this looks a lot cleaner. Next to each slider, I put a label for the name of the slider as well as the unit the slider was in (if it had a unit).
 
 ## Reflecting Thoughts
 ### Section 1.6 Thoughts
