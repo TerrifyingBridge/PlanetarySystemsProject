@@ -491,6 +491,9 @@ class MainWindow(QMainWindow):
         self.clear_figure()
         self.stacked.setCurrentIndex(1)
 
+        self.graph_title1.setText("Path of Orbit")
+        self.graph_title2.setText("Wobble of Star")
+
         mass1 = self.mass1_slider.value()
         mass1 = -0.4574 + 0.5604 * np.e ** (0.05189 * mass1)
         radius1 = self.radius1_slider.value()
@@ -574,6 +577,9 @@ class MainWindow(QMainWindow):
     def direct_image(self) -> None:
         self.clear_figure()
         self.stacked.setCurrentIndex(1)
+
+        self.graph_title1.setText("Path of Orbit")
+        self.graph_title2.setText("Path of Planet")
 
         mass1 = self.mass1_slider.value()
         mass1 = -0.4574 + 0.5604 * np.e ** (0.05189 * mass1)
