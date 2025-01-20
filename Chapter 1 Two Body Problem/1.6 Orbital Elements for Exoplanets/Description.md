@@ -8,7 +8,49 @@ This section focuses on exoplanets, and what orbital elements that we can find u
 | [Reflecting Thoughts](#reflecting-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
 
 ## Self Imposed Exercises
-When first reading this section, the parts that confused me the most were the astrometry and direct imaging coeffients, as they are mostly just stated. Assuming you can determine the wobble of a star or directly observe a planet, you can fit them the equations given and find a best value for A, B, F, and G. From there it's a matter of solving for the orbital elements once you have them. However, I wasn't sure where these coefficents come from, so I figured it that was a good place to start when it came to the self imposed challenges. For this particlar part of the file, I'll go through both the astrometry coeffients as well as the direct imaging coefficents.  
+When first reading this section, the parts that confused me the most were the astrometry and direct imaging coeffients, as they are mostly just stated. Assuming you can determine the wobble of a star or directly observe a planet, you can fit them the equations given in the book and find a best value for A, B, F, and G, known as the Thiele-Innes elements. From there, you can use these elements to solve for the various orbital elements of the system. However, I wasn't sure where these coefficents come from, so I figured it that was a good place to start when it came to my self imposed challenge. For this particlar part of the description, I'll go through both the astrometry coeffients as well as the direct imaging coefficents.
+
+### Astrometry Thiele-Innes Elements
+Using astrometry, the focus is on the star's $x$ and $y$ position, so this is where we will start. Assuming that $x$ and $y$ are the simplifications of the two body system down into a one body system, we can re-write the cooredinates of the star as follows.
+
+$$
+\begin{aligned}
+x_{0} &= x_{\text{cm}} - x \\
+y_{0} &= y_{\text{cm}} - y
+\end{aligned}
+$$
+
+The book keeps the center of mass positions in $x_{\text{cm}}$ and $y_{\text{cm}}$ so I will as well. Now we need to find the position of $x$ and $y$. Fortunately, this was already solved in a previous section of the book. In Section 1.3, we are given the following.
+
+$$
+\begin{aligned}
+x &= \frac{rm_{1}}{m_{0} + m_{0}}\left(\cos(\Omega\cos(f + \omega) - \cos(I)\sin)(\Omega)\sin(f + \omega)\right) \\
+y &= \frac{rm_{1}}{m_{0} + m_{0}}\left(\sin(\Omega)\cos(f + \omega) + \cos(I)\cos(\Omega)\sin(f + \omega)\right)
+\end{aligned}
+$$
+
+To keep things simple, let's focus on one of the cooridnates first, let's say $x$, and ignore the $\frac{rm_{1}}{m_{0} + m_{0}}$ value for now (don't worry, we'll come back to it later). We can use the sum and difference formulas for sine and cosine to split up the true anomaly and the argument of periapsis.
+
+$$
+\begin{aligned}
+x &= \cos(\Omega)\left(\cos(f)\cos(\omega) - \sin(f)\sin(\omega)\right) - \cos(I)\sin(\Omega)\left(\sin(f)\cos(\omega) + \cos(f)\sin(\omega)\right) \\
+&= \cos(\Omega)\cos(f)\cos(\omega) - \cos(\Omega)\sin(f)\sin(\omega) - \cos(I)\sin(\Omega)\sin(f)\cos(\omega) - \cos(I)\sin(\Omega)\cos(f)\sin(\omega) \\
+&= \left(\cos(\Omega)\cos(\omega) - \cos(I)\sin(\Omega)\sin(\omega)\right)\cos(f) - \left(\cos(\Omega)\sin(\omega) + \cos(I)\sin(\Omega)\cos(\omega)\right)\sin(f) \\
+\end{aligned}
+$$
+
+Adding in the $\frac{rm_{1}}{m_{0} + m_{0}}$ value from before will finish everything off.
+
+$$
+\begin{aligned}
+x &= \frac{rm_{1}}{m_{0} + m_{0}}\left(\left(\cos(\Omega)\cos(\omega) - \cos(I)\sin(\Omega)\sin(\omega)\right)\cos(f) - \left(\cos(\Omega)\sin(\omega) + \cos(I)\sin(\Omega)\cos(\omega)\right)\sin(f)\right) \\
+&= \frac{a(1 - e^{2})}{1 + e\cos(f)}\frac{m_{1}}{m_{0} + m_{1}}\left(\left(\cos(\Omega)\cos(\omega) - \cos(I)\sin(\Omega)\sin(\omega)\right)\cos(f) - \left(\cos(\Omega)\sin(\omega) + \cos(I)\sin(\Omega)\cos(\omega)\right)\sin(f)\right) \\
+&= \frac{1 - e^{2}}{1 + e\cos(f)}\left(\frac{am_{1}}{m_{0} + m_{1}}\left(\cos(\Omega)\cos(\omega) - \cos(I)\sin(\Omega)\sin(\omega)\right)\cos(f) + \frac{am_{1}}{m_{0} + m_{1}}\left(-\cos(\Omega)\sin(\omega) - \cos(I)\sin(\Omega)\cos(\omega)\right)\sin(f)\right) \\
+&= \frac{1 - e^{2}}{1 + e\cos(f)}\left(A\cos(f) + F\sin(f)\right)
+\end{aligned}
+$$
+
+Whew, alright that is $x$ done, now to move onto $y$. 
 
 ## Project Description
 Since this section focused on what orbital elements we can determine from the different methods of exoplanet detection, I thought it would be fun to showcase what some of these methods looked like. I still wanted to implement the actual orbital elements though, so for each detection method I showcased, I also showed what orbital elements can be determined from them. Due to the book not including micorlensing as a method to focus on, my project implements the radial velocity, transit, astrometry, and direct imaging methods. Like in previous projects, I wanted to create a GUI to make it more digestible of a program for users.
