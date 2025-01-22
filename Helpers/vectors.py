@@ -3,6 +3,10 @@ import numpy as np
 
 
 class Vector2D:
+    @staticmethod
+    def multiply_scalar(vector, scalar):
+        return Vector2D(vector.x * scalar, vector.y * scalar)
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -34,6 +38,10 @@ class Vector2D:
 
 
 class Vector3D:
+    @staticmethod
+    def multiply_scalar(vector, scalar):
+        return Vector3D(vector.x * scalar, vector.y * scalar, vector.z * scalar)
+
     def __init__(self, x, y, z):
         self.x = x
         self.y = y

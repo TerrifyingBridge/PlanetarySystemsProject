@@ -5,7 +5,7 @@ This section introduces the Hamiltonian for Kepler orbits and talks about the re
 | -----------------------|---------------------------|
 | [Self Imposed Exercises](#self-imposed-exercises) | An outline of any exercises I thought would be beneifical or fun to work through that relate to the section of the book, usually exercises I make for myself. |
 | [Project Description](#project-description) | A description of the coding project I designed for this section of the book, as well as any relevant information I used. |
-| [Concluding Thoughts](#concluding-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
+| [Reflecting Thoughts](#reflecting-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
 
 ## Self Imposed Exercises
 Since most of this section was focusing on canonical coordinates using the orbital elements and what they are, there wasn't too much that was left as an exercise to the reader. However, there is an extra little bit of work I wanted to get some practice in for this section. During this section, the book gives 5 different sets of canonical coordinates, as well as their generating function. I thought it would be fun to derive them and get some practice working with generating functions (since I am fairly certain I never saw them during my undergraduate studies). 
@@ -15,7 +15,7 @@ However, I am ***not*** going to be deriving the first set of canonical coordiat
 $$ 
 \begin{aligned}
 \ell, & \qquad \qquad \Lambda \equiv (GMa)^{1/2}, \\
-\omega, & \qquad \qquad L = [GMa(1-e^{2}]^{1/2}, \\
+\omega, & \qquad \qquad L = [GMa(1-e^{2})]^{1/2}, \\
 \Omega, & \qquad \qquad L_{z} = L\cos(I).
 \end{aligned}
 $$

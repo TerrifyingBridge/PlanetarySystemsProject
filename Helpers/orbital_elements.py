@@ -90,6 +90,16 @@ def calc_initial_f(ecc: float, ecc_anom: float) -> float:
         return angle
 
 
+def calc_true_anomaly(ecc: float, ecc_anom: float) -> float:
+    top = np.cos(ecc_anom) - ecc
+    bot = 1 - ecc * np.cos(ecc_anom)
+    angle = np.arccos(top / bot)
+    if (ecc_anom > np.pi):
+        return 2 * np.pi - angle
+    else:
+        return angle
+
+
 def gauss_f_true_anom(true_anom: float, init_true_anom: float, ecc: float) -> float:
     top = np.cos(true_anom - init_true_anom) + ecc * np.cos(true_anom)
     bot = 1 + ecc * np.cos(true_anom)
