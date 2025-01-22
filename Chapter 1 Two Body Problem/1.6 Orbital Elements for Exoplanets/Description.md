@@ -8,9 +8,20 @@ This section focuses on exoplanets, and what orbital elements that we can find u
 | [Reflecting Thoughts](#reflecting-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
 
 ## Self Imposed Exercises
-When first reading this section, the parts that confused me the most were the astrometry and direct imaging coeffients, as they are mostly just stated. Assuming you can determine the wobble of a star or directly observe a planet, you can fit them the equations given in the book and find a best value for A, B, F, and G, known as the Thiele-Innes elements. From there, you can use these elements to solve for the various orbital elements of the system. However, I wasn't sure where these coefficents come from, so I figured it that was a good place to start when it came to my self imposed challenge. For this particlar part of the description, I'll go through both the astrometry coeffients as well as the direct imaging coefficents.
+When first reading this section, the parts that confused me the most were the astrometry and direct imaging coeffients, as they are mostly just stated. Assuming you can determine the wobble of a star or directly observe a planet, you can fit them the equations given in the book and find a best value for A, B, F, and G, known as the Thiele-Innes elements. From there, you can use these elements to solve for the various orbital elements of the system. However, I wasn't sure where these coefficents come from, so I figured it that was a good place to start when it came to my self imposed challenge. For this particlar part of the description, I'll derive the astrometry coeffients in terms of the true anomaly and eccentric anomaly. I am leaving out the Thiele-Innes elements for direct imaging, as it is very much the same process, but removing the mass terms.
 
-### Astrometry Thiele-Innes Elements
+Before actually deriving the Thiele-Innes elements, it is important to actually know what we're working towards. These elements are in terms of a couple orbital elements from the system / bodes and are thus defined to be the following.
+
+$$
+\begin{aligned}
+A &= \frac{m_{1}a}{m_{0} + m_{1}} \left(\cos(\Omega)\cos(\omega) - \cos(I)\sin(\Omega)\sin(\omega)\right) \\
+B &= \frac{m_{1}a}{m_{0} + m_{1}} \left(\sin(\Omega)\cos(\omega) + \cos(I)\cos(\Omega)\sin(\omega)\right) \\
+F &= \frac{m_{1}a}{m_{0} + m_{1}} \left(-\cos(\Omega)\sin(\omega) - \cos(I)\sin(\Omega)\cos(\omega)\right) \\
+G &= \frac{m_{1}a}{m_{0} + m_{1}} \left(-\sin(\Omega)\sin(\omega) + \cos(I)\cos(\Omega)\cos(\omega)\right)
+\end{aligned}
+$$
+
+### Thiele-Innes Elements - True Anomaly
 Using astrometry, the focus is on the star's $x$ and $y$ position, so this is where we will start. Assuming that $x$ and $y$ are the simplifications of the two body system down into a one body system, we can re-write the cooredinates of the star as follows.
 
 $$
@@ -50,7 +61,61 @@ x &= \frac{rm_{1}}{m_{0} + m_{0}}\left(\left(\cos(\Omega)\cos(\omega) - \cos(I)\
 \end{aligned}
 $$
 
-Whew, alright that is $x$ done, now to move onto $y$. 
+Whew, alright that is $x$ done, now to move onto $y$. Similar to evaluting $x$, I'm going to first showcase without the $\frac{rm_{1}}{m_{0} + m_{0}}$ value and add it back in later. This is just to help try and minimize the amount of terms that I have to keep track of. It will be added in later at the end.
+
+$$
+\begin{aligned}
+y &= \sin(\Omega)\cos(f + \omega) + \cos(I)\cos(\Omega)\sin(f + \omega) \\
+&= \sin(\Omega)\left(\cos(f)\cos(\omega) - \sin(f)\sin(\omega)\right) + \cos(I)\cos(\Omega)\left(\sin(f)\cos(\omega) + \cos(f)\sin(\omega)\right) \\
+&= \sin(\Omega)\cos(f)\cos(\omega) - \sin(\Omega)\sin(f)\sin(\omega) + \cos(I)\cos(\Omega)\sin(f)\cos(\omega) + \cos(I)\cos(\Omega)\cos(f)\sin(\omega) \\
+&= \left(\sin(\Omega)\cos(\omega) + \cos(I)\cos(\Omega)\sin(\omega)\right)\cos(f) + \left(-\sin(\Omega)\sin(\omega) + \cos(I)\cos(\Omega)\cos(\omega)\right)\sin(f)
+\end{aligned}
+$$
+
+Now we can add in the $\frac{rm_{1}}{m_{0} + m_{0}}$ term from before to make it complete.
+
+$$
+\begin{aligned}
+y &= \frac{rm_{1}}{m_{0} + m_{0}}\left(\left(\sin(\Omega)\cos(\omega) + \cos(I)\cos(\Omega)\sin(\omega)\right)\cos(f) + \left(-\sin(\Omega)\sin(\omega) + \cos(I)\cos(\Omega)\cos(\omega)\right)\sin(f)\right) \\
+&= \frac{a(1 - e^{2})}{1 + e\cos(f)}\frac{m_{1}}{m_{0} + m_{1}} \left(\left(\sin(\Omega)\cos(\omega) + \cos(I)\cos(\Omega)\sin(\omega)\right)\cos(f) + \left(-\sin(\Omega)\sin(\omega) + \cos(I)\cos(\Omega)\cos(\omega)\right)\sin(f)\right) \\
+&= \frac{1 - e^{2}}{1 + e\cos(f)}\left(\frac{am_{1}}{m_{0} + m_{1}}\left(\sin(\Omega)\cos(\omega) + \cos(I)\cos(\Omega)\sin(\omega)\right)\cos(f) + \frac{am_{1}}{m_{0} + m_{1}}\left(-\sin(\Omega)\sin(\omega) + \cos(I)\cos(\Omega)\cos(\omega)\right)\sin(f)\right) \\
+&= \frac{1 - e^{2}}{1 + e\cos(f)}\left(B\cos(f) + G\sin(f)\right)
+\end{aligned}
+$$
+
+Overall, this isn't so bad. While it uses a lot of terms and a little bit of simpliciaiton, the end result is rather nice. These values are very helpful to determine various things about the planet that is orbiting the star, but more on that in the project description.
+
+### Thiele-Innes Elements - Eccentric Anomaly
+Many times, it is easier to use the eccentric anomaly instead of the true anomaly when trying to fit these values to a curve. Because of this, we also want these elements in terms of the eccentric anomaly instead. Fortunately, it is a pretty straightforward jump from one to the other. Before getting into the actual derivation, I want to remind the reader of the following relations between the true and eccentric anomaly from previous sections.
+
+$$ \cos(f) = \frac{\cos(u) - e}{1 - e\cos(u)}, \quad \quad \sin(f) = \frac{(1 - e^{2})^{1/2}\sin(u)}{1 - e\cos(u)} $$
+
+These will be helpful in transforming our $x$ and $y$ into the eccentric anomaly. Going back to our $x$ and $y$ from the previous deriation, we can simpify the outter termm by doing the following substitution.
+
+$$
+\begin{aligned}
+x &= \frac{r}{a} \left(A\cos(f) + F\sin(f)\right) \\
+y &= \frac{r}{a} \left(B\cos(f) + G\sin(f)\right)
+\end{aligned}
+$$
+
+Now, we plug in the value of $r$ that is defined through the eccentric anomaly, and use the relations stated above to remove any true anomaly terms. First we will look at $x$, then we will look at $y$.
+
+$$
+\begin{aligned}
+x &= \left(1 - e\cos(u)\right) \left(A \frac{\cos(u) - e}{1 - e\cos(u)} + F \frac{(1 - e^{2})^{1/2}\sin(u)}{1 - e\cos(u)}\right) \\
+&= A\left(\cos(u) - e\right) + F(1-e^{2})^{1/2}\sin(u)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+y &= \left(1 - e\cos(u)\right) \left(B\\frac{\cos(u) - e}{1 - e\cos(u)} + G\\frac{(1 - e^{2})^{1/2}\sin(u)}{1 - e\cos(u)}\right) \\
+&= B\left(\cos(u) - e\right) + G(1-e^{2})^{1/2}\sin(u)
+\end{aligned}
+$$
+
+Not so bad. One thing should be noticed, technically all of the equations I derived should have a minus sign in front. I am only focusing on the term that is being subtracted from the center of mass and I didn't include that term here. My reasoning for this was to minimize the overall terms being thrown around, and make it a bit easier to read. It probably makes a couple things confusing, but I figured I should at least point it out just in case. 
 
 ## Project Description
 Since this section focused on what orbital elements we can determine from the different methods of exoplanet detection, I thought it would be fun to showcase what some of these methods looked like. I still wanted to implement the actual orbital elements though, so for each detection method I showcased, I also showed what orbital elements can be determined from them. Due to the book not including micorlensing as a method to focus on, my project implements the radial velocity, transit, astrometry, and direct imaging methods. Like in previous projects, I wanted to create a GUI to make it more digestible of a program for users.
@@ -329,7 +394,9 @@ This section was a lot more digestable to get through than most of the previous 
 I believe that this section is probably the more conceptually difficult section, but it was easy to digest and following what was happening in each subsection of the book. The only part that lost me was the astrometry coefficents, and this was more so because there was a lot of stuff in those coefficents rather than me getting stuck on why they were what they were. Truthfully, I don't have too many interesting things to say about this section because of how straightforward it was to read and understand. I did enjoy this section a lot, as I'm really interested in exoplanet research as well as their general dynamics (hence why I have this book), so I was really excited to get to this moment. Overall, it was a fun chapter, and I look forward to many more to come.
 
 ### Self Imposed Exercises Thoughts
-testhaha
+I didn't like this exercise very much. I'm starting to get a little board of the exercises that are just deriving a bunch of simple things and fighting through the terms. It is very boring, and this exercise especially was horrible to type in this file. Having to juggle all of the terms and make sure everything was there. I am not convinced I didn't miss something, but I'm so over this tedious term juggling. My original exercise was to derive them for both astrometry and direct imaging, but then I realized they were exactly the same process almost to a T. As you can see here, I don't have much to say about the exercise itself. I pretty much knew exactly what to do at every process and everything came pretty easily. I can't even give insightful thoughts or processes I had while solving it, as there are none.
+
+I think I want these to be more exploratory or problems I find more fun. A great example of this is to instead have the exercise be the area intersected by two circles. I didn't want to do it because it was too similar to a book problem, and I want to keep those separate from the project parts themselves, but it would have been a much better and more interesting choice. Another route I could take to make these more interesting is to focus on making my own book problem similar to the problem about overlapping circles. I don't really have a plan for this moving forward, but I want these to be more fun in future projects.
 
 ### Project Thoughts
 Hot damn that was a large project. I am currently writting this reflection right as I finished the project so that it is fresh in my mind, although I still might take breaks between paragraphs. This project was much larger than all of my other projects and you can tell if you look at the python code. The main file alone was about 650 lines of code, and the helper file I made for this project was about 300 lines of code too. I can definitely feel some bloating going on with these projects, as each new project I get excited about seems to be just ever so larger than the one before it (with the exception being Section 1.5). It probably didn't help that there was also a lot going on in this chapter, but looking back at it, I probably could have cut one or two of the exoplanet detection methods to save time.
@@ -345,4 +412,8 @@ I was the most excited about the detection part when I started to make this proj
 Overall, this project was super long and rather indictative of a trend I am noticing with each section (except for Section 1.5). Each project is getting bigger and more involved than the last, and this is starting to take me a lot longer per section. It isn't entirely fair to compare time on this one (as this one took off near the end of break, so I had to complete it while doing my job), but this one took around 3-4 weeks. My python files are much larger and are way more involved than they normally are. While I am very happy with how this turned out, this project could be polished much more and could be a lot better. But I need to move on. Moving forward, I am going to try to limit how big these projects get, and be more okay with smaller projects such as the scope of Section 1.4 or Section 1.2.
 
 ### Conclusing Thoughts
-last test
+I have a lot of mixed feelings about this particular project. It was both a lot of work and not very fufilling depending on the parts you look at. The self imposed exercise felt very much mundane, but the project felt super bloated. I need to find a better in-between because I want this to be fun at all parts moving forward. There is a good chance this isn't entirely possible, but I want to try and modify how I do things. 
+
+That being said, I believe that every project so far has looked better than the ones that came before. While showing off this project to some of my friends, I made notice of this quality creep. The GUI for this project looks much better than the previous one and way better than the ones I used tkinter with. I do want to actively look into how to make a better GUI, because it is still my least favorite part, but it is looking way cleaner now.
+
+I am hopeful that in future projects, I can be more comfortable with smaller projects. This one took a while, even if I take in account the fact that I was working when most of this project was taking place, it still took a long time because of the scope. I also more or less shrugged off the self imposed exerices because it wasn't very fun. Anyway, I am proud of how this turned out, and I am looking forward to see how things progress as this project grows.
