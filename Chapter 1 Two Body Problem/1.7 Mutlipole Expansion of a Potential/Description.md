@@ -7,8 +7,13 @@ This section focuses on expanding the graviational potential for a massed body. 
 | [Project Description](#project-description) | A description of the coding project I designed for this section of the book, as well as any relevant information I used. |
 | [Reflecting Thoughts](#reflecting-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
 
-## Self Imposes Exercises
-Text1
+## Self Imposed Exercises
+This section is focused primarily on the various multipoles for the graviational potential, with heaviy emphasis on the quadrupole moment. The book mentions that these are found through observations and the inertia of the rotating body, and Appendix A tells you what the values of these moments are for each planet. A large reason that the quadrupole moment (and the other multipole moments as well) aren't easily determined, is because you need a density function for the object in order to find the quadrupole moment. 
+
+I thought it would be fun to derive some of these quadrupole moments, and verify an approximation to these values. I was curious how the quadrupole moment changes with different density functions, and I also wanted to see how close I could get to the measured values. That's what this exercise ended up becoming (even if I did use it for the project itself). I used various different density functions, some fitted with real density distributes, and found the quadrupole moment through its definition. I then compared them to the actual values that have been measured.
+
+### Oblate Spheriod Equation in Spherical Coordinates
+Before jumping into the quadrupole moment, we need to do a little bit of work determining the bounds for the radial variable. We can make our lives a bit easier, as a body isn't just some random ellipsoid, it's more closely approximated through an oblated spherioid. This means that we can consider just two maximum radii (semi-major and semi-minor values) instead of three. Since a celestial body is usually rotating around a polar axis, the semi-major axis ends up being the equatorial radius and the smei-minor axis is the polar radius.
 
 ## Project Description
 Text2
