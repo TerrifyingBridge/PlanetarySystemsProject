@@ -16,6 +16,15 @@ def quadrupole(body: tbs.AstroBody, dist: float, theta: float) -> float:
     return -1*const.PhysicalConstants.gravitational_constant * body.mass * val / dist
 
 
+def generate_coef(l: int) -> list[int]:
+    temp_list: list[int] = []
+    for n in range(l):
+        if (l - 2*n >= 0):
+            scalar = math.pow(2, l)*math.factorial(l)
+            temp_list.append(math.comb(l, n)*math.factorial(2*l - 2*n) / (scalar*math.factorial(l - 2*n)))
+    return temp_list
+
+
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
 sun = tbs.AstroBody(const.Solar.mass, const.Solar.radius*1000)
@@ -35,5 +44,8 @@ z = distance*np.cos(theta)
 cmap = plt.cm.ScalarMappable(cmap=plt.get_cmap("PRGn"))
 plot = ax.plot_surface(x, y, z, facecolors=cmap.to_rgba(values))
 plt.colorbar(plot)
+
+for item in generate_coef(3):
+    print(item)
 
 plt.show()
