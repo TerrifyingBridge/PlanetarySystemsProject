@@ -25,7 +25,7 @@ def exp2(x):
 
 
 line_x1 = [(i / 99) for i in range(100)]
-line_y1 = [exp1(i) for i in line_x1]
+line_y1 = [exp2(i) for i in line_x1]
 
 plt.plot(x, y)
 plt.plot(line_x1, line_y1)
