@@ -99,9 +99,73 @@ $$
 \begin{aligned}
 & A \int \frac{3 \left(\frac{1}{\sqrt{\lambda}} \tan(v)\right)^{2} - 1}{\left(1 + \lambda \left(\frac{1}{\sqrt{\lambda}}\tan(v)\right)^{2}\right)^{5/2}} \frac{1}{\sqrt{\lambda}}\sec^{2}(v)dv \\
 =& \frac{A}{\sqrt{\lambda}} \int \frac{\frac{3}{\lambda} \tan^{2}(v) - 1}{\left(1 + \tan^{2}(v)\right)^{5/2}} \sec^{2}(v)dv \\
-=& \frac{A}{\sqrt(\lambda}} \int \frac{\frac{3}{\lambda} \tan^{2}(v) - 1}{\sec^{5}(v)}\sec^{2}}(v)dv
+=& \frac{A}{\sqrt{\lambda}} \int \frac{\frac{3}{\lambda} \tan^{2}(v) - 1}{\sec^{5}(v)}\sec^{2}(v)dv \\
+=& \frac{A}{\sqrt{\lambda}} \int \frac{\frac{3}{\lambda} \tan^{2}(v) - 1}{\sec^{3}(v)}dv \\
+=& \frac{A}{\lambda^{3/2}} \int \left(3 \tan^{2}(v) - \lambda\right)\cos^{3}(v)dv \\
+=& \frac{A}{\lambda^{3/2}} \int \cos(v) \left(3\sin^{2}(v) - \lambda \cos^{2}(v)\right)dv \\
+=& \frac{A}{\lambda^{3/2}} \int \cos(v) \left[3\sin^{2}(v) - \lambda\left(1-\sin^{2}(v)\right)\right]dv \\
+=&\frac{A}{\lambda^{3/2}} \int \cos(v) \left[(3 + \lambda)\sin^{2}(v) - \lambda\right]dv
 \end{aligned}
 $$
+
+Whew! Lotta math right there. Don't worry, we're not done yet. Here is where we can make our final substitution, which in this case is $w$ substitution. This will allow us to finally finish this integral.
+
+$$ w = \sin(v) \quad \quad dw = \cos(v)dv $$
+$$
+\begin{aligned}
+& \frac{A}{\lambda^{3/2}} \int \left[(3+\lambda)w^{2} - \lambda\right]dw \\
+=& \frac{A}{\lambda^{3/2}} \left[\frac{3 + \lambda}{3}w^{3} - \lambda w\right]
+\end{aligned}
+$$
+
+Thus, the integral has been evaluated. Unfortunately, this doesn't mean our work is done. If you remember, this was originally in terms of $\theta$ and had actual bounds, so we need to go to the start. Our first unravel will take us from $w$ to $v$, which yields the following.
+
+$$ \frac{A}{\lambda^{3/2}} \left[\frac{3 + \lambda}{3}\sin^{3}(v) - \lambda \sin(v)\right] $$
+
+Now we have to unravel back to $u$. Before doing this, I want to have a quick aside which will help us. Originally, we wrote $u$ in terms of $\tan(v)$, but this can be used to find $\cos(v)$ and $\sin(v)$ although we just really need the one. Creating a triangle using $\tan(v)$ we can find the following.
+
+$$ u = \frac{1}{\sqrt{\lambda}}\tan(v) \quad \Rightarrow \quad \tan(v) = \sqrt{\lambda}u  \quad \Rightarrow \quad \sin(v) = \frac{\sqrt{\lambda}u}{\sqrt{1 + \lambda u^{2}}}$$
+
+With this relation, we can substitue this in for the $\sin(v)$ terms. This is going to be a decent amount of rearranging so buckle up.
+
+$$
+\begin{aligned}
+& \frac{A}{\lambda^{3/2}} \left[\frac{3 + \lambda}{3} \frac{\lambda^{3/2}u^{3}}{\left( 1 + \lambda u^{2} \right)^{3/2}} - \frac{\lambda \left(\sqrt{\lambda}u\right)}{\sqrt{1 + \lambda u^{2}}}\right] \\
+=& A \left[\frac{3 + \lambda}{3} \frac{u^{3}}{\left(1 + \lambda u^{2}\right)^{3/2}} - \frac{u}{\sqrt{1 + \lambda u^{2}}}\right] \\
+=& A \left[ \frac{\left(3 + \lambda\right)u^{3}}{3\left(1 + \lambda u^{2}\right)^{3/2}} - \frac{3u\left(1 + \lambda u^{2}\right)}{3 \left(1 + \lambda u^{2}\right)^{3/2}} \right] \\
+=& A \left[ \frac{3u^{3} + \lambda u^{3} - 3u - 3\lambda u^{3}}{3 \left(1 + \lambda u^{2}\right)^{3/2}} \right] \\
+=& A \left[ \frac{(3 - 2\lambda)u^{3} - 3u}{3\left(1 + \lambda u^{2}\right)^{3/2}} \right]
+\end{aligned}
+$$
+
+Alright, now we have one last unraveling to do. Since this is the last one, we can implement our original bounds into the equation. Now that we have these bounds, we can actually solve for what this value is.
+
+$$
+\begin{aligned}
+& A \left.\left[\frac{\left(3 - 2\lambda\right)\cos^{3}(\theta) - 3\cos(\theta)}{3 \left(1 + \lambda u^{2}\right)^{3/2}}\right]\right\vert_{0}^{\pi} \\
+=& A \left[ \frac{(3 - 2\lambda)(-1) - 3(-1)}{3(1 + \lambda)^{3/2}} - \frac{(3 - 2\lambda)(1) - 3(1)}{3(1 + \lambda)^{3/2}} \right] \\
+=& A \left[ \frac{-3 + 2\lambda + 3 - 3 + 2\lambda + 3}{3(1 + \lambda)^{3/2}} \right] \\
+=& A \left[ \frac{4 \lambda}{3(1 + \lambda)^{3/2}} \right]
+\end{aligned}
+$$
+
+Now we're looking a lot better. Unfortunately, we still have some constants to unravel as well to put everything in terms that we like. In this case, we have $A = \frac{\alpha^{5}c^{5}\pi \rho}{5MR_{p}^{2}}$ and $\lambda = \alpha^{2} - 1$. Throwing everything into one big ol' expression yields the following result.
+
+$$
+\begin{aligned}
+& \frac{\alpha^{5}c^{5}\pi \rho}{5MR_{p}^{2}} \left[\frac{4 \left(\alpha^{2} - 1\right)}{3\left(1 + \alpha^{2} - 1\right)^{3/2}}\right] \\ 
+=& \frac{\alpha^{5}c^{5}\pi \rho}{5MR_{p}^{2}} \left[\frac{4\left(\alpha^{2} - 1\right)}{3\alpha^{3}}\right] \\
+=& \frac{4 \rho \alpha^{2}c^{5}\pi \left(\alpha^{2} - 1\right)}{15MR_{p}^{2}}
+\end{aligned}
+$$
+
+Thus, is our final answer for the quadrupole moment for a constant density body. While I am not entirely sure how to verify directly that this is 100% correct, I am rather hopeful that it is. One good test is that for perfectly spherical bodies, the quadrupole moment is zero, which is the case here ($\alpha^{2} - 1 = 0$ for spherical bodies). The sign is also correct as $J_{2}$ should be positive, and this equation even has some form of the fraction $\frac{4}{3}$ which shows up in spheres and ellipsoids when dealing with volume.
+
+Assuming this is correct, I wanted to give this equation parameters for the Sun (using the Sun's average density) and compare it to the actual quadrupole moment. Doing so gave me the following numbers.
+
+$$ J_{2,\text{constant}} = 3.432 \times 10^{-6} \quad \quad J_{2,\text{Sun}} = 2.252 \times 10^{-7} $$
+
+This value gives me more faith in the value I found for the quadrupole. As one might expect, it is much larger than the actual measured quadrupole moment for the Sun. This is because in the average density model, there is a lot more mass on the outer shells than there are in real life, where the density decreases rather rapidly. Since the quadrupole moment is related to the inertia around the polar axis, it makes sense that a model where there is more mass on the outer shell would be greater than the model with less mass.
 
 ## Project Description
 There were a number of iterations I went through when it came to what to actually do for this project. Eventually, I thought it would be rather neat to actually showcase the various multi-pole moments around a celestial body. Having the definition is one part, but it would be cool to have an application that shows how they effect the gravitational potential. Thus started the project for this current section. While there are technically an infinite number of multi-poles, I decided to cap mine out at 11 (starting with a monopole and ending with 2^10-pole).
