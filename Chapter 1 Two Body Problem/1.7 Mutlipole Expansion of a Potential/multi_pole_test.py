@@ -49,7 +49,7 @@ polar_angle = np.linspace(0, np.pi, 100)
 azimuth_angle = np.linspace(0, 2 * np.pi, 100)
 theta, phi = np.meshgrid(polar_angle, azimuth_angle)
 # values = np.array([[monopole(sun, distance) for i in range(100)] for j in range(100)])
-values = np.array([[n_pole(6, theta[j, i]) for i in range(len(theta))] for j in range(len(phi))])
+values = np.array([[n_pole(2, theta[j, i]) for i in range(len(theta))] for j in range(len(phi))])
 
 x = distance * np.sin(theta) * np.cos(phi)
 y = distance * np.sin(theta) * np.sin(phi)
