@@ -151,6 +151,42 @@ def n_pole(degree: int, azimuth: float) -> float:
 
 The reason why I reversed the coefficients is because the way I generated them, it was in terms of greated power of $x$ to least, but I wanted my indexing of the for loop to directly relate to the power of $x$. I could have made this loop go backwards, but I like this solution more even if it is a bit inefficient. The other point of note is that I ended up multiplying the return value by $-1$. This is because in the original definition for the specific multi-pole, they are all negative signed, so this is me compensating for that. Now with these functions, I was armed to start plotting what each of the multi-pole graphs looked like.
 
+One of my original goals was to show how this changed with an increasing radius, but I soon realized that it would be visually interesting, as all of the values would just get smaller. For this reason, I just decided to look at only the nominal radius of the celestial object. In order to show this off, I needed to make a new kind of graph, which plots values on a specific surface, but I needed a surface to plot stuff on. To do this, I used numpy arrays and meshgrids to make different 2D arrays that could be plotted for the surface of a sphere. While making these, I also made another array that kept track of the multi-pole value at that point. The code I made for this is as follows.
+
+```python
+polar_angle = np.linspace(0, np.pi, 100)
+azimuth_angle = np.linspace(0, 2 * np.pi, 100)
+theta, phi = np.meshgrid(polar_angle, azimuth_angle)
+values = np.array([[n_pole(2, theta[j, i]) for i in range(len(theta))] for j in range(len(phi))])
+
+x = np.sin(theta) * np.cos(phi)
+y = np.sin(theta) * np.sin(phi)
+z = np.cos(theta)
+```
+
+From here, it's as simple as plotting these points on the surface of a sphere and adding a color bar as a scale (honestly the colorbar was actually pretty hard to figure out). Since the main topic of the book is the quadrupole moment, I decided to test that one first. This resulting in the following plot being generated from the program.
+
+<p align="center">
+<img src="assets/quad_pole.png", width="500", alt="quad pole">
+</p>
+
+### Making the GUI
+With the plots working for the multi-pole, I decided it was time to work on the final part of the program: the GUI. In projects past, making the GUI has been a rather annoying part of the project and I was using the PyQt6 library again, but this time around it wasn't so bad. I did plan this one ahead like one of the previous projects (I forget which one off the top of my head), so I will be showing that here. My plan for this was to have the traditional instructions and title at the top, the plot of the multi-pole in the middle, and a slider at the bottom that changes what pole you are looking at. A rough outline of my diagram for this is as follows.
+
+<p align="center">
+picture here when I have it
+</p>
+
+As you can see, my original original plan was a dropdown, but I figured a slider would be better instead. Making each element wasn't too different from projects past, and since I was using PyQt6 again a lot of the code ended up being the same. I am going to skip over the parts that aren't new to projects and just talk about new implementations. The first one being, I finally added bold and underline to the title text instead of just large words. I am not sure why this took me so long to add, but I think it looks a lot cleaner. One thing not noticeable but present is that I added some extra padding to the plot elements so they overlap less often. The only time it does is if you rotate the plot so that some of the numbers overlap with the title, but for the most part they are all very much separate.
+
+The main new part of this GUI implementation is the user's interaction with the slider. I wanted the user to be able to change the multi-pole with it, but only have the plot change when the slider was released. I think this adds a bit of flair as the plot isn't constantly changing as you're trying to decide what plot you want to look at. This required having two different user input functions for the slider, each with a different listener. The first listens for when the slider value is changed, and the second listens for when the slider is released from an input. It is a small addition, but I like how it looks. Anyway, enough teasing you on how the GUI looks. My final GUI ended up turning out as such.
+
+<p align="center">
+<img src="assets/gui_final.png", alt="gui final">
+</p>
+
+On one final note. As mentioned before, I did end up including the plots for the odd-degreed multi-poles, even though their constants take them to be 0 for many astronomical bodies. One reason I did this is because there are some astronomical bodies that aren't symmetric about the equatorial plane, even if they aren't as relevant. The biggest reason I did so was because I just wanted to see what they looked like. I mainly wanted to point out that while these functions techncially exist, for many celestial bodies they are 0.
+
 ## Reflecting Thoughts
 ### Section Thoughts
 This section was really rough, but was a very interestin read. The book mentions that the contents are for "graduate students and advanced undergrads" but I can confindently say I have never used Legendre polynomials or Spherical harmonics during my undergraduate career. This isn't to say I couldn't figure it out, it just required a bunch of extra reading and trying to figure out what these concepts even are. Oddly enough, the appendix in the back of the book was more helpful in understanding these concepts then looking them up on the internet. The internet was primarily focused on more math based definitions or electromagnitism. That being said, I did spend a while just trying to understand what the background was for this section.
