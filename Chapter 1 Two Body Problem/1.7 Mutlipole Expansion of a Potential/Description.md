@@ -82,6 +82,27 @@ $$
 \end{aligned}
 $$
 
+It's kind of beautiful in its own way. While it looks bad, it is far from impossible. First, due to the extra $\sin(\theta)$ term, we can implement an easy $u$ substitution. Another step I am going to choose to take is to define a constant variable $A = \frac{\alpha^{5}c^{5}\pi \rho}{5MR_{p}^{2}}$. This is strictly because I don't want to keep typing this term out any longer than I have to. I'll replace it back and simplify at the end. On another note, I am going to not put the bounds of integration and put them back in after unraveling the subtiution terms (there will be more).
+
+$$ u = \cos(\theta) \quad \quad du = -\sin(\theta)d\theta $$
+$$
+A \int \frac{3u^{2}-1}{\left(1 + \lambda u^{2}\right)^{5/2}} du
+$$
+
+This is at least a little better. Unfortunately we still have to make one more substitution to procede with integrating. This substitution looks like the following.
+
+$$ u = \frac{1}{\sqrt{\lambda}}\tan(v) \quad \quad du = \frac{1}{\sqrt{\lambda}}\sec^{2}(v)dv $$
+
+Now we can put our integral in terms of $v$ instead of $u$. This allows us to do a couple more manipulations and simplify it down even more.
+
+$$
+\begin{aligned}
+& A \int \frac{3 \left(\frac{1}{\sqrt{\lambda}} \tan(v)\right)^{2} - 1}{\left(1 + \lambda \left(\frac{1}{\sqrt{\lambda}}\tan(v)\right)^{2}\right)^{5/2}} \frac{1}{\sqrt{\lambda}}\sec^{2}(v)dv \\
+=& \frac{A}{\sqrt{\lambda}} \int \frac{\frac{3}{\lambda} \tan^{2}(v) - 1}{\left(1 + \tan^{2}(v)\right)^{5/2}} \sec^{2}(v)dv \\
+=& \frac{A}{\sqrt(\lambda}} \int \frac{\frac{3}{\lambda} \tan^{2}(v) - 1}{\sec^{5}(v)}\sec^{2}}(v)dv
+\end{aligned}
+$$
+
 ## Project Description
 There were a number of iterations I went through when it came to what to actually do for this project. Eventually, I thought it would be rather neat to actually showcase the various multi-pole moments around a celestial body. Having the definition is one part, but it would be cool to have an application that shows how they effect the gravitational potential. Thus started the project for this current section. While there are technically an infinite number of multi-poles, I decided to cap mine out at 11 (starting with a monopole and ending with 2^10-pole).
 
@@ -174,7 +195,7 @@ From here, it's as simple as plotting these points on the surface of a sphere an
 With the plots working for the multi-pole, I decided it was time to work on the final part of the program: the GUI. In projects past, making the GUI has been a rather annoying part of the project and I was using the PyQt6 library again, but this time around it wasn't so bad. I did plan this one ahead like one of the previous projects (I forget which one off the top of my head), so I will be showing that here. My plan for this was to have the traditional instructions and title at the top, the plot of the multi-pole in the middle, and a slider at the bottom that changes what pole you are looking at. A rough outline of my diagram for this is as follows.
 
 <p align="center">
-picture here when I have it
+<img src="assets/gui_start.png", width="400", alt="gui sketch">
 </p>
 
 As you can see, my original original plan was a dropdown, but I figured a slider would be better instead. Making each element wasn't too different from projects past, and since I was using PyQt6 again a lot of the code ended up being the same. I am going to skip over the parts that aren't new to projects and just talk about new implementations. The first one being, I finally added bold and underline to the title text instead of just large words. I am not sure why this took me so long to add, but I think it looks a lot cleaner. One thing not noticeable but present is that I added some extra padding to the plot elements so they overlap less often. The only time it does is if you rotate the plot so that some of the numbers overlap with the title, but for the most part they are all very much separate.
