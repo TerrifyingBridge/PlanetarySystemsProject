@@ -25,32 +25,47 @@ def exp2(x):
 
 
 def line1(x):
-    return -630*x + 155
+    return -591 * x + 148
+
 
 def line2(x):
-    return (11.87 - 30.5*x) / 0.15
+    return -212.8 * x + 79.11
+
 
 def line3(x):
-    return (7.2 - 7.2*x) / 0.75
+    return -40.96 * x + 22.31
+
+
+def line4(x):
+    return -6.438 * x + 4.772
+
+
+def line5(x):
+    return -1.325 * x + 1.250
+
 
 line_x1 = [(i / 99) for i in range(19)]
 line_y1 = [line1(i) for i in line_x1]
 
-line_x2 = [(i / 99) for i in range(19, 36)]
+line_x2 = [(i / 99) for i in range(19, 33)]
 line_y2 = [line2(i) for i in line_x2]
 
-line_x3 = [(i / 99) for i in range(36, 100)]
+line_x3 = [(i / 99) for i in range(33, 54)]
 line_y3 = [line3(i) for i in line_x3]
 
-for i in range(len(x)):
-    print(x[i], y[i])
+line_x4 = [(i / 99) for i in range(54, 71)]
+line_y4 = [line4(i) for i in line_x4]
 
-print()
-print((line_x2[-1], line_y2[-1]))
+line_x5 = [(i / 99) for i in range(71, 100)]
+line_y5 = [line5(i) for i in line_x5]
+
+print(len(line_x1))
 
 plt.scatter(x, y)
 plt.plot(line_x1, line_y1, c="red")
 plt.plot(line_x2, line_y2, c="orange")
 plt.plot(line_x3, line_y3, c="yellow")
+plt.plot(line_x4, line_y4, c="green")
+plt.plot(line_x5, line_y5, c="purple")
 plt.yscale("log")
 plt.show()
