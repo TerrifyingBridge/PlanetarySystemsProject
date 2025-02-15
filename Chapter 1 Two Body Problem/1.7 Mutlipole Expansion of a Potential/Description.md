@@ -176,19 +176,25 @@ The next part of the self imposed exercises is to estimate the quadrupole moment
 
 I then took this graph, and found the values of 173 different points based on the scale length of the $x$ and $y$ axis. I threw all of these points into a csv file, and put it as part of the project (sun_density_dist.csv). To verify that these points are more or less correct, I created my own plot of this data.
 
-<p>
+<p align="center">
 <img src="assets/sun_dist_plot.png", width="400", alt="Sun Distribution Plot">
 </p>
 
 Since this plot is linear on a log plot (more or less), it would make sense to fit this data to an exponential decay function. However, before doing this, we should at least verify that this is possible. Afterall, we need to actually perform an integration with whatever best fitting function we create. I started the integral for a general exponential decay function ($\boldsymbol{\rho}(\mathbf{r}) = a\exp{-br}$ where $r$ is the distance from the origin, and $a$ and $b$ are constants). You get a nasty answer.
 
 <p align="center">
-Image goes here
+<img src="assets/bad_int.png", width="400", alt="Picture of Ugly Integral">
 </p>
 
 Long story short, after plugging everything in, you get an integral that Wolfram Alpha didn't know how to solve. I'd like to think I can figure out decently hard problems from time to time, but if Wolfram Alpha can't figure it out, that I will not be able to figure it out either.
 
 So, my solution is to estimate these values through a combination of linear density functions. Without getting into the math (that's the next subsection ;) ), having the density be a linear function instead of an exponential makes the $r$ term of the integral simply a polynomial. When evaluating the integral from there, we can use the similar tactics that we used for the constant density, with a little extra bits.
+
+Now all we need is to actually find what these lines are. Since an expoential plot is not perfectly done with a line, I ended up breaking it down into five different chunks that were approximately linear. From here, I used a line of best fit that I found from a website application. I generated the equations for these lines and then plotted them on top of the actual Sun distribution to see the comparison. I also changed the scale to linear, but this doesn't have a huge difference (it was more helpful to see which parts of the graph were approximately linear on this scale).
+
+<p align="center">
+<img src="assets/best_fit.png", width="500", alt="Lines of Best Fit">
+</p>
 
 ## Project Description
 There were a number of iterations I went through when it came to what to actually do for this project. Eventually, I thought it would be rather neat to actually showcase the various multi-pole moments around a celestial body. Having the definition is one part, but it would be cool to have an application that shows how they effect the gravitational potential. Thus started the project for this current section. While there are technically an infinite number of multi-poles, I decided to cap mine out at 11 (starting with a monopole and ending with 2^10-pole).
