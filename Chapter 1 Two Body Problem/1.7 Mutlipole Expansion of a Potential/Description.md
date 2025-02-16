@@ -196,6 +196,51 @@ Now all we need is to actually find what these lines are. Since an expoential pl
 <img src="assets/best_fit.png", width="500", alt="Lines of Best Fit">
 </p>
 
+To make things a bit more clear, the equations for each of the lines are as follows with $R$ being the solar radius.
+
+$$
+\begin{aligned}
+y_{1} =& -591x + 148.00, \quad \quad 0 \leq x < 0.19R \\
+y_{2} =& -212.8x + 79.11, \quad \quad 0.19R \leq x < 0.33R \\
+y_{3} =& -40.96x + 22.31, \quad \quad 0.33R \leq x < 0.54R \\
+y_{4} =& -6.438x + 4.772, \quad \quad 0.54 \leq x < 0.71R \\
+y_{5} =& -1.325x + 1.250, \quad \quad 0.71R \leq x \leq R
+\end{aligned}
+$$
+
+### Quadrupole Moment for a Linear Density
+Before plugging everything in, we need something to plug everything into, and since I have five different linear relations to use, I wanted to be able to actually have something like that instead of repeating the process five times. My method of accomplishing this goal was to solve the quadrupole moment with a general linear relation for density in terms of only the radius of the Sun. Basically,
+
+$$ \rho(\mathbf{r}) = ar + b $$
+
+Where $a$ and $b$ are constants, and $r$ is the radial distance from the origin. Plugging everything into our definition gives us the following lovely integeral to solve.
+
+$$ J_{2} = \frac{-1}{2MR_{p}^{2}} \int_{0}^{2\pi}\int_{0}^{\pi}\int_{0}^{\frac{\alpha c}{\sqrt{1 + \lambda \cos^{2}(\theta)}}} \left(3\cos^{2}(\theta) - 1\right)\sin(\theta) r^{4}\left(ar+b\right)drd\theta d\phi$$
+
+Much like last time, this integral doesn't depend on the azimuth angle, and thus that part of the integral is simply $2\pi$. I have more or less skipped this part and its simplificaion as it is more or less trivial. The remaining integral becomes the following.
+
+$$
+\begin{aligned}
+J_{2} =& \frac{-\pi}{MR_{p}^{2}} \int_{0}^{\pi}\int_{0}^{\frac{\alpha c}{\sqrt{1 + \lambda \cos^{2}(\theta)}}} \left(3\cos^{2}(\theta) - 1\right)\sin(\theta) \left(ar^{5}+br^{4}\right)drd\theta \\
+=& \frac{-\pi}{MR_{p}^{2}} \int_{0}^{\pi} \left(3\cos^{2}(\theta) - 1\right)\sin(\theta) \left.\left[\frac{a}{6}r^{6}+\frac{b}{5}r^{5}\right] \right|^{\frac{\alpha c}{\sqrt{1 + \lambda \cos^{2}(\theta)}}} d\theta \\
+=&  \frac{-\pi}{MR_{p}^{2}} \left[\frac{a(\alpha c)^{6}}{6} \int_{0}^{\pi} \frac{\left(3\cos^{2}(\theta) - 1\right)\sin(\theta)d\theta}{\left(1 + \lambda \cos^{2}(\theta)\right)^{3}} + \frac{b(\alpha c)^{5}}{5} \int_{0}^{\pi}\frac{\left(3\cos^{2}(\theta) - 1\right)\sin(\theta)d\theta}{\left(1 + \lambda \cos^{2}(\theta)\right)^{5/2}}\right]
+\end{aligned}
+$$
+
+This integral is pretty nasty, but don't worry, we've already evaluating the integral on the right, as it is just equivalent to the constant density integral with different constant terms. Really, we just need to evaluate the first integral, which can be done in a similar fashion from the other one. I will now isolate this integral and forget the bounds for now. We will implement them after everything is unraveled at the very end.
+
+$$ \int_{0}^{\pi} \frac{\left(3\cos^{2}(\theta) - 1\right)\sin(\theta)d\theta}{\left(1 + \lambda \cos^{2}(\theta)\right)^{3}} $$
+
+Similar to last time, we can make a simple $u$ substitution. Like last time, there will be a negative sign that will cancel out with the negative at the start, so this part will be ignored during the substitution itself.
+
+$$ u = \cos(\theta), \quad \quad du = -\sin(\theta) d\theta $$
+
+$$
+\begin{aligned}
+=& \int \frac{3u^{2} - 1}{\left(1 + \lambda u^{2}\right)^{3}} du \\
+\end{aligned}
+$$
+
 ## Project Description
 There were a number of iterations I went through when it came to what to actually do for this project. Eventually, I thought it would be rather neat to actually showcase the various multi-pole moments around a celestial body. Having the definition is one part, but it would be cool to have an application that shows how they effect the gravitational potential. Thus started the project for this current section. While there are technically an infinite number of multi-poles, I decided to cap mine out at 11 (starting with a monopole and ending with 2^10-pole).
 
