@@ -26,7 +26,7 @@ Before jumping into the quadrupole moment, we need to do a little bit of work de
 
 First, we need to start off with the equation of an oblate spheriod (with semi-major axis in the $xy$-plane and semi-minor axis on the $z$ axis) in cartesian coordinates. To make things a bit clear, my specific spherical coordinates system is $r$ for radial distance, $\varphi$ for azimuth / equatorial angle, $\theta$ for polar angle, $a$ for semi-major axis, and $c$ for semi-minor axis.
 
-$$ \frac{x^{2} + y^{2}}{a^{x}} + \frac{z^{2}}{c^{2}}  = 1 $$
+$$ \frac{x^{2} + y^{2}}{a^{2}} + \frac{z^{2}}{c^{2}}  = 1 $$
 
 Now, we use the tradiational spherical coordinates for $x$, $y$, and $z$.
 
@@ -238,6 +238,49 @@ $$ u = \cos(\theta), \quad \quad du = -\sin(\theta) d\theta $$
 $$
 \begin{aligned}
 =& \int \frac{3u^{2} - 1}{\left(1 + \lambda u^{2}\right)^{3}} du \\
+\end{aligned}
+$$
+
+In order to simplify this further, we need to break up the top. This will help bring out two different intergrals that we can work with and eventually solve.
+
+$$
+\begin{aligned}
+& \int \frac{3u^{2} - 1}{\left(1 + \lambda u^{2}\right)^{3}} du \\
+=& \int \frac{3u^{2} + \frac{3}{\lambda} - \frac{3}{\lambda} - 1}{\left(1 + \lambda u^{2}\right)^{3}} du \\
+=& \int \frac{\frac{3}{\lambda} \left(1 + \lambda u^{2}\right) - \frac{3}{\lambda} - 1}{\left(1 + \lambda u^{2}\right)^{3}} du \\
+=& \int \left[ \frac{3}{\lambda} \frac{1 + \lambda u^{2}}{\left(1 + \lambda u^{2}\right)^{3}}  - \frac{\frac{3}{\lambda} + 1}{\left(1 + \lambda u^{2}\right)^{3}}\right]du \\ 
+=& \frac{3}{\lambda} \int \frac{du}{\left(1 + \lambda u^{2}\right)^{2}} - \left(\frac{3}{\lambda} + 1\right) \int \frac{du}{\left(1 + \lambda u^{2}\right)^{3}}
+\end{aligned}
+$$
+
+Believe it or not, this actually helps to solve it. At least it helps me. Regardless, our strategy for solving both of these integrals will be the same that we used in the previous integral. This substitution will be as follows.
+
+$$ u = \frac{1}{\sqrt{\lambda}}\tan(v), \quad \quad du = \frac{1}{\sqrt{\lambda}}\sec^{2}(v)dv $$
+
+Instead of doing this all at once, I'm going to show this one integral at a time. I will put all of these terms together at the end once both are evaluated. I will start with the integral on the left first.
+
+$$
+\begin{aligned}
+=& \frac{1}{\sqrt{\lambda}} \int \frac{\sec^{2}(v)dv}{\left(1 + \lambda \left(\frac{1}{\lambda} \tan^{2}(v)\right)\right)^{2}} \\
+=& \frac{1}{\sqrt{\lambda}} \int \frac{\sec^{2}(v)dv}{\left(1 + \tan^{2}(v)\right)^{2}} \\
+=& \frac{1}{\sqrt{\lambda}} \int \frac{\sec^{2}(v)dv}{\sec^{4}(v)} \\
+=& \frac{1}{\sqrt{\lambda}} \int \frac{dv}{\sec^{2}(v)} \\
+=& \frac{1}{\sqrt{\lambda}} \int \cos^{2}(v)dv \\ 
+=& \frac{1}{\sqrt{\lambda}} \left(\frac{1}{2}\cos(v)\sin(v) + \frac{1}{2} \int dv\right) \\
+=& \frac{1}{\sqrt{\lambda}} \left(\frac{1}{2}\cos(v)\sin(v) + \frac{1}{2} v\right)
+\end{aligned}
+$$
+
+We can unravel the $v$ term as we have done before.
+
+$$ u = \frac{1}{\sqrt{\lambda}}\tan(v) \quad \Rightarrow \quad \tan(v) = \sqrt{\lambda}u  \quad \Rightarrow \quad \sin(v) = \frac{\sqrt{\lambda}u}{\sqrt{1 + \lambda u^{2}}}$$
+
+Plugging this into our evaluated integral will yield the following result.
+
+$$
+\begin{aligned}
+=& \frac{1}{2\sqrt{\lambda}} \left(\frac{1}{\sqrt{1 + \lambda u^{2}}} \frac{\sqrt{\lambda} u}{\sqrt{1 + \lambda u^{2}}} + \arctan (\sqrt{\lambda} u)\right) \\
+=& \frac{1}{2} \left(\frac{u}{1 + \lambda u^{2}} + \frac{\arctan(\sqrt{\lambda} u)}{\sqrt{\lambda}}\right)
 \end{aligned}
 $$
 
