@@ -1,16 +1,16 @@
 # Section 1.1 - Introduction
 This particular section focuses on a basic outline of celestial mechanics. Like very basic. The extent of this section talks about the acceleration for a simple 2-body problem and looks at the immediate consequence of this. They mention conversation of energy and momentum, and simplifies it down to a 1-body problem. Outside of that, there isn't too much going on.
 
-I will first go over the self imposed exerices I thought would be benifical and then move onto a description of the coding project.
+I will first go over the self imposed exercise I thought would be beneficial and then move onto a description of the coding project.
 ## Self Imposed Exercises
-Since this is the first descriptiong, I'll explain what I plan on doing here. This book jumps over a couple of concepts it deems as too simple to emphasize (at least I think, it's not an intro book, so I don't blame Scott for not focusing on stuff like conversation of energy), so it skips them. Part of this project is to re-learn these concepts (and learn some LaTeX), so I'll choose a couple derivations or explanations to get practice with this.
+Since this is the first description, I'll explain what I plan on doing here. This book jumps over a couple of concepts it deems as too simple to emphasize (at least I think, it's not an intro book, so I don't blame Scott for not focusing on stuff like conversation of energy), so it skips them. Part of this project is to re-learn these concepts (and learn some LaTeX), so I'll choose a couple derivations or explanations to get practice with this.
 
 Onto the general description of what I am going to do, of which there are two: conservation of angular momentum and conservation of energy. None of these should be too difficult, just a lot of grinding algebra and vector operations. However, before we get into actually showing these, we need to make sure we have our basics outlined. For a 2-body system, our equations of motions are as follows.
 
 $$ \frac{d^{2} \vec{r_{0}}}{d t^{2}} =  \frac{Gm_{1}(\vec{r_{1}} - \vec{r_{0}})}{|\vec{r_{1}} - \vec{r_{0}}|^{3}}, 
 \quad \frac{d^{2} \vec{r_{1}}}{d t^{2}} =  \frac{Gm_{0}(\vec{r_{0}} - \vec{r_{1}})}{|\vec{r_{0}} - \vec{r_{1}}|^{3}}$$
 
-Where $m_{0}$ and $m_{1}$ are the masses of the objects, $G$ is the graviational constant, and $\vec{r_{0}}$ and $\vec{r_{1}}$ are the position vectors of the objects. These two definitions will be helpful in showing the following exercises.
+Where $m_{0}$ and $m_{1}$ are the masses of the objects, $G$ is the gravitational constant, and $\vec{r_{0}}$ and $\vec{r_{1}}$ are the position vectors of the objects. These two definitions will be helpful in showing the following exercises.
 
 ### Conversation of Angular Momentum
 Honestly, this one is kind of cheating, since *technically* the section shows conversation of the relative angular momentum. But I'm going to show it for the 2-body system. To start off, let's get some basic definitions. The book gives us the following equation.
@@ -31,7 +31,7 @@ We can simplify this further. Any vector crossed with itself is simply equal to 
 
 $$ \frac{dL_{tot}}{dt} = m_{0} \vec{r_{0}} \times \ddot{\vec{r_{0}}} + m_{1} \vec{r_{1}} \times \ddot{\vec{r_{1}}} $$
 
-Now using the equations from earlier, we can replace the accerlation terms. I am going to skip a step and also move all scalar terms to the outside that can be factored out. Especially since I think that nothing will be leanred from spending an entire step focusing on it.
+Now using the equations from earlier, we can replace the acceleration terms. I am going to skip a step and also move all scalar terms to the outside that can be factored out. Especially since I think that nothing will be learned from spending an entire step focusing on it.
 
 $$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{0}} \times (\vec{r_{1}} - \vec{r_{0}}) + \vec{r_{1}} \times (\vec{r_{0}} - \vec{r_{1}})) $$
 
@@ -39,7 +39,7 @@ Distributing these cross products around give us the following.
 
 $$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{0}} \times \vec{r_{1}} - \vec{r_{0}} \times \vec{r_{0}} + \vec{r_{1}} \times \vec{r_{0}} + \vec{r_{1}} \times \vec{r_{1}}) $$
 
-An important note, swapping the order of the cross product will result in a change in sign. So $\vec{r_{0}} \times \vec{r_{1}} = -\vec{r_{1}} \times \vec{r_{0}} $. Eliminating cross products that equate to 0 and using this property, we get the following.
+An important note, swapping the order of the cross product will result in a change in sign. So $ \vec{r_{0}} \times \vec{r_{1}} = -\vec{r_{1}} \times \vec{r_{0}} $. Eliminating cross products that equate to 0 and using this property, we get the following.
 
 $$ \frac{dL_{tot}}{dt} = \frac{G m_{0} m_{1}}{|\vec{r_{1}} - \vec{r_{0}}|^{3}} (\vec{r_{0}} \times \vec{r_{1}} - \vec{r_{0}} \times \vec{r_{1}}) $$
 
@@ -55,7 +55,7 @@ Alright, so I'm really glad I did this one. This required me to brush up and re-
 $$ |\vec{v}|^2 = \vec{v} \cdot \vec{v}, \quad |\vec{v}| = \sqrt{\vec{v} \cdot \vec{v}} $$
 
 #### Derivative of the Magnitude Squared of a Vector
-Let's re-write our current derivatrive using the definition stated above, and then apply product rule.
+Let's re-write our current derivative using the definition stated above, and then apply product rule.
 
 $$ \frac{d |\vec{v}|^{2}}{dt} = \frac{d}{dt} (\vec{v} \cdot \vec{v}) $$
 $$ = \frac{d \vec{v}}{dt} \cdot \vec{v} + \vec{v} \cdot \frac{d \vec{v}}{dt} $$
@@ -63,7 +63,7 @@ $$ = \dot{\vec{v}} \cdot \vec{v} + \vec{v} \cdot \dot{\vec{v}} $$
 $$ = 2 \vec{v} \cdot \dot{\vec{v}} $$
 
 #### Derivative of the Reciprocal of the Magnitude of a Vector
-Similar to above, we will re-write our derivative using the defnition stated earlier, and then apply a mix of product and chain rule.
+Similar to above, we will re-write our derivative using the definition stated earlier, and then apply a mix of product and chain rule.
 
 $$ \frac{d}{dt} (\frac{1}{|\vec{v}|}) = \frac{-\frac{d |\vec{v}|}{dt}}{|\vec{v}|^{2}} $$
 $$ = \frac{-1}{|\vec{v}|^{2}} \frac{d}{dt} (\sqrt{\vec{v} \cdot \vec{v}}) $$
@@ -101,14 +101,14 @@ $$ \frac{d E_{tot}}{dt} = 0 $$
 Thus, energy is conserved.
 
 ## Description of Project
-This section of the chapter was focused on the basics of equations of motion for a 2-body system. Because of this, I figured it would be fun to create a simulation of a two body system using the equations of motion outlined. As mentioned this was done through the Python programming language, which meant my knowledge of GUI interface and animaiton was limited. While this is probably far from ideal, I ended up using PyGame to simulate these physics, as it has a rather straightforward update loop, and it is easy to control the fps. My plan was to have two different bodies, modeled as circles on the screen, and each would act on each other through gravity. 
+This section of the chapter was focused on the basics of equations of motion for a 2-body system. Because of this, I figured it would be fun to create a simulation of a two body system using the equations of motion outlined. As mentioned this was done through the Python programming language, which meant my knowledge of GUI interface and animation was limited. While this is probably far from ideal, I ended up using PyGame to simulate these physics, as it has a rather straightforward update loop, and it is easy to control the fps. My plan was to have two different bodies, modeled as circles on the screen, and each would act on each other through gravity. 
 
 ### Set Up
 Before jumping into actually making the planets and the dynamics work, I first created two different types of classes to work with: 2D Vectors and Celestial Objects. This step is a big unneeded as given how small the program ended up being, but I wanted to get some practice in using Python classes.
 #### 2D Vectors
-This was done in another Python file for organization. A 2D vector is simply a vector object that stores two variables x and y. This object comes with a number of methods such as adding, subtracting, multipling by a scalar, normalizing, and getting the magnitude. Doing it this way allowed me to write the parts of the vector as pos.x and pos.y instead of pos[0] and pos[1] (for a vector named pos). I believe this looks a lot cleaner, and the methods for the vectors were very helpful many times thoughout this project. 
+This was done in another Python file for organization. A 2D vector is simply a vector object that stores two variables x and y. This object comes with a number of methods such as adding, subtracting, multiplying by a scalar, normalizing, and getting the magnitude. Doing it this way allowed me to write the parts of the vector as pos.x and pos.y instead of pos[0] and pos[1] (for a vector named pos). I believe this looks a lot cleaner, and the methods for the vectors were very helpful many times throughout this project. 
 
-Also, I used 2D vectors as both objects will remain in the xy-plane. Technically they are 3D vectors, but with the z coordinate being 0. This is more relavent when finding the angular momentum, as this fact is rather implied, so I wanted to mention it now.
+Also, I used 2D vectors as both objects will remain in the xy-plane. Technically they are 3D vectors, but with the z coordinate being 0. This is more relevant when finding the angular momentum, as this fact is rather implied, so I wanted to mention it now.
 #### Objects
 This was also done in another Python file that only contains class. The class does not contain much, simply just the position and velocity vectors for the object, along with its mass and color. There are only two methods for this, and these are just for PyGame to update them. The update method applies a gravitational force for each tick, and then uses that to update velocity and position. The draw method simply draws a circle where the object is. One design choice that should be noted is that the gravitational constant was increased by a factor of 10^4. My comment mentions that this is just increasing the units to a "tick" where one tick is equivalent to 600 seconds, which isn't entirely true, but close enough.
 
@@ -116,7 +116,7 @@ This was also done in another Python file that only contains class. The class do
 To start, I created two celestial objects, which I will refer from now on as planets, with coordinates near the center of the screen. One of the planets is 100 times larger than the other, while the smaller one has an initial velocity. This was because I wanted the program to showcase one planet orbiting around the other, while keeping the masses close enough that the other planet would wobble a little bit. Later in the loop, I put the update methods for each of the planets to apply their force. After this, the planets are drawn in the same draw loop. 
 
 ### Extra Functions
-The last implementation I wanted to add was various functions for values I wanted to see updated as the program ran. These values are as follows: Total Energy, Total Angular Momentum, and Center of Mass. All of these values are calculated as stated above (except for the center of mass, which I'm not going to define as it's just the weighted average of the positions of the two planets) using functions created at the beginning of the program. Later on, during the draw loop, the program calcualtes these values for each tick and prints them to the screen. For simplicity, I tried to keep these values to around 3-4 significant figures.
+The last implementation I wanted to add was various functions for values I wanted to see updated as the program ran. These values are as follows: Total Energy, Total Angular Momentum, and Center of Mass. All of these values are calculated as stated above (except for the center of mass, which I'm not going to define as it's just the weighted average of the positions of the two planets) using functions created at the beginning of the program. Later on, during the draw loop, the program calculates these values for each tick and prints them to the screen. For simplicity, I tried to keep these values to around 3-4 significant figures.
 
 ## Reflecting Thoughts
 Overall, I'm rather happy with how this turned out. The planets were able to orbit each other in the way I wanted them to, and nothing truly terrible happened. I had a bunch of other ideas to make the project longer (ex: having a prompted for the GUI that let the user pick the starting values for the planets), but I remembered that I'm trying to keep these projects small (since there will be a lot). There are a few things that don't work terribly well, such as collision as I didn't add any. When the planets get too close, their distrance goes to 0, which means their force blows up. I didn't really want to fix this (and it isn't really important), so for now it's a fun little feature. 

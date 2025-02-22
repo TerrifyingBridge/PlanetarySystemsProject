@@ -1,5 +1,5 @@
 # Section 1.7 - Multipole Expansion of a Potential
-This section focuses on expanding the graviational potential for a massed body. It starts with centering the coordinate system to the center of mass, and pointing out how we define graviational potential between two points, and over an object. The potential is then expanded using a taylor series, which is then re-written using associated Legendre Polynomials and Spherical Harmonics. Using these relations, the book showcases the equations for the graviational monopole, dipole, and quadrapole. From here, the book focuses on the quadrapole and what it actually means. It shows that for prefectly spherical objects, this value is 0, but for oblate objects (like most celestial bodies) this is non-zero and positive. The book briefly ends by talking about how the quadrapole showcases what happens due to rotational flattening.
+This section focuses on expanding the gravitational potential for a massed body. It starts with centering the coordinate system to the center of mass, and pointing out how we define gravitational potential between two points, and over an object. The potential is then expanded using a Taylor series, which is then re-written using associated Legendre Polynomials and Spherical Harmonics. Using these relations, the book showcases the equations for the gravitational monopole, dipole, and quadrupole. From here, the book focuses on the quadrupole and what it actually means. It shows that for perfectly spherical objects, this value is 0, but for oblate objects (like most celestial bodies) this is non-zero and positive. The book briefly ends by talking about how the quadrupole showcases what happens due to rotational flattening.
 
 | Subsection of Document | Description of Subsection |
 | -----------------------|---------------------------|
@@ -8,7 +8,7 @@ This section focuses on expanding the graviational potential for a massed body. 
 | [Reflecting Thoughts](#reflecting-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
 
 ## Self Imposed Exercises
-This section is focused primarily on the various multipoles for the graviational potential, with heaviy emphasis on the quadrupole moment. The book mentions that these are found through observations and the inertia of the rotating body, and Appendix A tells you what the values of these moments are for each planet (and the Sun). A large reason that the quadrupole moment (and the other multipole moments as well) aren't easily determined, is because you need a density function for the object in order to find the quadrupole moment (amongst other things). 
+This section is focused primarily on the various multipoles for the gravitational potential, with heavy emphasis on the quadrupole moment. The book mentions that these are found through observations and the inertia of the rotating body, and Appendix A tells you what the values of these moments are for each planet (and the Sun). A large reason that the quadrupole moment (and the other multipole moments as well) aren't easily determined, is because you need a density function for the object in order to find the quadrupole moment (amongst other things). 
 
 I thought it would be fun to derive some of these quadrupole moments, and calculate an approximation to these values. I was curious how the quadrupole moment changes with different density functions, and I also wanted to see how close I could get to the measured values. For this exercise, I first used a constant density function, and then made my own linear version which was fitted to the Sun's density distribution. After this, I found the quadrupole moment through its definition, and compared them to the actual values that have been measured.
 
@@ -21,14 +21,14 @@ For this definition, we have $M$ being the mass of the object, $R_{p}$ being the
 
 $$ J_{2} = \frac{-1}{MR_{p}^{2}} \int_{V} \boldsymbol{\rho}(\mathbf{r})P_{2}(\cos(\theta))r^{2}dV $$
 
-### Oblate Spheriod Equation in Spherical Coordinates
-Before jumping into the quadrupole moment, we need to do a little bit of work determining the bounds for the radial variable. We can make our lives a bit easier, as a body isn't just some random ellipsoid, it's more closely approximated through an oblated spherioid. This means that we can consider just two maximum radii (semi-major and semi-minor values) instead of three. Since a celestial body is usually rotating around a polar axis, the semi-major axis ends up being the equatorial radius and the smei-minor axis is the polar radius.
+### Oblate Spheroid Equation in Spherical Coordinates
+Before jumping into the quadrupole moment, we need to do a little bit of work determining the bounds for the radial variable. We can make our lives a bit easier, as a body isn't just some random ellipsoid, it's more closely approximated through an oblate spheroid. This means that we can consider just two maximum radii (semi-major and semi-minor values) instead of three. Since a celestial body is usually rotating around a polar axis, the semi-major axis ends up being the equatorial radius and the semi-minor axis is the polar radius.
 
-First, we need to start off with the equation of an oblate spheriod (with semi-major axis in the $xy$-plane and semi-minor axis on the $z$ axis) in cartesian coordinates. To make things a bit clear, my specific spherical coordinates system is $r$ for radial distance, $\varphi$ for azimuth / equatorial angle, $\theta$ for polar angle, $a$ for semi-major axis, and $c$ for semi-minor axis.
+First, we need to start off with the equation of an oblate spheroid (with semi-major axis in the $xy$-plane and semi-minor axis on the $z$ axis) in cartesian coordinates. To make things a bit clear, my specific spherical coordinates system is $r$ for radial distance, $\varphi$ for azimuth / equatorial angle, $\theta$ for polar angle, $a$ for semi-major axis, and $c$ for semi-minor axis.
 
 $$ \frac{x^{2} + y^{2}}{a^{2}} + \frac{z^{2}}{c^{2}}  = 1 $$
 
-Now, we use the tradiational spherical coordinates for $x$, $y$, and $z$.
+Now, we use the traditional spherical coordinates for $x$, $y$, and $z$.
 
 $$
 \begin{aligned}
@@ -53,7 +53,7 @@ r^{2} &= \frac{a^{2}c^{2}}{c^{2} + \left(a^{2}-c^{2}\right)\cos^{2}(\theta)}
 \end{aligned}
 $$
 
-From here, I made a decision that probably didn't help, but made things look nicer in my opinion. I didn't want to juggle around two different length variables, so I decided to re-write $a$ in terms of $c$. For rotatig celestial bodies, we always have $a \geq c$. From here, it follows that there exists some $\alpha \geq 1$ such that $a = \alpha c$. Thus, $\alpha$ just becomes the multiplier for the polar radius that relates it to the equatorial radius. While this doesn't decrease our number of variables, (still two), I think it makes it easier to keep track of. Re-writting the equation above with this in mind, we get the following.
+From here, I made a decision that probably didn't help, but made things look nicer in my opinion. I didn't want to juggle around two different length variables, so I decided to re-write $a$ in terms of $c$. For rotating celestial bodies, we always have $a \geq c$. From here, it follows that there exists some $\alpha \geq 1$ such that $a = \alpha c$. Thus, $\alpha$ just becomes the multiplier for the polar radius that relates it to the equatorial radius. While this doesn't decrease our number of variables, (still two), I think it makes it easier to keep track of. Re-writing the equation above with this in mind, we get the following.
 
 $$
 \begin{aligned}
@@ -63,14 +63,14 @@ r &= \frac{\alpha c}{\sqrt{1 + \left[\alpha^{2} - 1\right]\cos^{2}(\theta)}}
 \end{aligned}
 $$
 
-I think this equation is a bit cleaner to look at than having both radii. Regardless, this the equation of the radial distance from the origin for an oblate spheriod centered at the origin (much like a celestial body). One can verify some parts of these equation as when the body is a sphere, $\alpha = 1$ and the denominator is simply 1 and gives us a constant radial distance. However, a more confident way to show this equation holds is to use it as the upper bound when finding the volume generated by this oblate spheriod. I verified this myself by going through the math and showing that it was equal to the known volume of an oblate spheriod. I will not show this proof, mainly because this section will already have a lot more math in it to come. If you want to see it, I recommend doing it yourself as an exercise (haha! now I'm giving exercises to the reader >:) ). 
+I think this equation is a bit cleaner to look at than having both radii. Regardless, this the equation of the radial distance from the origin for an oblate spheroid centered at the origin (much like a celestial body). One can verify some parts of these equation as when the body is a sphere, $\alpha = 1$ and the denominator is simply 1 and gives us a constant radial distance. However, a more confident way to show this equation holds is to use it as the upper bound when finding the volume generated by this oblate spheroid. I verified this myself by going through the math and showing that it was equal to the known volume of an oblate spheroid. I will not show this proof, mainly because this section will already have a lot more math in it to come. If you want to see it, I recommend doing it yourself as an exercise (haha! now I'm giving exercises to the reader >:) ). 
 
 ### Quadrupole Moment for a Constant Density
 Before trying to verify the quadrupole moment of the Sun, I wanted to first do an easier task first, which is finding the quadrupole moment for a celestial body with a constant density, namely $\boldsymbol{\rho}(\mathbf{r}) = \rho$. Having the density term just be a constant means we can take it out of our integral, and just focus on trying to solve it itself. Substituting the 2nd degree Legendre Polynomial in, we can re-write our quadrupole moment as follows.
 
 $$ J_{2} = \frac{- \rho}{2MR_{p}^{2}} \int_{0}^{2\pi}\int_{0}^{\pi}\int_{0}^{\frac{\alpha c}{\sqrt{1 + \lambda \cos^{2}(\theta)}}} \left(3\cos^{2}(\theta) - 1\right) r^{4}\sin(\theta)drd\theta d\phi$$
 
-I want to explain a couple steps that I skipped in setting up this integral. For starters, we are working with spherical coordinates so the integrating terms are in terms of the distance from the origin $r$, the azimuth angle $\phi$, and the polar angel $\theta$. The bounds for the azimuth and polar angle are around the entire body all together. The bounds for the azimuth angle are $0$ to $2\pi$ and for the polar angle it is $0$ to $\pi$ as you might exepct. We want to integrate $r$ for the entire body as well, but this depends on the polar angle. To compensate for this, we go to the bound for a given polar angle that we found in the previous exercise. I also added the second degree Legendre Polynomial and took out the $\frac{1}{2}$ from it and put it out front. Since we are integrating across spherical coordinates, there is an extra $r^{2}\sin(\theta)$ term that needs to be added. Lastly, I shortened down $\alpha^{2} - 1 = \lambda$ to make it easier to type and not get terms confused.
+I want to explain a couple steps that I skipped in setting up this integral. For starters, we are working with spherical coordinates so the integrating terms are in terms of the distance from the origin $r$, the azimuth angle $\phi$, and the polar angel $\theta$. The bounds for the azimuth and polar angle are around the entire body all together. The bounds for the azimuth angle are $0$ to $2\pi$ and for the polar angle it is $0$ to $\pi$ as you might expect. We want to integrate $r$ for the entire body as well, but this depends on the polar angle. To compensate for this, we go to the bound for a given polar angle that we found in the previous exercise. I also added the second degree Legendre Polynomial and took out the $\frac{1}{2}$ from it and put it out front. Since we are integrating across spherical coordinates, there is an extra $r^{2}\sin(\theta)$ term that needs to be added. Lastly, I shortened down $\alpha^{2} - 1 = \lambda$ to make it easier to type and not get terms confused.
 
 Truthfully, this integral kinda sucks to do. I will show you how I ended up solving it, but be prepared for some math. I am also going to skip a couple rather easy steps to make way for the longer and more complex parts of solving it. Speaking of, we can integrate the $\phi$ term immediately. This is because nothing actually depends on $\phi$, so we can treat everything else like a constant. Doing this integral simply adds a $2\pi$ term out front. One step we do have to take before doing anything is integrate with respect to $r$, so let's do that really quick.
 
@@ -82,14 +82,14 @@ $$
 \end{aligned}
 $$
 
-It's kind of beautiful in its own way. While it looks bad, it is far from impossible. First, due to the extra $\sin(\theta)$ term, we can implement an easy $u$ substitution. Another step I am going to choose to take is to define a constant variable $A = \frac{\alpha^{5}c^{5}\pi \rho}{5MR_{p}^{2}}$. This is strictly because I don't want to keep typing this term out any longer than I have to. I'll replace it back and simplify at the end. On another note, I am going to not put the bounds of integration and put them back in after unraveling the subtiution terms (there will be more).
+It's kind of beautiful in its own way. While it looks bad, it is far from impossible. First, due to the extra $\sin(\theta)$ term, we can implement an easy $u$ substitution. Another step I am going to choose to take is to define a constant variable $A = \frac{\alpha^{5}c^{5}\pi \rho}{5MR_{p}^{2}}$. This is strictly because I don't want to keep typing this term out any longer than I have to. I'll replace it back and simplify at the end. On another note, I am going to not put the bounds of integration and put them back in after unraveling the substitution terms (there will be more).
 
 $$ u = \cos(\theta) \quad \quad du = -\sin(\theta)d\theta $$
 $$
 A \int \frac{3u^{2}-1}{\left(1 + \lambda u^{2}\right)^{5/2}} du
 $$
 
-This is at least a little better. Unfortunately we still have to make one more substitution to procede with integrating. This substitution looks like the following.
+This is at least a little better. Unfortunately we still have to make one more substitution to proceed with integrating. This substitution looks like the following.
 
 $$ u = \frac{1}{\sqrt{\lambda}}\tan(v) \quad \quad du = \frac{1}{\sqrt{\lambda}}\sec^{2}(v)dv $$
 
@@ -126,7 +126,7 @@ Now we have to unravel back to $u$. Before doing this, I want to have a quick as
 
 $$ u = \frac{1}{\sqrt{\lambda}}\tan(v) \quad \Rightarrow \quad \tan(v) = \sqrt{\lambda}u  \quad \Rightarrow \quad \sin(v) = \frac{\sqrt{\lambda}u}{\sqrt{1 + \lambda u^{2}}}$$
 
-With this relation, we can substitue this in for the $\sin(v)$ terms. This is going to be a decent amount of rearranging so buckle up.
+With this relation, we can substitute this in for the $\sin(v)$ terms. This is going to be a decent amount of rearranging so buckle up.
 
 $$
 \begin{aligned}
@@ -190,7 +190,7 @@ Long story short, after plugging everything in, you get an integral that Wolfram
 
 So, my solution is to estimate these values through a combination of linear density functions. Without getting into the math (that's the next subsection ;) ), having the density be a linear function instead of an exponential makes the $r$ term of the integral simply a polynomial. When evaluating the integral from there, we can use the similar tactics that we used for the constant density, with a little extra bits.
 
-Now all we need is to actually find what these lines are. Since an expoential plot is not perfectly done with a line, I ended up breaking it down into five different chunks that were approximately linear. From here, I used a line of best fit that I found from a website application. I generated the equations for these lines and then plotted them on top of the actual Sun distribution to see the comparison. I also changed the scale to linear, but this doesn't have a huge difference (it was more helpful to see which parts of the graph were approximately linear on this scale).
+Now all we need is to actually find what these lines are. Since an exponential plot is not perfectly done with a line, I ended up breaking it down into five different chunks that were approximately linear. From here, I used a line of best fit that I found from a website application. I generated the equations for these lines and then plotted them on top of the actual Sun distribution to see the comparison. I also changed the scale to linear, but this doesn't have a huge difference (it was more helpful to see which parts of the graph were approximately linear on this scale).
 
 <p align="center">
 <img src="assets/best_fit.png", width="500", alt="Lines of Best Fit">
@@ -213,7 +213,7 @@ Before plugging everything in, we need something to plug everything into, and si
 
 $$ \rho(\mathbf{r}) = ar + b $$
 
-Where $a$ and $b$ are constants, and $r$ is the radial distance from the origin. Plugging everything into our definition gives us the following lovely integeral to solve.
+Where $a$ and $b$ are constants, and $r$ is the radial distance from the origin. Plugging everything into our definition gives us the following lovely integral to solve.
 
 $$ J_{2} = \frac{-1}{2MR_{p}^{2}} \int_{0}^{2\pi}\int_{0}^{\pi}\int_{0}^{\frac{\alpha c}{\sqrt{1 + \lambda \cos^{2}(\theta)}}} \left(3\cos^{2}(\theta) - 1\right)\sin(\theta) r^{4}\left(ar+b\right)drd\theta d\phi$$
 
@@ -283,6 +283,75 @@ $$
 =& \frac{1}{2} \left(\frac{u}{1 + \lambda u^{2}} + \frac{\arctan(\sqrt{\lambda} u)}{\sqrt{\lambda}}\right)
 \end{aligned}
 $$
+Alright, now that one integral is down, let's can move onto the next. Since some of the algebra manipulation is the same I will skip over some steps that I find to be redundant.
+
+$$
+\begin{aligned}
+& \int \frac{du}{\left(1 + \lambda u^{2}\right)^{3}} \\
+=& \frac{1}{\sqrt{\lambda}} \int \frac{\sec^{2}(v)dv}{\left(1 + \tan^{2}(v) \right)^{3}} \\
+=& \frac{1}{\sqrt{\lambda}} \int \frac{\sec^{2}(v)dv}{\sec^{6}(v)} \\
+=& \frac{1}{\sqrt{\lambda}} \int \frac{dv}{\sec^{4}(v)} \\ 
+=& \frac{1}{\sqrt{\lambda}} \int \cos^{4}(v)dv \\
+=& \frac{1}{\sqrt{\lambda}} \left[\frac{1}{4}\cos^{3}(v)\sin(v) + \frac{3}{4}\int \cos^{2}(v)dv\right] \\ 
+=& \frac{1}{\sqrt{\lambda}} \left[\frac{1}{4}\cos^{3}(v)\sin(v) + \frac{3}{8}\cos(v)\sin(v) + \frac{3}{8}v\right] \\
+=& \frac{1}{\sqrt{\lambda}} \left[\frac{1}{4}\frac{1}{\left(1 + \lambda u^{2}\right)^{3/2}} \frac{\sqrt{\lambda}u}{\sqrt{1 + \lambda u^{2}}} + \frac{3}{8}\frac{1}{\sqrt{1 + \lambda u^{2}}} \frac{\sqrt{\lambda}u}{\sqrt{1 + \lambda u^{2}}} + \frac{3}{8}\arctan(\sqrt{\lambda} u)\right] \\
+=& \frac{u}{4\left(1 + \lambda u^{2}\right)^{2}} + \frac{3u}{8\left(1 + \lambda u^{2}\right)} + \frac{3}{8\sqrt{\lambda}} \arctan(\sqrt{\lambda}u)
+\end{aligned}
+$$
+
+Okay so now we can start evaluating the bounds. In my actual exercise I simplified both these integrals together so that it looked nice. While typing this now, I release we can implement the bounds now and eliminate all $u$ terms ahead of time to make this step a bit simpler. The original bounds has $0 \leq \theta \leq \pi$ and since $u = \cos(\theta)$, this implies that our bounds on $u$ is from $1$ to $-1$. I will first implement the bounds for the first integral.
+
+$$
+\begin{aligned}
+=&\left.\frac{1}{2}\left(\frac{u}{1 + \lambda u^{2}} + \frac{1}{\sqrt{\lambda}} \arctan(\sqrt{\lambda}u)\right)\right|^{-1}_{1} \\
+=& \frac{1}{2} \left(\frac{-1}{1 + \lambda} + \frac{1}{\sqrt{\lambda}} \arctan(-\sqrt{\lambda}) - \frac{1}{1 + \lambda} - \frac{1}{\sqrt{\lambda}}\arctan(\sqrt{\lambda})\right) \\
+=& \frac{1}{2} \left(\frac{-2}{1 + \lambda} - \frac{2}{\sqrt{\lambda}} \arctan(\sqrt{\lambda})\right) \\
+=& \frac{-1}{1 + \lambda} - \frac{1}{\sqrt{\lambda}} \arctan(\sqrt{\lambda})
+\end{aligned}
+$$
+Now to put in the bounds for the second integral.
+
+$$
+\begin{aligned}
+=& \left.\frac{u}{4\left(1 + \lambda u^{2}\right)^{2}} + \frac{3u}{8\left(1 + \lambda u^{2}\right)} + \frac{3}{8\sqrt{\lambda}} \arctan(\sqrt{\lambda}u) \right|^{-1}_{1} \\
+=& \frac{-1}{4(1 + \lambda)^{2}} + \frac{-3}{8(1 + \lambda)} + \frac{3}{8\sqrt{\lambda}}\arctan(-\sqrt{\lambda}) - \frac{1}{4(1 + \lambda)^{2}} - \frac{3}{8(1 + \lambda)} - \frac{3}{8\sqrt{\lambda}}\arctan(\sqrt{\lambda}) \\
+=& \frac{-1}{2(1 + \lambda)^{2}} + \frac{-3}{4(1 + \lambda)} - \frac{3}{4\sqrt{\lambda}}\arctan(\sqrt{\lambda})
+\end{aligned}
+$$
+
+Whew. Now to combine these integrals together. In case anyone has forgotten, these two integrals were together each with different coefficients. Now it's time to smash them together.
+
+$$
+\begin{aligned}
+\frac{3}{\lambda}\left(\frac{-1}{1 + \lambda} - \frac{1}{\sqrt{\lambda}} \arctan(\sqrt{\lambda})\right) - \left(\frac{3}{\lambda} + 1\right) \left(\frac{-1}{2(1 + \lambda)^{2}} + \frac{-3}{4(1 + \lambda)} - \frac{3}{4\sqrt{\lambda}}\arctan(\sqrt{\lambda})\right)
+\end{aligned}
+$$
+
+Alright, here is where I throw in the towel. As of right now, my wrist is in a brace and typing is really hard and hurts the longer I do it. For the sake of simply completing this section in a timely manner, I am going to skip the algebra and just write down my simplification of the equation above.
+
+$$ \frac{3\lambda^{2} + 2\lambda + 3}{4\lambda (1 + \lambda)^{2}} + \frac{3(1 - \lambda)}{4\lambda^{3/2}} \arctan(\sqrt{\lambda}) $$
+
+I am sorry in advance, but this step required a lot of algebraic manipulation and would have taken a long while to type out in the markdown file in my current state. You can do the simplification yourself if you don't believe me.
+
+Going back to the original integral, we still need to at least touch on the other part (the integral dealing with the constant term of our linear density relation). Fortunately, this is the same integral that was evaluated in the constant density. So the value that was found before simply replaces the integral.
+
+$$ - \int_{0}^{\pi} \frac{\left(3\cos^{2}(\theta) - 1\right)\sin(\theta)d\theta}{\left(1 + \lambda \cos^{2}(\theta)\right)^{5/2}} = \frac{4\lambda}{3(1 + \lambda)^{3/2}} $$
+
+Putting everything together, the value I found for the quadrupole moment is as follows.
+
+$$ \frac{(\alpha c)^{5}\pi}{MR_{p}^{2}}\left[\frac{a\alpha c}{6}\left[\frac{3\lambda^{2} + 2\lambda + 3}{4\lambda (1 + \lambda)^{2}} + \frac{3(1 - \lambda)}{4\lambda^{3/2}} \arctan(\sqrt{\lambda})\right] + \frac{b}{5}\left[\frac{4\lambda}{3(1 + \lambda)^{3/2}}\right]\right] $$
+
+Here is where my simplification ends. While I could spend some time making this look nicer, I figured this was a fruitless effort, and moved onto the next step. Much like last time, I am unsure how to verify this is the "correct" value for the quadrupole moment. However, this equation is also undefined when the object is a sphere, which is at least a plus. 
+
+From here, I implemented the above equation into a function in Python, so I could re-use it for different values of $a$ and $b$. My general strategy was to break it up into parts. Since my density function is broken into 5 different parts, I needed to adjust for that in my function. The following property can be obtained using linearity of integrals.
+
+$$ \int_{a}^{b} = \int_{0}^{b} - \int_{0}^{a} $$
+
+From here, I pieced together my quadrupole moment. Using very careful implementation of the terms, and piecing everything together in code, I ended up getting the following result.
+
+$$ J_{2,\text{linear}} = -4.370 \times 10^{-7} \quad \quad J_{2,\text{Sun}} = 2.252 \times 10^{-7} $$
+
+Which is... a result. I am both pretty disappointed and pretty content with this answer. The part I am excited about is the magnitude of the value I found. It is very close and only about a factor of 2 off from the measured quadrupole moment. However, the sign is very much incorrect. I spent a while trying to figure out if I missed a negative sign somewhere, but this search came up short. My current hypothesis is that it either comes from an error in the integral or an error in my function in Python. Either way, this is my final answer.
 
 ## Project Description
 There were a number of iterations I went through when it came to what to actually do for this project. Eventually, I thought it would be rather neat to actually showcase the various multi-pole moments around a celestial body. Having the definition is one part, but it would be cool to have an application that shows how they effect the gravitational potential. Thus started the project for this current section. While there are technically an infinite number of multi-poles, I decided to cap mine out at 11 (starting with a monopole and ending with 2^10-pole).
@@ -290,13 +359,13 @@ There were a number of iterations I went through when it came to what to actuall
 This project was significantly smaller than the previous project, but it still has some important moving parts. For my description of the project, I want to break it down into two different parts. The first part of this project was my representation of the different multi-poles and the second part was the GUI that goes with the program itself.
 
 ### Groundwork For Multi-Poles
-In order to program each of the multi-pole contributions, I firsted needed to figure out what each of these multi-poles were. The book has many different representations for these, but I ended up using the one derived from spherical harmonics after simplifying. This makes things a bit easier to determine which multi-pole belongs to what, as they are multiplied by their respective moments. The definition the book gives is as follows.
+In order to program each of the multi-pole contributions, I first needed to figure out what each of these multi-poles were. The book has many different representations for these, but I ended up using the one derived from spherical harmonics after simplifying. This makes things a bit easier to determine which multi-pole belongs to what, as they are multiplied by their respective moments. The definition the book gives is as follows.
 
 $$ \Phi(r, \theta) = -\frac{GM}{r}\left[1 - \sum_{\ell = 1}^{\infty}J_{\ell}\left(\frac{R_{p}}{r}\right)^{\ell}P_{\ell}\left(\cos(\theta)\right)\right] $$
 
 Where $M$ is the mass of the object, $R_{p}$ is an arbitrary reference radius, $J_{\ell}$ is the multi-pole moment, $\ell$ is the degree of the Legendre Polynomial, and $P_{\ell}\left(\cos(\theta)\right)$ is the Legendre Polynomial itself. It should be noted that the book technically starts the sum at $\ell = 2$ instead of $1$, as it was shown earlier in the book that this value is $0$ when our origin is at the center of mass. I wanted to leave this term in here as it will show up in the program, and it would have been much harder to remove it. The book also mentions for most bodies that are symmetric about the equatorial plane, the odd multi-pole moments end up being 0 as well. My program still includes them for a showcase, even if they don't really exit.
 
-This equation pretty much gives me what I need to plot. I want the user to provide a value for $\ell$ and I want my program to spit out what each value does. For simplicity, our units can be such that the $\frac{-GMJ_{\ell}}{r}$ term ends up being 1, as I really only want to show the difference between the maximum and mimimum for each multi-pole. That means we only need the Legendre Polynomials. These are defined as follows using the back of the book.
+This equation pretty much gives me what I need to plot. I want the user to provide a value for $\ell$ and I want my program to spit out what each value does. For simplicity, our units can be such that the $\frac{-GMJ_{\ell}}{r}$ term ends up being 1, as I really only want to show the difference between the maximum and minimum for each multi-pole. That means we only need the Legendre Polynomials. These are defined as follows using the back of the book.
 
 $$ P_{\ell}^{m}(x) = \frac{(-1)^{m}}{2^{\ell}\ell!}\left(1 - x^{2}\right)^{m/2}\frac{d^{\ell + m}}{dx^{\ell + m}}\left(x^{2}-1 \right)^{\ell} $$
 
@@ -304,7 +373,7 @@ This is a tad gross, but we can make life a bit easier. Our equation derived for
 
 $$ P_{\ell}(x) = \frac{1}{2^{\ell}\ell!}\frac{d^{\ell}}{dx^{\ell}}\left(x^{2}-1\right)^{\ell} $$
 
-Unfortunately, my programming skills aren't quite good enough to make a function which implements this polynomial as is. To compensate for this, I first needed to find the actual derivative for a spcific Legendre Polynomial. However, taking this derivative is pretty gross and requires a bunch of product and chain rule. Overall, I wasn't able to find a nice squeaky clean solution. I got around this issue by first expanding out the polynomial term through binomial expansion.
+Unfortunately, my programming skills aren't quite good enough to make a function which implements this polynomial as is. To compensate for this, I first needed to find the actual derivative for a specific Legendre Polynomial. However, taking this derivative is pretty gross and requires a bunch of product and chain rule. Overall, I wasn't able to find a nice squeaky clean solution. I got around this issue by first expanding out the polynomial term through binomial expansion.
 
 $$
 \begin{aligned}
@@ -325,7 +394,7 @@ $$
 And thus we have our polynomial. Before directly moving on, I wanted to point something out that I couldn't figure out how to format properly in this markdown file. The top part of the sum is $\lfloor \ell / 2 \rfloor$ (the floor function), as when $\ell - 2n \leq 0$ then the derivative would just be 0. However this is hard to actually see through the representation because the symbols are so cramped together. I wasn't sure how to fix this, and I apologize for any confusion.
 
 ### Plotting the Multi-Poles
-I promise there is actual coding here. In fact, I'll prove it to you right now. The equation above provides me with all the tools I need in order to make a function for a general Legendre Polynomial. My general process ended up being two parts long: generate a list of the coefficients of the Legendre Polynomials, and use the coefficents to find the actual value when pluggin in $\cos(\theta)$ into the equation. The first part of this process was done using the following function.
+I promise there is actual coding here. In fact, I'll prove it to you right now. The equation above provides me with all the tools I need in order to make a function for a general Legendre Polynomial. My general process ended up being two parts long: generate a list of the coefficients of the Legendre Polynomials, and use the coefficients to find the actual value when plugging in $\cos(\theta)$ into the equation. The first part of this process was done using the following function.
 
 ```python
 def generate_coefficients(degree: int) -> list[int]:
@@ -387,13 +456,20 @@ The main new part of this GUI implementation is the user's interaction with the 
 <img src="assets/gui_final.png", alt="gui final">
 </p>
 
-On one final note. As mentioned before, I did end up including the plots for the odd-degreed multi-poles, even though their constants take them to be 0 for many astronomical bodies. One reason I did this is because there are some astronomical bodies that aren't symmetric about the equatorial plane, even if they aren't as relevant. The biggest reason I did so was because I just wanted to see what they looked like. I mainly wanted to point out that while these functions techncially exist, for many celestial bodies they are 0.
+On one final note. As mentioned before, I did end up including the plots for the odd-degreed multi-poles, even though their constants take them to be 0 for many astronomical bodies. One reason I did this is because there are some astronomical bodies that aren't symmetric about the equatorial plane, even if they aren't as relevant. The biggest reason I did so was because I just wanted to see what they looked like. I mainly wanted to point out that while these functions technically exist, for many celestial bodies they are 0.
 
 ## Reflecting Thoughts
 ### Section Thoughts
-This section was really rough, but was a very interestin read. The book mentions that the contents are for "graduate students and advanced undergrads" but I can confindently say I have never used Legendre polynomials or Spherical harmonics during my undergraduate career. This isn't to say I couldn't figure it out, it just required a bunch of extra reading and trying to figure out what these concepts even are. Oddly enough, the appendix in the back of the book was more helpful in understanding these concepts then looking them up on the internet. The internet was primarily focused on more math based definitions or electromagnitism. That being said, I did spend a while just trying to understand what the background was for this section.
+This section was really rough, but was a very interesting read. The book mentions that the contents are for "graduate students and advanced undergrads" but I can confidently say I have never used Legendre polynomials or Spherical harmonics during my undergraduate career. This isn't to say I couldn't figure it out, it just required a bunch of extra reading and trying to figure out what these concepts even are. Oddly enough, the appendix in the back of the book was more helpful in understanding these concepts then looking them up on the internet. The internet was primarily focused on more math based definitions or electromagnetism. That being said, I did spend a while just trying to understand what the background was for this section.
 
 The content itself was also pretty interesting, if hard to follow. Many equations tended to blow up in size and complexity, and had a lot of terms being shuffled around. I was mainly happy I was able to follow it as well as I did. That being said, there are some short comings to my knowledge about this section. We're reaching the point where trying to understand the background material to a decent extent is going to take a while. For example, I could focus an entire project just on Spherical harmonics or Legendre polynomials alone. However, I do not have the time to focus on these concepts too heavily. Because of this, I am trying to focus just on where they come from, and how they're defined. While I might not understand exactly how they are derived, that will have to be okay for now (especially since the appendix doesn't focus too heavily on it either). While I wish I could just learn everything, unfortunately there is a limit into how much I can while also trying to stay on topic. Overall, I liked this section a lot, even if it wasn't the most groundbreaking topic (although who knows? maybe it will become that later in the book).
+
+### Self Imposed Exercise Thoughts
+This exercise was probably the most challenging one I put myself through so far. I had the thought to try and figure it out near the start after I finished reading the section. I thought if I could give my own density functions, I could easily solve for estimated quadrupole moments. I think I liked this exercise a lot because it was both insightful and my own challenge rather than some random one given to me. It also felt a bit more real than proving various identities or what have you. The idea also evolved over time, but mostly just got smaller. My original plan was to find the quadrupole moments for different density functions, which I suppose I did. However, my original function count was going to be around 5 instead of 2. I also wanted to add in an estimate for the Earth, but left it out for time reasons.
+
+By far the most difficult part about this problem was the integration itself. I have never seen integrals like this before and had to do a lot of research to get through it. Doing a trig substitution to reduce the integral down to a power of cosine to then use power reduction was something I most definitely would not have thought of by myself. If anything, I think it is a bit convenient that the integrals I did do were even possible, as some of them that I tried just flat out gave no solutions when I checked them on Wolfram alpha. 
+
+Estimating the Sun's density distribution and subsequent quadrupole moment was a fun extra part too. This was the first exercise I did where I used code to help me work on the exercise itself. Scraping the data, and fitting them to a few curves was a fun task, and a good refresher for those types of projects. With regards to the quadrupole moment, I truly have no idea where the negative sign comes in when I calculated the quadrupole moment. I figured that I did something wrong, but I truly have no idea what. I know that my bounds for $r$ are correct, and the set up for the integral is correct too. My only other guess is that my density equation does some wonky things when $c < r  < a$ as the density should be 0 for some points and non-zero for others depending on the azimuth angle. I am not sure if this is the problem, but if it isn't, then it has to be one of the other ones I listed in the exercise itself.
 
 ### Project Thoughts
 There were many different iterations for this project's main goal. My original goal was to showcase the different quadrupole moments for each of the planets in the solar system (and maybe even the Sun too), but this ended up going nowhere. When I actually plotted the different quadrupole plots for the different planets, I noticed they were all the same except for the magnitude of the plots themselves. However, since the graphs were coloring the plots based on the maximum and minimum values, this change in magnitude didn't actually show up as anything on the plots. Visually, they were literally all the same.
@@ -402,6 +478,17 @@ From here, I moved onto showing what happens to the quadrupole values for an inc
 
 The project itself was much more straightforward than the previous section, which was by design. I wanted to keep it a bit more contained and smaller, but still interesting, of which I think I did a decent job. It still had a bit of math in the form of finding an equation for the Legendre Polynomials, but I think that's part of the fun. Truthfully, I think the hardest part was either the making sure the coefficients for the Legendre Polynomials were correct or figuring out how to plot the surface color graph. The former was just difficult because it was a lot of math, and the latter was difficult because of how annoying reading the documentation is. There are different documentation for different versions (obviously), which just makes finding the correct type of information all the more difficult.
 
-The last part of the project I want to talk about is the creation og the GUI. I'm sticking to my guns about using PyQt6 over Tkinter, and so far I think it's been a good idea. This project marks 3 that I've done using the library while I have two projects in Tkinter, and it has made things just a little easier to understand. I still am fairly certain I'm not making them very well, but I have no idea how else to go about doing so. That being said, I can tell that working with it is more or less paying off. This GUI I think looks the nicest out of all of them, and it didn't feel like a slog to make. 
+The last part of the project I want to talk about is the creation of the GUI. I'm sticking to my guns about using PyQt6 over Tkinter, and so far I think it's been a good idea. This project marks 3 that I've done using the library while I have two projects in Tkinter, and it has made things just a little easier to understand. I still am fairly certain I'm not making them very well, but I have no idea how else to go about doing so. That being said, I can tell that working with it is more or less paying off. This GUI I think looks the nicest out of all of them, and it didn't feel like a slog to make. 
 
 Overall, I enjoyed this project and I'm happy with how it turned out. I think it's one of the more slicker looking projects I've made so far and I'm curious to see if I'm nearing my limit in quality. Looking ahead in the book, it seems we're reaching the point where the concepts are going to take off in complexity. The remaining two sections in this Chapter look pretty involved and everything seems to be building off each other. However, I am hopeful and excited to see what the next project brings.
+
+### Concluding Thoughts
+This project had almost the opposite problem that the previous section had. This section had a rather small and limited coding project, while the self imposed exercise suffered from a lot of bloat. I wanted to save most of this discourse on the bloat to this section as it deals with the project overall. 
+
+I had big ambitions with the self imposed exercise, and, as mentions, they did not come to fruition. Truthfully, I am okay with this, but it did feel a bit like I left stuff out because I didn't finish everything I wanted. I ended up going down a large rabbit hole with the different integration techniques as well as how to best evaluate the quadrupole moment. This ended up taking a decent amount of the project, and I feel like I could spend many days on this topic alone. Eventually, I realized I was spending too much time on the exercise and needed to move on and just call it quits, even if my answer wasn't entirely satisfactory.
+
+This section quickly became one of my favorite for the chapter. Initially I wasn't too excited about this section, and was rather confused on how this actually applied to anything, and this phase lasted a little while after I finished reading the section. As I went through with the coding project and exercise, I ended up having a lot of fun, and ended up getting lost reading the different resources on this topic. Unfortunately, this was probably one of the more harder sections to explain to my friends, which made sharing my excitement rather difficult.
+
+One last thing I want to mention before closing off is that I really really need to be okay with doing less and ending sooner. The overall project is going to take much much longer than I expected if I keep going on deep dives every time I can. In terms of this document, it is the longest by any section, and took me really long in order to complete. That being said, the completion of this project got delayed by around 3 weeks due to outside forces (getting really sick, and tendonitis in my left hand).
+
+Overall, I really liked this project and section, and I look forward to having fun with these concepts moving forward. I need to be a bit better with project and exercise bloat, but I have hope that I will learn from my mistakes and continue to improve in that regard as well. Time for the next project!
