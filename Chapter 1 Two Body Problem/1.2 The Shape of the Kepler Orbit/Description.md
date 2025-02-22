@@ -1,10 +1,10 @@
 # Section 1.2 - The Shape of the Kepler Orbit
-This section, as you might have guessed, outlines what the different types of Kepler Orbits look like. The section starts off with using the acceleration derivative of $\mathbf{r}$ (or as it's more commonly seen, $\mathbf{\ddot{r}}$) in polar coordinates to derive some basic relations to energy and angular momentum. This then transitions into finding the periapsis and apoapsis. With all of this under our belt, the section transitions into solving the equation of motion that satisfy the differential equation, and ends the section talking about the different cases, and what they look like. The section ended with a discussion on the conditions (assuming a hyperbolic orbit) in order for the test partical to collide with the fixed mass it was orbiting.
+This section, as you might have guessed, outlines what the different types of Kepler Orbits look like. The section starts off with using the acceleration derivative of $\mathbf{r}$ (or as it's more commonly seen, $\mathbf{\ddot{r}}$) in polar coordinates to derive some basic relations to energy and angular momentum. This then transitions into finding the periapsis and apoapsis. With all of this under our belt, the section transitions into solving the equation of motion that satisfy the differential equation, and ends the section talking about the different cases, and what they look like. The section ended with a discussion on the conditions (assuming a hyperbolic orbit) in order for the test partial to collide with the fixed mass it was orbiting.
 
-As last time, I will first go through some self imposed exercises that I thought would be interesting / benifical to work through, then later talk about the project I specifically worked on. On an unrelated note, you will notice that I'm using different vectors than for the previous section. This is because a friend of mine looked at the notation I was using and absolutely hated it. Thus, I have changed to the notation used in this file here. I am not going back to change the old file (something about seeing growth blah blah blah).
+As last time, I will first go through some self imposed exercises that I thought would be interesting / beneficial to work through, then later talk about the project I specifically worked on. On an unrelated note, you will notice that I'm using different vectors than for the previous section. This is because a friend of mine looked at the notation I was using and absolutely hated it. Thus, I have changed to the notation used in this file here. I am not going back to change the old file (something about seeing growth blah blah blah).
 
 ## Self Imposed Exercises
-In my opinion, there is a lot less that this section jumps over, and when it does jump over something, it usually make sense. Most of the jumps over the non-obvious steps come from the derivation of the equation of motion. For this reason, I want to derive this equation of motion myself as an exercise. This cheating a bit, since the book technically does this already, but in my derivation, I'll go into more detail than the book does to make up for it. On top of this, another excerise I want to do is derive the second time derivative of $\mathbf{r}$ in terms of it's components. I think the book also shows this process in the appendix, but I'm not going to be looking there, and doing it myself (mostly for good practice).
+In my opinion, there is a lot less that this section jumps over, and when it does jump over something, it usually make sense. Most of the jumps over the non-obvious steps come from the derivation of the equation of motion. For this reason, I want to derive this equation of motion myself as an exercise. This cheating a bit, since the book technically does this already, but in my derivation, I'll go into more detail than the book does to make up for it. On top of this, another exercise I want to do is derive the second time derivative of $\mathbf{r}$ in terms of it's components. I think the book also shows this process in the appendix, but I'm not going to be looking there, and doing it myself (mostly for good practice).
 
 ### Derivation of $\mathbf{\ddot{r}}$
 First thing I want to point out. For some reason the book uses $\psi$ for the angle in polar coordinates, but I will be using $\theta$ because it conforms to the convention I'm used to. Anyway, as you might imagine we're working in polar coordinates $(r, \theta)$. Alright to start, we're going to consider an object in an orbital plane. Since we're working with polar coordinates, our starting vector is $\mathbf{r} = r\mathbf{\hat{r}}$. Before we start, let's write our polar unit vectors in terms of cartesian unit vectors. 
@@ -26,7 +26,7 @@ Now that we have these values, we can go back to our original problem. As a remi
 
 $$ \frac{d \mathbf{r}}{dt} = \frac{d}{dt} (r \mathbf{\hat{r}}) = \frac{d r}{dt} \mathbf{\hat{r}} + r \frac{d \mathbf{\hat{r}}}{dt} $$
 
-We can substitue our time derivatives with the values found earlier, and use dot notation to clean up the rest.
+We can substitute our time derivatives with the values found earlier, and use dot notation to clean up the rest.
 
 $$ \mathbf{\dot{r}} = \dot{r} \mathbf{\hat{r}} + r \dot{\theta} \boldsymbol{\hat{\theta}} $$
 
@@ -103,11 +103,11 @@ This is helpful, as we can re-write the original differential equation using the
 
 $$ \frac{d^{2}u}{d\theta^{2}} + u = \frac{-1}{L^{2}} \frac{d\Phi_{\text{K}}}{du} = \frac{GM}{L^{2}} $$
 
-Now this is a differential equation I can solve (and much easier than what it was before). Working through this, the characteristic equation has imaginary roots thus the solution to this differetial question will a combination of sines and cosines. Since the differential equation is equal to a constant, the particular solution will just be equal to that. Putting it together, the solution to this differential equation is as follows.
+Now this is a differential equation I can solve (and much easier than what it was before). Working through this, the characteristic equation has imaginary roots thus the solution to this differential question will a combination of sines and cosines. Since the differential equation is equal to a constant, the particular solution will just be equal to that. Putting it together, the solution to this differential equation is as follows.
 
 $$ u(\theta) = c_{1}\cos{\theta} + c_{2}\sin{\theta} + \frac{GM}{L^{2}} $$
 
-Using the inital conditions, we can remove one of these trig functions. Being careful, we can set our starting position of the orbit to be at it's closest when $\theta = 0$. This means we want to minimize $r$ at this point, which is maximizing $u$. Similarly, since this is an orbit, we want $\theta = 2\pi$ to be the same point. Both of these conditions outline exactly what cosine does, and thus we can eliminate the sine term. Doing an extra bit of algebraic manipulation we get the following.
+Using the initial conditions, we can remove one of these trig functions. Being careful, we can set our starting position of the orbit to be at it's closest when $\theta = 0$. This means we want to minimize $r$ at this point, which is maximizing $u$. Similarly, since this is an orbit, we want $\theta = 2\pi$ to be the same point. Both of these conditions outline exactly what cosine does, and thus we can eliminate the sine term. Doing an extra bit of algebraic manipulation we get the following.
 
 $$ \frac{1}{r} = \frac{GM}{L^{2}} (1 + e\cos(\theta)) $$
 
@@ -119,24 +119,24 @@ Adding in this into our equation of motion, and using some algebraic manipulatio
 
 $$ r(\theta) = \frac{a(1 - e^{2})}{1 + e\cos(\theta)} $$
 
-This is our final result. Or at least my final result. This specific solution just works for where the starting condition of the orbit is at the periapsis. A more general solution would be to have another integration constant inside of the cosine part of the function. Regardless, this can be shown to be an ellipsical orbit when $0 < e < 1$ and hyperbolic when $e > 1$ and parabolic when $e = 1$. This is the equation I will use in the program I made for this section.
+This is our final result. Or at least my final result. This specific solution just works for where the starting condition of the orbit is at the periapsis. A more general solution would be to have another integration constant inside of the cosine part of the function. Regardless, this can be shown to be an elliptical orbit when $0 < e < 1$ and hyperbolic when $e > 1$ and parabolic when $e = 1$. This is the equation I will use in the program I made for this section.
 
 ## Description of Project
 Alright, so I think I tried a little too hard on this one? Either that or it was just enough. Regardless, I am kinda happy with the end result.
 
-Since this section was dedicated to describing and deriving Kepler Orbits, I figured that a good program to make would be one that actually showcases these orbits. After deriving the equations of motion, there ended up being three cases, namely energy less than zero, energy greater than zero, and energy equal to zero. The program I built showcases two of these cases, mainly because I forogt the last case (where the orbital path is parabolic).
+Since this section was dedicated to describing and deriving Kepler Orbits, I figured that a good program to make would be one that actually showcases these orbits. After deriving the equations of motion, there ended up being three cases, namely energy less than zero, energy greater than zero, and energy equal to zero. The program I built showcases two of these cases, mainly because I forgot the last case (where the orbital path is parabolic).
 
-My thought for direction on this was two parts: a plot that showed an animation of the orbital path, and a GUI interface that initializes the values for the plot. For the plot, I chose to use the library matplotlib with contributions from the numpy library. For the GUI interface, I used the library tkinter, which also allowed for some compatibility with matplotlib so I could combine the two.
+My thought for direction on this was two parts: a plot that showed an animation of the orbital path, and a GUI interface that initializes the values for the plot. For the plot, I chose to use the library matplotlib with contributions from the numpy library. For the GUI interface, I used the library Tkinter, which also allowed for some compatibility with matplotlib so I could combine the two.
 
 ### Alpha Version
-Going into this particular project, I knew nothing about tkinter (besides its existance) and knew enough about matplotlib to make a plot, but not how to animate it. So this particular part needed a lot of learning. To do this, I created a test file (aptly named test.py). 
+Going into this particular project, I knew nothing about Tkinter (besides its existence) and knew enough about matplotlib to make a plot, but not how to animate it. So this particular part needed a lot of learning. To do this, I created a test file (aptly named test.py). 
 
 I'll go into the particulars of the manipulation of the equations of motion later, as for now I want to talk about what this file is. This file contains the animation of a specific Kepler orbit (I don't remember which one), which I used to learn how to animate in matplotlib without the worry about the GUI. I left this file in here mainly because I wanted to leave a breadcrumb trail as to how I went about creating the project overall. 
 
 Anyway, let's talk about what the program actually contains.
 
 ### Plotting Kepler Orbits in Matplotlib
-The set up for this program is rather simple. We consider an object with fixed mass $M$ which sits at the origin of our plot. We want to consider the path of a test partical with negligable mass when it is dropped on a specific point around this fixed mass. 
+The set up for this program is rather simple. We consider an object with fixed mass $M$ which sits at the origin of our plot. We want to consider the path of a test partial with negligible mass when it is dropped on a specific point around this fixed mass. 
 
 #### Set Up
 
@@ -144,7 +144,7 @@ Setting up the constants are easy, as I just choose a mass of $10^{16}kg$ to sit
 
 $$ r = \frac{a(1-e^{2})}{1 + e \cos{f}} $$
 
-We can be a bit tricky and have $r$ be a function of $f$ (where $r$ is the distance from the fixed mass and $f$ is true anomoly). I create the graph where the periapsis was always to the right of the fixed mass ($\cos(0) = 1$). However, there are a few unknowns that we have to solve in order to actually start plotting. These unknowns are $a$ and $e$ from the equation of motion (semimajor axis and eccentricity respectfully). 
+We can be a bit tricky and have $r$ be a function of $f$ (where $r$ is the distance from the fixed mass and $f$ is true anomaly). I create the graph where the periapsis was always to the right of the fixed mass ($\cos(0) = 1$). However, there are a few unknowns that we have to solve in order to actually start plotting. These unknowns are $a$ and $e$ from the equation of motion (semimajor axis and eccentricity respectfully). 
 
 To combat this, I gave the program two initial values: the energy of the system and the starting distance of the periapsis from the origin. Using these two starting values, we can find the values for this unknowns. The first we will look for is $a$. The book derives the following relation between $a$ and $E$.
 
@@ -158,7 +158,7 @@ With one unknown found, we can use its value to find the other. To solve for the
 
 $$ r_{0} = \frac{a(1 - e^{2})}{1 + e \cos{0}} $$
 
-Here is where our choice of having $f$ be 0 is helpful, as we can re-write this equaiton as follows.
+Here is where our choice of having $f$ be 0 is helpful, as we can re-write this equation as follows.
 
 $$ \frac{a(1 - e^{2})}{1 + e} = \frac{a(1 - e)(1 + e)}{1 + e} $$
 
@@ -182,7 +182,7 @@ In order to animate the path, I first created three different "lines" (as named 
 Regardless, The init function simply set up the bounds of the plot, in this case 500x500, which was chosen arbitrarily. The update function is where the animation actually happens. For each frame, I created two lists that were a chunk of the graph based on the current frame. This was then plotted using line1, which created the tracer of the orbit. The second line was a singular dot, which was just the last two data points of the segment obtained for line1, and this dot went in line2. The data for line3 was never changed as it was a fixed mass.
 
 ### Creating the GUI
-This is the last part of the program, and took around half of the time to create. I wanted a GUI that took in starting values for my program. The library I chose to use was tkinter, because I saw that it had easy embeding of matplotlib figures. I didn't spend much time on design, as the space was cramped and I wasn't entirely sure what I was doing. I created some instruction labels at the top for people to read, and added in text boxes for people to put their starting values. Just for fun, I added in two radio buttons that determined the starting position of the particle as well. 
+This is the last part of the program, and took around half of the time to create. I wanted a GUI that took in starting values for my program. The library I chose to use was Tkinter, because I saw that it had easy embedding of matplotlib figures. I didn't spend much time on design, as the space was cramped and I wasn't entirely sure what I was doing. I created some instruction labels at the top for people to read, and added in text boxes for people to put their starting values. Just for fun, I added in two radio buttons that determined the starting position of the particle as well. 
 
 To make things just a bit spicier, I added a try/except block so that the program wouldn't crash if the user gave an incorrect response. If any error did show up, then a big red label appeared and told the user to try again. I also added a button at the bottom of the interface that started the simulation. All this did was remove all of the widgets on the screen and replaced it with the simulation I wanted to see (the orbit). I did not create a button to go back to the start however, so the user has to restart the program when the simulation starts.
 
