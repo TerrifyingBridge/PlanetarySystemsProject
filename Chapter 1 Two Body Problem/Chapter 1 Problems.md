@@ -1,9 +1,9 @@
 # Chapter 1 Problems
-This file will outline my solutions to the practice problems in the back of the book. Each chapter of the book has a number of different practice problems (some more than others), and I want to try my hand at solving all of them. Truthfully, I think this is very ambitious, especially since growing up I wasn't always able to finish all of the practice problems in my math text books (I probably could now, but that's a lot of work). Each of the problems for each chapter have a difficulty ranking. I will be keeping this trend as well when outlining the problems using the same notation. In case you are not aware, the book has three different difficulty ratinges: 1, 2, and 3. In this book, 1 is the easiest and 3 is the hardest. The book also uses brackets to show off these ratings so they will look like this: [1]. Before jumping into it, there are a couple of things I would like to preface that will not be in the rest of the problem files for future chapters.
+This file will outline my solutions to the practice problems in the back of the book. Each chapter of the book has a number of different practice problems (some more than others), and I want to try my hand at solving all of them. Truthfully, I think this is very ambitious, especially since growing up I wasn't always able to finish all of the practice problems in my math text books (I probably could now, but that's a lot of work). Each of the problems for each chapter have a difficulty ranking. I will be keeping this trend as well when outlining the problems using the same notation. In case you are not aware, the book has three different difficulty ratings: 1, 2, and 3. In this book, 1 is the easiest and 3 is the hardest. The book also uses brackets to show off these ratings so they will look like this: [1]. Before jumping into it, there are a couple of things I would like to preface that will not be in the rest of the problem files for future chapters.
 
 The problems for each chapter aren't exactly organized by the section you need to finish reading in order to solve them. For example, the first three problems in chapter 1 require you to understand section 1.3 while problem 9 can be completed upon finishing section 1.2. Because of this, my original plan was to wait until the end of the chapter to complete them. This way, I know that I had the capability to solve every problem. However, I fear that when/if I finish a chapter, I will force myself to do a bunch of problems instead of actually going through and learning the parts that I find interesting. So, I have decided to just do the problems as I see fit and whenever I feel like it. This might change as things continue but that's my current plan. 
 
-Each problem will have a main title, and the actual problem itself. From there I will give my solution and final commentary at the end. One thing I also thought would be fun is to give my own take on the difficulty of the problems. I like to have a bit more fine measurment, so my rating scale will be a 1 through 5 scale (1 being easy and 5 being difficult), with the exception of 6 which means I wasn't able to solve it and gave up. To stand out from the book, I will place my difficulty in {} instead. Lastly, on the off chance anyone actually reads these problems besides me: **I am not always going to be able to verify if these solutions are correct**. This whole endeavor is my personal project and virtually no one is helping me, so if I can't figure it out on my own or look up a solution, I have almost no way of verifying if I am correct. I am fine with it, but I am sure someone copying me will not.
+Each problem will have a main title, and the actual problem itself. From there I will give my solution and final commentary at the end. One thing I also thought would be fun is to give my own take on the difficulty of the problems. I like to have a bit more fine measurement, so my rating scale will be a 1 through 5 scale (1 being easy and 5 being difficult), with the exception of 6 which means I wasn't able to solve it and gave up. To stand out from the book, I will place my difficulty in {} instead. Lastly, on the off chance anyone actually reads these problems besides me: **I am not always going to be able to verify if these solutions are correct**. This whole endeavor is my personal project and virtually no one is helping me, so if I can't figure it out on my own or look up a solution, I have almost no way of verifying if I am correct. I am fine with it, but I am sure someone copying me will not.
 
 ## Problem 1 - [1] {1}
 > A **geosynchronous orbit** is an orbit with period equal to the spin period of the Earth. Show that a circular geosynchronous orbit has radius $r_{\text{sync}} = 42164 \text{ km}$. You may approximate the Earth as spherical and ignore the effects of the Moon and Sun. Hint: $42241 \text{ km}$ is not correct.
@@ -30,15 +30,30 @@ $$ r_{\text{sync}} = 42164.18038 \text{ km} $$
 $$ r_{\text{sync}} \approx 42164 \text{ km} $$
 
 ### My Commentary
-This problem was rather simple, and was just centered around basic use of an equation. Can't say I have too much commentary besides talking about the hint mentioned, as it implies the existance of a common misunderstanding that would yield an answer of $42241 \text{ km}$ instead. That incorrect answer was easy to find, as it comes from having the period of Earth's rotation being exactly 1 day instead of 0.99727 days. Outside of that, nothing too much to say. It took my significantly longer to type this up than to actually do it.
+This problem was rather simple, and was just centered around basic use of an equation. Can't say I have too much commentary besides talking about the hint mentioned, as it implies the existence of a common misunderstanding that would yield an answer of $42241 \text{ km}$ instead. That incorrect answer was easy to find, as it comes from having the period of Earth's rotation being exactly 1 day instead of 0.99727 days. Outside of that, nothing too much to say. It took my significantly longer to type this up than to actually do it.
+
+## Problem 2 - [1] {3}
+> Prove the following formulas for time averages over a bound Kepler orbit of semimajor axis $a$ and eccentricity $e$: 
+> $$
+\begin{aligned}
+\langle v^4 \rangle =& \left(\frac{GM}{a}\right)^{2} \left[4\left(1 - e^{2}\right)^{-1/2} - 3\right] \\
+\langle v^{2} / r \rangle =& \frac{GM}{a^{2}} \left[2\left(1 - e^{2}\right)^{-1/2} - 1 \right] \\
+\langle \left(\mathbf{r} \cdot \mathbf{v}\right)^{2} / r^{3} \rangle =& \frac{GM}{a^{2}} \left[\left(1 - e^{2}\right)^{-1/2} - 1\right]
+\end{aligned}$$
+
+### My Solution
+text
+
+### My Commentary
+I loathed this problem. All three parts were horrible. Truth be told, I probably put in more work than was intended, but (in my opinion) that was not clear going in. As can be seen from my solutions above, these three problems involved some nasty and stupid integrals. Some of these tricks were the first time I've ever seen them so a lot of work went into actually trying to figure out how all these were done. I would not label these problems as the easiest difficulty, as these were some of the grossest integrals I've been asked to solve. I think a big reason my score wasn't larger was because I was trying to wager logical difficulty with perseverance, as I don't think the latter should be weighted too much. I believe that is what the author of the book was going for with his difficulty rating, as I'm sure these integrals are easy if you just look up the answer or use an integral table. For some reason that route felt super unfulfilling, and I did the monstrosity that can be seen above. I didn't like this problem.
 
 ## Problem 4 - [1] {1}
 > Many computing languages provide the function $\text{atan2}(y, x)$, which yields the angle in radians between the positive $x$-axis and the vector from the origin to the point $(x, y)$. Find an expression for the true anomaly of a bound orbit in terms of the eccentric anomaly using this function.
 
 ### My Solution
-To start this problem, consider a point in 2D space $(x, y)$. The angle between the $x$-axis and this point, let's call it $\theta$ has a couple of helpful relations with regards to the point itself. By definition, we have that $\tan (\theta) = \frac{y}{x}$ and we also have $\tan (\theta) = \frac{\sin (\theta)}{\cos (\theta)}$. While whoever you are dear reader probably already knew this, my biggest point in bringing it up is that we can simply substitue $\sin (\theta)$ for $y$ and $\cos (\theta)$ for $x$.
+To start this problem, consider a point in 2D space $(x, y)$. The angle between the $x$-axis and this point, let's call it $\theta$ has a couple of helpful relations with regards to the point itself. By definition, we have that $\tan (\theta) = \frac{y}{x}$ and we also have $\tan (\theta) = \frac{\sin (\theta)}{\cos (\theta)}$. While whoever you are dear reader probably already knew this, my biggest point in bringing it up is that we can simply substitute $\sin (\theta)$ for $y$ and $\cos (\theta)$ for $x$.
 
-The biggest reason for doing this is because we can immediately use the two relations between true anomaly and eccentric anomaly that is found in the book. One could derive this themself, but the book gives it to us, so I shant bother for this problem. Regardless, the two relations that we will focus on are the following.
+The biggest reason for doing this is because we can immediately use the two relations between true anomaly and eccentric anomaly that is found in the book. One could derive this themself, but the book gives it to us, so I shan't bother for this problem. Regardless, the two relations that we will focus on are the following.
 
 $$ \cos (f) = \frac{\cos (u) - e}{1 - e \cos (u)} \quad \quad \sin (f) = \frac{(1 - e^{2})^{1/2}\sin (u)}{1 - e \cos (u)} $$
 
@@ -128,10 +143,10 @@ Here, I subtracted the resulting 1D array with my original 1D array I made for t
 I guess this goes to show that sometimes problems are as simple as they seem. I am glad that I went through and checked my work, but truthfully, I spent more time checking my work than I did solving the original problem. I guess I am just used to being absolutely stuck on a certain problem to the point where when I find one that comes naturally to me I don't trust my own solution. I suppose it was fun checking my work, but overall, it was a pretty simple problem.
 
 ## Problem 5 - [1] {1}
-> Find the maximum time that a coment on a parabolic orbit can spend inside the Earth's orbit ($r < 1 \text{au}$) during a single perihelion passage. You may ignore perturbations from the planets.
+> Find the maximum time that a comet on a parabolic orbit can spend inside the Earth's orbit ($r < 1 \text{au}$) during a single perihelion passage. You may ignore perturbations from the planets.
 
 ### My Solution
-This problem directly references the perihelion, which indicates that we are working with the Sun as the main body of orbit. Since the orbiting body is a comet, I treated this as a massless orbiting particle around the Sun, as when compared to the Sun's values, they will be incredibly negligable. If this is an incorrect assumption, then the rest of this answer will probably be wrong.
+This problem directly references the perihelion, which indicates that we are working with the Sun as the main body of orbit. Since the orbiting body is a comet, I treated this as a massless orbiting particle around the Sun, as when compared to the Sun's values, they will be incredibly negligible. If this is an incorrect assumption, then the rest of this answer will probably be wrong.
 
 The first order of business is to have a start to the problem. In order to get the time spent in an orbit, we have to actually have the orbit itself. Fortunately, the book provides us the equation of the distance from the center of the mass in terms of true anomaly, which is as follows.
 
@@ -180,17 +195,17 @@ This is the time from the perihelion to 1 au, so in order to find the time betwe
 $$ t \approx 87882 \text{ sec} \approx 24.4 \text{ hours} $$
 
 ### My Commentary
-I am very unsure of my answer and my general process. I believe that if those two aspects are true, then the solution I found should be valid (unless I made a calculator error). That being said, every level 1 difficulty problem has been really easy to get through, (except for the integrals, but that's just because they're a lot of work, not really because of difficulty), so I am assuming it can't be that far off.
+I am very unsure of my answer and my general process. I believe that if those two assumptions are true, then the solution I found should be valid (unless I made a calculation error). That being said, every level 1 difficulty problem has been really easy to get through, (except for the integrals, but that's just because they're a lot of work, not really because of difficulty), so I am assuming it can't be that far off.
 
-Regardless, this doesn't exactly match what I've found online, as the only source I've found said that this time period is a couple of days long, while I found about only 1 day (Earth days that is). However, the "source" was Google's AI assistant which I don't entirely trust at the moment. This trust is immediately made worse, as when I looked for resources a second time, the same Google AI mentioned a few weeks. 
+Regardless, this doesn't exactly match what I've found online, as the only source I've found said that this time period is a couple of days long, while my answer is about only 1 day (Earth days that is). However, the "source" was Google's AI assistant which I don't entirely trust at the moment. This trust is immediately made worse, as when I looked for resources a second time, the same Google AI mentioned a few weeks. 
 
-Long story short is, I don't entirely know if this is correct or not, but it seems to make sense to me. It was fun working with parabolic orbits. Most of my projects that deal with orbits are either elliptical or hyperbolic, so being forced to work with parabolic orbits is pretty cool. I wish there was more to do with parabolic orbits, but they don't really stand out, and probably aren't that common either.
+Long story short, I don't entirely know if this is correct or not, but it seems to make sense to me. It was fun working with parabolic orbits. Most of my projects that deal with orbits are either elliptical or hyperbolic, so being forced to work with parabolic orbits is pretty cool. I wish there was more to do with parabolic orbits, but they don't really stand out, and probably aren't that common either.
 
 ## Problem 9 - [1] {1}
 > In July 2015 the New Horizons spacecraft encountered Pluto. The impact parameter of the encounter was $13700 \text{ km}$ and the relative velocity was $13.8 \text{ km} \text{ s}^{-1}$. By what angle was the spacecraft's trajectory deflected during the encounter? The mass of Pluto is $1.303 \times 10^{22} \text{ km}$.
 
 ### My Solution
-This problem is rather straightforward. As given to us by the book in Section 1.2, we have a relation between the delfection angle $\theta$ of an unbound orbit with the mass $M$, impact parameter $b$, and velocity of the object $v$. This relation is as follows.
+This problem is rather straightforward. As given to us by the book in Section 1.2, we have a relation between the deflection angle $\theta$ of an unbound orbit with the mass $M$, impact parameter $b$, and velocity of the object $v$. This relation is as follows.
 
 $$ \tan(\frac{1}{2}\theta) = \frac{GM}{bv^{2}} $$
 
@@ -212,7 +227,7 @@ $$ \frac{1}{2}\theta = \tan^{-1}(3.333 \times 10^{-4}) \approx 3.333 \times 10^{
 $$ \theta \approx 6.6666 \times 10^{-4} \text{ rads}$$
 $$ \theta \approx 0.0382^{\circ} $$
 
-I'm violating significant sigures here (not that I've been consistent in the first place), but I just really like how it rounds to a bunch of $6$'s. 
+I'm violating significant figures here (not that I've been consistent in the first place), but I just really like how it rounds to a bunch of $6$'s. 
 
 ### My Commentary
-This problem is probably the easiest one for this chapter if I had to guess. I am not all the way through the problems, but as of right now, it just seems really easy. There isn't much to do besides plug in values, and there is only minor solving for $\theta$. That being said, the result made me question my answer. Getting such a small number made me question if I was correct, so I checked my work with online resources. I saw that the actual deflection was by about 1 degree or so, and that's close enough, even if it's off by like 2 orders of magnitude especially since the numbers I found for the actual event were different than what the book said (ex: the fly-by velocity was $11 \text{ km} \text{ s}^{-1}$ instead of $13.8 \text{ km} \text{ s}^{-1}$). I am choosing to believe this is the correct solution the book intended as I am unsure how to find this angle while also keeping this problem a 1 difficulty.
+This problem is probably the easiest one for this chapter if I had to guess. I am not all the way through the problems, but as of right now, it just seems really easy. There isn't much to do besides plug in values, and there is only minor solving for $\theta$. That being said, the result made me question my answer. Getting such a small number made me question if I was correct, so I checked my work with online resources. I saw that the actual deflection was by about 1 degree or so, and that's close enough, even if it's off by like 2 orders of magnitude. I was made a bit more confident too since the numbers I found for the actual event were different than what the book said (ex: the fly-by velocity was $11 \text{ km} \text{ s}^{-1}$ instead of $13.8 \text{ km} \text{ s}^{-1}$). I am choosing to believe this is the correct solution the book intended as I am unsure how to find this angle while also keeping this problem a 1 difficulty.
