@@ -11,10 +11,14 @@
             "id": "7fb8de78b32e7bca",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Chapter 1 Two Body Problem/Chapter 1 Problems.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Chapter 1 Problems"
             }
           }
         ]

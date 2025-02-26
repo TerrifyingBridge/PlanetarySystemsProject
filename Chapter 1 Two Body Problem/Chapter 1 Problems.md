@@ -34,7 +34,8 @@ This problem was rather simple, and was just centered around basic use of an equ
 
 ## Problem 2 - [1] {3}
 > Prove the following formulas for time averages over a bound Kepler orbit of semimajor axis $a$ and eccentricity $e$: 
-> $$
+
+$$
 \begin{aligned}
 \langle v^4 \rangle =& \left(\frac{GM}{a}\right)^{2} \left[4\left(1 - e^{2}\right)^{-1/2} - 3\right] \\
 \langle v^{2} / r \rangle =& \frac{GM}{a^{2}} \left[2\left(1 - e^{2}\right)^{-1/2} - 1 \right] \\
@@ -42,7 +43,53 @@ This problem was rather simple, and was just centered around basic use of an equ
 \end{aligned}$$
 
 ### My Solution
-text
+Since this problem involves three different orbital averages, I will go through them one at a time to make things a bit more digestible. Before doing this, I think it is important to find an equation for $v$ that we will be using for the first two averages. From the book, we have these two equations.
+
+$$
+\begin{aligned}
+E =&\frac{1}{2}v^{2} - \frac{GM}{r} \\
+E =& -\frac{GM}{2a}
+\end{aligned}
+$$
+
+Both of these equations have an $E$ in common (they are both the same energy), so we can put them equal to each other and solve for $v$. The algebra is more or less trivial, so I will show you the result I ended up using.
+
+$$ v^{2} = GM\left(\frac{2}{r} - \frac{1}{a}\right) = \frac{GM}{ar} \left(2a - r\right) $$
+
+Since both of the first two orbital averages contain an even power for velocity, I left my found result in terms of $v^{2}$. With this out of the way, let's move onto the orbital averages. 
+
+#### Orbital Average: $\langle v^{4} \rangle$
+The orbital average method I ended up using for this integral ended up being the one in terms of eccentric anomaly, which has the following definition.
+
+$$ \langle X \rangle = \frac{1}{2\pi} \int_{0}^{2\pi}\left(1 - e \cos(u)\right)Xdu \quad = \quad \frac{1}{2\pi} \int_{0}^{2\pi} \frac{r(u)}{a} X du $$
+
+This last part I added in to make initial simplification a bit easier to work with.  Now, let's add in our $v^{4}$ term.
+
+$$\begin{aligned}
+\langle v^{4} \rangle =& \frac{1}{2\pi} \int_{0}^{2\pi}\left(\frac{GM}{ar}\right)^{2} \left(2a - r\right)^{2} \frac{r}{a}du \\
+=& \frac{1}{2\pi} \left(\frac{GM}{a}\right)^{2} \int_{0}^{2\pi} \left(\frac{4a^{2}}{r^{2}} - \frac{4a}{r} + 1\right) \frac{r}{a} du \\
+=& \frac{1}{2\pi} \left(\frac{GM}{a}\right)^{2} \int_{0}^{2\pi} \left(\frac{4a}{r} - 4 + \frac{r}{a}\right)du \\
+=& \frac{1}{2\pi} \left(\frac{GM}{a}\right)^{2} \left[4\int_{0}^{2\pi}\frac{a}{r}du -4\int_{0}^{2\pi}du + \int_{0}^{2\pi}\frac{r}{a}du\right]
+\end{aligned}$$
+
+Now we have three fun integrals to work with. Moving forward, I will evaluate each of these integrals individually and plug the values back in at the end. Purely because I like to start with the easier integrals first, we're going to start with the last integral and move our way forward.
+
+$$\begin{aligned}
+\int_{0}^{2\pi}\frac{r}{a}du =& \int_{0}^{2\pi}\left(1 - c\cos(u)\right)du \\
+=& \left.u - e\sin(u)\right|_{0}^{2\pi} \\
+=& 2\pi - e(0) - (0 - e(0))\\
+=& 2\pi
+\end{aligned}$$
+
+Alright this one wasn't so bad. Let's move onto the middle integral now.
+
+$$4\int_{0}^{2\pi} du = \left.4u\right|_{0}^{2\pi} = 4(2\pi) - 4(0) = 8\pi$$
+
+Also not so bad. Unfortunately, these integrals do not stay this way for long. I will now evaluate the remaining integral.
+
+$$\begin{aligned}
+4\int_{0}^{2\pi} \frac{a}{r}du =& 4\int_{0}^{2\pi} \frac{du}{1 - e\cos(u)}
+\end{aligned}$$
 
 ### My Commentary
 I loathed this problem. All three parts were horrible. Truth be told, I probably put in more work than was intended, but (in my opinion) that was not clear going in. As can be seen from my solutions above, these three problems involved some nasty and stupid integrals. Some of these tricks were the first time I've ever seen them so a lot of work went into actually trying to figure out how all these were done. I would not label these problems as the easiest difficulty, as these were some of the grossest integrals I've been asked to solve. I think a big reason my score wasn't larger was because I was trying to wager logical difficulty with perseverance, as I don't think the latter should be weighted too much. I believe that is what the author of the book was going for with his difficulty rating, as I'm sure these integrals are easy if you just look up the answer or use an integral table. For some reason that route felt super unfulfilling, and I did the monstrosity that can be seen above. I didn't like this problem.
