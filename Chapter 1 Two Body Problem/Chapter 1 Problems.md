@@ -87,9 +87,57 @@ $$4\int_{0}^{2\pi} du = \left.4u\right|_{0}^{2\pi} = 4(2\pi) - 4(0) = 8\pi$$
 
 Also not so bad. Unfortunately, these integrals do not stay this way for long. I will now evaluate the remaining integral.
 
-$$\begin{aligned}
-4\int_{0}^{2\pi} \frac{a}{r}du =& 4\int_{0}^{2\pi} \frac{du}{1 - e\cos(u)}
+$$
+4\int_{0}^{2\pi} \frac{a}{r}du = 4\int_{0}^{2\pi} \frac{du}{1 - e\cos(u)}
+$$
+
+Here is where we will take a fun little substitution, where we have to do a bit of leg work to actually use.
+
+$$ t = \tan\left(\frac{u}{2}\right) \quad \quad dt = \frac{1}{2}\sec^{2}\left(\frac{u}{2}\right)du $$
+
+We can set up a triangle with angle $\frac{u}{2}$ and from there gather the equations for both sine and cosine.
+
+$$ \sin\left(\frac{u}{2}\right) = \frac{t}{\sqrt{1 + t^{2}}} \quad \quad \cos\left(\frac{u}{2}\right) = \frac{1}{\sqrt{1 + t^{2}}} $$
+
+We can find these values in terms of just the eccentric anomaly by using the double angle formula for both sine and cosine.
+
+$$ \begin{aligned}
+\sin(u) =& 2 \sin \left( \frac{u}{2} \right) \cos \left( \frac{u}{2} \right) = \frac{2t}{1 + t^{2}} \\
+\cos(u) =& \cos^{2} \left(\frac{u}{2}\right) - \sin^{2} \left(\frac{u}{2}\right) = \frac{1 - t^{2}}{1 + t^{2}}
 \end{aligned}$$
+
+The last part we have to use this for is actually substituting in everything, but first, we also need to account for our $du$ term.
+
+$$ dt = \frac{1}{2} \sec^{2} \left(\frac{u}{2}\right)du \quad \Rightarrow \quad du = 2 \cos^{2}\left(\frac{u}{2}\right)dt$$
+$$ du = \frac{2}{1 + t^{2}}dt $$
+
+Okay! Now that we have all of that prep work done, we can substitute these expressions in our integral.
+
+$$ \begin{aligned}
+4 \int \frac{du}{1 - e \cos(u)} =& 4 \int \frac{ \frac{2 dt}{1 + t^{2}} }{ 1 - e \left( \frac{1 - t^{2}}{1 + t^{2}} \right) } \\
+=& 4\int \frac{2dt}{1 + t^{2} - e \left(1 - t^{2}\right)} \\
+=& 8 \int \frac{dt}{\left( 1 - e \right) + \left( 1 + e \right)t^{2}} \\
+=& \frac{8}{1 - e} \int \frac{dt}{1 + \frac{1 + e}{1 - e} t^{2}} \\
+=& \frac{8}{1 - e} \cdot \frac{\sqrt{1 - e}}{\sqrt{1 + e}} \arctan \left(\sqrt{\frac{1 + e}{1 - e}} t\right) \\
+=& \left.\frac{8}{\sqrt{1 - e^{2}}} \arctan \left( \sqrt{\frac{1 + e}{1 - e}} \tan \left( \frac{u}{2} \right) \right) \right|_{0}^{2\pi} \\
+=& \frac{8}{\sqrt{1 - e^{2}}} \left[ \arctan(0) - \arctan(0) \right]
+\end{aligned}$$
+
+Before completing this, I wanted to interject for a quick note. This part initially stumped me, as it looks like that this evaluation will become $0$. However, there is a small trick going on. While the second $\arctan$ is most certainly $0$, the first one ends up being $\pi$. This is because this is looking at the part of tangent which is $0$ on the other side of the unit circle (i.e. $\sin (\pi) / \cos(\pi)$ ). While the tangent is $0$, the $\arctan$ result is simply $\pi$.
+
+$$ \begin{aligned}
+=& \frac{8}{\sqrt{1 - e^{2}}} \left[\pi\right] \\
+=& 8\pi \left(1 - e^{2}\right)^{-1/2}
+\end{aligned}$$
+
+Now that we have all of the integrals evaluated, we get to put them all together.
+
+$$ \begin{aligned}
+\langle v^{4} \rangle =& \frac{1}{2\pi} \left( \frac{GM}{a} \right)^{2} \left[ 8\pi \left(1 - e^{2}\right)^{-1/2} - 8\pi + 2\pi \right] \\
+=& \left( \frac{GM}{a} \right)^{2} \left[ 4 \left(1 - e^{2}\right)^{-1/2} - 3 \right]
+\end{aligned} $$
+
+Thus, our orbital average is complete.
 
 ### My Commentary
 I loathed this problem. All three parts were horrible. Truth be told, I probably put in more work than was intended, but (in my opinion) that was not clear going in. As can be seen from my solutions above, these three problems involved some nasty and stupid integrals. Some of these tricks were the first time I've ever seen them so a lot of work went into actually trying to figure out how all these were done. I would not label these problems as the easiest difficulty, as these were some of the grossest integrals I've been asked to solve. I think a big reason my score wasn't larger was because I was trying to wager logical difficulty with perseverance, as I don't think the latter should be weighted too much. I believe that is what the author of the book was going for with his difficulty rating, as I'm sure these integrals are easy if you just look up the answer or use an integral table. For some reason that route felt super unfulfilling, and I did the monstrosity that can be seen above. I didn't like this problem.
