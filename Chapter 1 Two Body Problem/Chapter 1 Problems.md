@@ -139,6 +139,57 @@ $$ \begin{aligned}
 
 Thus, our orbital average is complete.
 
+#### Orbital Average: $\langle v^{2} / r \rangle$
+This problem has less groundwork to go over than the previous problem did, as we already have our equation for velocity. However, this is a little bit extra we have to do, as we're working with a division of $r$. Similarly, I did this problem using the other orbital average definition, and I want to go over a little bit of that simplification. For starters, we have by definition of an orbit the following equation.
+
+$$ r = \frac{a\left(1 - e^{2}\right)}{1 + e \cos(f)} $$
+
+Using some algebraic manipulation, we can achieve the following from this definition.
+
+$$ \frac{1}{\left(1 + e\cos(f)\right)^{2}} = \frac{r^{2}}{a^{2}\left(1 - e^{2}\right)^{2}} $$
+
+Thus, we can start our orbital average using the following.
+
+$$
+\begin{aligned}
+\langle v^{2} / r \rangle =& \frac{\left(1 - e^{2}\right)^{3/2}}{2\pi} \int_{0}^{2\pi} \frac{v^{2}}{r} \frac{r^{2}}{a^{2}\left(1 - e^{2}\right)^{2}} df \\
+=& \frac{GM\left(1 - e^{2}\right)^{3/2}}{2\pi} \int_{0}^{2\pi} \frac{2a - r}{r^{2}a} \frac{r^{2}}{a^{2}\left(1 - e^{2}\right)^{2}} df \\
+=& \frac{GM\left(1 - e^{2}\right)^{-1/2}}{2\pi a^{3}} \int_{0}^{2\pi} \left(2a - r\right)df \\
+=& \frac{GM\left(1 - e^{2}\right)^{-1/2}}{2\pi a^{3}} \int_{0}^{2\pi} \left(2a - \frac{a\left(1 - e^{2}\right)}{1 + e\cos(f)}\right)df \\
+=& \frac{GM\left(1 - e^{2}\right)^{-1/2}}{2\pi a^{2}} \left[\int_{0}^{2\pi} 2df - \left(1 - e^{2}\right) \int_{0}^{2\pi} \frac{df}{1 + e\cos(f)}\right]
+\end{aligned}
+$$
+
+Now this isn't so bad. For the sake of getting it out of the way, let's do the first integral first.
+
+$$ 2\int_{0}^{2\pi}df = 2\left[f\right]_{0}^{2\pi} = 4\pi $$
+
+Truthfully, I probably could have skipped this particular integral, but I thought it would be fun to at least show. Clarity and all that. Anyway, let's do the integral we all came here for. Similar to last time, I am going to make the following substitution.
+
+$$ t = \tan\left(\frac{f}{2}\right) \quad \quad dt = \frac{1}{2} \sec^{2}\left(\frac{f}{2}\right) $$
+
+I am going to skip the various about of moving variables around for this integral. If you want to see it again, I encourage you to re-read that segment of the previous part for this problem. Now we have everything we need to start plugging things in.
+
+$$ \begin{aligned}
+\left(1 - e^{2}\right) \int \frac{df}{1 + e\cos(f)} =& \left(1 - e^{2}\right) \int \frac{\frac{2dt}{1 + t^{2}}}{1 + e \frac{1 - t^{2}}{1 + t^{2}}} \\
+=& 2\left(1 - e^{2}\right) \int \frac{dt}{1 + t^{2} + e - e t^{2}} \\
+=& 2\left(1 - e^{2}\right) \int \frac{dt}{(1 + e) + (1 - e)t^{2}} \\
+=& \frac{2\left(1 - e^{2}\right)}{1 + e} \int \frac{dt}{1 + \left(\frac{1 - e}{1 + e}\right) t^{2}}\\
+=& 2\left(1 - e\right) \sqrt{\frac{1 + e}{1 - e}} \arctan (\sqrt{\frac{1 - e}{1 + e}} t) \\
+=& 2 \left(1 - e^{2}\right)^{1/2} \left.\arctan\left(\sqrt{\frac{1 - e}{1 + e}}\tan\left(\frac{f}{2}\right)\right)\right|_{0}^{2\pi} \\
+=& 2\left(1 - e^{2}\right)^{1/2} \left[\pi - 0\right] \\
+=& 2\pi\left(1 - e^{2}\right)^{1/2}
+\end{aligned}$$
+
+Like the previous problem, the first $\arctan$ term is $\pi$ since it is on the left side of the unit circle, while the other $\arctan$ term is 0 as one would expect. Now that we have both values, we can plug them into our original integral.
+
+$$ \begin{aligned}
+\langle \frac{v^{2}}{r} \rangle =& \frac{GM\left(1 - e^{2}\right)^{-1/2}}{2\pi a^{2}} \left[4\pi - 2\pi\left(1 - e^{2}\right)^{1/2}\right] \\
+=& \frac{GM}{a^{2}}\left[2\left(1 - e^{2}\right)^{-1/2} - 1\right]
+\end{aligned} $$
+
+Thus, our orbital average has been solved.
+
 ### My Commentary
 I loathed this problem. All three parts were horrible. Truth be told, I probably put in more work than was intended, but (in my opinion) that was not clear going in. As can be seen from my solutions above, these three problems involved some nasty and stupid integrals. Some of these tricks were the first time I've ever seen them so a lot of work went into actually trying to figure out how all these were done. I would not label these problems as the easiest difficulty, as these were some of the grossest integrals I've been asked to solve. I think a big reason my score wasn't larger was because I was trying to wager logical difficulty with perseverance, as I don't think the latter should be weighted too much. I believe that is what the author of the book was going for with his difficulty rating, as I'm sure these integrals are easy if you just look up the answer or use an integral table. For some reason that route felt super unfulfilling, and I did the monstrosity that can be seen above. I didn't like this problem.
 
