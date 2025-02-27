@@ -1,11 +1,11 @@
 # Section 1.7 - Multipole Expansion of a Potential
 This section focuses on expanding the gravitational potential for a massed body. It starts with centering the coordinate system to the center of mass, and pointing out how we define gravitational potential between two points, and over an object. The potential is then expanded using a Taylor series, which is then re-written using associated Legendre Polynomials and Spherical Harmonics. Using these relations, the book showcases the equations for the gravitational monopole, dipole, and quadrupole. From here, the book focuses on the quadrupole and what it actually means. It shows that for perfectly spherical objects, this value is 0, but for oblate objects (like most celestial bodies) this is non-zero and positive. The book briefly ends by talking about how the quadrupole showcases what happens due to rotational flattening.
 
-| Subsection of Document | Description of Subsection |
-| -----------------------|---------------------------|
-| [Self Imposed Exercises](#self-imposed-exercises) | An outline of any exercises I thought would be beneifical or fun to work through that relate to the section of the book, usually exercises I make for myself. |
-| [Project Description](#project-description) | A description of the coding project I designed for this section of the book, as well as any relevant information I used. |
-| [Reflecting Thoughts](#reflecting-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
+| Subsection of Document                            | Description of Subsection                                                                                                                                     |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Self Imposed Exercises](#self-imposed-exercises) | An outline of any exercises I thought would be beneficial or fun to work through that relate to the section of the book, usually exercises I make for myself. |
+| [Project Description](#project-description)       | A description of the coding project I designed for this section of the book, as well as any relevant information I used.                                      |
+| [Reflecting Thoughts](#reflecting-thoughts)       | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section.                     |
 
 ## Self Imposed Exercises
 This section is focused primarily on the various multipoles for the gravitational potential, with heavy emphasis on the quadrupole moment. The book mentions that these are found through observations and the inertia of the rotating body, and Appendix A tells you what the values of these moments are for each planet (and the Sun). A large reason that the quadrupole moment (and the other multipole moments as well) aren't easily determined, is because you need a density function for the object in order to find the quadrupole moment (amongst other things). 

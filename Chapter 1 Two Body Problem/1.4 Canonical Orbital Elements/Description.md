@@ -1,11 +1,11 @@
 # Section 1.4 - Canonical Orbital Elements
 This section introduces the Hamiltonian for Kepler orbits and talks about the results of doing so. Since many standard coordinate systems aren't the best when dealing with the average orbit, this section focuses on using the Hamiltonian to use other canonical coordinates to work with that make understanding certain aspects of orbits much simpler. Most of this section talks about the different types of canonical coordinates that can be used and their different generating functions. However, there are only two different named canonical coordinate pairs, and they are the Delaunay variables and the Poincaré variables. This book goes into a bit more detail surrounding some of these canonical coordinates (such as their consequence on the Hamiltonian and some extra definitions for new terms), but for the most part, this is majority of the section.
 
-| Subsection of Document | Description of Subsection |
-| -----------------------|---------------------------|
-| [Self Imposed Exercises](#self-imposed-exercises) | An outline of any exercises I thought would be beneifical or fun to work through that relate to the section of the book, usually exercises I make for myself. |
-| [Project Description](#project-description) | A description of the coding project I designed for this section of the book, as well as any relevant information I used. |
-| [Reflecting Thoughts](#reflecting-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
+| Subsection of Document                            | Description of Subsection                                                                                                                                     |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Self Imposed Exercises](#self-imposed-exercises) | An outline of any exercises I thought would be beneficial or fun to work through that relate to the section of the book, usually exercises I make for myself. |
+| [Project Description](#project-description)       | A description of the coding project I designed for this section of the book, as well as any relevant information I used.                                      |
+| [Reflecting Thoughts](#reflecting-thoughts)       | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section.                     |
 
 ## Self Imposed Exercises
 Since most of this section was focusing on canonical coordinates using the orbital elements and what they are, there wasn't too much that was left as an exercise to the reader. However, there is an extra little bit of work I wanted to get some practice in for this section. During this section, the book gives 5 different sets of canonical coordinates, as well as their generating function. I thought it would be fun to derive them and get some practice working with generating functions (since I am fairly certain I never saw them during my undergraduate studies). 

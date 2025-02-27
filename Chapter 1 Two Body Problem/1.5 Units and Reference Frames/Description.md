@@ -3,9 +3,9 @@ This section briefly goes over the various units and reference frames that we us
 
 Due to how small this section ended up being, along with the general content, there will be no self imposed exercises for this section. The section was mostly general justification for the units as well as what they are, and I couldn't figure out a good idea for what to do. I figure that instead of bashing my head against a wall trying to figure out what to do, I would just move on since the later sections of this chapter are a lot more intense.
 
-| Subsection of Document | Description of Subsection |
-| -----------------------|---------------------------|
-| [Project Description](#project-description) | A description of the coding project I designed for this section of the book, as well as any relevant information I used. |
+| Subsection of Document                      | Description of Subsection                                                                                                                 |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| [Project Description](#project-description) | A description of the coding project I designed for this section of the book, as well as any relevant information I used.                  |
 | [Concluding Thoughts](#concluding-thoughts) | Reflective thoughts about the chapter itself, the self imposed exercises I worked through, and the coding project I made for the section. |
 
 ## Project Description
