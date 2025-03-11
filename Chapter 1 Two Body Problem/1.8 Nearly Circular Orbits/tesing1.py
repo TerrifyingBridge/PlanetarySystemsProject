@@ -6,9 +6,9 @@ from matplotlib.animation import FuncAnimation
 radius = 75
 
 # Kepler Orbits with GM = 1
-kappa_r = math.pow((1*radius)**3, 1/2)
-kappa_phi = math.pow((1.2*radius)**3, 1/2)
-kappa_z = math.pow((1.1*radius)**3, 1/2)
+kappa_r = math.pow((1.05*radius)**3, 1/2)
+kappa_phi = math.pow((1*radius)**3, 1/2)
+kappa_z = math.pow((1.05*radius)**3, 1/2)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
@@ -54,6 +54,6 @@ def update(step):
     return center_pos, orbit_path,
 
 
-ani = FuncAnimation(fig, update, frames=len(time), init_func=init, interval=15, blit=True)
-# ani.save(filename="assets/taylor_error_animation.gif", writer="pillow")
+ani = FuncAnimation(fig, update, frames=len(time), init_func=init, interval=1, blit=True)
+# ani.save(filename="assets/orbit_animation.gif", writer="pillow")
 plt.show()
