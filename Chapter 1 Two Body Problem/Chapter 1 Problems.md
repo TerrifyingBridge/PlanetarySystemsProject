@@ -58,7 +58,7 @@ $$ v^{2} = GM\left(\frac{2}{r} - \frac{1}{a}\right) = \frac{GM}{ar} \left(2a - r
 
 Since both of the first two orbital averages contain an even power for velocity, I left my found result in terms of $v^{2}$. With this out of the way, let's move onto the orbital averages. 
 
-#### Orbital Average: $\langle v^{4} \rangle$
+#### Part (a) - Orbital Average: $\langle v^{4} \rangle$
 The orbital average method I ended up using for this integral ended up being the one in terms of eccentric anomaly, which has the following definition.
 
 $$ \langle X \rangle = \frac{1}{2\pi} \int_{0}^{2\pi}\left(1 - e \cos(u)\right)Xdu \quad = \quad \frac{1}{2\pi} \int_{0}^{2\pi} \frac{r(u)}{a} X du $$
@@ -139,7 +139,7 @@ $$ \begin{aligned}
 
 Thus, our orbital average is complete.
 
-#### Orbital Average: $\langle v^{2} / r \rangle$
+#### Part (b) - Orbital Average: $\langle v^{2} / r \rangle$
 This problem has less groundwork to go over than the previous problem did, as we already have our equation for velocity. However, this is a little bit extra we have to do, as we're working with a division of $r$. Similarly, I did this problem using the other orbital average definition, and I want to go over a little bit of that simplification. For starters, we have by definition of an orbit the following equation.
 
 $$ r = \frac{a\left(1 - e^{2}\right)}{1 + e \cos(f)} $$
@@ -323,7 +323,7 @@ f_{1} &\approx 3.005098 \text{ rads}
 \end{aligned}
 $$
 
-Now that we have the true anomaly at the point where the orbit is at 1 au, we can find the time by using an equation that the book mentions. The book finds an equation in terms of an initial starting time, but becuase we just need the difference between time (to find total time spent in an orbit), we can simply assume that $t_{0} = 0$. Because of this, I have removed this particlar part from the expression. It can be seen below.
+Now that we have the true anomaly at the point where the orbit is at 1 au, we can find the time by using an equation that the book mentions. The book finds an equation in terms of an initial starting time, but because we just need the difference between time (to find total time spent in an orbit), we can simply assume that $t_{0} = 0$. Because of this, I have removed this particular part from the expression. It can be seen below.
 
 $$ \left(\frac{GM}{2q^{3}} \right)^{1/2} t = \tan\left(\frac{1}{2}f\right) + \frac{1}{3}\tan^{3}\left(\frac{1}{2}f\right) $$
 
@@ -353,7 +353,8 @@ Long story short, I don't entirely know if this is correct or not, but it seems 
 > (b) The mission designers want to place the spacecraft in a geosynchronous orbit, that is, a circular orbit of radius $r_{\text{sync}} = 42164 \text{km}$ ([Problem 1.1](#Problem 1-[1]{1}})). This can be done by two impulses, the first to place the spacecraft on an eccentric orbit with apoapsis equal to $r_{\text{sync}}$ (a **Hohmann transfer orbit** )and the second at apoapsis to circularize the orbit. What is the total $\Delta v$ required?
 > (c) Suppose that the transfer to geosynchronous orbit is accomplished by a slow steady burn, so that the spacecraft spirals out on a nearly circular orbit. What is the total $\Delta v$ required?
 
-### Part (a) - Escaping Earth's Gravity
+### My Solution
+#### Part (a) - Escaping Earth's Gravity
 To solve this problem, we need to find both the velocity of the spacecraft when it is in the circular orbit, and the velocity of the spacecraft when it has escaped the Earth's gravitational field. Both of these problems can be done using the following equations for energy.
 
 $$ E = \frac{1}{2} v^{2} - \frac{GM}{r} \quad \quad \quad \quad E = \frac{-GM}{2a} $$
@@ -374,6 +375,65 @@ $$ \begin{aligned}
 v^{2}_{\text{esc}} =& \frac{2GM}{r} \\
 v_{\text{esc}} =& \sqrt{\frac{2GM}{r}}
 \end{aligned} $$
+
+Alright, with these equations, we are equipped to solve this problem. In order to find the difference between the two velocities, we need to actually know both of them. We use the mass parameter for the Earth and the sum of the Earth's radius and 300km for the distance from the center of mass.
+
+$$ v_{0} = \sqrt{\frac{GM_{\text{E}}}{R_{\text{E}} + 300\text{km}}} \quad \quad \quad \quad v_{\text{esc}} = \sqrt{\frac{GM_{\text{E}}}{R_{\text{E}} + 300\text{km}}} $$
+
+$$ v_{0} \approx 7.73 \text{km } \text{s}^{-1} \quad \quad \quad \quad v_{\text{esc}} \approx 10.93 \text{km } \text{s}^{-1} $$
+
+From here, we just need to take the difference by subtracting the initial velocity from the escape velocity.
+
+$$ \Delta v \approx 10.9 - 7.73 = 3.2 \text{km } \text{s}^{-1} $$
+
+Thus giving us our final answer.
+
+#### Part (b) - Hohmann Transfer Orbit
+This problem ends up having two parts to look at, and is more or less how I broke it down. The spacecraft travels from a small circular orbit to a very elliptical orbit, and then from an elliptical orbit to a larger circular orbit. To solve this problem, you have to find the $\Delta v$ of the first orbit transition and the $\Delta v$ of the second orbit transition, then add them together at the end. 
+
+For the difference in the first orbit transition, I used the notation $\Delta v_{1}$ for the first difference in velocity. Fortunately, we have already found the initial velocity, as it is the same as what was found in [part (a)](#Part (a) - Escaping Earth's Velocity). To find the velocity of an orbit with apoapsis at $r_{\text{sync}}$ , we need to use the equation of velocity found earlier. We will also use the concept that any increase in velocity in a circular orbit ends up being the new periapsis of the elliptical orbit that results from the impulse. The way I think of it is that having this increase in velocity will change the orbit, and gravity will slow it down at every other point in the orbit, thus making the point the impulse was added the point where velocity is greatest, and thus making it the periapsis. I didn't end up proving this, but it was my train of logic. Regardless, in order to find this velocity, we need to know the semi-major axis of the resulting elliptical orbit. 
+
+$$ a = \frac{r_{1} + r_{2}}{2} = \frac{r_{\text{sync}} + \left(R_{\text{E}} + 300\text{km}\right)}{2} \approx 24421 \text{ km} $$
+
+Now with this value, we can plug in all known values and solve for the velocity.
+
+$$ v_{\text{peri}} = \sqrt{GM_{\text{E}}\left(\frac{2}{R_{\text{E}} + 300\text{km} } - \frac{1}{24421\text{km}}\right)} $$
+
+$$ v_{\text{peri}} \approx 10.15 \text{km } \text{s}^{-1} $$
+
+Now that we have both velocities, we can find the difference for the first orbital transition.
+
+$$ \Delta v_{1} = v_{\text{peri}} - v_{0} \approx 10.15 - 7.73 \approx 2.42 \text{km } \text{s}^{-1}  $$
+
+With one orbit transition down, we can focus on the other orbit. This orbit transition happens at the apoapsis of the new elliptical orbit, and transitions to the circular orbit. To do this, we need to calculate the velocity at the apoapsis as well as the velocity of the circular orbit at $r_{\text{sync}}$. We will use the equation for velocity in terms of radius and semi-major axis from before.
+
+$$ v_{\text{apo}} = \sqrt{GM_{\text{E}} \left(\frac{2}{r_{\text{sync}}} - \frac{1}{24421 \text{km}}\right)} \approx 1.61 \text{km } \text{s}^{-1} $$
+
+Now we play the same game for the final circular orbit.
+
+$$ v_{\text{sync}} = \sqrt{GM_{\text{E}} \left(\frac{2}{r_{\text{sync}}} - \frac{1}{r_{\text{sync}}}\right)} \approx 3.07 \text{km } \text{s}^{-1} $$
+
+With both velocities found, we can find the difference between the two to find the impulse for the second orbit transition.
+
+$$ \Delta v_{2} = v_{\text{sync}} - v_{\text{apo}} \approx 3.07 - 1.61 = 1.47 \text{km } \text{s}^{-1} $$
+
+In order to find the total impulses, we simply add the two $\Delta v$'s together.
+
+$$ \Delta v = \Delta v_{1} + \Delta v_{2} \approx 2.42 + 1.47 = 3.89 \text{km } \text{s}^{-1} $$
+
+Thus, our problem is complete.
+
+#### Part (c) - Slow Burn Transfer
+For the slow burn transfer, the problem states that the spacecraft is spiraling out to the geosynchronous orbit at a near circular and constant rate. The way I took this to mean is that at each instantaneous moment in time, you can think of the spacecraft's orbital path as circular. This implies that the velocity impulse is pushing the spacecraft out and against it's current direction of travel to keep it in such a form. Fortunately, this makes solving for it easy, as we take the difference in circular orbit velocity at the start and at the end. Fortunately, we have already found both of these numbers in [part (a)](#Part (a) - Escaping Earth's Gravity) and [part (b)](#Part (b) - Hohmann Transfer Orbit). To find our solution, we just have to subtract the two.
+
+$$ \Delta v = v_{\text{sync}} - v_{0} \approx 3.07 - 7.73 = -4.65 \text{km } \text{s}^{-1} $$
+
+The negative value here implying that the spacecraft is slowing down rather than speeding up over the impulse, thus giving us our final solution. We can make some really quick observations about this while we are here too. Looking at the absolute values between this answer and from [part (b)](#Part (b) - Hohmann Transfer Orbit) we see that the Hohmann orbit transfer requires lower total impulse. 
+
+### My Commentary
+I actually ended up enjoying this problem quite a bit even though it was pretty easy. I thought it was pretty cool to see how a simple rocket traveling through space would be different based on different impulses at certain points. I have always heard about accelerating at apoapsis for more efficient orbit transfer and the like before, but never actually done the math to figure out exactly how good it is or anything like that. 
+
+That being said, there are some problems I have with my answers that I wish I could improve. I am not certain my answer to part (c) is correct, as it seems too easy and it feels like it shouldn't work that way. The book does mention nearly circular orbits, but maybe there is a Taylor expansion I would need to do but I am not sure. I thought about constructing it in a way so that I could use limits for arbitrarily small impulses to make sure, but I figured that would be too much work for a problem with a difficulty of 1. That being said, [Problem 2](#Problem 2 - [1] {3}) also has a difficulty of 1 and that problem is a lot harder than that in my opinion.
 
 ## Problem 9 - [1] {1}
 > In July 2015 the New Horizons spacecraft encountered Pluto. The impact parameter of the encounter was $13700 \text{ km}$ and the relative velocity was $13.8 \text{ km} \text{ s}^{-1}$. By what angle was the spacecraft's trajectory deflected during the encounter? The mass of Pluto is $1.303 \times 10^{22} \text{ km}$.

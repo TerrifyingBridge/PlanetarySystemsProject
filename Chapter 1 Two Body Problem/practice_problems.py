@@ -1,9 +1,12 @@
 from Helpers import constants as const
 import math
 
+
 def frac(top, bot):
     return top / bot
 
+
+'''
 r_sync = 42164
 r1 = const.Earth.reference_radius + 300
 A = r1 / r_sync
@@ -26,3 +29,15 @@ print(delta2)
 print(delta1 + delta2)
 
 print((r_sync + r1) / 2)
+
+print()
+
+# Problem 1.6c
+v_last = math.sqrt(const.Earth.mass_parameter / (r_sync*1000))
+print(v_last)
+
+print(v_last - v_cur)'''
+
+r_cur = const.PhysicalConstants.au  # meters
+v_cur = math.sqrt(const.Solar.mass_parameter / r_cur)
+print(v_cur)

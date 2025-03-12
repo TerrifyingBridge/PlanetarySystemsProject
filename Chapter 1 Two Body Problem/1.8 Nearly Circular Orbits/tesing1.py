@@ -6,17 +6,19 @@ from matplotlib.animation import FuncAnimation
 radius = 75
 
 # Kepler Orbits with GM = 1
-kappa_r = math.pow((1.05*radius)**3, 1/2)
+kappa_r = math.pow((1.1*radius)**3, 1/2)
 kappa_phi = math.pow((1*radius)**3, 1/2)
-kappa_z = math.pow((1.05*radius)**3, 1/2)
+kappa_z = math.pow((1.1*radius)**3, 1/2)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
+ax.view_init(elev=10)
+
 
 center_pos, = ax.plot([0], [0], [0], "bo")
 orbit_path, = ax.plot([], [], [], "r")
 
-time = np.linspace(0, 6*np.pi / kappa_r, 300)
+time = np.linspace(0, 6*np.pi / kappa_r, 100)
 
 x0 = 5
 z0 = 5
@@ -54,6 +56,6 @@ def update(step):
     return center_pos, orbit_path,
 
 
-ani = FuncAnimation(fig, update, frames=len(time), init_func=init, interval=1, blit=True)
+ani = FuncAnimation(fig, update, frames=len(time), init_func=init, interval=15, blit=True)
 # ani.save(filename="assets/orbit_animation.gif", writer="pillow")
 plt.show()

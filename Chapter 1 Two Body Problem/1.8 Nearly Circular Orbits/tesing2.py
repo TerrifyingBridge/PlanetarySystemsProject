@@ -12,6 +12,7 @@ kappa_z = math.pow((1.05*radius)**3, 1/2)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
+ax.view_init(elev=15)
 
 center_pos, = ax.plot([0], [0], [0], "bo")
 orbit_path, = ax.plot([], [], [], "r")
@@ -51,5 +52,5 @@ def update(step):
 
 
 ani = FuncAnimation(fig, update, frames=len(orbits), init_func=init, interval=100, blit=True)
-# ani.save(filename="assets/orbit_animation.gif", writer="pillow")
+ani.save(filename="assets/orbit_animation2.gif", writer="pillow")
 plt.show()
