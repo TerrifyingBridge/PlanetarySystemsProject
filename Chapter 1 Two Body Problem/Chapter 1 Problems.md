@@ -347,6 +347,34 @@ Regardless, this doesn't exactly match what I've found online, as the only sourc
 
 Long story short, I don't entirely know if this is correct or not, but it seems to make sense to me. It was fun working with parabolic orbits. Most of my projects that deal with orbits are either elliptical or hyperbolic, so being forced to work with parabolic orbits is pretty cool. I wish there was more to do with parabolic orbits, but they don't really stand out, and probably aren't that common either.
 
+## Problem 6 - [1] {1}
+> A spacecraft travels around the Earth on a circular orbit with an altitude of 300km. The spacecraft engine can give it one or more velocity impulses $\Delta v$ 
+> (a) What $\Delta v$ (in $\text{km } \text{s}^{-1})$ is needed to place the spacecraft on an orbit that escapes from the Earth's gravitational field?
+> (b) The mission designers want to place the spacecraft in a geosynchronous orbit, that is, a circular orbit of radius $r_{\text{sync}} = 42164 \text{km}$ ([Problem 1.1](#Problem 1-[1]{1}})). This can be done by two impulses, the first to place the spacecraft on an eccentric orbit with apoapsis equal to $r_{\text{sync}}$ (a **Hohmann transfer orbit** )and the second at apoapsis to circularize the orbit. What is the total $\Delta v$ required?
+> (c) Suppose that the transfer to geosynchronous orbit is accomplished by a slow steady burn, so that the spacecraft spirals out on a nearly circular orbit. What is the total $\Delta v$ required?
+
+### Part (a) - Escaping Earth's Gravity
+To solve this problem, we need to find both the velocity of the spacecraft when it is in the circular orbit, and the velocity of the spacecraft when it has escaped the Earth's gravitational field. Both of these problems can be done using the following equations for energy.
+
+$$ E = \frac{1}{2} v^{2} - \frac{GM}{r} \quad \quad \quad \quad E = \frac{-GM}{2a} $$
+Where $v$ is the velocity of an orbiting body, $M$ is the mass of the central object, $r$ is the distance from the central mass, and $a$ is the semi-major axis of the orbiting body. Setting both of these equations equal to each other, we can solve this equation for the velocity of the system.
+
+$$ \begin{aligned}
+\frac{-GM}{2a} =& \frac{1}{2} v^{2} - \frac{GM}{r} \\
+\frac{1}{2} v^{2} =& \frac{GM}{r} - \frac{GM}{2a} \\
+v^{2} =& GM \left(\frac{2}{r} - \frac{1}{a}\right) \\
+v =& \sqrt{GM\left(\frac{2}{r} - \frac{1}{a}\right)}
+\end{aligned}$$
+
+However, this is only half the battle, because we need to know the escape velocity as well. As mentioned before, we can use the equation for energy to figure this out (The book also provides it, but I'm going to do the extra step). The orbit goes from an elliptical orbit to a parabolic orbit when the total energy of the System goes from negative to 0. So, to determine the escape velocity, we need to find when the total energy is equal to 0.
+
+$$ \begin{aligned} 
+\frac{1}{2} v^{2}_{\text{esc}} - \frac{GM}{r} =& 0 \\
+\frac{1}{2} v^{2}_{\text{esc}} =& \frac{GM}{r} \\
+v^{2}_{\text{esc}} =& \frac{2GM}{r} \\
+v_{\text{esc}} =& \sqrt{\frac{2GM}{r}}
+\end{aligned} $$
+
 ## Problem 9 - [1] {1}
 > In July 2015 the New Horizons spacecraft encountered Pluto. The impact parameter of the encounter was $13700 \text{ km}$ and the relative velocity was $13.8 \text{ km} \text{ s}^{-1}$. By what angle was the spacecraft's trajectory deflected during the encounter? The mass of Pluto is $1.303 \times 10^{22} \text{ km}$.
 
