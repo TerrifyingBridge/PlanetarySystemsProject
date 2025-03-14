@@ -5,6 +5,11 @@ import math
 def frac(top, bot):
     return top / bot
 
+def int_cos(n):
+    result = 1
+    for i in range(1, int(n/2 + 1)):
+        result *= (2*i - 1) / (2 * i)
+    return 2*result
 
 '''
 r_sync = 42164
@@ -40,4 +45,7 @@ print(v_last - v_cur)'''
 
 r_cur = const.PhysicalConstants.au  # meters
 v_cur = math.sqrt(const.Solar.mass_parameter / r_cur)
-print(v_cur)
+#print(v_cur)
+
+print(int_cos(8))
+print(35/64)

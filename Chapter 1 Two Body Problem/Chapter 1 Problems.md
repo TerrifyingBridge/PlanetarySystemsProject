@@ -193,6 +193,83 @@ Thus, our orbital average has been solved.
 ### My Commentary
 I loathed this problem. All three parts were horrible. Truth be told, I probably put in more work than was intended, but (in my opinion) that was not clear going in. As can be seen from my solutions above, these three problems involved some nasty and stupid integrals. Some of these tricks were the first time I've ever seen them so a lot of work went into actually trying to figure out how all these were done. I would not label these problems as the easiest difficulty, as these were some of the grossest integrals I've been asked to solve. I think a big reason my score wasn't larger was because I was trying to wager logical difficulty with perseverance, as I don't think the latter should be weighted too much. I believe that is what the author of the book was going for with his difficulty rating, as I'm sure these integrals are easy if you just look up the answer or use an integral table. For some reason that route felt super unfulfilling, and I did the monstrosity that can be seen above. I didn't like this problem.
 
+## Problem 3 - [1] {2}
+>Prove the following formulas for time averages over a bound Kepler orbit of semi-major axis $a$ and eccentricity $e$:
+
+$$\begin{aligned}
+\langle \left(a / r\right)^{4} \cos(f)\rangle =& \frac{e}{\left(1-e^{2}\right)^{5/2}}, \\
+\langle \left(a / r\right)^{4} \cos^{3}(f)\rangle =& \frac{3e}{4\left(1-e^{2}\right)^{5/2}}, \\
+\langle \left(a / r\right)^{4} \cos(f)\sin^{2}(f)\rangle =& \frac{e}{4\left(1-e^{2}\right)^{5/2}}, \\
+\langle \left(r / a\right)^{3} \cos(f)\rangle =& \frac{-5}{8}e\left(4 + 3e^{2}\right), \\
+\langle \left(r / a\right)^{3} \cos^{3}(f)\rangle =& \frac{-5}{8}e\left(3 + 4e^{2}\right), \\
+\langle \left(r / a\right)^{3} \cos(f)\sin^{2}(f)\rangle =& \frac{-5}{8}e\left(1 - e^{2}\right).
+\end{aligned}$$
+
+### My Solution
+This part is a bit more straightforward than the previous problem, as there isn't really any ground work we have to cover before starting except for one. Since this problem has a bunch of different sines and cosines, I decided to prove one of the integrals of a general power for cosine from $0$ to $2\pi$. This proof can be outlined in the markdown file here (come soon lol). But rather than have to derive and re-do all powers of cosine, I figured this was easier (and more fun) use of my time.
+
+#### Part (a) - $\langle \left(a / r\right)^{4} \cos(f)\rangle$
+For this part, I figured that the orbital average in terms of the true anomaly would be the easiest to evaluate. Doing so yields us the following integral.
+
+$$\begin{aligned}
+\langle \left(a / r\right)^{4} \cos(f)\rangle =& \frac{\left(1-e^{2}\right)^{3/2}}{2\pi} \int_{0}^{2\pi} \left(\frac{1 + e \cos(f)}{1 - e^{2}}\right)^{4} \frac{\cos(f) df}{\left(1 + e\cos(f)\right)^{2}} \\
+=& \frac{\left(1-e^{2}\right)^{3/2}}{2\pi \left(1 - e^{2}\right)^{8/2}} \int_{0}^{2\pi} \left(1 + e\cos(f)\right)^{2}\cos(f)df \\
+=& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \int_{0}^{2\pi} \left(1 + 2e\cos(f) + e^{2}\cos^{2}(f)\right) \cos(f)df \\
+=& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \int_{0}^{2\pi} \left(\cos(f) + 2e\cos^{2}(f) + e^{2}\cos^{3}(f)\right)df
+\end{aligned}$$
+
+Here is where we invoke the properties of integrating powers of cosine. The odd powers become $0$ and the even powers are evaluated according to the equation in here (coming soon), which makes $\int_{0}^{2\pi}\cos^{2}(f) = \pi$. 
+
+$$\begin{aligned}
+=& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \left[0 + 2e\pi + 0\right] \\
+=& \frac{1}{\left(1 - e^{2}\right)^{5/2}} \left[e\right] \\
+=& \frac{e}{\left(1-e^{2}\right)^{5/2}}
+\end{aligned}$$
+
+Thus, we have proved our orbital average.
+
+### Part (b) - $\langle \left(a / r\right)^{4} \cos^{3}(f)\rangle$
+Like the pervious problem, I decided to use the true anomaly to solve this orbital average. Plugging in everything into the orbital average integral gives us the following.
+
+$$\begin{aligned}
+\langle \left(a / r\right)^{4} \cos^{3}(f)\rangle =& \frac{\left(1-e^{2}\right)^{3/2}}{2\pi} \int_{0}^{2\pi} \left(\frac{1+e\cos(f)}{1 - e^{2}}\right)^{4} \frac{\cos^{3}(f)df}{\left(1 + e\cos(f)\right)^{2}} \\
+=& \frac{\left(1-e^{2}\right)^{3/2}}{2\pi \left(1-e^{2}\right)^{8/2}} \int_{0}^{2\pi} \left(1 + e\cos(f)\right)^{2} \cos^{3}(f)df \\
+=& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \int_{0}^{2\pi} \left(1 + 2e\cos(f) + e^{2}\cos^{2}(f)\right) \cos^{3}(f)df \\
+=& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \int_{0}^{2\pi} \left(\cos^{3}(f) + 2e \cos^{4}(f) + e^{2}\cos^{5}(f)\right)df
+\end{aligned}$$ 
+Here, we invoke the equations that we used before. The odd powers of cosine become $0$ and $\int_{0}^{2\pi}\cos^{4}(f) = \frac{3\pi}{4}$. Replacing these values, we get the following result.
+
+$$\begin{aligned}
+=& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \left[0 + 2e \left(\frac{3\pi}{4}\right) + 0\right] \\
+=& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \left[\frac{3\pi e}{2}\right] \\
+=& \frac{3e}{4\left(1-e^{2}\right)^{5/2}}
+\end{aligned}$$
+
+Thus, we have proven our orbital average.
+
+#### Part (c) - $\langle \left(a / r\right)^{4} \cos(f)\sin^{2}(f)\rangle$
+Like the previous two, I am using the true anomaly for this problem as well. This is because the orbital average ends up simplifying very nicely when going about simplifying the integral.
+
+$$\begin{aligned}
+\langle \left(a / r\right)^{4} \cos(f)\sin^{2}(f)\rangle =& \frac{\left(1-e^{2}\right)^{3/2}}{2\pi} \int_{0}^{2\pi} \left(\frac{1 + e\cos(f)}{1-e^{2}}\right)^{4} \frac{\cos(f) \sin^{2}(f)df}{\left(1 + e \cos(f)\right)^{2}} \\
+=& \frac{\left(1-e^{2}\right)^{3/2}}{2\pi \left(1-e^{2}\right)^{8/2}} \int_{0}^{2\pi} \left(1 + e\cos(f)\right)^{2} \cos(f) \left(1 - \cos^{2}(f)\right) df \\
+=& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \int_{0}^{2\pi} \left(\left(1 + e\cos(f)\right)^{2}\cos(f) - \left(1 + e\cos(f)\right)^{2}\cos^{3}(f)\right)df \\
+=& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \int_{0}^{2\pi} \left(1 + e\cos(f)\right)^{2}\cos(f)df - \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}}\int_{0}^{2\pi} \left(1 + e\cos(f)\right)^{2} \cos^{3}(f)df \\
+=& \langle \left(a / r\right)^{4} \cos(f)\rangle - \langle \left(a / r\right)^{4} \cos^{3}(f)\rangle
+\end{aligned}$$
+
+Here, we can substitute in the values we found from parts (a) and (b), as the integral is just the difference between the two values.
+
+$$\begin{aligned}
+=& \frac{e}{\left(1-e^{2}\right)^{5/2}} - \frac{3e}{4\left(1-e^{2}\right)^{5/2}} \\
+=& \frac{4e}{4\left(1-e^{2}\right)^{5/2}} - \frac{3e}{4\left(1 - e^{2}\right)^{5/2}} \\
+=& \frac{e}{4\left(1-e^{2}\right)^{5/2}}
+\end{aligned}$$
+
+Thus, we have proven our orbital average.
+
+### My Commentary
+
 ## Problem 4 - [1] {1}
 > Many computing languages provide the function $\text{atan2}(y, x)$, which yields the angle in radians between the positive $x$-axis and the vector from the origin to the point $(x, y)$. Find an expression for the true anomaly of a bound orbit in terms of the eccentric anomaly using this function.
 
