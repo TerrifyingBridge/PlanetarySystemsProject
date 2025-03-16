@@ -228,7 +228,7 @@ $$\begin{aligned}
 
 Thus, we have proved our orbital average.
 
-### Part (b) - $\langle \left(a / r\right)^{4} \cos^{3}(f)\rangle$
+#### Part (b) - $\langle \left(a / r\right)^{4} \cos^{3}(f)\rangle$
 Like the pervious problem, I decided to use the true anomaly to solve this orbital average. Plugging in everything into the orbital average integral gives us the following.
 
 $$\begin{aligned}
@@ -237,6 +237,7 @@ $$\begin{aligned}
 =& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \int_{0}^{2\pi} \left(1 + 2e\cos(f) + e^{2}\cos^{2}(f)\right) \cos^{3}(f)df \\
 =& \frac{1}{2\pi \left(1 - e^{2}\right)^{5/2}} \int_{0}^{2\pi} \left(\cos^{3}(f) + 2e \cos^{4}(f) + e^{2}\cos^{5}(f)\right)df
 \end{aligned}$$ 
+
 Here, we invoke the equations that we used before. The odd powers of cosine become $0$ and $\int_{0}^{2\pi}\cos^{4}(f) = \frac{3\pi}{4}$. Replacing these values, we get the following result.
 
 $$\begin{aligned}

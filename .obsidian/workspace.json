@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Chapter 1 Two Body Problem/Chapter 1 Problems.md",
+                "file": "Chapter 1 Two Body Problem/1.8 Nearly Circular Orbits/Description.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 1 Problems"
+              "title": "Description"
             }
           }
         ]
@@ -170,6 +170,11 @@
   },
   "active": "7fb8de78b32e7bca",
   "lastOpenFiles": [
+    "Chapter 1 Two Body Problem/1.8 Nearly Circular Orbits/assets/taylor_error_animation.gif",
+    "Chapter 1 Two Body Problem/1.8 Nearly Circular Orbits/assets/orbit_animation2.gif",
+    "Chapter 1 Two Body Problem/1.8 Nearly Circular Orbits/assets/orbit_animation1.gif",
+    "Chapter 1 Two Body Problem/1.8 Nearly Circular Orbits/assets/nearly_circular_animation.gif",
+    "Chapter 1 Two Body Problem/1.8 Nearly Circular Orbits/assets/nearly_circular_picture.png",
     "Chapter 1 Two Body Problem/1.8 Nearly Circular Orbits/Description.md",
     "Chapter 1 Two Body Problem/Chapter 1 Problems.md",
     "Chapter 1 Two Body Problem/1.7 Mutlipole Expansion of a Potential/Description.md",
