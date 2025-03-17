@@ -226,7 +226,7 @@ $$\begin{aligned}
 =& \frac{e}{\left(1-e^{2}\right)^{5/2}}
 \end{aligned}$$
 
-Thus, we have proved our orbital average.
+Thus, we have proven our orbital average.
 
 #### Part (b) - $\langle \left(a / r\right)^{4} \cos^{3}(f)\rangle$
 Like the pervious problem, I decided to use the true anomaly to solve this orbital average. Plugging in everything into the orbital average integral gives us the following.
@@ -269,7 +269,78 @@ $$\begin{aligned}
 
 Thus, we have proven our orbital average.
 
+#### Part (d) - $\langle \left(r / a\right)^{3} \cos(f)\rangle$
+Unlike the previous three examples, I used the eccentric anomaly to solve the orbital overage. One might think that the cosine with the true anomaly might make this difficult, but it isn't so bad. We can re-write this term in terms of the eccentric anomaly using the following equation.
+
+$$ \cos(f) = \frac{\cos(u) - e}{1 - e\cos(u)} $$
+
+Unfortunately, this one (and the next average) tend to get a bit long in terms, so be mentally prepared for that. Regardless, plugging everything into the orbital average in terms of eccentric anomaly is as follows.
+
+$$\begin{aligned}
+ \langle \left(r / a\right)^{3} \cos(f)\rangle =& \frac{1}{2\pi}\int_{0}^{2\pi}\left(1 - e \cos(u)\right)^{3} \cdot \frac{\cos(u) - e}{1 - e \cos(u)} \cdot\left(1 - e \cos(u)\right)du \\
+ =& \frac{1}{2\pi} \int_{0}^{2\pi} \left(1-e\cos(u)\right)^{3}\left(\cos(u)-e\right)du \\
+ =& \frac{1}{2\pi} \int_{0}^{2\pi}\left(1 - 3e\cos(u) + 3e^{2}\cos^{2}(u) - e^{3}\cos^{3}(u)\right) \left(\cos(u) -e\right)du \\
+ =& \frac{1}{2\pi}\int_{0}^{2\pi}\left(\cos(u) -3e\cos^{2}(u) + 3e^{2}\cos^{3}(u) - e^{3}\cos^{4}(u) - e + 3e^{2}\cos(u) - 3e^{3}\cos^{2}(u) + e^{4}\cos^{3}(u)\right)du
+\end{aligned}$$
+
+Truly beautiful. Actually solving this isn't so bad, as we can invoke our previous formula before. Since there are no new powers of cosine, I will not repeat what they are and simply evaluate each values of the integrals, with the special reminder that all odd powers are $0$.
+
+$$\begin{aligned}
+=& \frac{1}{2\pi} \left[-3e(\pi) - e^{3} \left(\frac{3\pi}{4}\right) - e\left(2\pi\right) - 3e^{3}(\pi)\right] \\
+=&\frac{-3e}{2} - \frac{3e^{3}}{8} - e - \frac{3e^{3}}{2} \\
+=& \frac{-5e}{2} - \frac{15e^{3}}{8} \\
+=& \frac{-e}{8} \left(20 + 15e^{2}\right) \\
+=& \frac{-5e}{8} \left(4 + 3e^{2}\right)
+\end{aligned}$$
+
+Thus, we have proven our orbital average.
+
+#### Part (e) - $\langle \left(r / a\right)^{3} \cos^{3}(f)\rangle$
+This next orbital average I also solved with the eccentric anomaly, and used a lot of the same tricks for evaluating it. At this point, you know the drill and I'll jump right into where we plug in everything.
+
+$$\begin{aligned}
+\langle \left(r / a\right)^{3} \cos^{3}(f)\rangle =& \frac{1}{2\pi} \int_{0}^{2\pi} \left(1 - e\cos(u)\right)^{3} \cdot \frac{\left(\cos(u) - e\right)^{3}}{\left(1-e\cos(u)\right)^{3}} \cdot \left(1-e\cos(u)\right)du \\
+=& \frac{1}{2\pi} \int_{0}^{2\pi} \left(\cos(u) - e\right)^{3} \left(1 - e\cos(u)\right) du \\
+=& \frac{1}{2\pi} \int_{0}^{2\pi} \left(\cos^{3}(u) -3e\cos^{2}(u) + 3e^{2}\cos(u) - e^{3}\right) \left(1 - e\cos(u)\right)du \\
+=& \frac{1}{2\pi} \int_{0}^{2\pi} \left(\cos^{3}(u) - 3e\cos^{2}(u) + 3e^{2}\cos(u) - e^{3} - e\cos^{4}(u) + 3e^{2}\cos^{3}(u) - 3e^{3}\cos^{2}(u) + e^{4}\cos(u)\right)du
+\end{aligned}$$
+
+The odd powers of cosine are evaluated to $0$ and the even powers evaluate to the value that was found before. Plugging everything into the main integral gives us the following.
+
+$$\begin{aligned}
+=& \frac{1}{2\pi} \left[-3e(\pi) - e^{3}(\pi) - e\left(\frac{3\pi}{4}\right)  - 3e^{3}(\pi)\right] \\
+=& \frac{-3e}{2} - e^{3} - \frac{3e}{8} - \frac{3e^{3}}{2} \\
+=& \frac{-5e^{3}}{2} - \frac{15e}{8} \\
+=& \frac{-e}{8} \left(15 + 20e^{2}\right) \\
+=& \frac{-5e}{8} \left(3 + 4e^{2}\right)
+\end{aligned}$$
+
+Thus, we have proven our orbital average.
+
+#### Part (f) - $\langle \left(r / a\right)^{3} \cos(f)\sin^{2}(f)\rangle$
+If you've made it this far and actually read all of my solutions to this problem, you know where I am going with this solution. This one doesn't actually require us to choose true anomaly or eccentric anomaly as we can just solve it with what we already have. However, for the sake of showing the algebra, I am going to stick with the eccentric anomaly.
+
+$$\begin{aligned}
+\langle \left(r / a\right)^{3} \cos(f)\sin^{2}(f)\rangle =& \frac{1}{2\pi} \int_{0}^{2\pi} \left(\frac{r}{a}\right)^{3} \cos(f) \left(1 - \cos^{2}(f)\right)du \\
+=& \frac{1}{2\pi} \int_{0}^{2\pi} \left(\frac{r}{a}\right)^{3} \cdot \left(\cos(f) - \cos^{3}(f)\right)du \\
+=& \frac{1}{2\pi} \int_{0}^{2\pi} \left(\frac{r}{a}\right)^{3} \cos(f)du - \frac{1}{2\pi} \int_{0}^{2\pi} \left(\frac{r}{a}\right)^{3}\cos^{3}(f)du \\
+=& \langle \left(r/a\right)^{3} \cos(f) \rangle - \langle \left(r/a\right)^{3} \cos^{3}(f) \rangle
+\end{aligned}$$
+
+Both of these orbital averages we found in parts (d) and (e), so we can substitute them in and solve for our final value.
+
+$$\begin{aligned}
+=& \frac{-5e}{8} \left(4 + 3e^{2}\right) - \frac{-5e}{8}\left(3 + 4e^{2}\right) \\
+=& \frac{-5e}{8} \left(4 + 3e^{2} - 3 - 4e^{2}\right) \\
+=& \frac{-5e}{8} \left(1 - e^{2}\right)
+\end{aligned}$$
+
+Thus, we have proven our orbital average.
+
 ### My Commentary
+Overall, I didn't hate this problem as much as I thought I was going to. When I first started working on it, it was right after I did the self-imposed exercise of solving all of the example orbital averages in Section 1.3, and by that point I was very burnt out of dealing with integrals of trig powers. It didn't help that this problem comes right after the orbital averages of Problem 1.2, and those integrals really *really* suck. I never spent nearly as much time on these orbital averages than I did with the ones from the previous problem. 
+
+This problem ended up going a lot smoother for me when I was able to prove the general formula for integrals of powers of cosine. Just having an equation I can reference rather than having to re-evaluate all of those integrals made this so much nicer, plus I enjoyed having the ability to actually prove something for a change. Similarly, I appreciated having two of the problems be combinations of the previous two, which I thought was a fun little addition. That being said, I don't know when these orbital averages will ever show up as they seem pretty obscure. For now, they seem like just a way to practice evaluating orbital averages and were set up this way as an excuse to be able to solve them in the first place. I believe they probably have an application somewhere, I just currently don't know where. 
 
 ## Problem 4 - [1] {1}
 > Many computing languages provide the function $\text{atan2}(y, x)$, which yields the angle in radians between the positive $x$-axis and the vector from the origin to the point $(x, y)$. Find an expression for the true anomaly of a bound orbit in terms of the eccentric anomaly using this function.
