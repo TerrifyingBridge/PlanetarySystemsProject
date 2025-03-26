@@ -52,5 +52,5 @@ def update(step):
 
 
 ani = FuncAnimation(fig, update, frames=len(orbits), init_func=init, interval=100, blit=True)
-ani.save(filename="assets/orbit_animation2.gif", writer="pillow")
+#ani.save(filename="assets/orbit_animation2.gif", writer="pillow")
 plt.show()
