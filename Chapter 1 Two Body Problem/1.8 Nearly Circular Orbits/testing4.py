@@ -35,8 +35,8 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
 ax.view_init(elev=15)
 
-# planet = ax.plot_surface(x, y, z)
-planet, = ax.plot([0], [0], [0], "bo")
+planet = ax.plot_surface(x, y, z)
+# planet, = ax.plot([0], [0], [0], "bo")
 orbit_path, = ax.plot([], [], [], "r")
 
 time = np.linspace(0, 10 * (2 * np.pi / kappa_phi), 300)

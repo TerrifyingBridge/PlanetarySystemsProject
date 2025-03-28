@@ -37,10 +37,12 @@ class MainWindow(QMainWindow):
         self.orbit_page = QWidget()
         self.sim_page = QWidget()
 
-        self.fig = Figure()
-        self.canvas1 = FigureCanvasQTAgg(self.fig)
-        self.canvas2 = FigureCanvasQTAgg(self.fig)
-        self.ani = None
+        self.fig1 = Figure()
+        self.fig2 = Figure()
+        self.canvas1 = FigureCanvasQTAgg(self.fig1)
+        self.canvas2 = FigureCanvasQTAgg(self.fig2)
+        self.ani1 = None
+        self.ani2 = None
 
         #######################
         # Creating First Page #
@@ -72,7 +74,7 @@ class MainWindow(QMainWindow):
         orbit_button.clicked.connect(self.title_to_page1)
         sim_button = QPushButton("Simulation Page")
         sim_button.setFixedHeight(300)
-        sim_button.clicked.connect(lambda: self.stacked.setCurrentIndex(2))
+        sim_button.clicked.connect(self.title_to_page2)
         main_page_button_layout.addWidget(orbit_button)
         main_page_button_layout.addWidget(sim_button)
         main_page_buttons.setLayout(main_page_button_layout)
@@ -117,7 +119,8 @@ class MainWindow(QMainWindow):
         self.orbit_x0_slider.setMaximum(100)
         self.orbit_x0_slider.setFixedWidth(self.slider_width)
         self.orbit_x0_slider.sliderReleased.connect(self.gen_sim)
-        self.orbit_x0_slider.valueChanged.connect(lambda: self.orbit_x0_val.setText(str(round(self.orbit_x0_slider.value() / 10, 2))))
+        self.orbit_x0_slider.valueChanged.connect(
+            lambda: self.orbit_x0_val.setText(str(round(self.orbit_x0_slider.value() / 10, 2))))
         self.create_slider_box(self.orbit_x0_slider, self.orbit_x0_val, "Radius Diff.", orbit_slider_layout)
 
         self.orbit_z0_slider = QSlider(Qt.Orientation.Horizontal)
@@ -127,7 +130,8 @@ class MainWindow(QMainWindow):
         self.orbit_z0_slider.setMaximum(100)
         self.orbit_z0_slider.setFixedWidth(self.slider_width)
         self.orbit_z0_slider.sliderReleased.connect(self.gen_sim)
-        self.orbit_z0_slider.valueChanged.connect(lambda: self.orbit_z0_val.setText(str(round(self.orbit_z0_slider.value() / 10, 2))))
+        self.orbit_z0_slider.valueChanged.connect(
+            lambda: self.orbit_z0_val.setText(str(round(self.orbit_z0_slider.value() / 10, 2))))
         self.create_slider_box(self.orbit_z0_slider, self.orbit_z0_val, "Altitude Diff.", orbit_slider_layout)
 
         self.orbit_kr_val = QLabel("1.0")
@@ -137,7 +141,8 @@ class MainWindow(QMainWindow):
         self.orbit_kr_slider.setMinimum(0)
         self.orbit_kr_slider.setMaximum(50)
         self.orbit_kr_slider.sliderReleased.connect(self.gen_sim)
-        self.orbit_kr_slider.valueChanged.connect(lambda: self.orbit_kr_val.setText(str(round(1 + self.orbit_kr_slider.value() / 100, 2))))
+        self.orbit_kr_slider.valueChanged.connect(
+            lambda: self.orbit_kr_val.setText(str(round(1 + self.orbit_kr_slider.value() / 100, 2))))
         self.create_slider_box(self.orbit_kr_slider, self.orbit_kr_val, "Radius Freq.", orbit_slider_layout)
 
         self.orbit_kz_val = QLabel("1.0")
@@ -147,7 +152,8 @@ class MainWindow(QMainWindow):
         self.orbit_kz_slider.setMinimum(0)
         self.orbit_kz_slider.setMaximum(50)
         self.orbit_kz_slider.sliderReleased.connect(self.gen_sim)
-        self.orbit_kz_slider.valueChanged.connect(lambda: self.orbit_kz_val.setText(str(round(1 + self.orbit_kz_slider.value() / 100, 2))))
+        self.orbit_kz_slider.valueChanged.connect(
+            lambda: self.orbit_kz_val.setText(str(round(1 + self.orbit_kz_slider.value() / 100, 2))))
         self.create_slider_box(self.orbit_kz_slider, self.orbit_kz_val, "Altitude Freq.", orbit_slider_layout)
 
         orbit_body_layout.addLayout(orbit_slider_layout)
@@ -165,11 +171,11 @@ class MainWindow(QMainWindow):
         ###################################
 
         sim_page_layout = QVBoxLayout()
-        sim_page_title = QLabel("General Nearly Circular Orbit")
+        sim_page_title = QLabel("Satellite Nearly Circular Orbit")
         sim_page_title.setFont(title_font)
         sim_page_title.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         sim_page_title.setFixedHeight(30)
-        sim_page_layout.addWidget(orbit_page_title)
+        sim_page_layout.addWidget(sim_page_title)
 
         sim_type_layout = QHBoxLayout()
         sim_type_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
@@ -177,9 +183,9 @@ class MainWindow(QMainWindow):
         sim_type_spacer.setFixedWidth(100)
         self.path_button2 = QRadioButton("View Change in Body")
         self.path_button2.setChecked(True)
-        self.path_button2.toggled.connect(self.gen_sim)
+        self.path_button2.toggled.connect(self.planet_sim)
         self.orbit_button2 = QRadioButton("View Change in Orbit")
-        self.orbit_button2.toggled.connect(self.gen_sim)
+        self.orbit_button2.toggled.connect(self.planet_sim)
         sim_type_layout.addWidget(self.path_button2)
         sim_type_layout.addWidget(sim_type_spacer)
         sim_type_layout.addWidget(self.orbit_button2)
@@ -200,7 +206,7 @@ class MainWindow(QMainWindow):
         self.planet_dropdown.addItem("Saturn")
         self.planet_dropdown.addItem("Uranus")
         self.planet_dropdown.addItem("Neptune")
-        self.planet_dropdown.activated.connect(self.planet_sim)
+        self.planet_dropdown.currentIndexChanged.connect(self.planet_sim)
         dropdown_layout.addWidget(planet_label)
         dropdown_layout.addWidget(self.planet_dropdown)
         sim_slider_layout.addLayout(dropdown_layout)
@@ -211,7 +217,9 @@ class MainWindow(QMainWindow):
         self.distance_slider.setFixedWidth(self.slider_width)
         self.distance_slider.setMinimum(0)
         self.distance_slider.setMaximum(100)
-        self.distance_slider.valueChanged.connect(lambda: self.distance_val.setText(str(round(self.distance_slider.value() * 5)) + " km"))
+        self.distance_slider.valueChanged.connect(
+            lambda: self.distance_val.setText(str(round(self.distance_slider.value() * 5)) + " km"))
+        self.distance_slider.sliderReleased.connect(self.planet_sim)
         self.create_slider_box(self.distance_slider, self.distance_val, "Dist. from Body", sim_slider_layout)
 
         self.incline_val = QLabel("0 deg")
@@ -221,7 +229,9 @@ class MainWindow(QMainWindow):
         self.incline_slider.setMinimum(0)
         self.incline_slider.setMaximum(10)
         self.incline_slider.setValue(5)
-        self.incline_slider.valueChanged.connect(lambda: self.incline_val.setText(str(round(self.incline_slider.value() - 5)) + " deg"))
+        self.incline_slider.valueChanged.connect(
+            lambda: self.incline_val.setText(str(round(self.incline_slider.value() - 5)) + " deg"))
+        self.incline_slider.sliderReleased.connect(self.planet_sim)
         self.create_slider_box(self.incline_slider, self.incline_val, "Inclination", sim_slider_layout)
 
         sim_body_layout.addLayout(sim_slider_layout)
@@ -254,13 +264,20 @@ class MainWindow(QMainWindow):
         vert_layout.addWidget(slider)
         orb_layout.addLayout(vert_layout)
 
-    def clear_figure(self) -> None:
-        if self.ani is not None:
-            self.ani.event_source.stop()
-            self.ani = None
+    def clear_figure1(self) -> None:
+        if self.ani1 is not None:
+            self.ani1.event_source.stop()
+            self.ani1 = None
 
-        self.fig.clear()
+        self.fig1.clear()
         self.canvas1.draw()
+
+    def clear_figure2(self) -> None:
+        if (self.ani2 is not None):
+            self.ani2.event_source.stop()
+            self.ani2 = None
+
+        self.fig2.clear()
         self.canvas2.draw()
 
     def title_to_page1(self):
@@ -268,8 +285,8 @@ class MainWindow(QMainWindow):
         self.gen_sim()
 
     def gen_sim(self):
-        self.clear_figure()
-        ax = self.fig.add_subplot(111, projection="3d")
+        self.clear_figure1()
+        ax = self.fig1.add_subplot(111, projection="3d")
         ax.view_init(elev=15)
         center_pos, = ax.plot([0], [0], [0], "bo")
         orbit_path, = ax.plot([], [], [], "r")
@@ -309,7 +326,7 @@ class MainWindow(QMainWindow):
                 orbit_path.set_data_3d(x[:index], y[:index], z[:index])
                 return orbit_path, center_pos,
 
-            self.ani = FuncAnimation(self.fig, update, frames=len(time), init_func=init(), interval=15, blit=True)
+            self.ani1 = FuncAnimation(self.fig1, update, frames=len(time), init_func=init(), interval=15, blit=True)
             self.canvas1.draw()
         else:
             orbits = np.linspace(0, 29, 30)
@@ -337,7 +354,7 @@ class MainWindow(QMainWindow):
                 orbit_path.set_data_3d(x1, x2, x3)
                 return center_pos, orbit_path,
 
-            self.ani = FuncAnimation(self.fig, update, frames=len(orbits), init_func=init(), interval=100, blit=True)
+            self.ani1 = FuncAnimation(self.fig1, update, frames=len(orbits), init_func=init(), interval=100, blit=True)
             self.canvas1.draw()
 
     def title_to_page2(self):
@@ -345,12 +362,12 @@ class MainWindow(QMainWindow):
         self.planet_sim()
 
     def planet_sim(self):
-        self.clear_figure()
-        ax = self.fig.add_subplot(111, projection="3d")
-        ax.init_view(elev=11)
-        orbit_path, = ax.plot([], [], [], "r")
-        orbit_radius = self.distance_slider.value() * 5
-        inclination = self.incline_slider.value() - 5
+        self.clear_figure2()
+        ax = self.fig2.add_subplot(111, projection="3d")
+        ax.view_init(elev=11)
+        sim_path, = ax.plot([], [], [], "r")
+        orbit_radius = round(self.distance_slider.value() * 5)
+        inclination = round(self.incline_slider.value() - 5)
         center_object = self.planet_dropdown.currentText()
         planet_radius = 0
         J2 = 0
@@ -405,7 +422,7 @@ class MainWindow(QMainWindow):
         e = 3 * J2 * math.pow(ref_rad, 2) / math.pow(orbit_radius, 2)
         q = a * (1 - e)
         x0 = orbit_radius - q
-        z0 = orbit_radius * np.tan(5 * (np.pi / 180))
+        z0 = orbit_radius * np.tan(inclination * (np.pi / 180))
 
         polar_angle = np.linspace(0, np.pi, 100)
         azimuth_angle = np.linspace(0, 2 * np.pi, 100)
@@ -414,6 +431,8 @@ class MainWindow(QMainWindow):
         object_x = 0.9 * planet_radius * np.sin(theta) * np.cos(phi)
         object_y = 0.9 * planet_radius * np.sin(theta) * np.sin(phi)
         object_z = 0.9 * planet_radius * np.cos(theta)
+
+        planet = ax.plot_surface(object_x, object_y, object_z)
 
         if (self.path_button2.isChecked()):
             time = np.linspace(0, 10 * (2 * np.pi / kappa_phi), 300)
@@ -437,16 +456,45 @@ class MainWindow(QMainWindow):
                 ax.set_ylabel("Y")
                 ax.set_zlabel("Z")
 
-                return orbit_path,
+                return sim_path,
 
             def update(index):
-                orbit_path.set_data_3d(x[:index], y[:index], z[:index])
-                return orbit_path,
+                sim_path.set_data_3d(x[:index], y[:index], z[:index])
+                return sim_path,
 
-            ani = FuncAnimation(self.fig, update, frames=len(time), init_func=init, interval=10, blit=True)
+            self.ani2 = FuncAnimation(self.fig2, update, frames=len(time), init_func=init, interval=10, blit=True)
             self.canvas2.draw()
         else:
-            pass
+            orbits = np.linspace(0, 499, 500)
+
+            def init():
+                ax.set(xlim=(-1.1 * orbit_radius, 1.1 * orbit_radius), ylim=(-1.1 * orbit_radius, 1.1 * orbit_radius),
+                       zlim=(-1.1 * orbit_radius, 1.1 * orbit_radius))
+                ax.set_xlabel("X")
+                ax.set_ylabel("Y")
+                ax.set_zlabel("Z")
+
+                return sim_path,
+
+            def update(step):
+                phi = np.linspace(2 * np.pi * orbits[step], 2 * np.pi * (orbits[step] + 1), 100)
+                x1 = []
+                x2 = []
+                x3 = []
+                for i in range(len(phi)):
+                    x = x0 * np.cos(kappa_r * phi[i] / kappa_phi)
+                    r = x + orbit_radius
+                    z = z0 * np.cos(kappa_z * phi[i] / kappa_phi)
+
+                    x1.append(r * np.cos(phi[i]))
+                    x2.append(r * np.sin(phi[i]))
+                    x3.append(z)
+
+                sim_path.set_data_3d(x1, x2, x3)
+                return sim_path,
+
+            self.ani2 = FuncAnimation(self.fig2, update, frames=len(orbits), init_func=init, interval=100, blit=False)
+            self.canvas2.draw()
 
 
 app = QApplication([])
