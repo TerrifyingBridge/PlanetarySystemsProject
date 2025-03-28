@@ -493,7 +493,7 @@ class MainWindow(QMainWindow):
                 sim_path.set_data_3d(x1, x2, x3)
                 return sim_path,
 
-            self.ani2 = FuncAnimation(self.fig2, update, frames=len(orbits), init_func=init, interval=100, blit=False)
+            self.ani2 = FuncAnimation(self.fig2, update, frames=len(orbits), init_func=init, interval=100, blit=True)
             self.canvas2.draw()
 
 
