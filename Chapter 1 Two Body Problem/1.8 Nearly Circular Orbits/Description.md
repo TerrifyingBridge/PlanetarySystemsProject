@@ -11,7 +11,22 @@ This section of the book focuses on orbits that have an eccentricity that is jus
 text2
 
 ## Project Description
-text3
+For this project, I thought it would be a fun idea to to and showcase off what some of these nearly circular orbits looked like. The last two subsections surround this idea just in different ways, namely where the second subsection deals with the general epicycle approximation, and the last subsection deals with specifically the effect of multipole expansion on the potential. Since I wanted to showcase both of these, I figured I could split my own project into these two parts as well. As always, there is also a GUI that goes along with this project so that the program is more easily accessible.
+
+### Epicycle Approximation
+The book goes into great detail on how the approximations are found, but another method for modeling the two body system can be determined using a Taylor series approximation on the potential. Only looking at the first order equations for these provides us with the following approximations for the path of an orbiting body.
+
+$$
+z(t) = z_{0}\cos(\kappa_{z}t + \zeta), \quad \quad x(t) = x_{0}\cos(\kappa_{R}t + \eta), \quad \quad \phi(t) = \kappa_{\phi}t + \phi_{0} - \frac{2x_{0}\kappa_{\phi}}{R_{g}\kappa_{R}}\sin(\kappa_{R}t + \eta)
+$$
+
+Where $x$ is the deviation from the orbital radius $R_{g}$, $z$ is the altitude of the orbit, $\kappa$ is the frequency of the respective variable, and $\eta$ and $\zeta$ are integration constants. There is another form to write these in that the book outlines as well. Using just the linear part of the azimuth angle equation, we can re-write both $z$ and $x$ in terms of just $\phi$.
+
+$$
+x = x_{0} \cos \left[\frac{\kappa_{R}}{\kappa_{\phi}} (\phi - \phi_{R})\right], \quad \quad z = z_{0} \cos\left[\frac{\kappa_{z}}{\kappa_{\phi}}(\phi - \phi_{z})\right]
+$$
+
+This looks a bit nicer and is a tad easier to work with when actually making the code for the program itself. Doing it this way, means that I can use $\phi$ as an independent variable instead of relying on time (which can get a bit funky when coding).  
 
 ## Reflecting Thoughts
 ### Section Thoughts
