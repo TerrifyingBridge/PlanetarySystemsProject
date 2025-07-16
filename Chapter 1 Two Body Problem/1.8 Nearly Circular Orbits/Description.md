@@ -61,7 +61,7 @@ While exaggerated, it's really cool to see the orbit change between after a cycl
 
 When making the final project, I couldn't decided which method of representation I liked the most, so I asked some of my friends. Most of them ended up liking both, so for the final one, I decided to put both in, which an option to switch between the two.
 
-###  Real Orbit Simulation
+### Real Orbit Simulation
 The last subsection of the book talks about how the epicycle approximation actually shows up in the real world, using the multipole expansion. The best part about this is that the book also provides us with the quadrupole of the Sun and the planets of the solar system. Because of this, I implemented both representations of the epicycle approximation for actual celestial bodies. For this section, I focused on Saturn (mostly because it has a high quadrupole moment), but the final project will have more.
 
 For clarify sake, the equations for azimuthal ($\kappa_{\phi}$), radial ($\kappa_{R}$), and vertical ($\kappa_{z}$) frequency in terms of the multipole expansion are shown below. 
@@ -81,6 +81,32 @@ Since the book only provides the quadrupole moment, that is all I used. The way 
 </p>
 
 So, this looks bad, and I know what you might be thinking: "Why don't you fix it? You know what's wrong." And to that I counter, that is looks fine when you run it by yourself. I promise that in all of my tests, that the orbiting body does actually go in front of the big blue ball when it needs to. It is only when I saved the gif that it pushes the orbiting body behind it for some reason. I could not figure out the reason as to why *that* was happening, but if you want to see it how it is supposed to be, I encourage you to run the program yourself and see. 
+
+For the sake of this document, I re-made these using the small blue body that we've been familiar with, however, this is not the case in the actual program. Regardless, these wasn't too much difference in the math between the quadrupole simulations and the general orbital simulation. This makes sense as we're only changing the frequencies, but for clarity, here are the two different representations for Saturn.
+
+<p align="center">
+<img src="assets/sim_animation1.gif" width="300">
+<img src="assets/sim_animation2.gif" width="300">
+</p>
+
+Before moving on, I did want to comment on how these look different from the general simulation. I chose Saturn for these tests because it has a large quadrupole moment, and thus, a more exaggerated wobble. However, what I didn't expect was how generally smooth it was overall. I suppose it makes sense in some way, as the central object would have to have a pretty large quadrupole moment to make big wobbles, but I like how this looks a lot compared to the general simulation. I especially like the right figure, as it looks like a spinning disk you might play around with in your free time. 
+
+### Making the GUI
+As with all of my projects, I want these to be pretty interact and not involve just throwing numbers into a console so I made a GUI. I wanted this one to be a bit more cleaner and had some high hopes for how it would turn out. In my head, I envisioned that this GUI would have pictures that would showcase what is happening in my program, but this didn't happen. Regardless, I wanted to make sure this one was good, so I went through the process of sketching out how I wanted it to look.
+
+<p align="center">
+<img src="assets/sketch.png" width="500">
+</p>
+
+Please ignore the squares at the top, I don't remember what I was thinking when I drew them so I couldn't tell you what they represent now. However, this was my general idea. The program would have a main page with centered Title at the top along with instructions for how to use the program. Below that, the bottom half of the GUI would have large buttons (ideally with pictures ;C ) that would show what each button does, one for general orbit simulation and the other for real celestial body simulation. Each of these pages would have different sliders for the different values.  The general orbit simulation would have sliders for frequency and the real celestial body simulation would have sliders for inclination and distance from the body, along with a drop down menu to select the different bodies. Lastly, both pages would have a radio button at the top to select between showing the orbit of the orbiting body or showing how the orbit changes per revolution.
+
+I would say I did an alright job making this GUI, but I definitely had a bigger dream than what happened in actual practice. This can be seen in the title page for the GUI below. The pictures for the buttons didn't end up working out (I couldn't figure out how to implement them unfortunately), and I think the instructions look a bit off. I couldn't tell you how to improve this (as I am no good at graphic design if this larger project has taught me anything), so this is the best I got. One small victory that I like is that I was able to add a small logo for this GUI, which can be seen in the top left of the window.
+
+<p align="center">
+<img src="assets/gui1.png" width="500">
+</p>
+
+
 
 ## Reflecting Thoughts
 ### Section Thoughts
